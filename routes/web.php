@@ -22,3 +22,9 @@ return "this is user";
 Route::get("/test",function(){
     return "this is test";
 });
+
+
+
+Route::get("/user",function(){
+    return "this is user4";
+});
