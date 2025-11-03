@@ -20,8 +20,9 @@
          <option value="{{$lesson->id}}">{{$lesson->title}}</option>
         @endforeach
        </select>
-
-     <input type="file" multiple>
+       <!-- <input type="file" name = "practiceMedia">
+       <label>:فایل ضمیمه</label> -->
+       
        <button>create</button>
     </form>
 </body>
