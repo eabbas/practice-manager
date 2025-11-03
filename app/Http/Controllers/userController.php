@@ -41,7 +41,7 @@ class userController extends Controller
     $checkHash = Hash::check($request->password, $user->password);
     if ($checkHash) {
       if (Auth::check()) {
-        return view("users.panel", ["user" => $user]);
+        return view("users.panel",["user"=>$user]);
       }
       if (!Auth::check()) {
         Auth::login($user);
@@ -78,7 +78,7 @@ class userController extends Controller
     $password = Hash::make($request->code);
     $user->approved = $request->approved;
     $user->save();
-    return redirect("/users");
+    return redirect("user/");
   }
   public function show($id)
   {
