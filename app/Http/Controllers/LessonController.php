@@ -13,7 +13,7 @@ class LessonController extends Controller
 
     public function store(Request $request){
         lesson::create($request->all());
-        return to_route('lesson_list');
+        return redirect('lessons');
     }
 
 
@@ -34,6 +34,7 @@ class LessonController extends Controller
     }
     
     public function update(Request $request){
+        // dd($request->all());
         $lesson = lesson::find($request->id);
         $lesson->title = $request->title;
         $lesson->description = $request->description;

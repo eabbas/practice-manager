@@ -5,11 +5,11 @@
     <table border=1>
         <thead>
             <tr>
-                <th>ID</th>
-                <th>title</th>
-                <th>description</th>
-                <th>lesson_group</th>
-                <th>master_id</th>
+                <th>آیدی</th>
+                <th>نام درس</th>
+                <th>توضیحات</th>
+                <th>گروه درس</th>
+                <th>استاد مربوطه</th>
                 <th>Action</th>
             </tr>
         </thead>
