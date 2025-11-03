@@ -20,7 +20,7 @@
                 </h3>
                 <hr class="text-[darkslategray] mt-2.5">
                 <div class="py-5 h-[80%] overflow-y-auto flex flex-col gap-5" style="scrollbar-width: none;">
-                    <!-- <div>
+                    <div>
                         <div class="flex justify-between flex-row-reverse">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                 class="size-6 fill-white w-[15px]">
@@ -44,20 +44,21 @@
                         </div>
                         <div class="dashbord ">
                             <ul class="gap-2.5 mt-2.5 mb-2.5 pr-3">
-                                @if($user->role=="master")
+                                @if(Auth::user()->roles[0]->title=="master")
+
                                 <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
 
                                     <span class="size-1 bg-white rounded-sm"></span>
                                     <a href="{{ route('lesson_create') }}" class=" text-white py-1">ایجاد درس</a>
                                 </li>
                                 @endif
-                                <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
+                                <!-- <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                     <span class="size-1 bg-white rounded-sm"></span>
                                     <a href="#" class=" text-white py-1"></a>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
-                    </div> -->
+                    </div>
 
 
 
@@ -221,7 +222,7 @@
                     <div class="w-6/12 flex justify-start">
                         <ul class="flex gap-4 items-center text-black font-semibold ">
                             <li class="color__a text-[#4B5675]">
-                                <a href="#" class="py-2">خروج از حساب کاربری</a>
+                                <a href="{{ route('user.logout') }}" class="py-2">خروج از حساب کاربری</a>
                             </li>
                             <li class="color__a text-[#4B5675]">
                                 <a href="#" class="py-2"> صفحات</a>

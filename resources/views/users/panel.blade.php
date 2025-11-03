@@ -6,4 +6,4 @@
     {{$user->family}}
     @endsection
     <a href="{{route('user.logout')}}">logout</a>
-    <?php dd($user->roles); ?>
+    <?php// dd($user->roles); ?>

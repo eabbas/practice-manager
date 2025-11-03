@@ -8,6 +8,7 @@
             
             <form class="space-y-4" action="{{ url('lesson/update') }}" method="post">
                 @csrf
+                <input type="hidden" name="master_id" value="{{ Auth::id() }}">
                 <input type="hidden" value="{{ $lesson->id }}" name="id">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">عنوان درس</label>

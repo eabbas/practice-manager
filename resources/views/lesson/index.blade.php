@@ -63,7 +63,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-gray-500 text-sm">کل دروس</p>
-                        <p class="text-2xl font-bold text-gray-800 mt-1">۲۴</p>
+                        <p class="text-2xl font-bold text-gray-800 mt-1">{{ count($lessons) }}</p>
                     </div>
                     <div class="bg-blue-50 p-3 rounded-xl">
                         <i class="fas fa-book text-[#023e83] text-xl"></i>
@@ -75,7 +75,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-gray-500 text-sm">دروس فعال</p>
-                        <p class="text-2xl font-bold text-gray-800 mt-1">۱۸</p>
+                        <p class="text-2xl font-bold text-gray-800 mt-1">0</p>
                     </div>
                     <div class="bg-green-50 p-3 rounded-xl">
                         <i class="fas fa-check-circle text-green-500 text-xl"></i>
@@ -87,7 +87,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-gray-500 text-sm">گروه‌های درسی</p>
-                        <p class="text-2xl font-bold text-gray-800 mt-1">۶</p>
+                        <p class="text-2xl font-bold text-gray-800 mt-1">1</p>
                     </div>
                     <div class="bg-orange-50 p-3 rounded-xl">
                         <i class="fas fa-layer-group text-orange-500 text-xl"></i>
@@ -95,7 +95,7 @@
                 </div>
             </div>
             
-            <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-purple-500">
+            <!-- <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-purple-500">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-gray-500 text-sm">اساتید</p>
@@ -105,7 +105,7 @@
                         <i class="fas fa-user-tie text-purple-500 text-xl"></i>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <!-- جدول دروس -->
@@ -148,7 +148,7 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
-                        <!-- درس ۱ -->
+                         @foreach($lessons as $lesson)
                         <tr class="table-row">
                             <td class="px-6 py-4">
                                 <div class="flex items-center">
@@ -156,14 +156,14 @@
                                         <i class="fas fa-calculator text-[#023e83]"></i>
                                     </div>
                                     <div>
-                                        <p class="font-medium text-gray-900">ریاضی عمومی ۱</p>
-                                        <p class="text-sm text-gray-500 mt-1">مبانی ریاضیات دانشگاهی</p>
+                                        <p class="font-medium text-gray-900">{{ $lesson->title }}</p>
+                                        <p class="text-sm text-gray-500 mt-1">{{ $lesson->description }}</p>
                                     </div>
                                 </div>
                             </td>
                             <td class="px-6 py-4">
                                 <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
-                                    ریاضی
+                                   {{ $lesson->lesson_group }}
                                 </span>
                             </td>
                             <td class="px-6 py-4">
@@ -171,152 +171,33 @@
                                     <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-medium ml-2">
                                         د
                                     </div>
-                                    <span class="text-gray-700">دکتر احمدی</span>
+                                    <span class="text-gray-700">{{ Auth::user()->name }}</span>
                                 </div>
                             </td>
                            
                             
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 flex flex-row items-center gap-5">
                                 <div class="flex items-center space-x-3 space-x-reverse">
-                                    <button class="text-blue-600 hover:text-blue-800 transition duration-200" title="ویرایش">
+                                    <a href="{{ route('lesson_edit', [$lesson]) }}" class="text-blue-600 hover:text-blue-800 transition duration-200" title="ویرایش">
                                         <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="text-green-600 hover:text-green-800 transition duration-200" title="مشاهده">
+                                    </a>
+                                    <a href="{{ route('lesson_show', [$lesson]) }}" class="text-green-600 hover:text-green-800 transition duration-200" title="مشاهده">
                                         <i class="fas fa-eye"></i>
-                                    </button>
-                                    <button class="text-red-600 hover:text-red-800 transition duration-200" title="حذف">
+                                    </a>
+                                    <a href="{{ route('lesson_delete', [$lesson]) }}" class="text-red-600 hover:text-red-800 transition duration-200" title="حذف">
                                         <i class="fas fa-trash"></i>
-                                    </button>
+                                    </a>
+                                   
+                                </div>
+                                <div>
+                                     <a href="{{ route('practice_create', [$lesson]) }}" class="text-black transition duration-200 px-3 rounded-md border border-gray-200" title="ایجاد تمرین">
+                                        ایجاد تمرین
+                                    </a>
                                 </div>
                             </td>
                         </tr>
-
-                        <!-- درس ۲ -->
-                        <tr class="table-row">
-                            <td class="px-6 py-4">
-                                <div class="flex items-center">
-                                    <div class="bg-green-50 p-2 rounded-lg ml-3">
-                                        <i class="fas fa-atom text-green-600"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-medium text-gray-900">فیزیک ۱</p>
-                                        <p class="text-sm text-gray-500 mt-1">مکانیک و ترمودینامیک</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
-                                    علوم
-                                </span>
-                            </td>
-                            <td class="px-6 py-4">
-                                <div class="flex items-center">
-                                    <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-medium ml-2">
-                                        م
-                                    </div>
-                                    <span class="text-gray-700">دکتر محمدی</span>
-                                </div>
-                            </td>
-                            
-                            <td class="px-6 py-4">
-                                <div class="flex items-center space-x-3 space-x-reverse">
-                                    <button class="text-blue-600 hover:text-blue-800 transition duration-200" title="ویرایش">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="text-green-600 hover:text-green-800 transition duration-200" title="مشاهده">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                    <button class="text-red-600 hover:text-red-800 transition duration-200" title="حذف">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <!-- درس ۳ -->
-                        <tr class="table-row">
-                            <td class="px-6 py-4">
-                                <div class="flex items-center">
-                                    <div class="bg-yellow-50 p-2 rounded-lg ml-3">
-                                        <i class="fas fa-book text-yellow-600"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-medium text-gray-900">ادبیات فارسی</p>
-                                        <p class="text-sm text-gray-500 mt-1">نثر و نظم فارسی</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
-                                    ادبیات
-                                </span>
-                            </td>
-                            <td class="px-6 py-4">
-                                <div class="flex items-center">
-                                    <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center text-white text-sm font-medium ml-2">
-                                        ر
-                                    </div>
-                                    <span class="text-gray-700">دکتر رضایی</span>
-                                </div>
-                            </td>
-                      
-                            
-                            <td class="px-6 py-4">
-                                <div class="flex items-center space-x-3 space-x-reverse">
-                                    <button class="text-blue-600 hover:text-blue-800 transition duration-200" title="ویرایش">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="text-green-600 hover:text-green-800 transition duration-200" title="مشاهده">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                    <button class="text-red-600 hover:text-red-800 transition duration-200" title="حذف">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <!-- درس ۴ -->
-                        <tr class="table-row">
-                            <td class="px-6 py-4">
-                                <div class="flex items-center">
-                                    <div class="bg-red-50 p-2 rounded-lg ml-3">
-                                        <i class="fas fa-globe text-red-600"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-medium text-gray-900">جغرافیا</p>
-                                        <p class="text-sm text-gray-500 mt-1">جغرافیای طبیعی و انسانی</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800">
-                                    جغرافیا
-                                </span>
-                            </td>
-                            <td class="px-6 py-4">
-                                <div class="flex items-center">
-                                    <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white text-sm font-medium ml-2">
-                                        ک
-                                    </div>
-                                    <span class="text-gray-700">دکتر کریمی</span>
-                                </div>
-                            </td>
-
-                            <td class="px-6 py-4">
-                                <div class="flex items-center space-x-3 space-x-reverse">
-                                    <button class="text-blue-600 hover:text-blue-800 transition duration-200" title="ویرایش">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="text-green-600 hover:text-green-800 transition duration-200" title="مشاهده">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                    <button class="text-red-600 hover:text-red-800 transition duration-200" title="حذف">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                        @endforeach
+                       
                     </tbody>
                 </table>
             </div>

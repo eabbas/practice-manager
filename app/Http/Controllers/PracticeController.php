@@ -10,10 +10,8 @@ use Illuminate\Support\Str;
 
 class PracticeController extends Controller
 {
-     public function create(){
-        $lessons = lesson::all();
-        // dd($lessons);
-        return view("practice.create" , ["lessons"=>$lessons]);
+     public function create(lesson $lesson){
+        return view("practice.create" , ["lesson"=>$lesson]);
     }
 
      public function store(Request $request){
@@ -26,20 +24,20 @@ class PracticeController extends Controller
     }
 
     public function index(){
-        $practiceWithLessons = practice::with("lessons")->get();
+        $practiceWithLessons = practice::with("lesson")->get();
         return view('practice.index' , ["practiceWithLessons"=>$practiceWithLessons]);
     }
 
     public function show($id){
-       $practiceWithLessons = practice::find($id)->load("lessons");
-       return view('practice.single' , ["practiceWithLessons"=>$practiceWithLessons]);
+       $practice = practice::find($id);
+       return view('practice.single' , ["practice"=>$practice]);
     }
 
     public function edit($id){
        $practice = practice::find($id);
-       $lessons = lesson::all();
+      
     //    dd($practiceWithLessons->lessons);
-       return view('practice.edit' , ["practice"=>$practice , "lessons"=>$lessons]);
+       return view('practice.edit' , ["practice"=>$practice]);
     }
     
 
@@ -47,8 +45,9 @@ class PracticeController extends Controller
         $practice = practice::find($request->id);
         $practice->title = $request->title;
         $practice->description = $request->description;
-        $practice->lesson_id = $request->lessonId;
+        $practice->lesson_id = $request->lesson_id;
         $practice->save();
+        return to_route('practice_list');
     
     }
 
