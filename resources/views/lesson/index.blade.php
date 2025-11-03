@@ -2,32 +2,389 @@
 @extends('users.dashboard')
 @section('title', 'lesson list')
 @section('content')
-    <table border=1>
-        <thead>
-            <tr>
-                <th>آیدی</th>
-                <th>نام درس</th>
-                <th>توضیحات</th>
-                <th>گروه درس</th>
-                <th>استاد مربوطه</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($lessons as $lesson)
-            <tr>
-                <td>{{$lesson->id}}</td>
-                <td>{{$lesson->title}}</td>
-                <td>{{$lesson->description}}</td>
-                <td>{{$lesson->lesson_group}}</td>
-                <td>{{$lesson->master_id}}</td>
-                <td>
-                    <a href="{{url('/lesson/show/' . $lesson->id)}}">Show</a>
-                    <a href="{{url('/lesson/edit/' . $lesson->id)}}">Edit</a>
-                    <a href="{{url('/lesson/delete/' . $lesson->id)}}">Delete</a>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'vazir': ['Vazirmatn', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#023e83'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+        }
+        
+        .table-row:hover {
+            background-color: #f8fafc;
+            transform: translateY(-1px);
+            transition: all 0.2s ease;
+        }
+        
+        .status-active {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+        
+        .status-inactive {
+            background-color: #fef2f2;
+            color: #dc2626;
+        }
+    </style>
+</head>
+<body class="min-h-screen py-8 px-4 font-vazir">
+    <div class="max-w-7xl mx-auto">
+        <!-- هدر -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-[#023e83] mb-2">لیست دروس</h1>
+                <p class="text-gray-600">مدیریت و مشاهده تمام دروس سیستم</p>
+            </div>
+            <a href="{{ url('lesson/create') }}" 
+               class="mt-4 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-6 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center">
+                <i class="fas fa-plus ml-2"></i>
+                ایجاد درس جدید
+            </a>
+        </div>
+
+        <!-- آمار و اطلاعات -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-[#023e83]">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm">کل دروس</p>
+                        <p class="text-2xl font-bold text-gray-800 mt-1">۲۴</p>
+                    </div>
+                    <div class="bg-blue-50 p-3 rounded-xl">
+                        <i class="fas fa-book text-[#023e83] text-xl"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-green-500">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm">دروس فعال</p>
+                        <p class="text-2xl font-bold text-gray-800 mt-1">۱۸</p>
+                    </div>
+                    <div class="bg-green-50 p-3 rounded-xl">
+                        <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-orange-500">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm">گروه‌های درسی</p>
+                        <p class="text-2xl font-bold text-gray-800 mt-1">۶</p>
+                    </div>
+                    <div class="bg-orange-50 p-3 rounded-xl">
+                        <i class="fas fa-layer-group text-orange-500 text-xl"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-purple-500">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm">اساتید</p>
+                        <p class="text-2xl font-bold text-gray-800 mt-1">۸</p>
+                    </div>
+                    <div class="bg-purple-50 p-3 rounded-xl">
+                        <i class="fas fa-user-tie text-purple-500 text-xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- جدول دروس -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+            <!-- هدر جدول -->
+            <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                    <h2 class="text-lg font-semibold text-gray-800 flex items-center">
+                        <i class="fas fa-list ml-2 text-[#023e83]"></i>
+                        تمام دروس
+                    </h2>
+                    
+                    <div class="flex items-center space-x-4 space-x-reverse mt-3 md:mt-0">
+                        <div class="relative">
+                            <input type="text" placeholder="جستجو در دروس..." 
+                                   class="px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#023e83] focus:border-[#023e83] transition duration-200">
+                            <i class="fas fa-search absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        </div>
+                        
+                        <select class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#023e83] focus:border-[#023e83] transition duration-200">
+                            <option>همه گروه‌ها</option>
+                            <option>ریاضی</option>
+                            <option>علوم</option>
+                            <option>ادبیات</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- بدنه جدول -->
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="bg-gray-100 border-b border-gray-200">
+                            <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">عنوان درس</th>
+                            <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">گروه درس</th>
+                            <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">استاد</th>
+                            
+                            <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <!-- درس ۱ -->
+                        <tr class="table-row">
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <div class="bg-blue-50 p-2 rounded-lg ml-3">
+                                        <i class="fas fa-calculator text-[#023e83]"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-gray-900">ریاضی عمومی ۱</p>
+                                        <p class="text-sm text-gray-500 mt-1">مبانی ریاضیات دانشگاهی</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                                    ریاضی
+                                </span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-medium ml-2">
+                                        د
+                                    </div>
+                                    <span class="text-gray-700">دکتر احمدی</span>
+                                </div>
+                            </td>
+                           
+                            
+                            <td class="px-6 py-4">
+                                <div class="flex items-center space-x-3 space-x-reverse">
+                                    <button class="text-blue-600 hover:text-blue-800 transition duration-200" title="ویرایش">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="text-green-600 hover:text-green-800 transition duration-200" title="مشاهده">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="text-red-600 hover:text-red-800 transition duration-200" title="حذف">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- درس ۲ -->
+                        <tr class="table-row">
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <div class="bg-green-50 p-2 rounded-lg ml-3">
+                                        <i class="fas fa-atom text-green-600"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-gray-900">فیزیک ۱</p>
+                                        <p class="text-sm text-gray-500 mt-1">مکانیک و ترمودینامیک</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                                    علوم
+                                </span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-medium ml-2">
+                                        م
+                                    </div>
+                                    <span class="text-gray-700">دکتر محمدی</span>
+                                </div>
+                            </td>
+                            
+                            <td class="px-6 py-4">
+                                <div class="flex items-center space-x-3 space-x-reverse">
+                                    <button class="text-blue-600 hover:text-blue-800 transition duration-200" title="ویرایش">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="text-green-600 hover:text-green-800 transition duration-200" title="مشاهده">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="text-red-600 hover:text-red-800 transition duration-200" title="حذف">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- درس ۳ -->
+                        <tr class="table-row">
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <div class="bg-yellow-50 p-2 rounded-lg ml-3">
+                                        <i class="fas fa-book text-yellow-600"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-gray-900">ادبیات فارسی</p>
+                                        <p class="text-sm text-gray-500 mt-1">نثر و نظم فارسی</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+                                    ادبیات
+                                </span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center text-white text-sm font-medium ml-2">
+                                        ر
+                                    </div>
+                                    <span class="text-gray-700">دکتر رضایی</span>
+                                </div>
+                            </td>
+                      
+                            
+                            <td class="px-6 py-4">
+                                <div class="flex items-center space-x-3 space-x-reverse">
+                                    <button class="text-blue-600 hover:text-blue-800 transition duration-200" title="ویرایش">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="text-green-600 hover:text-green-800 transition duration-200" title="مشاهده">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="text-red-600 hover:text-red-800 transition duration-200" title="حذف">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- درس ۴ -->
+                        <tr class="table-row">
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <div class="bg-red-50 p-2 rounded-lg ml-3">
+                                        <i class="fas fa-globe text-red-600"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-gray-900">جغرافیا</p>
+                                        <p class="text-sm text-gray-500 mt-1">جغرافیای طبیعی و انسانی</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800">
+                                    جغرافیا
+                                </span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white text-sm font-medium ml-2">
+                                        ک
+                                    </div>
+                                    <span class="text-gray-700">دکتر کریمی</span>
+                                </div>
+                            </td>
+
+                            <td class="px-6 py-4">
+                                <div class="flex items-center space-x-3 space-x-reverse">
+                                    <button class="text-blue-600 hover:text-blue-800 transition duration-200" title="ویرایش">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="text-green-600 hover:text-green-800 transition duration-200" title="مشاهده">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="text-red-600 hover:text-red-800 transition duration-200" title="حذف">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- فوتر جدول -->
+            <div class="px-6 py-4 border-t border-gray-200 bg-gray-50">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="text-sm text-gray-600 mb-3 md:mb-0">
+                        نمایش ۱ تا ۴ از ۲۴ مورد
+                    </div>
+                    <div class="flex items-center space-x-2 space-x-reverse">
+                        <button class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100 transition duration-200">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <button class="px-3 py-1 bg-[#023e83] text-white rounded-lg">1</button>
+                        <button class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100 transition duration-200">2</button>
+                        <button class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100 transition duration-200">3</button>
+                        <button class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100 transition duration-200">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // جستجو در جدول
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const rows = document.querySelectorAll('tbody tr');
+            
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+        // فیلتر بر اساس گروه درسی
+        const groupFilter = document.querySelector('select');
+        groupFilter.addEventListener('change', function() {
+            const selectedGroup = this.value;
+            const rows = document.querySelectorAll('tbody tr');
+            
+            rows.forEach(row => {
+                const groupCell = row.querySelector('td:nth-child(2)');
+                if (selectedGroup === 'همه گروه‌ها' || groupCell.textContent.includes(selectedGroup)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+        // مدیریت hover روی ردیف‌ها
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('mouseenter', function() {
+                this.classList.add('shadow-md');
+            });
+            
+            row.addEventListener('mouseleave', function() {
+                this.classList.remove('shadow-md');
+            });
+        });
+    </script>
 @endsection

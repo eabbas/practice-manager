@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('family');
             $table->string('phone');
             $table->string("approved");
-            $table->integer("code");
+            $table->string("code");
             $table->rememberToken();
             $table->timestamps();
         });

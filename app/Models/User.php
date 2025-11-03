@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use App\Http\Models\role;
+use App\Models\role;
 
 class User extends Authenticatable
 {
@@ -27,9 +27,7 @@ class User extends Authenticatable
         'approved',
         'code',
     ];
-      public function roles():BelongsToMany{
-        return $this->belongsToMany(Role::class,'user_role');
-      }
+    
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -51,6 +49,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function roles(){
+        return $this->belongsToMany(role::class, 'user_roles');
     }
 
 }

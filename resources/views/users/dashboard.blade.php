@@ -29,7 +29,7 @@
                                     clip-rule="evenodd" />
                             </svg>
                             <div class="flex flex-row-reverse gap-2">
-                                <span class=" text-[white] flex justify-end">کسب و کار ها</span>
+                                <span class=" text-[white] flex justify-end"></span>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="800px" height="800px"
                                     class="w-[30px] h-[30px] fill-white " viewBox="0 0 100 100"
                                     enable-background="new 0 0 100 100" xml:space="preserve">
@@ -44,13 +44,16 @@
                         </div>
                         <div class="dashbord ">
                             <ul class="gap-2.5 mt-2.5 mb-2.5 pr-3">
+                                @if($user->role=="master")
                                 <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
+
                                     <span class="size-1 bg-white rounded-sm"></span>
-                                    <a href="#" class=" text-white py-1">کسب و کار های من</a>
+                                    <a href="{{ route('lesson_create') }}" class=" text-white py-1">ایجاد درس</a>
                                 </li>
+                                @endif
                                 <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                     <span class="size-1 bg-white rounded-sm"></span>
-                                    <a href="#" class=" text-white py-1">ایجاد کسب و کار جدید</a>
+                                    <a href="#" class=" text-white py-1"></a>
                                 </li>
                             </ul>
                         </div>
@@ -211,7 +214,7 @@
                                 </svg>
                             </div>
                             <div>
-                                محمد افتخاری
+                                @yield('userName') 
                             </div>
                         </div>
                     </div>
