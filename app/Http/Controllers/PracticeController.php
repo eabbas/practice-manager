@@ -49,6 +49,7 @@ class PracticeController extends Controller
         $practice->description = $request->description;
         $practice->lesson_id = $request->lessonId;
         $practice->save();
+    
     }
 
     public function delete($id){

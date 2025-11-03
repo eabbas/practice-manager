@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\controllers\userController;
-
 use App\Http\controllers\LessonController;
 use App\Http\controllers\PracticeController;
 
@@ -28,6 +27,7 @@ Route::group([
 
 });
 
+//lessons
 
 Route::get('/lesson/create', [LessonController::class , 'create'])->name("lesson_create");
 
@@ -43,7 +43,7 @@ Route::post('/lesson/update' , [LessonController::class, 'update']);
 
 Route::get('/lesson/delete/{id}' , [LessonController::class , 'delete']);
 
-// practice
+// practices
 
 Route::get('/practice/create' , [PracticeController::class , 'create']);
 
