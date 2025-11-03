@@ -12,7 +12,7 @@ class media extends Model
        'path'
     ];
 
-    public function practices(){
-        return $this->belongsTo(practice::class);
-    }
+    // public function practices(){
+    //     return $this->belongsTo(practice::class);
+    // }
 }

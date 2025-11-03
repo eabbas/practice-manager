@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Lesson;
 use App\Models\practice;
+use Illuminate\Support\Str;
 
 
 class PracticeController extends Controller
@@ -16,9 +17,12 @@ class PracticeController extends Controller
     }
 
      public function store(Request $request){
-        // dd($request->all());
         practice::create($request->all());
+        // $type = request()->practiceMedia->getClientOriginalExtentsion();
+        // $name = request()->practiceMedia->getClientOriginalName();
+        // $fullName = Str::uuid()."_".$name;
         return to_route('practice_list');
+
     }
 
     public function index(){
