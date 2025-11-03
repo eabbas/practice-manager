@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\lesson;
 
 class LessonController extends Controller
@@ -18,7 +19,7 @@ class LessonController extends Controller
 
 
     public function index(){
-       $lessons  = lesson::all();
+       $lessons  = lesson::where('master_id', Auth::id())->get();
        return view('lesson.index' , ["lessons"=>$lessons]);
     }
 
@@ -41,6 +42,7 @@ class LessonController extends Controller
         $lesson->lesson_group = $request->lesson_group;
         $lesson->master_id = $request->master_id;
         $lesson->save();
+        return to_route('lesson_list');
     }
     
     public function delete($id){

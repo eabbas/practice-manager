@@ -34,27 +34,30 @@ class userController extends Controller
   }
   public function check(Request $request)
   {
+    if (Auth::check()) {
+      return to_route("user.profile",[Auth::user()]);
+    }
     $user = User::where("phone", $request->phone)->first();
     if (!$user) {
       return "not user";
     }
     $checkHash = Hash::check($request->password, $user->password);
     if ($checkHash) {
-      if (Auth::check()) {
-        return view("users.panel",["user"=>$user]);
-      }
       if (!Auth::check()) {
         Auth::login($user);
-        return view("users.panel", ["user" => $user]);
+        return to_route("user.profile", [$user]);
       }
     } else {
       echo "incorrect password";
     }
   }
+  public function profile(user $user){
+    return view('users.profile', ['user'=>$user]);
+  }
   public function logout()
   {
     Auth::logout();
-    return redirect("/user/signup");
+    return to_route("user.login");
   }
   public function index()
   {

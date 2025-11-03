@@ -4,11 +4,10 @@
 @section('content')
 <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-sm border border-gray-200 p-6">
     <h1 class="text-2xl font-bold text-gray-800 mb-6">ویرایش تمرین</h1>
-    
     <form action="{{url('practice/update')}}" method="post">
         @csrf
         <input type="hidden" name="id" value="{{$practice->id}}">
-
+        <input type="hidden" name="lesson_id" value="{{ $practice->lesson->id }}">
         <div class="space-y-4">
             <!-- فیلد title -->
             <div>
@@ -24,18 +23,6 @@
                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
             </div>
 
-            <!-- فیلد lessonId -->
-            <div>
-                <label for="lessonId" class="block text-sm font-medium text-gray-700 mb-2">درس:</label>
-                <select name="lessonId" 
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                    @foreach($lessons as $lesson)
-                    <option value="{{$lesson->id}}" @if($practice->lesson_id == $lesson->id) selected @endif>
-                        {{$lesson->title}}
-                    </option>
-                    @endforeach
-                </select>
-            </div>
 
             <!-- دکمه‌ها -->
             <div class="flex gap-3 mt-6">

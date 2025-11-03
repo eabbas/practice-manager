@@ -13,7 +13,7 @@ class practice extends Model
         'lesson_id'
     ];
 
-    public function lessons(){
+    public function lesson(){
         return  $this->belongsTo(lesson::class , "lesson_id");
     }
     

@@ -51,6 +51,11 @@
         <div class="p-6">
             <!-- توضیحات درس -->
             <div class="mb-6">
+                <div class="bg-gray-50 rounded-xl p-6 border border-gray-200 mb-2">
+                    <h2 class="text-center font-bold text-3xl">
+                        {{ $lesson->title }}
+                    </h2>
+                </div>
                 <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center border-b pb-2">
                     <i class="fas fa-align-left ml-2 text-[#023e83]"></i>
                     توضیحات درس
@@ -58,7 +63,7 @@
                 <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
                     @if($lesson->description)
                         <div class="prose max-w-none text-gray-700 leading-7">
-                            {!! nl2br(e($lesson->description)) !!}
+                            {{$lesson->description}}
                         </div>
                     @else
                         <div class="text-center py-8 text-gray-500">
@@ -90,7 +95,7 @@
                         </div>
                         <h4 class="font-semibold text-gray-800">استاد مربوطه</h4>
                     </div>
-                    <p class="text-gray-700 text-lg">{{ $lesson->master_id }}</p>
+                    <p class="text-gray-700 text-lg">{{ Auth::user()->name; }}</p>
                 </div>
             </div>
         </div>
