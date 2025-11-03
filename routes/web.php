@@ -9,16 +9,24 @@ use App\Http\controllers\PracticeController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get("/user/signup",[userController::class,"signup"]);
-Route::post("/user/store",[userController::class,"store"]);
-Route::post("/user/check",[userController::class,"check"]);
-Route::get("/user/login",[userController::class,"login"]);
-Route::get("/user/logout",[userController::class,"logout"])->name("logout");
-Route::get("/users",[userController::class,"index"]);
-Route::get("/user/edit/{id}",[userController::class,"edit"]);
-Route::post("/user/update",[userController::class,"update"])->name("update");
-Route::get("/user/show/{id}",[userController::class,"show"]);
-Route::get("/user/delete/{id}",[userController::class,"delete"]);
+
+Route::group([
+    'prefix'=>'user',
+    'controller'=>userController::class,
+    'as'=>'user.'
+], function(){
+    Route::get("/signup",[userController::class,"signup"])->name('signup');
+    Route::post("/store",[userController::class,"store"])->name('store');
+    Route::post("/check",[userController::class,"check"])->name('check');
+    Route::get("/login",[userController::class,"login"])->name('login');
+    Route::get("/logout",[userController::class,"logout"])->name("logout");
+    Route::get("/",[userController::class,"index"])->name('list');
+    Route::get("/edit/{user}",[userController::class,"edit"])->name('edit');
+    Route::post("/update",[userController::class,"update"])->name("update");
+    Route::get("/show/{user}",[userController::class,"show"])->name('single');
+    Route::get("/delete/{suer}",[userController::class,"delete"])->name('delete');
+
+});
 
 
 Route::get('/lesson/create', [LessonController::class , 'create']);

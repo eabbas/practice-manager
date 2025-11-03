@@ -14,7 +14,7 @@
       <input type="text" name="code" placeholder="PASSWORD"> 
          <select name="userRoles">
         <option value="{{$roles[0]['id']}}">{{$roles[0]['title']}}</option>
-        <option value="{{$roles[1]['id']}}">{{$roles[1]['title'+]}}</option>
+        <option value="{{$roles[1]['id']}}">{{$roles[1]['title']}}</option>
       </select>
       <button type="submit">submit</button>
     </form>

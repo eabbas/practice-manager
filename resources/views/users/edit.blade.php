@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>editUser</title>
-    
-</head>
-<body>
-    <?php
-        // dd($user -> name);
-    ?>
+
+
+@extends('users.dashboard')
+@section('title', 'edit user')
+@section('content')
     <section class="2xl:container mx-auto">
         <div class="w-11/12 mx-auto">
             <div class="my-10">
@@ -53,5 +44,4 @@
             </form>
         </div>
     </section>
-</body>
-</html>
+@endsection

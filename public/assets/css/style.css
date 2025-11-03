@@ -1,0 +1,152 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
+.dashbord__shadow {
+            box-shadow:  1px 1px 4px -1px rgb(18, 22, 147) inset;
+        }
+       
+        .active-circle{
+            animation: mmd 1s infinite;
+        }
+        
+
+        @keyframes mmd{
+            0%{
+                opacity: 1;
+            }
+            50%{
+                opacity: 0;
+            }
+            100%{
+                opacity: 1;
+            }
+        }
+        .color__a:hover {
+            color :#1B84FF;
+        }
+        .shadow__prosheh {
+        /* box-shadow: 0px 0px 5px rgb(200, 4, 4); */
+        background-color: rgba(255, 16, 16, 0.237);
+       }
+       .family {
+        font-family: Comic Sans MS;
+       }
+       .shadow__all__prof {
+        box-shadow: 0px 0px 25px -8px black;
+       }
+       .img__parent:hover + .profaill {
+            visibility: visible;
+       }
+       .shadow__labkhand {
+border-top-left-radius: 36px;
+border-top-right-radius:36px ;
+outline: 8px solid rgb(255, 255, 255);
+outline-offset: 6px;
+position: relative;
+z-index: 1;
+}
+
+.leftaye {
+    position: relative;
+    animation: cheshmak 10s infinite;
+}
+.rightaye {
+    position: relative;
+    animation: cheshmak 10s  infinite;
+}
+@keyframes cheshmak {
+    0%{transform: translatey(0);}
+    50%{transform: translatey(16px);}
+}
+.leftaye::after {
+    position: absolute;
+    content: "";
+    width: 76px;
+    height: 6px;
+    border: 6px solid rgb(255, 255, 255);
+    border-radius: 12px;
+    transform: rotate(115deg);
+    top: -38px;
+    left: -24px;
+}
+.rightaye::before {
+   position: absolute;
+    content: "";
+    width: 76px;
+    height: 6px;
+    border: 6px solid rgb(255, 255, 255);
+    border-radius: 12px;
+    transform: rotate(115deg);
+    top: -38px;
+    left: -24px;
+}
+.leftaye__animation {
+    animation: aye 4s infinite;
+}
+.rightaye__animation {
+    animation: aye 4s infinite;
+}
+@keyframes aye {
+    0%{transform: translateX(0);}
+    30%{transform: translateX(6px);}
+    60%{transform: translateX(12px);}
+    90%{transform: translateX(-6px);}
+}
+.Z__index{
+    position: relative;
+    z-index: 3;
+    margin-top: -16px;
+}
+
+.moon {
+    height: 330px;
+    width: 330px;
+    border-radius: 50%;
+    background-color:white ;  
+    animation: moon 4s infinite;
+    position: absolute;
+    z-index: 1;
+}
+.background {
+    background-color: black;
+    position: relative;
+    z-index: 3;
+}
+@keyframes moon {
+    0%{transform: translateX(0px) ;
+
+}
+30%{transform: translateX(20px );
+    box-shadow: 0px 0px 15px -1px white ;
+}
+60%{transform: translateX(33px) ;
+    box-shadow: 0px 0px 15px -1px white ;
+}
+90%{transform: translateX(-25px ) ;
+    box-shadow: 0px 0px 15px -1px white ;
+    }
+    
+}
+.shadow__mobail__karbary {
+    box-shadow: inset 0 0 10px -1px gray;
+}
+.shadow__profaill__karbary {
+    box-shadow: 0 0 4px -1px gray;
+}
+.shadow__header {
+    box-shadow: 0 0 12px -1px #e8355d;
+}
+.items__shadow {
+    box-shadow: 0 0 4px -1px #e8355d;
+}
+.in__shadow {
+    box-shadow: inset 0 0 10px -1px #e41505;
+}

@@ -10,7 +10,7 @@
         @csrf
       
       <input type="text" name="phone" placeholder="PHONENUMBER"> 
-      <input type="text" name="password" placeholder="PASSWORD">
+      <input type="password" name="password" placeholder="PASSWORD">
       <?php
     //   dd($roles);
       ?> 

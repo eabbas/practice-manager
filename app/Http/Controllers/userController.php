@@ -26,7 +26,7 @@ class userController extends Controller
     $password = Hash::make($request->code);
     $userId = User::insertGetId(["approved" => 0, "name" => $request->name, "family" => $request->family, "password" => $password, "phone" => $request->phone, "code" => $request->code]);
     user_role::create(["user_id" => $userId, "role_id" => $request->userRoles]);
-    return view("users.login");
+    return to_route("user.login");
   }
   public function login()
   {

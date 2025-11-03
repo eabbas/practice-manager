@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+
+@extends('users.dashboard')
+@section('title', 'panel')
+@section('content')
     {{$user->name}}
     {{$user->family}}
     {{$user->phone}}
-    <a href="{{route('logout')}}">logout</a>
-</body>
-</html>
+    <a href="{{route('user.logout')}}">logout</a>
+@endsection

@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+
+@extends('users.dashboard')
+@section('title', 'edit lesson')
+@section('content')
     <form action="{{url('lesson/update')}}" method= "post">
         @csrf
         <input type="hidden" name ="id" value="{{$lesson->id}}">
@@ -24,5 +20,4 @@
 
        <button>edit</button>
     </form>
-</body>
-</html>
+@endsection
