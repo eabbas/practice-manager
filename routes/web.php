@@ -29,7 +29,7 @@ Route::group([
 });
 
 
-Route::get('/lesson/create', [LessonController::class , 'create']);
+Route::get('/lesson/create', [LessonController::class , 'create'])->name("lesson_create");
 
 Route::post('/lesson/store', [LessonController::class , 'store']);
 
