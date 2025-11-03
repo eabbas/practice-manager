@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Http\Models\role;
 
 class User extends Authenticatable
 {
@@ -19,10 +21,15 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'family',
         'password',
+        'phone',
+        'approved',
+        'code',
     ];
-
+      public function roles():BelongsToMany{
+        return $this->belongsToMany(Role::class,'user_role');
+      }
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -45,4 +52,5 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
 }
