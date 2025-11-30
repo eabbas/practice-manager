@@ -17,12 +17,13 @@ class userController extends Controller
   {
     $roles = role::all();
 
-    $roles = [["id" => 2, "title" => "master"], ["id" => 3, "title" => "student"]];
+    $roles = [["id" => 2, "title" => "استاد"], ["id" => 3, "title" => "دانشجو"]];
 
     return view("users.signup", ["roles" => $roles]);
   }
   public function store(Request $request)
   {
+    // dd($request->all()); 
     $password = Hash::make($request->code);
     $userId = User::insertGetId(["approved" => 0, "name" => $request->name, "family" => $request->family, "password" => $password, "phone" => $request->phone, "code" => $request->code]);
     user_role::create(["user_id" => $userId, "role_id" => $request->userRoles]);

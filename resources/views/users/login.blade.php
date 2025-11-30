@@ -18,10 +18,7 @@
                 <div class="my-9 hidden lg:block"> 
                     <img class="lg:w-90 lg:h-70" src="{{ asset('assets/img/777.png') }}" alt="img">
                 </div>
-                <div class="flex flex-col items-center w-full text-white text-center px-4">
-                    <h1 class="hidden lg:block text-3xl font-bold">سریع، کارآمد و محصولی</h1>
-                    <p class="hidden lg:block text-sm mt-5 font-bold">در این نوع پست، <a href="#" class=" text-yellow-400">وبلاگر</a> فردی را که با او مصاحبه کرده اند معرفی می کند و اطلاعات پس زمینه ای در مورد آن ارائه می دهد <a href="#" class="text-yellow-400">مصاحبه شونده</a> and their ویاک زیر این مصاحبه متنی است.</p>
-                </div>
+                
             </div>
         </div>
         <div class="w-full lg:w-6/12 bg-white lg:h-screen flex justify-center">
