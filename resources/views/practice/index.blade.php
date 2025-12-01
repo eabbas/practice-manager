@@ -49,11 +49,6 @@
                 <h1 class="text-3xl font-bold text-[#023e83] mb-2">لیست تمرین‌ها</h1>
                 <p class="text-gray-600">مدیریت و مشاهده تمام تمرین‌های سیستم</p>
             </div>
-            <a href="{{ url('practice/create') }}" 
-               class="mt-4 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-6 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center">
-                <i class="fas fa-plus ml-2"></i>
-                ایجاد تمرین‌ جدید
-            </a>
         </div>
 
         <!-- آمار و اطلاعات -->
@@ -129,6 +124,7 @@
                     <thead>
                         <tr class="bg-gray-100 border-b border-gray-200">
                             <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">عنوان تمرین</th>
+                            <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">عنوان درس</th>
                             <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">استاد</th>
                             <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">عملیات</th>
                         </tr>
@@ -149,15 +145,24 @@
                             </td>
                             <td class="px-6 py-4">
                                 <div class="flex items-center">
-                                    <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-medium ml-2">
+                                    <div class="w-4 h-4 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-medium ml-2">
     
                                     </div>
-                                    <span class="text-gray-700">{{ Auth::user()->name }}</span>
+                                    <div>
+                                         <p class="text-sm text-gray-500 mt-1">{{ $practice->lesson->title }}</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-medium ml-2">
+    
+                                    </div>
+                                    <span class="text-gray-700">{{ Auth::user()->name }} {{Auth::user()->family}}</span>
                                 </div>
                             </td>
                            
-                            
-                            <td class="px-6 py-4 flex flex-row items-center gap-5">
+                            <td class="px-6 py-4 flex flex-row items-center gap-5 mt-3">
                                 <div class="flex items-center space-x-3 space-x-reverse">
                                     <a href="{{ route('practice_edit', [$practice]) }}" class="text-blue-600 hover:text-blue-800 transition duration-200" title="ویرایش">
                                         <i class="fas fa-edit"></i>

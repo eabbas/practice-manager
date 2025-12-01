@@ -28,7 +28,8 @@ class User extends Authenticatable
         'code',
         'collage',
     ];
-    
+
+    public $timestamps = true;
     /**
      * The attributes that should be hidden for serialization.
      *
