@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\controllers\userController;
 use App\Http\controllers\LessonController;
 use App\Http\controllers\PracticeController;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,7 +25,12 @@ Route::group([
     Route::post("/update","update")->name("update");
     Route::get("/show/{user}","show")->name('single');
     Route::get('/profile/{user}', 'profile')->name('profile');
+    Route::get('/setting' , "setting")->name('setting');
+    Route::get('/complete' , "complete_profile")->name("complete_profile");
     Route::get("/delete/{suer}","delete")->name('delete');
+    Route::get('/mmd', function(){
+        Auth::logout();
+    });
 
 });
 
@@ -52,13 +58,13 @@ Route::post('/practice/store' , [PracticeController::class , 'store']);
 
 Route::get('/practices' , [PracticeController::class , 'index'])->name('practice_list');
 
-Route::get('/practice/show/{id}' , [PracticeController::class , 'show']);
+Route::get('/practice/show/{id}' , [PracticeController::class , 'show'])->name('practice_show');
 
-Route::get('/practice/edit/{id}' , [PracticeController::class , 'edit']);
+Route::get('/practice/edit/{id}' , [PracticeController::class , 'edit'])->name('practice_edit');
 
-Route::post('/practice/update' , [PracticeController::class , 'update']);
+Route::post('/practice/update' , [PracticeController::class , 'update'])->name('practice_update');
 
-Route::get('/practice/delete/{id}' , [PracticeController::class , 'delete']);
+Route::get('/practice/delete/{id}' , [PracticeController::class , 'delete'])->name('practice_delete');
   
 
 

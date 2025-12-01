@@ -14,10 +14,15 @@
         <!-- <div class=""> -->
 
             <div class="hidden lg:block lg:w-[265px] bg-[url('{{ asset('assets/img/bg.jpg') }}')] fixed right-0 top-0 h-dvh px-5 text-sm">
-
+                 @if(Auth::user()->roles[0]->title=="استاد")
                 <h3 class="text-xl font-bold text-white text-center py-3">
-                    داشبورد
+                   داشبورد استاد
                 </h3>
+                @elseif(Auth::user()->roles[0]->title=="دانشجو")
+                <h3 class="text-xl font-bold text-white text-center py-3">
+                   داشبورد دانشجو
+                </h3>
+                @endif
                 <hr class="text-[darkslategray] mt-2.5">
                 <div class="py-5 h-[80%] overflow-y-auto flex flex-col gap-5" style="scrollbar-width: none;">
                     <div>
@@ -44,14 +49,33 @@
                         </div>
                         <div class="dashbord ">
                             <ul class="gap-2.5 mt-2.5 mb-2.5 pr-3">
-                                @if(Auth::user()->roles[0]->title=="master")
-
+                                <?php //dd(Auth::user()->roles[0]);?>
                                 <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
-
+                                    <span class="size-1 bg-white rounded-sm"></span>
+                                    <a href="{{ route('user.complete_profile') }}" class=" text-white py-1">تکمیل پروفایل</a>
+                                </li>
+                                @if(Auth::user()->roles[0]->title=="استاد")
+                                <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
+                                    <span class="size-1 bg-white rounded-sm"></span>
+                                    <a href="{{ route('user.profile',Auth::user()) }}" class=" text-white py-1">مشاهده پروفایل</a>
+                                </li>
+                                <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                     <span class="size-1 bg-white rounded-sm"></span>
                                     <a href="{{ route('lesson_create') }}" class=" text-white py-1">ایجاد درس</a>
                                 </li>
+                                <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
+                                    <span class="size-1 bg-white rounded-sm"></span>
+                                    <a href="{{ route('lesson_list') }}" class=" text-white py-1"> مشاهده درس ها</a>
+                                </li>
+                                <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
+                                    <span class="size-1 bg-white rounded-sm"></span>
+                                    <a href="{{ route('practice_list') }}" class=" text-white py-1"> مشاهده تمرین ها</a>
+                                </li>
                                 @endif
+                                {{-- <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
+                                    <span class="size-1 bg-white rounded-sm"></span>
+                                    <a href="{{ route('setting') }}" class=" text-white py-1">تنظیمات</a>
+                                </li> --}}
                                 <!-- <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                     <span class="size-1 bg-white rounded-sm"></span>
                                     <a href="#" class=" text-white py-1"></a>
@@ -224,7 +248,7 @@
                             <li class="color__a text-[#4B5675]">
                                 <a href="{{ route('user.logout') }}" class="py-2">خروج از حساب کاربری</a>
                             </li>
-                            <li class="color__a text-[#4B5675]">
+                            {{-- <li class="color__a text-[#4B5675]">
                                 <a href="#" class="py-2"> صفحات</a>
                             </li>
                             <li class="color__a text-[#4B5675]">
@@ -235,7 +259,7 @@
                             </li>
                             <li class="color__a text-[#4B5675]">
                                 <a href="#" class="py-2"> کمک</a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                 </div>

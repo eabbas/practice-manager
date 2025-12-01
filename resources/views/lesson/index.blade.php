@@ -141,9 +141,7 @@
                     <thead>
                         <tr class="bg-gray-100 border-b border-gray-200">
                             <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">عنوان درس</th>
-                            <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">گروه درس</th>
                             <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">استاد</th>
-                            
                             <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">عملیات</th>
                         </tr>
                     </thead>
@@ -160,11 +158,6 @@
                                         <p class="text-sm text-gray-500 mt-1">{{ $lesson->description }}</p>
                                     </div>
                                 </div>
-                            </td>
-                            <td class="px-6 py-4">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
-                                   {{ $lesson->lesson_group }}
-                                </span>
                             </td>
                             <td class="px-6 py-4">
                                 <div class="flex items-center">

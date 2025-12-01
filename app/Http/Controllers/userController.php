@@ -8,22 +8,17 @@ use App\models\role;
 use App\models\user_role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-
-
+use Illuminate\View\View;
 
 class userController extends Controller
 {
   public function signup()
   {
     $roles = role::all();
-
-    $roles = [["id" => 2, "title" => "استاد"], ["id" => 3, "title" => "دانشجو"]];
-
     return view("users.signup", ["roles" => $roles]);
   }
   public function store(Request $request)
   {
-    // dd($request->all()); 
     $password = Hash::make($request->code);
     $userId = User::insertGetId(["approved" => 0, "name" => $request->name, "family" => $request->family, "password" => $password, "phone" => $request->phone, "code" => $request->code]);
     user_role::create(["user_id" => $userId, "role_id" => $request->userRoles]);
@@ -36,7 +31,7 @@ class userController extends Controller
   public function check(Request $request)
   {
     if (Auth::check()) {
-      return to_route("user.profile",[Auth::user()]);
+      return to_route("user.profile", [Auth::user()]);
     }
     $user = User::where("phone", $request->phone)->first();
     if (!$user) {
@@ -44,16 +39,16 @@ class userController extends Controller
     }
     $checkHash = Hash::check($request->password, $user->password);
     if ($checkHash) {
-      if (!Auth::check()) {
-        Auth::login($user);
-        return to_route("user.profile", [$user]);
-      }
+      Auth::login($user);
+      return to_route("user.profile", [Auth::user()]);
     } else {
       echo "incorrect password";
     }
   }
-  public function profile(user $user){
-    return view('users.profile', ['user'=>$user]);
+  public function profile(user $user)
+  {
+    $user->role;
+    return view('users.profile', ['user' => $user ]);
   }
   public function logout()
   {
@@ -71,6 +66,11 @@ class userController extends Controller
     // dd($user);
     return view("users.edit", ["user" => $user]);
   }
+
+  public function complete_profile(){
+  return view("users.complete_profile" , ["user" => Auth::user()->role]);
+  }
+
   public function update(Request $request)
   {
     // dd($request->all());
