@@ -29,6 +29,11 @@
                         <label class="text-sm md:text-base" for="code">  کد دانشجویی :</label>
                         <input type="text" name="code" value="{{$user->code}}" class="w-full px-2 py-1 lg:px-5 lg:px-2 outline-none border-b">
                     </div>
+
+                       <div class="w-full flex flex-col">
+                        <label class="text-sm md:text-base" for="email">  ایمیل :</label>
+                        <input type="email" name="email" value="{{$user?->email}}" class="w-full px-2 py-1 lg:px-5 lg:px-2 outline-none border-b">
+                    </div>
                 </div>
             
                 <div>

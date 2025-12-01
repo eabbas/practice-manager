@@ -10,7 +10,7 @@
 <body class="bg-blue-900 flex items-center justify-center my-16">
   <div class="w-[400px] h-[600px] bg-blue-50 rounded-2xl p-8">
     <h1 class="text-center text-blue-900 font-bold text-2xl mt-6">ثبت نام</h1>
-    <form action="{{url('user/store')}} " method="POST">
+    <form action="{{route('user.store')}} " method="POST">
       @csrf
       <div class="mt-2">
     <label for="name" class="text-blue-900 font-semibold mr-2">نام  </label>
@@ -35,9 +35,12 @@
       <div class="mt-2">
         <label class="block mb-1 font-medium text-blue-900 mr-2">نوع کاربر</label>
 
-        <select name="userRoles" class="w-full p-2 border text-blue-900 rounded-lg  border border-blue-200 focus:outline-none transition">
-          <option   class=" text-blue-900" value="{{$roles[0]['id']}}">{{$roles[0]['title']}}</option>
-          <option value="{{$roles[1]['id']}}" class=" text-blue-900">{{$roles[1]['title']}}</option>
+        <select name="userRoles" class="w-full p-2 border text-blue-900 rounded-lg  border-blue-200 focus:outline-none transition">
+          {{-- <option   class=" text-blue-900" value="{{$roles[0]['id']}}">{{$roles[0]['title']}}</option>
+          <option value="{{$roles[1]['id']}}" class=" text-blue-900">{{$roles[1]['title']}}</option> --}}
+          @foreach ($roles as $role)
+              <option class=" text-blue-900" value="{{ $role->id }}">{{ $role->title }}</option>
+          @endforeach
         </select>
       </div>
 

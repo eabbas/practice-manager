@@ -9,6 +9,9 @@
     </style>
 </head>
 <body>
+    @php
+        // dd(Auth::user());
+    @endphp
     <div class="flex flex-col lg:flex-row-reverse min-h-screen">
         <div class="flex justify-center w-full lg:w-6/12 bg-[url('{{ asset('assets/img/345.jpg') }}')] p-4 lg:p-0">
             <div class="flex flex-col mb-9 items-center justify-center lg:justify-start mt-0 lg:my-12 w-full max-w-md">
@@ -52,7 +55,7 @@
                         <button type="submit" class="bg-[#031f51] w-full hover:bg-[#056EE9]/90 px-8 py-3 rounded-[10px] text-white font-bold transition duration-200">ورود</button>
                     </div>
                     <div class="w-full max-w-[400px] text-center mt-0">
-                        <span class="text-[#4B5675] text-sm"> هنوز وارد نشدی؟<a href="#" class="text-[#1B84FF] font-bold">ثبت نام!</a></span>
+                        <span class="text-[#4B5675] text-sm"> هنوز وارد نشدی؟  <a href="{{route('user.signup')}}" class="text-[#1B84FF] font-bold">ثبت نام!</a></span>
                     </div>
                 </form>
             </div>

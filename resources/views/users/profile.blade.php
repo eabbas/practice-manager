@@ -1,7 +1,107 @@
     @extends('users.dashboard')
     @section('title', 'پروفایل کاربری')
     @section('content')
-   <div class="w-full p-5 px-7">
+    <body class="min-h-screen bg-white flex items-center justify-start p-6">
+
+    <div class="max-w-3xl w-full bg-blue-900 backdrop-blur-4xl shadow-2xl rounded-3xl p-8 border border-white/20 mr-50">
+
+        <!-- Header -->
+        <div class="flex items-center gap-6 border-b border-white/20 pb-6">
+            
+            <!-- Profile Image -->
+            <div class="w-28 h-28 rounded-full overflow-hidden shadow-lg border-2 border-white/40">
+                <img src="{{ asset('assets/img/user.png') }}"
+                     class="w-full h-full object-cover"
+                     alt="profile-image">
+            </div>
+
+            <!-- Basic Info -->
+            <div class="flex-1 text-white">
+                <h2 class="text-2xl font-extrabold"><strong>{{ $user->name }} {{$user->family}} </strong></h2>
+
+                <p class="mt-1">
+                    <span class="font-semibold text-gray-300">نقش:</span>
+                        @if(Auth::user()->roles[0]->title=="استاد")
+                        استاد
+                        @elseif(Auth::user()->roles[0]->title=="دانشجو")
+                        دانشجو
+                        @endif
+                </p>
+
+                <p class="mt-1">
+                    <span class="font-semibold text-gray-300">وضعیت:</span>
+                    فعال
+                </p>
+            </div>
+
+            <!-- Edit Button -->
+            <a href="{{route('user.edit',[$user])}}" class="px-5 py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition shadow-lg">
+                 ویرایش پروفایل</a>
+        </div>
+
+        <!-- Details -->
+        <div class="grid md:grid-cols-2 gap-6 mt-8">
+
+            <div class="p-4 rounded-xl border border-white/10 bg-white/10 text-white">
+                <p class="text-sm text-gray-300">
+                     @if(Auth::user()->roles[0]->title=="استاد")
+                        شماره پرسنلی
+                        @elseif(Auth::user()->roles[0]->title=="دانشجو")
+                        شماره دانشجویی
+                        @endif
+                </p>
+                <p class="text-lg font-semibold mt-1">401245678</p>
+            </div>
+
+            <div class="p-4 rounded-xl border border-white/10 bg-white/10 text-white">
+                <p class="text-sm text-gray-300">
+                    @if(Auth::user()->roles[0]->title=="استاد")
+                        گروه درسی
+                        @elseif(Auth::user()->roles[0]->title=="دانشجو")
+                        رشته تحصیلی
+                        @endif
+                </p>
+                <p class="text-lg font-semibold mt-1">مهندسی کامپیوتر</p>
+            </div>
+
+            <div class="p-4 rounded-xl border border-white/10 bg-white/10 text-white">
+                <p class="text-sm text-gray-300">شماره تماس</p>
+                <p class="text-lg font-semibold mt-1">{{$user->phone}}</p>
+            </div>
+            
+            <div class="p-4 rounded-xl border border-white/10 bg-white/10 text-white">
+                <p class="text-sm text-gray-300">ایمیل</p>
+                <p class="text-lg font-semibold mt-1">example@gmail.com</p>
+            </div>
+
+
+
+            <div class="p-4 rounded-xl border border-white/10 bg-white/10 text-white">
+                <p class="text-sm text-gray-300">تاریخ عضویت</p>
+                <p class="text-lg font-semibold mt-1">1402/07/01</p>
+            </div>
+
+
+            <div class="p-4 rounded-xl border border-white/10 bg-white/10 text-white">
+                <p class="text-sm text-gray-300">شناسه کاربر (User ID)</p>
+                <p class="text-lg font-semibold mt-1">102938</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+
+
+
+
+
+
+
+
+   {{-- <div class="w-full p-5 px-7">
             <div class="py-5 w-full">
                 <h1 class="text-xl text-center lg:text-start">اکانت من</h1>
                 <div class="flex flex-row justify-center lg:justify-start items-center gap-2 text-[#99A1B7] text-[11px] lg:text-sm">
@@ -17,6 +117,7 @@
                     <img class="size-27 lg:size-41 rounded-lg mx-auto lg:m-0" src="{{ asset('assets/img/user.png') }}" alt="">
                     <div class="flex flex-col gap-2">
                         <div class="div1 text-center lg:text-start">
+                            <h3 class="text-[#4B5675] text-[15px] mb-2">نام کاربر:</h3>
                             <strong>{{ $user->name }}</strong>
                         </div>
                         <div class="div2 hidden">
@@ -52,16 +153,16 @@
         
     </div>
     <!-- <hr> -->
-    <div class="lg:px-5 pt-3 mt-4 lg:mt-8">
+    <div class="lg:px-5 pt-3 mt-4 lg:mt-5">
         <div class="my-6">
             <ul class="flex flex-row gap-5 overflow-x-auto" style="scrollbar-width: none;">
-                <li>
+                {{-- <li>
                     <a class="hover:text-blue-700 block w-[100px]" href="">بررسی اجمالی</a>
                 </li>
                 <li>
                     <a class="hover:text-blue-700 block w-[100px]" href="">تنظیمات</a>
-                </li>
-            </ul>
+                </li> --}}
+            {{-- </ul>
         </div>
         <div class="shadow__profaill__karbary rounded-md lg:p-5 p-2">
             <h1 class="text-xm lg:text-xl mt-5">جزییات پروفایل </h1>
@@ -88,6 +189,6 @@
             </div>
 
         </div>
-    </div>
-    </div>
+    </div> --}}
+    {{-- </div> --}}
     @endsection
