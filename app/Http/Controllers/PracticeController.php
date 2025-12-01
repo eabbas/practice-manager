@@ -25,6 +25,7 @@ class PracticeController extends Controller
 
     public function index(){
         $practiceWithLessons = practice::with("lesson")->get();
+        //dd($practiceWithLessons);
         return view('practice.index' , ["practiceWithLessons"=>$practiceWithLessons]);
     }
 

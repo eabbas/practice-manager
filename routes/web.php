@@ -21,6 +21,7 @@ Route::group([
     Route::get("/login","login")->name('login');
     Route::get("/logout","logout")->name("logout");
     Route::get("/","index")->name('list');
+    Route::get('/edit/profile' , "edit_profile")->name('edit_profile');
     Route::get("/edit/{user}","edit")->name('edit');
     Route::post("/update","update")->name("update");
     Route::get("/show/{user}","show")->name('single');
@@ -29,7 +30,7 @@ Route::group([
     Route::get('/complete' , "complete_profile")->name("complete_profile");
     Route::get("/delete/{suer}","delete")->name('delete');
     Route::get('/mmd', function(){
-        Auth::logout();
+    Auth::logout();
     });
 
 });

@@ -1,6 +1,39 @@
     @extends('users.dashboard')
     @section('title', 'پروفایل کاربری')
     @section('content')
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'vazir': ['Vazirmatn', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#023e83'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+        }
+        
+        .input-focus:focus {
+            box-shadow: 0 0 0 3px rgba(2, 62, 131, 0.1);
+            border-color: #023e83;
+        }
+        
+        .checkbox-custom:checked {
+            background-color: #023e83;
+            border-color: #023e83;
+        }
+    </style>
     <body class="min-h-screen bg-white flex items-center justify-start p-6">
 
     <div class="max-w-3xl w-full bg-blue-900 backdrop-blur-4xl shadow-2xl rounded-3xl p-8 border border-white/20 mr-50">
@@ -35,22 +68,16 @@
             </div>
 
             <!-- Edit Button -->
-            <a href="{{route('user.edit',[$user])}}" class="px-5 py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition shadow-lg">
+            <a href="{{route('user.edit_profile')}}" class="px-5 py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition shadow-lg">
                  ویرایش پروفایل</a>
         </div>
 
         <!-- Details -->
         <div class="grid md:grid-cols-2 gap-6 mt-8">
 
-            <div class="p-4 rounded-xl border border-white/10 bg-white/10 text-white">
-                <p class="text-sm text-gray-300">
-                     @if(Auth::user()->roles[0]->title=="استاد")
-                        شماره پرسنلی
-                        @elseif(Auth::user()->roles[0]->title=="دانشجو")
-                        شماره دانشجویی
-                        @endif
-                </p>
-                <p class="text-lg font-semibold mt-1">401245678</p>
+             <div class="p-4 rounded-xl border border-white/10 bg-white/10 text-white">
+                <p class="text-sm text-gray-300">نام و نام خانوادگی</p>
+                <p class="text-lg font-semibold mt-1">{{$user->name}} {{$user->family}}</p>
             </div>
 
             <div class="p-4 rounded-xl border border-white/10 bg-white/10 text-white">
@@ -61,8 +88,20 @@
                         رشته تحصیلی
                         @endif
                 </p>
-                <p class="text-lg font-semibold mt-1">مهندسی کامپیوتر</p>
+                <p class="text-lg font-semibold mt-1">{{$user->collage}}</p>
             </div>
+            
+            <div class="p-4 rounded-xl border border-white/10 bg-white/10 text-white">
+                <p class="text-sm text-gray-300">
+                     @if(Auth::user()->roles[0]->title=="استاد")
+                        شماره پرسنلی
+                        @elseif(Auth::user()->roles[0]->title=="دانشجو")
+                        شماره دانشجویی
+                        @endif
+                </p>
+                <p class="text-lg font-semibold mt-1">{{$user->code}}</p>
+            </div>
+
 
             <div class="p-4 rounded-xl border border-white/10 bg-white/10 text-white">
                 <p class="text-sm text-gray-300">شماره تماس</p>
@@ -71,26 +110,16 @@
             
             <div class="p-4 rounded-xl border border-white/10 bg-white/10 text-white">
                 <p class="text-sm text-gray-300">ایمیل</p>
-                <p class="text-lg font-semibold mt-1">example@gmail.com</p>
+                <p class="text-lg font-semibold mt-1">{{$user?->email}}</p>
             </div>
-
 
 
             <div class="p-4 rounded-xl border border-white/10 bg-white/10 text-white">
                 <p class="text-sm text-gray-300">تاریخ عضویت</p>
-                <p class="text-lg font-semibold mt-1">1402/07/01</p>
+                <p class="text-lg font-semibold mt-1">{{$user->created_at}}</p>
             </div>
-
-
-            <div class="p-4 rounded-xl border border-white/10 bg-white/10 text-white">
-                <p class="text-sm text-gray-300">شناسه کاربر (User ID)</p>
-                <p class="text-lg font-semibold mt-1">102938</p>
-            </div>
-
         </div>
-
     </div>
-
 </body>
 
 

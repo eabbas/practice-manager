@@ -161,15 +161,14 @@
                             </td>
                             <td class="px-6 py-4">
                                 <div class="flex items-center">
-                                    <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-medium ml-2">
-                                        د
+                                    <div class="w-5 h-5 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-medium ml-2">
+                                     
                                     </div>
-                                    <span class="text-gray-700">{{ Auth::user()->name }}</span>
+                                    <span class="text-gray-700">{{ Auth::user()->name }} {{Auth::user()->family}}</span>
                                 </div>
                             </td>
                            
-                            
-                            <td class="px-6 py-4 flex flex-row items-center gap-5">
+                            <td class="px-6 py-4 flex flex-row items-center gap-5 mt-3">
                                 <div class="flex items-center space-x-3 space-x-reverse">
                                     <a href="{{ route('lesson_edit', [$lesson]) }}" class="text-blue-600 hover:text-blue-800 transition duration-200" title="ویرایش">
                                         <i class="fas fa-edit"></i>

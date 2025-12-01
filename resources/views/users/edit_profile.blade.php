@@ -41,7 +41,7 @@
     <div class="max-w-4xl mx-auto">
         <!-- هدر -->
         <div class="text-center mb-12">
-            <h1 class="text-3xl font-bold text-[#023e83] mb-4"> ویرایش  پروفایل</h1>
+            <h1 class="text-3xl font-bold text-[#023e83] mt-5"> ویرایش  پروفایل</h1>
             <p class="text-gray-600 text-lg">اطلاعات  جدید خود را وارد کنید</p>
         </div>
 
