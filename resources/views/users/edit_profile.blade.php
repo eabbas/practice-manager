@@ -1,4 +1,3 @@
-
 @extends('users.dashboard')
 @section('title', 'create lesson')
 @section('content')
@@ -42,7 +41,7 @@
         <!-- هدر -->
         <div class="text-center mb-12">
             <h1 class="text-3xl font-bold text-[#023e83] mt-5"> ویرایش  پروفایل</h1>
-            <p class="text-gray-600 text-lg">اطلاعات  جدید خود را وارد کنید</p>
+            <p class="text-gray-600 text-lg">اطلاعات خود را ویرایش وارد کنید</p>
         </div>
 
         <!-- فرم اصلی -->
@@ -66,7 +65,7 @@
                                 <span class="text-red-500 mr-1">*</span>
                             </label>
                             <div class="relative">
-                                <input type="text" id="name" name="name" required 
+                                <input type="text" id="name" name="name" value="{{Auth::user()->name}}" required 
                                        class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50"
                                        placeholder=" نام خود را وارد کنید">
                                 <i class="fas fa-pen absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
@@ -79,7 +78,7 @@
                                 <span class="text-red-500 mr-1">*</span>
                             </label>
                             <div class="relative">
-                                <input type="text" id="family" name="family" required 
+                                <input type="text" id="family" name="family" value="{{Auth::user()->family}}" required 
                                        class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50"
                                        placeholder="   نام خانوادگی خود را وارد کنید">
                                 <i class="fas fa-pen absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
@@ -96,7 +95,7 @@
                                 <span class="text-red-500 mr-1">*</span>
                             </label>
                             <div class="relative">
-                                <input type="text" id="collage" name="collage" required 
+                                <input type="text" id="collage" name="collage" value="{{Auth::user()->collage}}" required 
                                        class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50"
                                        placeholder="گروه درسی خود را وارد کنید">
                                 <i class="fas fa-pen absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
@@ -113,7 +112,7 @@
                                 <span class="text-red-500 mr-1">*</span>
                             </label>
                             <div class="relative">
-                                <input type="text" id="code" name="code" required 
+                                <input type="text" id="code" name="code" value="{{Auth::user()->code}}" required 
                                        class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50"
                                        placeholder="شماره پرسنلی خود را وارد کنید">
                                 <i class="fas fa-pen absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
@@ -126,7 +125,7 @@
                                 <span class="text-red-500 mr-1">*</span>
                             </label>
                             <div class="relative">
-                                <input type="text" id="phone" name="phone" required 
+                                <input type="text" id="phone" name="phone" value="{{Auth::user()->phone}}" required 
                                        class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50"
                                        placeholder="شماره تلفن خود را وارد کنید">
                                 <i class="fas fa-pen absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
@@ -139,7 +138,7 @@
                                 <span class="text-red-500 mr-1">*</span>
                             </label>
                             <div class="relative">
-                                <input type="text" id="email" name="email" required 
+                                <input type="text" id="email" name="email" value="{{Auth::user()->email}}" required 
                                        class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50"
                                        placeholder="ایمیل خود را وارد کنید">
                                 <i class="fas fa-pen absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>

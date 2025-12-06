@@ -28,6 +28,7 @@ class userController extends Controller
   {
     return view("users.login");
   }
+  
   public function check(Request $request)
   {
     if (Auth::check()) {
@@ -67,11 +68,25 @@ class userController extends Controller
     return view("users.edit", ["user" => $user]);
   }
 
+  
   public function edit_profile(){
     $roles = role::all();
-  return view("users.edit_profile" , ["user" => Auth::user()->role , "roles"=>$roles]);
+    return view("users.edit_profile" , ["user" => Auth::user()->role , "roles"=>$roles]);
+  }
+  
+  public function complete_profile(){
+  return view("users.complete_profile" , ["user"=>Auth::user()->role]);
   }
 
+  public function save(Request $request){
+  $user = User::find($request->master_id);
+  $user->collage = $request->collage;
+  $user->email = $request->email;
+  $user->save();
+  return to_route("user.profile",[Auth::user()]);
+  }
+
+  
   public function update(Request $request)
   {
    // dd($request->master_id);

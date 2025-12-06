@@ -138,21 +138,19 @@
                                         <i class="fas fa-calculator text-[#023e83]"></i>
                                     </div>
                                     <div>
-                                        <p class="font-medium text-gray-900">{{ $practice->title }}</p>
-                                        <p class="text-sm text-gray-500 mt-1">{{ $practice->description }}</p>
+                                        <p class="text-sm text-gray-500 mt-1">{{ $practice->title }}</p>
+                                        <p class="text-sm text-gray-500 mt-1">{{$practice->description }}</p>
                                     </div>
                                 </div>
                             </td>
                             <td class="px-6 py-4">
                                 <div class="flex items-center">
                                     <div class="w-4 h-4 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-medium ml-2">
-    
                                     </div>
                                     <div>
                                          <p class="text-sm text-gray-500 mt-1">{{ $practice->lesson->title }}</p>
                                     </div>
                                 </div>
-                            </td>
                             <td class="px-6 py-4">
                                 <div class="flex items-center">
                                     <div class="w-4 h-4 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-medium ml-2">

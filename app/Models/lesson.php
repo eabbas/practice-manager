@@ -10,10 +10,10 @@ class lesson extends Model
         'title' ,
         'description',
         'lesson_group',
-        'master_id'
+        'master_id',
     ];
 
     public function practices(){
-        return $this->hasMany(practice::class)->chaperone();
+        return $this->hasMany(practice::class);
     }
 }
