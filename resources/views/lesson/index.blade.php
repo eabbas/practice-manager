@@ -50,11 +50,13 @@
                 <h1 class="text-3xl font-bold text-[#023e83] mb-2">لیست دروس</h1>
                 <p class="text-gray-600">مدیریت و مشاهده تمام دروس سیستم</p>
             </div>
-            <a href="{{ url('lesson/create') }}" 
-               class="mt-4 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-6 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center">
-                <i class="fas fa-plus ml-2"></i>
-                ایجاد درس جدید
-            </a>
+                        @if(Auth::user()->roles[0]->title=="استاد")
+                        <a href="{{ url('lesson/create') }}" 
+                           class="mt-4 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-6 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center">
+                          <i class="fas fa-plus ml-2"></i>
+                            ایجاد درس جدید
+                        </a>
+                        @endif
         </div>
 
         <!-- آمار و اطلاعات -->
@@ -142,7 +144,13 @@
                         <tr class="bg-gray-100 border-b border-gray-200">
                             <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">عنوان درس</th>
                             <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">استاد</th>
-                            <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">عملیات</th>
+                             @if(Auth::user()->roles[0]->title=="استاد")
+                             <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">عملیات</th>
+                            @endif
+                            @if(Auth::user()->roles[0]->title=="دانشجو")
+                             <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">مشاهده تمرینات</th>
+                            @endif
+        </div>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
@@ -169,24 +177,44 @@
                             </td>
                            
                             <td class="px-6 py-4 flex flex-row items-center gap-5 mt-3">
-                                <div class="flex items-center space-x-3 space-x-reverse">
-                                    <a href="{{ route('lesson_edit', [$lesson]) }}" class="text-blue-600 hover:text-blue-800 transition duration-200" title="ویرایش">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <a href="{{ route('lesson_show', [$lesson]) }}" class="text-green-600 hover:text-green-800 transition duration-200" title="مشاهده">
-                                        <i class="fas fa-eye"></i>
-                                    </a>
-                                    <a href="{{ route('lesson_delete', [$lesson]) }}" class="text-red-600 hover:text-red-800 transition duration-200" title="حذف">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                   
-                                </div>
-                                <div>
-                                     <a href="{{ route('practice_create', [$lesson]) }}" class="text-black transition duration-200 px-3 rounded-md border border-gray-200" title="ایجاد تمرین">
-                                        ایجاد تمرین
-                                    </a>
-                                </div>
-                            </td>
+    <div class="flex items-center space-x-3 space-x-reverse">
+        <!-- ویرایش -->
+        <a href="{{ route('lesson_edit', [$lesson]) }}" class="text-blue-600 hover:text-blue-800 transition duration-200" title="ویرایش">
+            <i class="fas fa-edit"></i>
+        </a>
+        <!-- مشاهده -->
+        <a href="{{ route('lesson_show', [$lesson]) }}" class="text-green-600 hover:text-green-800 transition duration-200" title="مشاهده">
+            <i class="fas fa-eye"></i>
+        </a>
+        <!-- حذف -->
+        <a href="{{ route('lesson_delete', [$lesson]) }}" class="text-red-600 hover:text-red-800 transition duration-200" title="حذف">
+            <i class="fas fa-trash"></i>
+        </a>
+    </div>
+
+    <!-- اضافه کردن دکمه ارسال تمرین همراه با آیکون -->
+    <div class="flex flex-row mr-8">
+        <div>
+            @if(Auth::user()->roles[0]->title=="استاد")
+            <a href="{{ route('practice_create', [$lesson]) }}" class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5" title="ایجاد تمرین">
+                ایجاد تمرین
+            </a>
+            @endif
+        </div>
+        <div>
+            <a href="{{ route('practice_list', [$lesson->id]) }}" class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5" title="تمرینات">
+                تمرینات
+            </a>
+        </div>
+        <!-- دکمه ارسال تمرین همراه با آیکون -->
+        <div>
+            <a href="{{route('lesson_address' ,[$lesson->id])}}" class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5" title="ارسال درس">
+                <i class="fas fa-paper-plane ml-2"></i> ارسال 
+            </a>
+        </div>
+    </div>
+</td>
+
                         </tr>
                         @endforeach
                        

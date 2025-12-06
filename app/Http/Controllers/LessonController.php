@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\lesson;
+use App\Models\practice;
 
 class LessonController extends Controller
 {
@@ -28,14 +29,25 @@ class LessonController extends Controller
        return view("lesson.single" , ["lesson"=>$lesson]);
     }
     
+    public function practice_list(lesson $lesson){
+        $practice_list = $lesson->practices;
+        return view('lesson.practice_list' , ['practice_list'=>$practice_list]);
+    }
+
     
+    public function lesson_address(lesson $lesson){
+        $sendLesson = $lesson->practices;
+
+       return view("lesson.lesson_address", ['sendLesson'=>$sendLesson]);
+    }
+    
+
     public function edit($id){
         $lesson = lesson::find($id);
         return view("lesson.edit" , ["lesson"=>$lesson]);
     }
     
     public function update(Request $request){
-        // dd($request->all());
         $lesson = lesson::find($request->id);
         $lesson->title = $request->title;
         $lesson->description = $request->description;

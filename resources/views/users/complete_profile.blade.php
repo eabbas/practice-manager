@@ -41,50 +41,24 @@
     <div class="max-w-4xl mx-auto">
         <!-- هدر -->
         <div class="text-center mb-12">
-            <h1 class="text-3xl font-bold text-[#023e83] mb-4"> ویرایش  پروفایل</h1>
-            <p class="text-gray-600 text-lg">اطلاعات  جدید خود را وارد کنید</p>
+            <h1 class="text-3xl font-bold text-[#023e83] mt-5"> تکمیل  پروفایل</h1>
+            <p class="text-gray-600 text-lg">اطلاعات جدید خود را اضافه کنید</p>
         </div>
 
         <!-- فرم اصلی -->
         <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-            <form action="{{ route('user.update') }}" method="POST" class="p-8">
+            <form action="{{ route('user.save') }}" method="POST" class="p-8">
                 @csrf
                 <input type="hidden" name="master_id" value="{{Auth::user()->id}}">
                 <!-- اطلاعات اصلی درس -->
                 <div class="mb-8">
                     <h2 class="text-xl font-semibold text-gray-800 mb-6 flex items-center border-b pb-3">
                         <i class="fas fa-book ml-3 text-[#023e83]"></i>
-                        اطلاعات  کاربر
+                        اطلاعات جدید کاربر
                     </h2>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- عنوان کاربر -->
-                        <div>
-                            <label for="name" class="block text-gray-700 font-medium mb-3 flex items-center">
-                                <i class="fas fa-heading ml-2 text-[#023e83] text-sm"></i>
-                                 نام   
-                                <span class="text-red-500 mr-1">*</span>
-                            </label>
-                            <div class="relative">
-                                <input type="text" id="name" name="name" required 
-                                       class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50"
-                                       placeholder=" نام خود را وارد کنید">
-                                <i class="fas fa-pen absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <label for="family" class="block text-gray-700 font-medium mb-3 flex items-center">
-                                <i class="fas fa-heading ml-2 text-[#023e83] text-sm"></i>
-                                   نام خانوادگی
-                                <span class="text-red-500 mr-1">*</span>
-                            </label>
-                            <div class="relative">
-                                <input type="text" id="family" name="family" required 
-                                       class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50"
-                                       placeholder="   نام خانوادگی خود را وارد کنید">
-                                <i class="fas fa-pen absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                            </div>
-                        </div>
                         <div>
                             <label for="collage" class="block text-gray-700 font-medium mb-3 flex items-center">
                                 <i class="fas fa-heading ml-2 text-[#023e83] text-sm"></i>
@@ -99,36 +73,6 @@
                                 <input type="text" id="collage" name="collage" required 
                                        class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50"
                                        placeholder="گروه درسی خود را وارد کنید">
-                                <i class="fas fa-pen absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <label for="code" class="block text-gray-700 font-medium mb-3 flex items-center">
-                                <i class="fas fa-heading ml-2 text-[#023e83] text-sm"></i>
-                                   @if(Auth::user()->roles[0]->title=="استاد")
-                                    شماره پرسنلی
-                                    @elseif(Auth::user()->roles[0]->title=="دانشجو")
-                                    شماره دانشجویی
-                                    @endif
-                                <span class="text-red-500 mr-1">*</span>
-                            </label>
-                            <div class="relative">
-                                <input type="text" id="code" name="code" required 
-                                       class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50"
-                                       placeholder="شماره پرسنلی خود را وارد کنید">
-                                <i class="fas fa-pen absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <label for="phone" class="block text-gray-700 font-medium mb-3 flex items-center">
-                                <i class="fas fa-heading ml-2 text-[#023e83] text-sm"></i>
-                                    شماره تلفن
-                                <span class="text-red-500 mr-1">*</span>
-                            </label>
-                            <div class="relative">
-                                <input type="text" id="phone" name="phone" required 
-                                       class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50"
-                                       placeholder="شماره تلفن خود را وارد کنید">
                                 <i class="fas fa-pen absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                             </div>
                         </div>

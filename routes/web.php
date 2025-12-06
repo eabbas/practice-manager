@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\controllers\userController;
 use App\Http\controllers\LessonController;
 use App\Http\controllers\PracticeController;
+use App\Http\Middleware\sendMiddleware;
 use Illuminate\Support\Facades\Auth;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,6 +30,7 @@ Route::group([
     Route::get('/profile/{user}', 'profile')->name('profile');
     Route::get('/setting' , "setting")->name('setting');
     Route::get('/complete' , "complete_profile")->name("complete_profile");
+    Route::post('/save' , "save")->name("save");
     Route::get("/delete/{suer}","delete")->name('delete');
     Route::get('/mmd', function(){
     Auth::logout();
@@ -43,11 +46,15 @@ Route::post('/lesson/store', [LessonController::class , 'store']);
 
 Route::get('/lessons' , [LessonController::class , 'index'])->name('lesson_list');
 
-Route::get('/lesson/show/{id}' , [LessonController::class , 'show'])->name('lesson_show');
+Route::get('/lesson/show/{lesson}' , [LessonController::class , 'show'])->name('lesson_show');
 
 Route::get('/lesson/edit/{id}' , [LessonController::class , 'edit'])->name('lesson_edit');
 
 Route::post('/lesson/update' , [LessonController::class, 'update'])->name('lesson_update');
+
+Route::get('/lesson/practice/{lesson}' ,[LessonController::class , 'practice_list'])->name('practice_list');
+
+Route::get('/send/lesson/{lesson?}' , [LessonController::class , 'lesson_address'])->name('lesson_address')->middleware(sendMiddleware::class);
 
 Route::get('/lesson/delete/{id}' , [LessonController::class , 'delete'])->name('lesson_delete');
 
@@ -57,7 +64,7 @@ Route::get('/practice/create/{lesson}' , [PracticeController::class , 'create'])
 
 Route::post('/practice/store' , [PracticeController::class , 'store']);
 
-Route::get('/practices' , [PracticeController::class , 'index'])->name('practice_list');
+Route::get('/practices' , [PracticeController::class , 'index'])->name('practices_list');
 
 Route::get('/practice/show/{id}' , [PracticeController::class , 'show'])->name('practice_show');
 
