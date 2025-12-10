@@ -43,8 +43,9 @@ class userController extends Controller
       Auth::login($user);
       return to_route("user.profile", [Auth::user()]);
     } else {
-      echo "incorrect password";
+      return view('users.incorrect_password');
     }
+
   }
   public function profile(user $user)
   {
@@ -65,7 +66,7 @@ class userController extends Controller
   {
     $user = User::find($id);
     // dd($user);
-    return view("users.edit", ["user" => $user]);
+    // return view("users.edit", ["user" => $user]);
   }
 
   

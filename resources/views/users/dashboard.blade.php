@@ -93,7 +93,7 @@
                         <div class="w-full flex flex-row-reverse justify-between items-center bg-white p-4 rounded-xl shadow mt-1">
                             <div class="flex flex-row items-center gap-2">
                                 <span class="text-lg font-semibold text-gray-700 my-2">
-                                    👩‍🎓خوش آمدید، {{Auth::user()->name}} {{Auth::user()->family}}
+                                    خوش آمدید، {{Auth::user()->name}} {{Auth::user()->family}}
                                 </span>
                                 <img src="{{ asset('assets/img/user.png') }}" src="https://i.pravatar.cc/40?img=47"
                                     alt="avatar" class="w-10 h-10 rounded-full border-2 border-primary" />

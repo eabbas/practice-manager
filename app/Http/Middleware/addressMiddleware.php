@@ -6,9 +6,9 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
+use App\models\role;
 
-
-class sendMiddleware
+class addressMiddleware
 {
     /**
      * Handle an incoming request.
@@ -18,13 +18,9 @@ class sendMiddleware
     public function handle(Request $request, Closure $next): Response
     {
 
-    // if (Auth::check()){
-    //   return redirect("/user/login");
-    // }else 
-    
-        if (!Auth::check()) {
-          return redirect("user/login");
-        }
+    // if(Auth::user()->roles[0]->title=="دانشجو"){
+    //   return redirect("/send/lesson/{lesson?}");
+    // }
         return $next($request);
     }
 }

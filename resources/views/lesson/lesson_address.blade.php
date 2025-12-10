@@ -64,23 +64,30 @@
       
     </header>
     {{-- @foreach($sendLesson as $lesson) --}}
-    <form id="enrollForm" class="space-y-4" onsubmit="handleSubmit(event)">
+    <form id="enrollForm" class="space-y-4" action="{{url ('/request/list')}}" method="POST" onsubmit="handleSubmit(event)">
+      @csrf
+      <div>
+        <?php //dd($sendLesson[0]); ?>
+        <input type="hidden" name="lesson_id" value="{{$sendLesson[0]->lesson_id}}" class="mt-1 block w-full rounded-lg border-gray-200 shadow-sm p-3">
+      </div>
       <div>
         <label for="studentName" class="block text-sm font-medium text-gray-700">نام دانشجو</label>
-        <div class="mt-1 block w-full rounded-lg border-gray-200 shadow-sm p-3">
-        <span>{{Auth::user()->name}} {{Auth::user()->family}}</span></div>
+        <input type="text" name="name" value="{{Auth::user()->name}} {{Auth::user()->family}}" class="mt-1 block w-full rounded-lg border-gray-200 shadow-sm p-3">
       </div>
 
       <div>
         <label for="studentEmail" class="block text-sm font-medium text-gray-700">شماره دانشجویی</label>
-        <div class="mt-1 block w-full rounded-lg border-gray-200 shadow-sm p-3">
-        <span>{{Auth::user()->code}}</span></div>
+        <input type="text" name="code" value="{{Auth::user()->code}}" class="mt-1 block w-full rounded-lg border-gray-200 shadow-sm p-3">
       </div>
 
       <div>
         <label for="course" class="block text-sm font-medium text-gray-700"> نام درس</label>
-        <div class="mt-1 block w-full rounded-lg border-gray-200 shadow-sm p-3">
-          <span>{{$sendLesson[0]->title}}</span>
+        <input type="text" name="title" value="{{$sendLesson[0]->title}}" class="mt-1 block w-full rounded-lg border-gray-200 shadow-sm p-3">
+        </div>
+      </div>
+      <div>
+        <label for="course" class="block text-sm font-medium text-gray-700"> نام استاد</label>
+        <input type="text" name="master" value="{{$master->name}} {{$master->family}}" class="mt-1 block w-full rounded-lg border-gray-200 shadow-sm p-3">
         </div>
       </div>
       {{-- @endforeach --}}

@@ -1,76 +1,139 @@
 <!DOCTYPE html>
-<html lang="en" dir="rtl">
+<html lang="fa" dir="rtl">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <title>سامانه ارتباطی استاد و دانشجو</title>
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css">
-    <style>
-        #datetime-display {
-            direction: rtl;
-            text-align: right;
-            font-size: 1.1rem;
-            font-weight: bold;
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- فونت -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- لوتی برای انیمیشن -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { vazir: ['Vazirmatn'] },
+                    colors: {
+                        primary: "oklch(37.9% 0.146 265.522)",
+                        darkBlue: "#024bbf"
+                    }
+                }
+            }
         }
-    </style>
+    </script>
+
+    <title>University Login</title>
 </head>
 
-<body class="bg-gray-100">
+<body class="font-vazir bg-white">
 
-    <div class="bg-[url('{{ asset('assets/img/345.jpg') }}')] h-dvh">
-        <header class="p-4 flex items-start justify-between z-20">
-            
-            <p id="datetime-display" class="text-white mt-2 w-1/3"></p>
+    <div class="flex min-h-screen">
 
-            <div class="text-center w-1/3">
-                <span class="text-white text-2xl font-extrabold whitespace-nowrap block">سامانه ی ارتباطی استاد و دانشجو</span>
-                <span class="text-white text-lg mt-2 block">بارگذاری تکالیف</span>
+        <!-- بخش چپ: دانشگاه + آبی -->
+        <div class="w-1/2 bg-primary text-white p-16 flex flex-col justify-center">
+
+            <div class="text-3xl font-bold mb-8">سامانه ارتباطی استاد و دانشجو</div>
+
+            <div class="flex justify-center mb-8">
+                <!-- آیکون دانشگاه -->
+
+                {{-- <div class="w-64 h-64">
+                    <iframe
+                        src="https://lottie.host/embed/d9118fb5-40eb-4427-bcca-fc3f79b06876/yM81BJfLkw.json"
+                        class="w-full h-full border-0">
+                    </iframe>
+                </div>
+ --}}
+
+                <div class="w-full flex flex-row justify-center items-center">
+                   
+
+                    {{-- <video
+                        class="w-3/4"
+                        muted
+                        loop
+                        preload="auto"
+                        autoPlay
+                        playsInline
+                        src={{ asset('assets/videos/taskManagement.mp4') }}
+                    ></video> --}}
+
+                </div>
+
+                    {{-- <lottie-player
+                    src="{{ asset('animations/task.json') }}"
+                    background="transparent"
+                    speed="1"
+                    style="width:260px;height:260px"
+                    loop autoplay>
+                </lottie-player> --}}
+
+            <!-- <lottie-player
+                src="https://app.lottiefiles.com/share/d9118fb5-40eb-4427-bcca-fc3f79b06876"
+                background="transparent"
+                speed="1"
+                style="width: 260px; height: 260px;"
+                loop autoplay>
+            </lottie-player> -->
+
+
+
+
             </div>
-            <div class="w-1/3">
-                <img id="icon-display" class="w-32 h-20 lg:w-40 lg:h-24 float-left" src="{{ asset('assets/img/121.png') }}" alt="icon">
+
+            <h2 class="text-3xl font-bold mb-4">خوش آمدید!</h2>
+
+            <p class="text-sm opacity-90 leading-7">
+                سامانه جامع دانشگاه برای دسترسی سریع‌تر به خدمات آموزشی،  
+                کلاس‌ها، نمرات و ارتباط با اساتید.
+            </p>
+
+        </div>
+
+        <!-- بخش راست: فرم -->
+        <div class="w-1/2 p-20 flex flex-col justify-center">
+
+            <h2 class="text-3xl font-bold text-darkBlue mb-6">ورود</h2>
+
+            <p class="text-gray-500 mb-6 text-sm">
+                حساب کاربری ندارید؟
+                <a href="#" class="text-primary font-semibold">ایجاد حساب</a>
+            </p>
+
+            <div class="space-y-6">
+
+                <input type="text" placeholder="شماره تلفن"
+                    class="w-full border-b border-gray-300 focus:border-primary outline-none py-3 text-lg" />
+
+                <input type="password" placeholder="رمز عبور"
+                    class="w-full border-b border-gray-300 focus:border-primary outline-none py-3 text-lg" />
+
             </div>
-        </header>
-        
-        <main class="flex flex-col items-center justify-center w-full">
-            
-            <div class="text-center"> 
-                <img src="{{ asset('assets/img/777.png') }}" alt="img" class="w-80 h-auto">
+
+            <div class="flex justify-between items-center mt-8">
+                <button
+                    class="bg-primary text-white px-12 py-3 rounded-md hover:bg-darkBlue transition text-lg">
+                    ورود
+                </button>
+
+                <!-- <label class="flex items-center gap-2 text-sm text-gray-600">
+                    <input type="checkbox" class="accent-primary">
+                    یادآوری رمز
+                </label> -->
             </div>
-            
-            <div class="flex flex-col items-center lg:flex-row gap-4 w-full justify-center mt-10">
-                <a href="{{ route('user.login') }}"
-                    class="active:bg-[#2168ba] px-10 rounded-[10px] py-2 bg-[#023e83] text-white transition-all duration-700 hover:bg-[#2168ba] text-xl hover:text-[#011f52] transition duration-200">ورود</a>
-                <a href="{{ route('user.signup') }}"
-                    class="active:bg-[#2168ba] px-10 rounded-[10px] py-2 bg-[#023e83] text-white transition-all duration-700 hover:bg-[#2168ba] text-xl hover:text-[#011f52] transition duration-200">ثبت نام</a>
-            </div>
-            
-        </main>
+
+            <a href="#" class="text-primary text-sm mt-6 block hover:underline">
+                رمز عبور را فراموش کرده‌اید؟
+            </a>
+
+        </div>
 
     </div>
 
-    <script>
-        function updateDateTime() {
-            const now = new Date();
-            
-            const options = {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            };
-
-            const dateString = now.toLocaleDateString('fa-IR', options);
-            
-            document.getElementById('datetime-display').textContent = dateString;
-        }
-
-        updateDateTime();
-        
-        setInterval(updateDateTime, 1000); 
-    </script>
 </body>
+
 </html>
