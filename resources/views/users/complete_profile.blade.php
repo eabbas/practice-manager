@@ -89,6 +89,7 @@
                                 <i class="fas fa-pen absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
 

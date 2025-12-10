@@ -4,50 +4,79 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ثبت نام</title>
- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Vazirmatn Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            vazir: ['Vazirmatn', 'sans-serif'],
+          },
+          colors: {
+            primary: '#011e3f',  // سرمه‌ای تیره برای دکمه
+            secondary: '#022b5a' // رنگ های ثانویه (در صورت نیاز)
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Vazirmatn', sans-serif;
+    }
+  </style>
 </head>
-<body class="bg-blue-900 flex items-center justify-center my-16">
-  <div class="w-[400px] h-[600px] bg-blue-50 rounded-2xl p-8">
-    <h1 class="text-center text-blue-900 font-bold text-2xl mt-6">ثبت نام</h1>
-    <form action="{{route('user.store')}} " method="POST">
+
+<body class="bg-[url('{{ asset('assets/img/345.jpg') }}')] h-dvh flex items-center justify-center">
+
+  <div class="w-[400px] md:w-[450px] bg-white rounded-2xl p-8 shadow-lg">
+    <h1 class="text-center text-blue-900 font-bold text-2xl mt-2">ثبت نام</h1>
+
+    <form action="{{ route('user.store') }}" method="POST" class="mt-6">
       @csrf
-      <div class="mt-2">
-    <label for="name" class="text-blue-900 font-semibold mr-2">نام  </label>
-    <input type="text" name=" name" id="name" placeholder="نام   " class="w-full mt-2 px-4 py-2 rounded-xl border border-blue-200 focus:outline-none transition">
-  </div>
 
-  <div class="mt-2">
-    <label for="name" class="text-blue-900 font-semibold mr-2"> نام خانوادگی </label>
-    <input type="text" name=" family" id="name" placeholder="  نام خانوادگی" class="w-full mt-2 px-4 py-2 rounded-xl border border-blue-200 focus:outline-none transition">
-  </div>
+      <div class="mt-4">
+        <label for="name" class="text-blue-900 font-semibold">نام</label>
+        <input type="text" name="name" id="name" placeholder="نام" class="w-full mt-2 px-4 py-2 rounded-xl border border-black-100 focus:outline-none focus:ring-2 focus:ring-blue-900 transition">
+      </div>
 
-   <div class="mt-2">
-    <label for="phonNumber" class="text-blue-900 font-semibold mr-2"> شماره تماس  </label>
-    <input type="text" name="phone" id="phonNumber" placeholder="  شماره تماس " class="w-full mt-2 px-4 py-2 rounded-xl border border-blue-200 focus:outline-none transition">
-  </div>
+      <div class="mt-4">
+        <label for="family" class="text-blue-900 font-semibold">نام خانوادگی</label>
+        <input type="text" name="family" id="family" placeholder="نام خانوادگی" class="w-full mt-2 px-4 py-2 rounded-xl border border-black-100 focus:outline-none focus:ring-2 focus:ring-blue-900 transition">
+      </div>
 
-  <div class="mt-2">
-    <label for="code" class="text-blue-900 font-semibold mr-2 ">  کد دانشجویی  </label>
-    <input type="password" name=" code" id="code" placeholder="   کد دانشجویی " class="w-full mt-2 px-4 py-2 rounded-xl border border-blue-200 focus:outline-none transition">
-  </div>
+      <div class="mt-4">
+        <label for="phone" class="text-blue-900 font-semibold">شماره تماس</label>
+        <input type="text" name="phone" id="phone" placeholder="شماره تماس" class="w-full mt-2 px-4 py-2 rounded-xl border border-black-100 focus:outline-none focus:ring-2 focus:ring-blue-900 transition">
+      </div>
 
-      <div class="mt-2">
-        <label class="block mb-1 font-medium text-blue-900 mr-2">نوع کاربر</label>
+      <div class="mt-4">
+        <label for="code" class="text-blue-900 font-semibold">کد دانشجویی</label>
+        <input type="password" name="code" id="code" placeholder="کد دانشجویی" class="w-full mt-2 px-4 py-2 rounded-xl border border-black-100 focus:outline-none focus:ring-2 focus:ring-blue-900 transition">
+      </div>
 
-        <select name="userRoles" class="w-full p-2 border text-blue-900 rounded-lg  border-blue-200 focus:outline-none transition">
-          {{-- <option   class=" text-blue-900" value="{{$roles[0]['id']}}">{{$roles[0]['title']}}</option>
-          <option value="{{$roles[1]['id']}}" class=" text-blue-900">{{$roles[1]['title']}}</option> --}}
+      <div class="mt-4">
+        <label class="block mb-2 text-blue-900 font-semibold">نوع کاربر</label>
+        <select name="userRoles" class="w-full p-2 rounded-xl border border-black-100 text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900 transition">
           @foreach ($roles as $role)
-              <option class=" text-blue-900" value="{{ $role->id }}">{{ $role->title }}</option>
+              <option value="{{ $role->id }}">{{ $role->title }}</option>
           @endforeach
         </select>
       </div>
 
-  <div class="mt-4">
-    <button type="submit" class="w-full h-[40px] bg-blue-900 text-white rounded-xl ">ثبت نام</button>
-</form>
-  </div>
+      <div class="mt-6">
+        <button type="submit" class="w-full py-3 text-white font-bold rounded-xl bg-[#023e83] hover:bg-[#022b5a] transition">
+          ثبت نام
+        </button>
+      </div>
+    </form>
   </div>
 
 </body>

@@ -193,7 +193,7 @@
     </div>
 
     <!-- اضافه کردن دکمه ارسال تمرین همراه با آیکون -->
-    <div class="flex flex-row mr-8">
+    <div class="flex flex-row mr-10">
         <div>
             @if(Auth::user()->roles[0]->title=="استاد")
             <a href="{{ route('practice_create', [$lesson]) }}" class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5" title="ایجاد تمرین">
@@ -210,6 +210,11 @@
         <div>
             <a href="{{route('lesson_address' ,[$lesson->id])}}" class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5" title="ارسال درس">
                 <i class="fas fa-paper-plane ml-2"></i> ارسال 
+            </a>
+        </div>
+         <div>
+            <a href="{{ route('request_list') }}" class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5" title="تمرینات">
+                 درخواست ها
             </a>
         </div>
     </div>

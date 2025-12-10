@@ -5,6 +5,7 @@ use App\Http\controllers\userController;
 use App\Http\controllers\LessonController;
 use App\Http\controllers\PracticeController;
 use App\Http\Middleware\sendMiddleware;
+use App\Http\Middleware\addressMiddleware;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -20,7 +21,7 @@ Route::group([
     Route::get("/signup","signup")->name('signup');
     Route::post("/store","store")->name('store');
     Route::post("/check","check")->name('check');
-    Route::get("/login","login")->name('login');
+    Route::get("/login","login")->name('login')->middleware(addressMiddleware::class);
     Route::get("/logout","logout")->name("logout");
     Route::get("/","index")->name('list');
     Route::get('/edit/profile' , "edit_profile")->name('edit_profile');
@@ -55,6 +56,10 @@ Route::post('/lesson/update' , [LessonController::class, 'update'])->name('lesso
 Route::get('/lesson/practice/{lesson}' ,[LessonController::class , 'practice_list'])->name('practice_list');
 
 Route::get('/send/lesson/{lesson?}' , [LessonController::class , 'lesson_address'])->name('lesson_address')->middleware(sendMiddleware::class);
+
+Route::post('/request/list/' ,[LessonController::class , 'request_list'])->name('request_list');
+
+//Route::get('/list/requests' , [LessonController::class , 'list_requests'])->name('list_requests');
 
 Route::get('/lesson/delete/{id}' , [LessonController::class , 'delete'])->name('lesson_delete');
 
