@@ -1,139 +1,112 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>دانشگاه بناب - ورود دانشجویان</title>
 
-    <!-- فونت -->
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- لوتی برای انیمیشن -->
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { vazir: ['Vazirmatn'] },
-                    colors: {
-                        primary: "oklch(37.9% 0.146 265.522)",
-                        darkBlue: "#024bbf"
-                    }
-                }
-            }
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            vazir: ['Vazirmatn', 'sans-serif'],
+          }
         }
-    </script>
+      }
+    }
+  </script>
 
-    <title>University Login</title>
+  <style>
+    body {
+      font-family: 'Vazirmatn', sans-serif;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+    .input-glass {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+  </style>
 </head>
 
-<body class="font-vazir bg-white">
+<body class="h-screen overflow-hidden relative">
 
-    <div class="flex min-h-screen">
+<!-- پس زمینه -->
+<div class="fixed inset-0 -z-10">
+  <img src="{{ asset('assets/img/bg1.jpg') }}"
+       class="w-full h-full object-cover brightness-75">
+</div>
 
-        <!-- بخش چپ: دانشگاه + آبی -->
-        <div class="w-1/2 bg-primary text-white p-16 flex flex-col justify-center">
-
-            <div class="text-3xl font-bold mb-8">سامانه ارتباطی استاد و دانشجو</div>
-
-            <div class="flex justify-center mb-8">
-                <!-- آیکون دانشگاه -->
-
-                {{-- <div class="w-64 h-64">
-                    <iframe
-                        src="https://lottie.host/embed/d9118fb5-40eb-4427-bcca-fc3f79b06876/yM81BJfLkw.json"
-                        class="w-full h-full border-0">
-                    </iframe>
-                </div>
- --}}
-
-                <div class="w-full flex flex-row justify-center items-center">
-                   
-
-                    {{-- <video
-                        class="w-3/4"
-                        muted
-                        loop
-                        preload="auto"
-                        autoPlay
-                        playsInline
-                        src={{ asset('assets/videos/taskManagement.mp4') }}
-                    ></video> --}}
-
-                </div>
-
-                    {{-- <lottie-player
-                    src="{{ asset('animations/task.json') }}"
-                    background="transparent"
-                    speed="1"
-                    style="width:260px;height:260px"
-                    loop autoplay>
-                </lottie-player> --}}
-
-            <!-- <lottie-player
-                src="https://app.lottiefiles.com/share/d9118fb5-40eb-4427-bcca-fc3f79b06876"
-                background="transparent"
-                speed="1"
-                style="width: 260px; height: 260px;"
-                loop autoplay>
-            </lottie-player> -->
+<!-- کانتینر اصلی -->
+<div class="min-h-screen flex items-center justify-center px-3">
 
 
+  <div class="glass w-full max-w-sm md:max-w-md rounded-3xl p-6 md:p-10 shadow-2xl">
 
-
-            </div>
-
-            <h2 class="text-3xl font-bold mb-4">خوش آمدید!</h2>
-
-            <p class="text-sm opacity-90 leading-7">
-                سامانه جامع دانشگاه برای دسترسی سریع‌تر به خدمات آموزشی،  
-                کلاس‌ها، نمرات و ارتباط با اساتید.
-            </p>
-
-        </div>
-
-        <!-- بخش راست: فرم -->
-        <div class="w-1/2 p-20 flex flex-col justify-center">
-
-            <h2 class="text-3xl font-bold text-darkBlue mb-6">ورود</h2>
-
-            <p class="text-gray-500 mb-6 text-sm">
-                حساب کاربری ندارید؟
-                <a href="#" class="text-primary font-semibold">ایجاد حساب</a>
-            </p>
-
-            <div class="space-y-6">
-
-                <input type="text" placeholder="شماره تلفن"
-                    class="w-full border-b border-gray-300 focus:border-primary outline-none py-3 text-lg" />
-
-                <input type="password" placeholder="رمز عبور"
-                    class="w-full border-b border-gray-300 focus:border-primary outline-none py-3 text-lg" />
-
-            </div>
-
-            <div class="flex justify-between items-center mt-8">
-                <button
-                    class="bg-primary text-white px-12 py-3 rounded-md hover:bg-darkBlue transition text-lg">
-                    ورود
-                </button>
-
-                <!-- <label class="flex items-center gap-2 text-sm text-gray-600">
-                    <input type="checkbox" class="accent-primary">
-                    یادآوری رمز
-                </label> -->
-            </div>
-
-            <a href="#" class="text-primary text-sm mt-6 block hover:underline">
-                رمز عبور را فراموش کرده‌اید؟
-            </a>
-
-        </div>
-
+    <!-- هدر -->
+    <div class="text-center md:text-right">
+      <img src="https://www.ubonab.ac.ir/theme/1/responsive/images/logo-head+final3.png"
+           class="w-24 mx-auto md:mx-0 md:mr-auto mb-6">
+      <h2 class="text-2xl md:text-3xl font-bold text-white">خوش آمدید</h2>
+      <p class="text-white/70 text-sm mt-4 leading-6">
+        سامانه جامع دانشگاه برای دسترسی سریع‌تر به خدمات آموزشی
+      </p>
     </div>
 
-</body>
+    <!-- فرم -->
+    <form action="{{ route('user.check') }}" method="POST" class="space-y-5 mt-8">
+      @csrf
 
+      <div>
+        <label class="block text-white text-sm mb-2">شماره تلفن</label>
+        <input type="number" name="phone"
+               class="w-full px-4 py-3 rounded-xl input-glass text-white
+                      placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none">
+      </div>
+
+      <div>
+        <label class="block text-white text-sm mb-2">رمز عبور</label>
+        <input type="password" name="password"
+               class="w-full px-4 py-3 rounded-xl input-glass text-white
+                      placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none">
+      </div>
+
+      <button
+        class="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-900 to-blue-950
+               hover:from-cyan-800 hover:to-blue-800 text-white font-bold
+               transition transform hover:scale-105">
+        ورود به پنل
+      </button>
+    </form>
+
+    <!-- لینک‌ها -->
+    <div class="mt-6 text-center md:text-right text-sm text-white/70 space-y-2">
+      <p>
+        حساب کاربری ندارید؟
+        <a href="{{ route('user.signup') }}" class="font-semibold underline">
+          ایجاد حساب
+        </a>
+      </p>
+      <a href="#" class="block hover:underline">رمز عبور را فراموش کرده‌اید؟</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- فوتر -->
+
+  <div class="fixed bottom-5 left-1/2 -translate-x-1/2 text-white/60 text-sm whitespace-nowrap">
+    © ۱۴۰۴ دانشگاه بناب - تمامی حقوق محفوظ است
+  </div>
+
+
+</body>
 </html>

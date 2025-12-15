@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ثبت نام</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>دانشگاه بناب - ثبت نام دانشجویان</title>
 
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Vazirmatn Font -->
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Vazirmatn -->
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <script>
@@ -17,10 +20,6 @@
         extend: {
           fontFamily: {
             vazir: ['Vazirmatn', 'sans-serif'],
-          },
-          colors: {
-            primary: '#011e3f',  // سرمه‌ای تیره برای دکمه
-            secondary: '#022b5a' // رنگ های ثانویه (در صورت نیاز)
           }
         }
       }
@@ -31,53 +30,129 @@
     body {
       font-family: 'Vazirmatn', sans-serif;
     }
+    .glass {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+    .input-glass {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
   </style>
 </head>
 
-<body class="bg-[url('{{ asset('assets/img/345.jpg') }}')] h-dvh flex items-center justify-center">
+<body class="h-dvh overflow-hidden relative">
 
-  <div class="w-[400px] md:w-[450px] bg-white rounded-2xl p-8 shadow-lg">
-    <h1 class="text-center text-blue-900 font-bold text-2xl mt-2">ثبت نام</h1>
+<!-- پس‌زمینه -->
+<div class="fixed inset-0 -z-10">
+  <img src="{{ asset('assets/img/bg1.jpg') }}"
+       alt="دانشگاه بناب"
+       class="w-full h-full object-cover brightness-75">
+</div>
 
-    <form action="{{ route('user.store') }}" method="POST" class="mt-6">
+<!-- کانتینر اصلی -->
+<div class="h-dvh flex items-center justify-center px-4">
+
+  <!-- کارت فرم -->
+  <div class="glass w-full max-w-md md:max-w-2xl lg:max-w-4xl
+              rounded-3xl shadow-2xl
+              p-6 py-3 md:p-8
+              border border-white/20">
+
+    <!-- هدر -->
+    <div class="text-center mb-5 sm:mb-8">
+      <img src="https://www.ubonab.ac.ir/theme/1/responsive/images/logo-head+final3.png"
+           alt="لوگو"
+           class="w-24 mx-auto mb-4">
+      <h2 class="text-2xl md:text-3xl font-bold text-white">ثبت نام</h2>
+      <p class="text-white/70 text-sm mt-2">لطفاً اطلاعات خود را وارد کنید</p>
+    </div>
+
+    <!-- فرم -->
+    <form action="{{ route('user.store') }}" method="POST" class="space-y-2 sm:space-y-6">
       @csrf
 
-      <div class="mt-4">
-        <label for="name" class="text-blue-900 font-semibold">نام</label>
-        <input type="text" name="name" id="name" placeholder="نام" class="w-full mt-2 px-4 py-2 rounded-xl border border-black-100 focus:outline-none focus:ring-2 focus:ring-blue-900 transition">
+      <!-- نام و نام خانوادگی -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+        <div>
+          <label class="block text-white text-sm mb-2">نام</label>
+          <input type="text" name="name" required
+                 class="w-full px-4 py-2 sm:py-3 rounded-xl input-glass text-white
+                        placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none">
+        </div>
+
+        <div>
+          <label class="block text-white text-sm mb-2">نام خانوادگی</label>
+          <input type="text" name="family" required
+                 class="w-full px-4 py-2 sm:py-3 rounded-xl input-glass text-white
+                        placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none">
+        </div>
       </div>
 
-      <div class="mt-4">
-        <label for="family" class="text-blue-900 font-semibold">نام خانوادگی</label>
-        <input type="text" name="family" id="family" placeholder="نام خانوادگی" class="w-full mt-2 px-4 py-2 rounded-xl border border-black-100 focus:outline-none focus:ring-2 focus:ring-blue-900 transition">
+      <!-- شماره تماس و کد -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+        <div>
+          <label class="block text-white text-sm mb-2">شماره تماس</label>
+          <input type="tel" name="phone" required
+                 class="w-full px-4 py-2 sm:py-3 rounded-xl input-glass text-white
+                        placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none">
+        </div>
+
+        <div>
+          <label class="block text-white text-sm mb-2">کد دانشجویی</label>
+          <input type="number" name="code" required
+                 class="w-full px-4 py-2 sm:py-3 rounded-xl input-glass text-white
+                        placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none">
+        </div>
       </div>
 
-      <div class="mt-4">
-        <label for="phone" class="text-blue-900 font-semibold">شماره تماس</label>
-        <input type="text" name="phone" id="phone" placeholder="شماره تماس" class="w-full mt-2 px-4 py-2 rounded-xl border border-black-100 focus:outline-none focus:ring-2 focus:ring-blue-900 transition">
-      </div>
-
-      <div class="mt-4">
-        <label for="code" class="text-blue-900 font-semibold">کد دانشجویی</label>
-        <input type="password" name="code" id="code" placeholder="کد دانشجویی" class="w-full mt-2 px-4 py-2 rounded-xl border border-black-100 focus:outline-none focus:ring-2 focus:ring-blue-900 transition">
-      </div>
-
-      <div class="mt-4">
-        <label class="block mb-2 text-blue-900 font-semibold">نوع کاربر</label>
-        <select name="userRoles" class="w-full p-2 rounded-xl border border-black-100 text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900 transition">
-          @foreach ($roles as $role)
+      <!-- نقش کاربر -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+        <div>
+          <label class="block text-white text-sm mb-2">نوع کاربر</label>
+          <select name="userRoles"
+                  class="w-full px-4 py-2 sm:py-3 rounded-xl input-glass text-black
+                         focus:ring-4 focus:ring-white/30 outline-none">
+            @foreach ($roles as $role)
               <option value="{{ $role->id }}">{{ $role->title }}</option>
-          @endforeach
-        </select>
+            @endforeach
+          </select>
+        </div>
       </div>
 
-      <div class="mt-6">
-        <button type="submit" class="w-full py-3 text-white font-bold rounded-xl bg-[#023e83] hover:bg-[#022b5a] transition">
-          ثبت نام
-        </button>
-      </div>
+      <!-- دکمه -->
+      <button type="submit"
+              class="w-full py-3 sm:py-4 rounded-xl
+                     bg-gradient-to-r from-cyan-900 to-blue-950
+                     hover:from-cyan-800 hover:to-blue-800
+                     text-white font-bold text-sm sm:text-lg
+                     transition transform hover:scale-105">
+        ایجاد حساب
+      </button>
     </form>
+
+    <!-- لینک ورود -->
+    <div class="mt-2 sm:mt-6 text-center text-white/70 text-sm">
+      قبلاً حساب کاربری دارید؟
+      <a href="{{ route('user.login') }}" class="font-semibold hover:underline">
+        ورود به پنل
+      </a>
+    </div>
+
   </div>
+</div>
+
+<!-- فوتر -->
+<div class="
+  hidden md:block fixed bottom-5 left-1/2 -translate-x-1/2
+  text-white/60 text-xs md:text-sm
+  whitespace-nowrap
+  pointer-events-none">
+  © ۱۴۰۴ دانشگاه بناب - تمامی حقوق محفوظ است
+</div>
+
 
 </body>
 </html>

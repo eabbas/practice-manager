@@ -207,11 +207,16 @@
             </a>
         </div>
         <!-- دکمه ارسال تمرین همراه با آیکون -->
-        <div>
-            <a href="{{route('lesson_address' ,[$lesson->id])}}" class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5" title="ارسال درس">
+        <div class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5" title="ارسال درس" onclick="copyText()">
                 <i class="fas fa-paper-plane ml-2"></i> ارسال 
-            </a>
         </div>
+        <script>
+            function copyText(){
+                let url = "{{url('login')}}"
+                 navigator.clipboard.writeText(url)
+            alert("link copied")
+            }
+        </script>
          <div>
             <a href="{{ route('request_list') }}" class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5" title="تمرینات">
                  درخواست ها
