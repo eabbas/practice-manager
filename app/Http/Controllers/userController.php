@@ -22,7 +22,7 @@ class userController extends Controller
     $password = Hash::make($request->code);
     $userId = User::insertGetId(["approved" => 0, "name" => $request->name, "family" => $request->family, "password" => $password, "phone" => $request->phone, "code" => $request->code]);
     user_role::create(["user_id" => $userId, "role_id" => $request->userRoles]);
-    return to_route("user.login");
+    return to_route("home");
   }
   public function login()
   {
@@ -55,7 +55,7 @@ class userController extends Controller
   public function logout()
   {
     Auth::logout();
-    return to_route("user.login");
+    return to_route("home");
   }
   public function index()
   {

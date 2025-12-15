@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ورود</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>دانشگاه بناب - ورود دانشجویان</title>
 
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Vazirmatn Font -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <script>
@@ -17,10 +15,6 @@
         extend: {
           fontFamily: {
             vazir: ['Vazirmatn', 'sans-serif'],
-          },
-          colors: {
-            primary: '#011e3f', // سرمه‌ای تیره
-            secondary: '#022b5a', // کمی روشن‌تر
           }
         }
       }
@@ -30,51 +24,89 @@
   <style>
     body {
       font-family: 'Vazirmatn', sans-serif;
-      background-color: #011e3f; /* سرمه‌ای تیره */
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+    .input-glass {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
     }
   </style>
 </head>
 
-<body class="bg-[url('{{ asset('assets/img/345.jpg') }}')] h-dvh flex items-center justify-center">
+<body class="h-screen overflow-hidden relative">
 
-  <div class="w-full max-w-md bg-white rounded-3xl shadow-lg p-8">
-    <h1 class="text-3xl font-extrabold text-primary text-center mb-6">ورود به سامانه</h1>
+<!-- پس زمینه -->
+<div class="fixed inset-0 -z-10">
+  <img src="{{ asset('assets/img/bg1.jpg') }}"
+       class="w-full h-full object-cover brightness-75">
+</div>
 
-    <form action="{{ route('user.check') }}" method="POST" class="flex flex-col gap-5">
+<!-- کانتینر اصلی -->
+<div class="min-h-screen flex items-center justify-center px-4">
+
+
+  <div class="glass w-full max-w-sm md:max-w-md rounded-3xl p-6 md:p-10 shadow-2xl">
+
+    <!-- هدر -->
+    <div class="text-center md:text-right">
+      <img src="https://www.ubonab.ac.ir/theme/1/responsive/images/logo-head+final3.png"
+           class="w-24 mx-auto md:mx-0 md:mr-auto mb-6">
+      <h2 class="text-2xl md:text-3xl font-bold text-white">ورود</h2>
+      <p class="text-white/70 text-sm mt-4 leading-6">
+        سامانه جامع دانشگاه برای دسترسی سریع‌تر به خدمات آموزشی
+      </p>
+    </div>
+
+    <!-- فرم -->
+    <form action="{{ route('user.check') }}" method="POST" class="space-y-5 mt-8">
       @csrf
 
-      <!-- شماره تلفن -->
-      <div class="flex flex-col">
-        <label for="phone" class="text-primary font-semibold mb-1">شماره تلفن</label>
-        <input type="number" name="phone" id="phone" placeholder="شماره تلفن"
-               class="border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary transition">
+      <div>
+        <label class="block text-white text-sm mb-2">شماره تلفن</label>
+        <input type="number" name="phone"
+               class="w-full px-4 py-3 rounded-xl input-glass text-white
+                      placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none">
       </div>
 
-      <!-- رمز عبور -->
-      <div class="flex flex-col">
-        <label for="password" class="text-primary font-semibold mb-1">رمز عبور</label>
-        <input type="password" name="password" id="password" placeholder="رمز عبور"
-               class="border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary transition">
+      <div>
+        <label class="block text-white text-sm mb-2">رمز عبور</label>
+        <input type="password" name="password"
+               class="w-full px-4 py-3 rounded-xl input-glass text-white
+                      placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none">
       </div>
 
-      <!-- فراموشی رمز عبور -->
-      <div class="text-sm text-right">
-        <a href="#" class="text-blue-900 hover:underline">فراموشی رمز عبور؟</a>
-      </div>
-
-      <!-- دکمه ورود -->
-      <button type="submit" class="w-full bg-[#023e83] text-white font-bold py-3 rounded-xl hover:bg-secondary transition">
-        ورود
+      <button
+        class="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-900 to-blue-950
+               hover:from-cyan-800 hover:to-blue-800 text-white font-bold
+               transition transform hover:scale-105">
+        ورود به پنل
       </button>
-
-      <!-- لینک ثبت نام -->
-      <p class="text-center text-gray-500 mt-2 text-sm">
-        هنوز ثبت نام نکرده‌اید؟ 
-        <a href="{{ route('user.signup') }}" class="text-blue-900 font-bold hover:underline">ثبت نام</a>
-      </p>
-
     </form>
+
+    <!-- لینک‌ها -->
+    <div class="mt-6 text-center md:text-right text-sm text-white/70 space-y-2">
+      <p>
+        حساب کاربری ندارید؟
+        <a href="{{ route('user.signup') }}" class="font-semibold underline">
+          ایجاد حساب
+        </a>
+      </p>
+      <a href="#" class="block hover:underline">رمز عبور را فراموش کرده‌اید؟</a>
+    </div>
+
   </div>
+</div>
+
+<!-- فوتر -->
+
+  <div class="fixed max-sm:hidden bottom-8 left-1/2 -translate-x-1/2 text-white/60 text-sm whitespace-nowrap">
+    © ۱۴۰۴ دانشگاه بناب - تمامی حقوق محفوظ است
+  </div>
+
 
 </body>
 </html>
