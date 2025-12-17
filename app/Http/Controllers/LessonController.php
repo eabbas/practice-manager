@@ -41,27 +41,12 @@ class LessonController extends Controller
     }
 
     
-    public function lesson_address(lesson $lesson){
-        $sendLesson = $lesson->practices;
-        $master=user::find($lesson->master_id);
-        // dd($master);
-       return view("lesson.lesson_address", ['sendLesson'=>$sendLesson,'master'=>$master]);
-
-    }
     
     // public function list_requests(Request $request){
     //     $requests= $request->all();
     //     return to_route('list_request');
     // }
 
-    public function request_list(Request $request){
-    $lesson = lesson::find($request->lesson_id);
-    $lesson->name = $request->name;
-    $lesson->code = $request->code;
-    $lesson->title = $request->title;
-    $lesson->master = $request->master;
-    return view("lesson.requests",['lesson'=>$lesson]);
-    }
 
     public function edit($id){
         $lesson = lesson::find($id);

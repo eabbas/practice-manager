@@ -41,7 +41,8 @@ class userController extends Controller
     $checkHash = Hash::check($request->password, $user->password);
     if ($checkHash) {
       Auth::login($user);
-      return to_route("user.profile", [Auth::user()]);
+      return redirect()->intended(route('user.profile',[Auth::user()]));
+      // return to_route("user.profile", [Auth::user()]);
     } else {
       return view('users.incorrect_password');
     }

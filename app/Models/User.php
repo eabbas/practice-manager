@@ -63,4 +63,14 @@ class User extends Authenticatable
           return  $this->hasManyThrough(practice::class, lesson::class, 'master_id', 'lesson_id'); 
         
     }
+
+    public function lessons()
+    {
+        return $this->belongsToMany(lesson::class,'user_lessons',"lesson_id","user_id");
+    }
+
+    public function userLessons()
+    {
+        return $this->belongsToMany(userLesson::class,'user_lessons',"lesson_id","user_id");
+    }
 }

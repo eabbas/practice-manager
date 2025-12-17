@@ -210,15 +210,9 @@
         <div class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5" title="ارسال درس" onclick="copyText()">
                 <i class="fas fa-paper-plane ml-2"></i> ارسال 
         </div>
-        <script>
-            function copyText(){
-                let url = "{{url('login')}}"
-                 navigator.clipboard.writeText(url)
-            alert("link copied")
-            }
-        </script>
+
          <div>
-            <a href="{{ route('request_list') }}" class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5" title="تمرینات">
+            <a href="{{url('/request/list/'.$lesson->id)}}" class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5" title="تمرینات">
                  درخواست ها
             </a>
         </div>
@@ -255,6 +249,12 @@
     </div>
 
     <script>
+
+            function copyText(){
+                let url = "{{url('/send/lesson/'.$lesson->id)}}"
+                 navigator.clipboard.writeText(url)
+            alert("لینک درس کپی شد")
+            }
         // جستجو در جدول
         const searchInput = document.querySelector('input[type="text"]');
         searchInput.addEventListener('input', function() {

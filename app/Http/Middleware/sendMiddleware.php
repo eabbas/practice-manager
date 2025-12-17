@@ -18,13 +18,18 @@ class sendMiddleware
     public function handle(Request $request, Closure $next): Response
     {
 
-    // if (Auth::check()){
-    //   return redirect("/user/login");
+    // if(Auth::check()){
+    //   return to_route("lesson_address");
     // }else 
     
         if (!Auth::check()) {
-          return redirect("user/login");
+            
+            session()->put('url.intended',$request->fullUrl());
+                
+            
+            return to_route("user.login");
         }
+
         return $next($request);
     }
 }
