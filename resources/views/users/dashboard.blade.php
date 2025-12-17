@@ -78,6 +78,16 @@
                                 <a href="{{ route('lesson_list') }}" class=" text-white py-1"> مشاهده کلاس ها</a>
                             </li>
                             @endif
+                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
+                                <span class="size-1 bg-white rounded-sm"></span>
+                                <a href="{{ route('my_requests') }}" class=" text-white py-1">
+                                    مشاهده درخواست های من</a>
+                            </li>
+                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
+                                <span class="size-1 bg-white rounded-sm"></span>
+                                <a href="{{ route('my_requests') }}" class=" text-white py-1">
+                                    مشاهده کلاس ها</a>
+                            </li>
                         </ul>
                     </div>
                 </div>

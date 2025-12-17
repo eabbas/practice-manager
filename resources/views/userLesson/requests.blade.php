@@ -1,0 +1,112 @@
+@extends('users.dashboard')
+@section('title', 'practice list')
+@section('content')
+<script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'vazir': ['Vazirmatn', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#023e83'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+        }
+        
+        .table-row:hover {
+            background-color: #f8fafc;
+            transform: translateY(-1px);
+            transition: all 0.2s ease;
+        }
+        
+        .status-active {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+        
+        .status-inactive {
+            background-color: #fef2f2;
+            color: #dc2626;
+        }
+    </style>
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>لیست درخواست‌ها</title>
+</head>
+{{-- <form action="{{route('list_requests')}}" method="POST"> --}}
+
+  <body class="bg-slate-100 p-6">
+  
+      <div class="max-w-5xl mx-auto bg-white rounded-xl shadow p-6">
+  
+          <h1 class="text-xl font-bold text-slate-800 mb-4">
+              لیست درخواست‌های دانشجویی
+          </h1>
+  
+          <!-- جستجو -->
+          <div class="flex items-center justify-between mb-4">
+              <span class="text-slate-600 text-sm">تعداد درخواست‌های تایید نشده: 2</span>
+  
+              <div class="flex gap-2">
+                  <input type="text"
+                         placeholder="جستجو..."
+                         class="px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none">
+  
+                  <button class="px-4 py-2 bg-slate-200 rounded-lg text-slate-700">
+                      پاک‌سازی
+                  </button>
+              </div>
+          </div>
+  
+          <!-- جدول -->
+          <div class="overflow-x-auto border border-slate-200 rounded-lg">
+              <table class="w-full text-right">
+                  <thead class="bg-slate-50 text-slate-600 text-sm">
+                      <tr>
+                          <th class="py-3 px-4">نام دانشجو</th>
+                          <th class="py-3 px-4">شماره دانشجویی</th>
+                          <th class="py-3 px-4">نام درس</th>
+                          <th class="py-3 px-4">استاد</th>
+                          <th class="py-3 px-4 text-center">عملیات</th>
+                      </tr>
+                  </thead>
+  
+                  <tbody class="text-sm">
+                        @foreach($lessonUsers as $lessonUser)
+                        <?php //dd($lessonUsers); ?>
+                      <!-- ردیف ۱ -->
+                      <tr class="hover:bg-slate-50">
+                        @php 
+dd($lessonUser);
+                        @endphp
+
+                      </tr>
+                       
+                        @endforeach
+                  </tbody>
+              </table>
+          </div>
+  
+          <!-- وقتی لیست خالی باشد -->
+          <!-- <p class="text-center text-slate-500 mt-6">درخواستی وجود ندارد.</p> -->
+  
+      </div>
+  
+  </body>
+  </html>
+{{-- </form> --}}
+@endsection

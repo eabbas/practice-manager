@@ -4,8 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\controllers\userController;
 use App\Http\controllers\LessonController;
 use App\Http\controllers\PracticeController;
+use App\Http\Controllers\StudentRequestController;
+use App\Http\Controllers\UserLessonController;
 use App\Http\Middleware\sendMiddleware;
 use App\Http\Middleware\addressMiddleware;
+use App\Models\studentRequest;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -55,12 +58,6 @@ Route::post('/lesson/update' , [LessonController::class, 'update'])->name('lesso
 
 Route::get('/lesson/practice/{lesson}' ,[LessonController::class , 'practice_list'])->name('practice_list');
 
-Route::get('/send/lesson/{lesson?}' , [LessonController::class , 'lesson_address'])->name('lesson_address')->middleware(sendMiddleware::class);
-
-Route::post('/request/list/' ,[LessonController::class , 'request_list'])->name('request_list');
-
-//Route::get('/list/requests' , [LessonController::class , 'list_requests'])->name('list_requests');
-
 Route::get('/lesson/delete/{id}' , [LessonController::class , 'delete'])->name('lesson_delete');
 
 // practices
@@ -80,5 +77,14 @@ Route::post('/practice/update' , [PracticeController::class , 'update'])->name('
 Route::get('/practice/delete/{id}' , [PracticeController::class , 'delete'])->name('practice_delete');
   
 
+//userLesson
 
+Route::get('/send/lesson/{lesson?}' , [UserLessonController::class , 'lesson_address'])->name('lesson_address')->middleware(sendMiddleware::class);
 
+Route::post('/request/store',[UserLessonController::class,'store'])->name('userLesson_store');
+
+Route::get('/my/requests',[UserLessonController::class , 'my_requests'])->name('my_requests');
+
+Route::get('/request/list/{lesson?}' ,[UserLessonController::class , 'request_list'])->name('request_list');
+
+Route::get('/lesson/request/approve/{userId}/{lessonId}', [UserLessonController::class,'approveRequest'])->name('request_approve');
