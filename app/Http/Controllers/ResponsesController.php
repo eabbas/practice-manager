@@ -1,0 +1,59 @@
+<?php
+
+namespace App\Http\Controllers;
+use App\Models\practice;
+use App\Models\responses;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
+
+use Illuminate\Http\Request;
+use DB;
+
+class ResponsesController extends Controller
+{
+    public function store(Request $request){
+
+        //dd(['practice_id'=>$request->practice_id ,'user_id'=> $request->user_id , 'text'=>$request->text , 'seen'=>0]);
+        responses::create(['practice_id'=>$request->practice_id ,'user_id'=> $request->user_id , 'text'=>$request->text , 'seen'=>0]);
+        //dd($x);
+        return redirect()->back();
+    }
+
+//  function($query){
+//             $query->select(DB::raw('count(id) as userResponseCount'))->where('seen' , 0);
+//         }
+// DB::raw('count(id) as userResponseCount')
+// DB::raw("(SELECT COUNT(id) FROM responses WHERE seen = 0 and practice_id = $practice->id and user_id != {$practice->master->id}) as userResponseCount")
+
+        // ->addSelect(["userResponseCount" => 
+        // responses::where('user_id' , "!=" , $practice->master->id )->where('practice_id',$practice->id)->where('seen' , 0)->count()])
+
+    public function response_list(practice $practice){
+        $practice->load('master');
+        // $practiceMasterId = ;
+        $response = responses::select('user_id' , DB::raw('sum(if(seen = 0, 1, 0)) as userResponseCount') )
+        ->where('user_id' , "!=" , $practice->master->id )->where('practice_id',$practice->id)->groupBy('user_id')->get();
+        $response->load("users");  
+
+       return view('responses.response_list' , ['practiceResponses'=>$response , 'practice'=>$practice]);
+    }
+
+
+
+
+
+    public function student_responses(User $user , practice $practice ,User $master){
+
+        $responses = responses::where('practice_id',$practice->id)->whereIn('user_id' , [$user -> id , $master->id])->get();
+        $responses->load('users');
+
+        // dd($responses);
+ 
+        // $user->load(['responses' => function($query) use($practice){
+        //     $query->where('practice_id' , $practice->id);
+        // }]);
+
+        return view('responses.student_responses' , ['student'=>$user ,'responses'=>$responses , "practice" => $practice ,"master"=>$master]);
+    }
+}

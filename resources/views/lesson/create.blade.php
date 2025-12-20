@@ -73,13 +73,13 @@
                             </div>
                         </div>
                         <div>
-                            <label for="title" class="block text-gray-700 font-medium mb-3 flex items-center">
+                            <label for="lesson_group" class="block text-gray-700 font-medium mb-3 flex items-center">
                                 <i class="fas fa-heading ml-2 text-[#023e83] text-sm"></i>
                                  گروه درس
                                 <span class="text-red-500 mr-1">*</span>
                             </label>
                             <div class="relative">
-                                <input type="text" id="title" name="title" required 
+                                <input type="text" id="lesson_group" name="lesson_group" required 
                                        class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50"
                                        placeholder="گروه درس را وارد کنید">
                                 <i class="fas fa-pen absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>

@@ -126,6 +126,7 @@
                             <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">عنوان تمرین</th>
                             <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">عنوان درس</th>
                             <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">استاد</th>
+                            <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">مشاهده پاسخ ها</th>
                             <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">عملیات</th>
                         </tr>
                     </thead>
@@ -159,8 +160,17 @@
                                     <span class="text-gray-700">{{ Auth::user()->name }} {{Auth::user()->family}}</span>
                                 </div>
                             </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <div>
+                                         <a href="{{route('response_list' ,[$practice->id])}}" class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] ml-2">
+                                                 پاسخ ها 
+                                            </a>
+                                        </div>
+                                </div>
+                            </td>
                            
-                            <td class="px-6 py-4 flex flex-row items-center gap-5 mt-3">
+                            <td class="px-6 py-4 flex flex-row items-center ml-4 mt-3">
                                 <div class="flex items-center space-x-3 space-x-reverse">
                                     <a href="{{ route('practice_edit', [$practice]) }}" class="text-blue-600 hover:text-blue-800 transition duration-200" title="ویرایش">
                                         <i class="fas fa-edit"></i>

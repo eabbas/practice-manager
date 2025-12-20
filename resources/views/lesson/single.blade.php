@@ -50,11 +50,6 @@
                 <i class="fas fa-arrow-right ml-2"></i>
                 مشاهده تمرینات
             </a>
-            <a href="{{ url('/lessons') }}" 
-               class="border border-gray-300 hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg transition duration-200 flex items-center">
-                <i class="fas fa-arrow-right ml-2"></i>
-                بازگشت
-            </a>
         </div>
     </div>
 
@@ -125,7 +120,7 @@
                         </div>
                         <h4 class="font-semibold text-gray-800">استاد مربوطه</h4>
                     </div>
-                    <p class="text-gray-700 text-lg">{{ Auth::user()->name; }} {{Auth::user()->family}}</p>
+                    <p class="text-gray-700 text-lg">{{ $master->name; }} {{$master->family}}</p>
                 </div>
             </div>
         </div>

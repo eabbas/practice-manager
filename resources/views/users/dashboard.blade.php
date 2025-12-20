@@ -54,39 +54,33 @@
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
                                 <a href="{{ route('user.complete_profile') }}" class=" text-white py-1">تکمیل
-                                    پروفایل</a>
+                                    اطلاعات کاربری</a>
                             </li>
 
-                            @if(Auth::user()->roles[0]->title=="استاد")
+                            {{-- @if(Auth::user()->roles[0]->title=="استاد") --}}
 
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{ route('lesson_create') }}" class=" text-white py-1">ایجاد درس</a>
+                                <a href="{{ route('lesson_create') }}" class=" text-white py-1"> تعریف درس جدید</a>
                             </li>
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{ route('lesson_list') }}" class=" text-white py-1"> مشاهده درس ها</a>
+                                <a href="{{ route('lesson_list') }}" class=" text-white py-1"> دروس ارائه شده </a>
                             </li>
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{ route('practices_list') }}" class=" text-white py-1"> مشاهده تمرین ها</a>
+                                <a href="{{ route('student_class') }}" class=" text-white py-1">
+                                    دروس اخذ شده </a>
                             </li>
-                            
-                            @elseif(Auth::user()->roles[0]->title=="دانشجو")
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{ route('lesson_list') }}" class=" text-white py-1"> مشاهده کلاس ها</a>
+                                <a href="{{ route('practices_list') }}" class=" text-white py-1"> دسترسی به تمرینات</a>
                             </li>
-                            @endif
+                            {{-- @endif --}}
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
                                 <a href="{{ route('my_requests') }}" class=" text-white py-1">
-                                    مشاهده درخواست های من</a>
-                            </li>
-                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
-                                <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{ route('my_requests') }}" class=" text-white py-1">
-                                    مشاهده کلاس ها</a>
+                                     درخواست های ثبت شده</a>
                             </li>
                         </ul>
                     </div>

@@ -31,21 +31,17 @@ class LessonController extends Controller
 
     public function show($id){
        $lesson = lesson::find($id);
-       return view("lesson.single" , ["lesson"=>$lesson]);
+       $master = user::find($lesson->master_id);
+       return view("lesson.single" , ["lesson"=>$lesson ,'master'=>$master]);
     }
     
 
     public function practice_list(lesson $lesson){
-        $practice_list = $lesson->practices;
-        return view('lesson.practice_list' , ['practice_list'=>$practice_list]);
+
+        $lesson->load('practices');
+        return view('lesson.practice_list' , ['lesson'=>$lesson]);
     }
 
-    
-    
-    // public function list_requests(Request $request){
-    //     $requests= $request->all();
-    //     return to_route('list_request');
-    // }
 
 
     public function edit($id){

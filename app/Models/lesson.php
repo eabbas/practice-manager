@@ -18,7 +18,11 @@ class lesson extends Model
         return $this->hasMany(practice::class);
     }
 
-     public function users(){
-      return $this->belongsToMany(User::class,"user_lessons",'lesson_id',"user_id");
+    public function users(){//returns requests users
+      return $this->belongsToMany(User::class,"user_lessons",'lesson_id',"user_id")->withPivot(['status']);
+   }
+
+   public function master(){
+        return $this->hasOne(User::class, 'id', 'master_id' );
    }
 }
