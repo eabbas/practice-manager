@@ -1,4 +1,3 @@
-
 @extends('users.dashboard')
 @section('title', 'practice list')
 @section('content')
@@ -55,12 +54,12 @@
       <div class="max-w-5xl mx-auto bg-white rounded-xl shadow p-6">
   
           <h1 class="text-xl font-bold text-slate-800 mb-4">
-              لیست درخواست‌های من
+              لیست پاسخ های دانشجویان
           </h1>
   
           <!-- جستجو -->
-          <div class="flex items-center justify-between mb-4">
-              <span class="text-slate-600 text-sm">تعداد درخواست‌های تایید نشده: 2</span>
+          <div class="flex items-center justify-end mb-4">
+              {{-- <span class="text-slate-600 text-sm">تعداد درخواست‌های تایید نشده: 2</span> --}}
   
               <div class="flex gap-2">
                   <input type="text"
@@ -80,33 +79,38 @@
                       <tr>
                           <th class="py-3 px-4">نام دانشجو</th>
                           <th class="py-3 px-4">شماره دانشجویی</th>
-                          <th class="py-3 px-4"> نام درس</th>
-                          <th class="py-3 px-4">نام استاد</th>
-                          <th class="py-3 px-4 text-center">عملیات</th>
+                          <th class="py-3 px-4">پاسخ های دیده نشده</th>
+                          <th class="py-3 px-4 text-center">مشاهده</th>
                       </tr>
                   </thead>
   
                   <tbody class="text-sm">
-                        <?php //dd($userLesson->pivot); ?>
+                        @foreach($practiceResponses as $response)
+                             
+                      <!-- ردیف ۱ -->
                       <tr class="hover:bg-slate-50">
-                           <td class="py-3 px-4">{{Auth::user()->name}} {{Auth::user()->family}}</td> 
-                          <td class="py-3 px-4">{{Auth::user()->code}}</td>
-                          <td class="py-3 px-4">{{$userLesson->title}}</td>
-                          <td class="py-3 px-4">{{$master->name}} {{$master->family}}</td>
-                          <td class="py-3 px-4 text-center">
+                           <td class="py-3 px-4">{{$response->users->name}} {{$response->users->family}}</td> 
+                          <td class="py-3 px-4">{{$response->users->code}}</td>
+                          <td class="flex items-center mr-10 py-3 px-4" style="position: relative;">
+                            <span style="position: absolute;width:20px;height:20px;border-radius:20px;color:white;background-color:rgb(50, 125, 222);text-align:center;top:10px;font-weight:bold;">
+                                {{$response->userResponseCount}}
+                            </span>
                            
-                             @if($userLesson->pivot->status == '0')
-                              <span class="px-3 py-1.5 rounded-md border border-blue-600 text-blue-600">
-                                در انتظار تایید 
-                              </span>
-                              @elseif($userLesson->pivot->status == '1')
-                            <a href="{{route('lesson_show' , [$userLesson->id])}}" class="px-3 py-1.5 rounded-md border border-blue-600 text-blue-600 hover:bg-blue-50">
-                                 مشاهده درس
-                            </a>
+                            <svg   width="40" height="40" fill="oklch(42.4% 0.199 265.638)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                
+                            <path fill-rule="evenodd" d="M12 5a4 4 0 0 0-4 4v2.756c0 1.294-.89 2.278-1.45 2.867A1.99 1.99 0 0 0 6 16h12a1.99 1.99 0 0 0-.55-1.377c-.56-.59-1.45-1.573-1.45-2.867V9a4 4 0 0 0-4-4ZM6 9a6 6 0 1 1 12 0v2.756c0 .402.292.85.9 1.49A3.99 3.99 0 0 1 20 16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2 3.99 3.99 0 0 1 1.1-2.755c.608-.64.9-1.087.9-1.489V9Z" clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd" d="M9.766 18.916a1 1 0 0 1 1.324.497 1 1 0 0 0 1.81.026 1 1 0 0 1 1.797.876 3 3 0 0 1-5.429-.076 1 1 0 0 1 .498-1.323Z" clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd" d="M12 2a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1Z" clip-rule="evenodd"></path>
+                            </svg>
+                            </td>
+                          <td class="py-3 px-4 text-center">
+                              <a href="{{route('student_responses' , [$response->users->id ,$practice->id ,$practice->master->id ])}}" class="px-3 py-1.5 rounded-md border border-blue-600 text-blue-600 hover:bg-blue-50">
+                                    <?php //dd($practiceId); ?>
+                                    مشاهده پاسخ ها
+                                </a>
                           </td>
                       </tr>
-                        @endif
-                        {{-- @endforeach --}}
+                        @endforeach
                   </tbody>
               </table>
           </div>
@@ -118,8 +122,4 @@
   
   </body>
   </html>
-
 @endsection
-
-
-

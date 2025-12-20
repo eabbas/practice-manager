@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Lesson;
 use App\Models\practice;
+use App\Models\responses;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -34,9 +36,14 @@ class PracticeController extends Controller
         return view('practice.index' , ["practiceWithLessons"=>$practices]);
     }
 
-    public function show($id){
-       $practice = practice::find($id);
-       return view('practice.single' , ["practice"=>$practice]);
+    public function show(practice $practice){
+       
+       $practice->load('master');
+
+       $responses = responses::where('practice_id',$practice->id)->whereIn('user_id' , [ Auth::id(), $practice->master->id])->get();
+       $responses->load('users');
+
+       return view('practice.single' , ["practice"=>$practice , 'responses'=>$responses]);
     }
 
 

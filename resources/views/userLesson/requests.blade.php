@@ -79,23 +79,31 @@
                       <tr>
                           <th class="py-3 px-4">نام دانشجو</th>
                           <th class="py-3 px-4">شماره دانشجویی</th>
-                          <th class="py-3 px-4">نام درس</th>
-                          <th class="py-3 px-4">استاد</th>
                           <th class="py-3 px-4 text-center">عملیات</th>
                       </tr>
                   </thead>
   
                   <tbody class="text-sm">
-                        @foreach($lessonUsers as $lessonUser)
+                        @foreach($lessonUsers->users as $user)
                         <?php //dd($lessonUsers); ?>
                       <!-- ردیف ۱ -->
                       <tr class="hover:bg-slate-50">
-                        @php 
-dd($lessonUser);
-                        @endphp
+                           <td class="py-3 px-4">{{$user->name}} {{$user->family}}</td> 
+                          <td class="py-3 px-4">{{$user->code}}</td>
+                          <td class="py-3 px-4 text-center">
+                           @if($user->pivot->status == '0')
+                                <a href="{{route('request_approve' , [$user->id , $lessonUsers->id])}}" class="px-3 py-1.5 rounded-md border border-blue-600 text-blue-600 hover:bg-blue-50">
+                                    تایید
+                                </a>
+                            @endif
 
+                            @if($user->pivot->status == '1')
+                              <button class="px-3 py-1.5 rounded-md border border-green-600 text-green-600 hover:bg-blue-50">
+                                   تایید شده
+                              </button>
+                          </td>
                       </tr>
-                       
+                        @endif
                         @endforeach
                   </tbody>
               </table>

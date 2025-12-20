@@ -21,7 +21,8 @@ class UserLessonController extends Controller
 
 
     public function store(Request $request){
-      userLesson::create(["lesson_id"=>$request->lesson_id , "user_id"=>Auth::id(),"status"=>0]);
+      //userLesson::create(["lesson_id"=>$request->lesson_id , "user_id"=>Auth::id(),"status"=>0]);
+      userLesson::create($request->all());
       return to_route('my_requests');
     }
  
@@ -30,34 +31,24 @@ class UserLessonController extends Controller
       $user = Auth::user();
       $userLessons = $user->lessons;
       //dd($userLessons);
+      
       foreach($userLessons as $userLesson){
         $master=user::find($userLesson->master_id);
       }
 
-      return view('userLesson.my_requests' , ['userLesson'=>$userLesson,'master'=> $master]);
+      return view('userLesson.my_requests' , ['userLesson'=>$userLesson,'master'=> $master, 'user'=>$user]);
     }
-
 
 
     public function request_list($id){
-      $userLessons = userlesson::where('lesson_id',$id)->with("users")->get();
-
-      //dd($userLessons);
 
       $lesson =lesson::find($id);
-      $lessonUsers = $lesson->load("users");
+      //dd($lesson);
+      $lesson->load("users");
 
-      dd($lessonUsers->users);
-      $master = user::find($lessonUsers->master_id);
-      return view("userLesson.requests",['lessonUsers'=>$lessonUsers, 'master'=>$master, 'status'=>$status]);
+      return view("userLesson.requests",['lessonUsers'=>$lesson]);
     }
 
-    // public function statusRequest($id){
-    //  $requests = userlesson::where('user_id',$id)->
-    //   $lessons=userLesson::find("lesson_id");
-    //   $lessonpractice=$lessons->practices;
-      
-    // }
     public function approveRequest($userId,$lessonId){
 
       $userLesson = userLesson::where('user_id' , $userId)->where('lesson_id',$lessonId)->first();
@@ -65,5 +56,22 @@ class UserLessonController extends Controller
       $userLesson->save();
       
       return redirect()->back();
+    }
+    
+    public function student_class(){
+
+      $user = Auth::user();
+      $userLessons = $user->lessons;
+      //dd($userLessons);
+      
+      foreach($userLessons as $userLesson){
+      $master=user::find($userLesson->master_id);
+      }
+      // practices of the lesson
+      // $lesson->load('practices');
+      // $lesson->load('master');
+
+      return view("userLesson.student_class",['userLesson'=>$userLesson,'master'=> $master, 'user'=>$user]);
+
     }
 }

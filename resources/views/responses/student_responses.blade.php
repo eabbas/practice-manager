@@ -45,11 +45,14 @@
     <!-- هدر صفحه -->
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
         <div>
-            <h1 class="text-3xl font-bold text-[#023e83] mb-2">{{ $practice->title }}</h1>
+            <h1 class="text-3xl font-bold text-[#023e83] mb-2">
+                درس : 
+                {{ $practice->lesson->title}}</h1>
             <div class="flex items-center space-x-4 space-x-reverse text-gray-600">
                 <span class="flex items-center">
                     <i class="fas fa-layer-group ml-1 text-[#023e83]"></i>
-                    {{ $practice->lesson->title }}
+                    دانشجو : 
+                    {{$student->name}} {{ $student->family }}
                 </span>
             </div>
         </div>
@@ -64,25 +67,20 @@
                         <i class="fas fa-book-open text-2xl"></i>
                     </div>
                     <div>
-                        <h2 class="text-xl font-semibold">مشخصات تمرین</h2>
-                        <p class="text-blue-100 mt-1">اطلاعات کامل تمرین</p>
+                        <h2 class="text-xl font-semibold">
+                            پاسخ تمرین: 
+                            {{ $practice->title }}</h2>
                     </div>
                 </div>
             </div>
         </div>
         <div class="p-6">
             <!-- توضیحات درس -->
-            <div class="mb-6">
-                <div class="bg-gray-50 rounded-xl p-6 border border-gray-200 mb-2">
-                    <h2 class="text-center font-bold text-3xl">
-                        {{ $practice->title }}
-                    </h2>
-                </div>
                 <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center border-b pb-2">
                     <i class="fas fa-align-left ml-2 text-[#023e83]"></i>
                     توضیحات تمرین
                 </h3>
-                <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                <div class="bg-gray-50 rounded-xl p-6 border border-gray-200 mb-3">
                     @if($practice->description)
                         <div class="prose max-w-none text-gray-700 leading-7">
                             {{$practice->description}}
@@ -94,49 +92,33 @@
                         </div>
                     @endif
                 </div>
-            </div>
-
-            <!-- اطلاعات تکمیلی -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div class="bg-blue-50 rounded-xl p-4 border border-blue-200">
-                    <div class="flex items-center mb-2">
-                        <div class="bg-blue-100 p-2 rounded-lg ml-3">
-                            <i class="fas fa-layer-group text-[#023e83]"></i>
-                        </div>
-                        <h4 class="font-semibold text-gray-800"> درس</h4>
-                    </div>
-                    <p class="text-gray-700 text-lg">{{ $practice->lesson->title }}</p>
-                </div>
-                <div class="bg-purple-50 rounded-xl p-4 border border-purple-200">
-                    <div class="flex items-center mb-2">
-                        <div class="bg-purple-100 p-2 rounded-lg ml-3">
-                            <i class="fas fa-user-tie text-purple-600"></i>
-                        </div>
-                        <h4 class="font-semibold text-gray-800">استاد مربوطه</h4>
-                    </div>
-                    <p class="text-gray-700 text-lg">{{ $practice->master->name; }} {{ $practice->master->family }}</p>
-                </div>
-            </div>
+            <!-- توضیحات درس -->
 
             <!-- پاسخ ها    --> 
-            @foreach ($responses as $response)
-
-            <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm mb-3">
+                @foreach ($responses as $response)
+                    <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm mb-3">
                         @if($response->users->roles[0]->title == 'استاد')
-                        پاسخ استاد : 
+                         استاد 
+                      {{$master->name}} {{$master->family}} :
                         @else
-                        پاسخ دانشجو:
+                         
+                     {{$student->name}} {{ $student->family }} :
                         @endif
                     </br>
+                        
+                        {{$response->text}}
 
-                {{$response->text}}
-            </div>
-            @endforeach
- <!-- پاسخ ها    -->
+
+                    </div>
+                @endforeach
+            <!-- پاسخ ها    -->
+        </div>
+
+
             <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
                 <h3 class="text-xl font-semibold text-[#023e83] mb-4 flex items-center">
                     <i class="fas fa-upload ml-2"></i>
-                    ارسال پاسخ
+                    ارسال پاسخ استاد
                 </h3>
                 <form action="{{route('response_store')}}" method="POST" enctype="multipart/form-data">
                     @csrf

@@ -57,36 +57,34 @@
 <body class="bg-gray-100">
 <div class="flex flex-row justify-between max-w-3xl mx-auto mt-10 space-y-5">
     <h2 class="text-3xl font-bold text-blue-900 mt-2">
-        لیست تمارین درس
+         لیست تمارین درس {{$lesson->title}}   
+       
+           
     </h2>
-            <a href="{{ url('/lessons') }}" 
-               class="border border-gray-300 hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg transition duration-200 flex items-center mb-6">
-                <i class="fas fa-arrow-right ml-2"></i>
-                بازگشت
-            </a>
+
         
     <!-- Exercise Template (repeated by JS) -->
 </div>
-@foreach ($practice_list as $lesson)
+@foreach ($lesson->practices as $practice)
 <div class="flex items-center justify-center flex-col space-y-3 mt-3" id="exercise-list">
     <!-- تمرین ۱ -->
-    <div class="w-200 fade-in p-5 bg-white shadow-lg rounded-xl border border-blue-100 flex items-start gap-4 transform transition-all hover:scale-102 hover:shadow-lg hover:translate-x-1 hover:translate-y-1">
+    <div class="w-200 fade-in p-5 bg-white shadow-lg rounded-xl border border-blue-100 flex items-start gap-4 transform transition-all hover:scale-102 ">
         <div class="p-3 bg-blue-900 text-white rounded-lg text-2xl">📘</div>
 
         <div class="flex-1 space-y-2">
-            <h3 class="text-xl font-semibold text-blue-900"> {{$lesson->title}}: {{$lesson->description}} </h3>
+            <h3 class="text-xl font-semibold text-blue-900"> {{$practice->title}}: {{$practice->description}} </h3>
             <p class="text-gray-600 text-sm">مهلت تحویل: ۱۴۰۴/۱۰/۲۰</p>
 
-            <span class="inline-block px-3 py-1 text-sm rounded-lg bg-green-100 text-green-700">
+            {{-- <span class="inline-block px-3 py-1 text-sm rounded-lg bg-green-100 text-green-700">
                 ✔ تحویل شده
-            </span>
+            </span> --}}
 
-            <div class="w-full bg-gray-200 h-2 rounded-full">
+            {{-- <div class="w-full bg-gray-200 h-2 rounded-full">
                 <div class="bg-green-600 h-full rounded-full" style="width:100%"></div>
-            </div>
+            </div> --}}
         </div>
 
-        <a href="{{route('practice_show',[$lesson->id])}}" class="px-4 py-2 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition duration-200">
+        <a href="{{route('practice_show',[$practice->id])}}" class="px-4 py-2 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition duration-200">
             مشاهده
         </a>
     </div>

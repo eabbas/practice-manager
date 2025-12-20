@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\controllers\userController;
 use App\Http\controllers\LessonController;
 use App\Http\controllers\PracticeController;
+use App\Http\Controllers\ResponsesController;
 use App\Http\Controllers\StudentRequestController;
 use App\Http\Controllers\UserLessonController;
 use App\Http\Middleware\sendMiddleware;
@@ -68,14 +69,14 @@ Route::post('/practice/store' , [PracticeController::class , 'store']);
 
 Route::get('/practices' , [PracticeController::class , 'index'])->name('practices_list');
 
-Route::get('/practice/show/{id}' , [PracticeController::class , 'show'])->name('practice_show');
+Route::get('/practice/show/{practice}' , [PracticeController::class , 'show'])->name('practice_show');
 
 Route::get('/practice/edit/{id}' , [PracticeController::class , 'edit'])->name('practice_edit');
 
 Route::post('/practice/update' , [PracticeController::class , 'update'])->name('practice_update');
 
 Route::get('/practice/delete/{id}' , [PracticeController::class , 'delete'])->name('practice_delete');
-  
+
 
 //userLesson
 
@@ -88,3 +89,17 @@ Route::get('/my/requests',[UserLessonController::class , 'my_requests'])->name('
 Route::get('/request/list/{lesson?}' ,[UserLessonController::class , 'request_list'])->name('request_list');
 
 Route::get('/lesson/request/approve/{userId}/{lessonId}', [UserLessonController::class,'approveRequest'])->name('request_approve');
+
+Route::get('/student/class', [UserLessonController::class,'student_class'])->name('student_class');
+
+
+//responses 
+
+
+Route::post('/response/store',[ResponsesController::class , 'store'])->name('response_store');
+
+
+Route::get('response/list/{practice}' , [ResponsesController::class , 'response_list'])->name('response_list');
+
+Route::get('/student/responses/{user}/{practice}/{master}' , [ResponsesController::class , 'student_responses'])->name('student_responses');
+

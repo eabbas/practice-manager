@@ -1,4 +1,3 @@
-
 @extends('users.dashboard')
 @section('title', 'practice list')
 @section('content')
@@ -55,7 +54,7 @@
       <div class="max-w-5xl mx-auto bg-white rounded-xl shadow p-6">
   
           <h1 class="text-xl font-bold text-slate-800 mb-4">
-              لیست درخواست‌های من
+              لیست درخواست‌های دانشجویی
           </h1>
   
           <!-- جستجو -->
@@ -80,33 +79,32 @@
                       <tr>
                           <th class="py-3 px-4">نام دانشجو</th>
                           <th class="py-3 px-4">شماره دانشجویی</th>
-                          <th class="py-3 px-4"> نام درس</th>
-                          <th class="py-3 px-4">نام استاد</th>
                           <th class="py-3 px-4 text-center">عملیات</th>
                       </tr>
                   </thead>
   
                   <tbody class="text-sm">
-                        <?php //dd($userLesson->pivot); ?>
+                        @foreach($$practiceResponse->users as $user)
+                        <?php //dd($lessonUsers); ?>
+                      <!-- ردیف ۱ -->
                       <tr class="hover:bg-slate-50">
-                           <td class="py-3 px-4">{{Auth::user()->name}} {{Auth::user()->family}}</td> 
-                          <td class="py-3 px-4">{{Auth::user()->code}}</td>
-                          <td class="py-3 px-4">{{$userLesson->title}}</td>
-                          <td class="py-3 px-4">{{$master->name}} {{$master->family}}</td>
+                           <td class="py-3 px-4">{{$user->name}} {{$user->family}}</td> 
+                          <td class="py-3 px-4">{{$user->code}}</td>
                           <td class="py-3 px-4 text-center">
-                           
-                             @if($userLesson->pivot->status == '0')
-                              <span class="px-3 py-1.5 rounded-md border border-blue-600 text-blue-600">
-                                در انتظار تایید 
-                              </span>
-                              @elseif($userLesson->pivot->status == '1')
-                            <a href="{{route('lesson_show' , [$userLesson->id])}}" class="px-3 py-1.5 rounded-md border border-blue-600 text-blue-600 hover:bg-blue-50">
-                                 مشاهده درس
-                            </a>
+                           @if($user->pivot->status == '0')
+                                <a href="{{route('request_approve' , [$user->id , $lessonUsers->id])}}" class="px-3 py-1.5 rounded-md border border-blue-600 text-blue-600 hover:bg-blue-50">
+                                    تایید
+                                </a>
+                            @endif
+
+                            @if($user->pivot->status == '1')
+                              <button class="px-3 py-1.5 rounded-md border border-green-600 text-green-600 hover:bg-blue-50">
+                                   تایید شده
+                              </button>
                           </td>
                       </tr>
                         @endif
-                        {{-- @endforeach --}}
+                        @endforeach
                   </tbody>
               </table>
           </div>
@@ -118,8 +116,5 @@
   
   </body>
   </html>
-
+{{-- </form> --}}
 @endsection
-
-
-

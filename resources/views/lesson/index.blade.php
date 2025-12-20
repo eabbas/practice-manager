@@ -50,13 +50,13 @@
                 <h1 class="text-3xl font-bold text-[#023e83] mb-2">لیست دروس</h1>
                 <p class="text-gray-600">مدیریت و مشاهده تمام دروس سیستم</p>
             </div>
-                        @if(Auth::user()->roles[0]->title=="استاد")
+                        {{-- @if(Auth::user()->roles[0]->title=="استاد") --}}
                         <a href="{{ url('lesson/create') }}" 
                            class="mt-4 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-6 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center">
                           <i class="fas fa-plus ml-2"></i>
                             ایجاد درس جدید
                         </a>
-                        @endif
+                        {{-- @endif --}}
         </div>
 
         <!-- آمار و اطلاعات -->
@@ -144,12 +144,12 @@
                         <tr class="bg-gray-100 border-b border-gray-200">
                             <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">عنوان درس</th>
                             <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">استاد</th>
-                             @if(Auth::user()->roles[0]->title=="استاد")
+                             {{-- @if(Auth::user()->roles[0]->title=="استاد") --}}
                              <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">عملیات</th>
-                            @endif
-                            @if(Auth::user()->roles[0]->title=="دانشجو")
+                            {{-- @endif --}}
+                            {{-- @if(Auth::user()->roles[0]->title=="دانشجو") --}}
                              <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">مشاهده تمرینات</th>
-                            @endif
+                            {{-- @endif --}}
         </div>
                         </tr>
                     </thead>
@@ -193,35 +193,33 @@
     </div>
 
     <!-- اضافه کردن دکمه ارسال تمرین همراه با آیکون -->
-    <div class="flex flex-row mr-10">
-        <div>
-            @if(Auth::user()->roles[0]->title=="استاد")
-            <a href="{{ route('practice_create', [$lesson]) }}" class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5" title="ایجاد تمرین">
-                ایجاد تمرین
-            </a>
-            @endif
-        </div>
-        <div>
-            <a href="{{ route('practice_list', [$lesson->id]) }}" class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5" title="تمرینات">
-                تمرینات
-            </a>
-        </div>
-        <!-- دکمه ارسال تمرین همراه با آیکون -->
-        <div class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5" title="ارسال درس" onclick="copyText()">
-                <i class="fas fa-paper-plane ml-2"></i> ارسال 
-        </div>
+                                    <div class="flex flex-row mr-10">
+                                        <div>
+                                            {{-- @if(Auth::user()->roles[0]->title=="استاد") --}}
+                                            <a href="{{ route('practice_create', [$lesson->id]) }}" class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5" title="ایجاد تمرین">
+                                                ایجاد تمرین
+                                            </a>
+                                            {{-- @endif --}}
+                                        </div>
+                                        <div>
+                                            <a href="{{ route('practice_list', [$lesson->id]) }}" class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5" title="تمرینات">
+                                                تمرینات
+                                            </a>
+                                        </div>
+                                        <!-- دکمه ارسال تمرین همراه با آیکون -->
+                                        <div class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5" title="ارسال درس" onclick="copyText()">
+                                                <i class="fas fa-paper-plane ml-2"></i> ارسال 
+                                        </div>
 
-         <div>
-            <a href="{{url('/request/list/'.$lesson->id)}}" class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5" title="تمرینات">
-                 درخواست ها
-            </a>
-        </div>
-    </div>
-</td>
-
+                                        <div>
+                                            <a href="{{url('/request/list/'.$lesson->id)}}" class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5" title="تمرینات">
+                                                درخواست ها
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
                         </tr>
                         @endforeach
-                       
                     </tbody>
                 </table>
             </div>
@@ -248,13 +246,17 @@
         </div>
     </div>
 
+    @isset($lesson)
     <script>
-
-            function copyText(){
-                let url = "{{url('/send/lesson/'.$lesson->id)}}"
-                 navigator.clipboard.writeText(url)
-            alert("لینک درس کپی شد")
-            }
+        function copyText(){
+            let url = "{{url('/send/lesson/'.$lesson->id)}}"
+             navigator.clipboard.writeText(url)
+        alert("لینک درس کپی شد")
+        }
+    </script>
+    @endisset
+    
+    <script>
         // جستجو در جدول
         const searchInput = document.querySelector('input[type="text"]');
         searchInput.addEventListener('input', function() {
