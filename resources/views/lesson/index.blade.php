@@ -175,27 +175,26 @@
         </a>
     </div>
 
-    <!-- اضافه کردن دکمه ارسال تمرین همراه با آیکون -->
-                                    <div class="flex flex-row mr-10">
+                <!-- اضافه کردن دکمه ارسال تمرین همراه با آیکون -->
+                                    <div class="flex flex-row mr-10 gap-4 mb-[15px]">
                                         <div>
                                             {{-- @if(Auth::user()->roles[0]->title=="استاد") --}}
-                                            <a href="{{ route('practice_create', [$lesson->id]) }}" class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5" title="ایجاد تمرین">
+                                            <a href="{{ route('practice_create', [$lesson->id]) }}" class="bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center" title="ایجاد تمرین">
                                                 ایجاد تمرین
                                             </a>
                                             {{-- @endif --}}
                                         </div>
                                         <div>
-                                            <a href="{{ route('practice_list', [$lesson->id]) }}" class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5" title="تمرینات">
+                                            <a href="{{ route('practice_list', [$lesson->id]) }}" class="bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center" title="تمرینات">
                                                 تمرینات
                                             </a>
                                         </div>
                                         <!-- دکمه ارسال تمرین همراه با آیکون -->
-                                        <div class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5 pointer:coarse" title="ارسال درس" onclick="copyText({{$lesson->id}})">
+                                        <div class="bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center  pointer:coarse" title="ارسال درس" onclick="copyText({{$lesson->id}})">
                                                 <i class="fas fa-paper-plane ml-2"></i> ارسال 
                                         </div>
-
                                         <div>
-                                            <a href="{{url('/request/list/'.$lesson->id)}}" class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5" title="مشاهده درخواست ها">
+                                            <a href="{{url('/request/list/'.$lesson->id)}}" class="bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center" title="مشاهده درخواست ها">
                                                 درخواست ها
                                             </a>
                                         </div>
