@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\controllers\userController;
-use App\Http\controllers\LessonController;
-use App\Http\controllers\PracticeController;
+use App\Http\Controllers\userController;
+use App\Http\Controllers\LessonController;
+use App\Http\Controllers\PracticeController;
 use App\Http\Controllers\ResponsesController;
 use App\Http\Controllers\StudentRequestController;
 use App\Http\Controllers\UserLessonController;
