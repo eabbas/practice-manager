@@ -48,19 +48,19 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>لیست درخواست‌ها</title>
 </head>
-{{-- <form action="{{route('list_requests')}}" method="POST"> --}}
 
   <body class="bg-slate-100 p-6">
   
       <div class="max-w-5xl mx-auto bg-white rounded-xl shadow p-6">
   
           <h1 class="text-xl font-bold text-slate-800 mb-4">
+             <i class="fas fa-list ml-2 text-[#023e83]"></i>
               لیست درخواست‌های من
           </h1>
   
           <!-- جستجو -->
           <div class="flex items-center justify-between mb-4">
-              <span class="text-slate-600 text-sm">تعداد درخواست‌های تایید نشده: 2</span>
+              <span class="text-slate-600 text-sm">تعداد درخواست‌ها: {{count([$userLesson->pivot->status == '0'])}}</span>
   
               <div class="flex gap-2">
                   <input type="text"
@@ -118,6 +118,23 @@
   
   </body>
   </html>
+  <script>
+        // جستجو در جدول
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const rows = document.querySelectorAll('tbody tr');
+            
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+        </script>
 
 @endsection
 

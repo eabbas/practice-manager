@@ -10,6 +10,7 @@ class responses extends Model
         'practice_id',
         'user_id',
         'text',
+        'student_id',
     ];
 
     public function practices(){

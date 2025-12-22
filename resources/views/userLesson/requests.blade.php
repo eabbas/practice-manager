@@ -54,12 +54,14 @@
       <div class="max-w-5xl mx-auto bg-white rounded-xl shadow p-6">
   
           <h1 class="text-xl font-bold text-slate-800 mb-4">
-              لیست درخواست‌های دانشجویی
+            <i class="fas fa-list ml-2 text-[#023e83]"></i>
+             لیست درخواست‌های دانشجویی درس 
+               {{$lessonUsers->title}}
           </h1>
   
           <!-- جستجو -->
           <div class="flex items-center justify-between mb-4">
-              <span class="text-slate-600 text-sm">تعداد درخواست‌های تایید نشده: 2</span>
+              <span class="text-slate-600 text-sm">تعداد درخواست‌ها  : {{count($lessonUsers->users)}} </span>
   
               <div class="flex gap-2">
                   <input type="text"
@@ -79,7 +81,8 @@
                       <tr>
                           <th class="py-3 px-4">نام دانشجو</th>
                           <th class="py-3 px-4">شماره دانشجویی</th>
-                          <th class="py-3 px-4 text-center">عملیات</th>
+                          <th class=" text-center">تایید درخواست</th>
+                          <th class=" text-center">حذف درخواست</th>
                       </tr>
                   </thead>
   
@@ -90,7 +93,8 @@
                       <tr class="hover:bg-slate-50">
                            <td class="py-3 px-4">{{$user->name}} {{$user->family}}</td> 
                           <td class="py-3 px-4">{{$user->code}}</td>
-                          <td class="py-3 px-4 text-center">
+                          <td class="py-3 px-2 text-center">
+                             
                            @if($user->pivot->status == '0')
                                 <a href="{{route('request_approve' , [$user->id , $lessonUsers->id])}}" class="px-3 py-1.5 rounded-md border border-blue-600 text-blue-600 hover:bg-blue-50">
                                     تایید
@@ -99,22 +103,51 @@
 
                             @if($user->pivot->status == '1')
                               <button class="px-3 py-1.5 rounded-md border border-green-600 text-green-600 hover:bg-blue-50">
-                                   تایید شده
+                                   تایید شد
                               </button>
-                          </td>
-                      </tr>
-                        @endif
-                        @endforeach
+                            </td>
+                            @endif
+                            <td class="py-3 px-2 text-center">
+                                <?php //dd($user->id); ?>
+                                <a href="{{route('delete_request', [$lessonUsers->id , $user->id])}}" class="text-red-600 hover:text-red-800 transition duration-200" title="حذف">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                            @endforeach
+                        </tr>
+                        {{-- @if(count ([$lessonUsers]) == 0 )
+                        <p class="text-center text-slate-500 mt-6">درخواستی وجود ندارد.</p> 
+                        @endif --}}
                   </tbody>
               </table>
           </div>
   
           <!-- وقتی لیست خالی باشد -->
-          <!-- <p class="text-center text-slate-500 mt-6">درخواستی وجود ندارد.</p> -->
-  
+          <div class="mt-5">
+              @if (count($lessonUsers->users) == "0")
+                <p class="text-center text-slate-500">   درخواستی وجود ندارد.</p>
+                @endif
+          </div>
+     
       </div>
   
   </body>
   </html>
-{{-- </form> --}}
+  <script>
+        // جستجو در جدول
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const rows = document.querySelectorAll('tbody tr');
+            
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+        </script>
 @endsection
