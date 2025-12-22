@@ -58,6 +58,9 @@
 </head>
 <body class="min-h-screen bg-gray-50 flex items-center justify-center p-6">
   <main class="w-full max-w-lg bg-white shadow-md rounded-2xl p-6 mr-150 mt-15">
+    @if(Auth::user()->id == $master->id)
+        <p class="text-center text-slate-500">امکان ثبت درخواست برای شما وجود ندارد.</p>
+    @else
     <header class="mb-4">
       <h1 class="text-xl font-semibold">درخواست شرکت در درس</h1>
       
@@ -89,17 +92,17 @@
         <input type="text" name="master" value="{{$master->name}} {{$master->family}}" class="mt-1 block w-full rounded-lg border-gray-200 shadow-sm p-3">
         </div>
       </div>
-      {{-- @endforeach --}}
       <div class="pt-3">
         <!-- دکمه سرمه‌ای -->
         <button id="submitBtn" type="submit"
-                class="w-full inline-flex justify-center items-center gap-2 rounded-2xl px-6 py-3 bg-[#023e83] hover:bg-[#022e6b] text-white font-medium  shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-navy/50 disabled:opacity-60">
-          <!-- آیکون ساده -->
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1.707-9.707a1 1 0 00-1.414-1.414L8 9.586 7.121 8.707a1 1 0 10-1.414 1.414l1.999 2a1 1 0 001.414 0l3.586-3.586z" clip-rule="evenodd" />
-          </svg>
-          ارسال درخواست شرکت در درس
-        </button>
+        class="w-full inline-flex justify-center items-center gap-2 rounded-2xl px-6 py-3 bg-[#023e83] hover:bg-[#022e6b] text-white font-medium  shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-navy/50 disabled:opacity-60">
+        <!-- آیکون ساده -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1.707-9.707a1 1 0 00-1.414-1.414L8 9.586 7.121 8.707a1 1 0 10-1.414 1.414l1.999 2a1 1 0 001.414 0l3.586-3.586z" clip-rule="evenodd" />
+        </svg>
+        ارسال درخواست شرکت در درس
+      </button>
+        @endif
       </div>
 
       <div aria-live="polite" id="status" class="text-sm mt-2 text-center text-green-600 hidden"></div>

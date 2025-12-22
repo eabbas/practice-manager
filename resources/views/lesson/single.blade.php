@@ -32,9 +32,9 @@
         }
     </style>
 </head>
-<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-9 py-8">
     <!-- هدر صفحه -->
-    <div class="flex flex-col md:flex-row space-x-140 items-start md:items-center mb-8">
+    <div class="flex flex-col md:flex-row space-x-130 items-start md:items-center mb-8">
         <div>
             <h1 class="text-3xl font-bold text-[#023e83] mb-2">{{ $lesson->title }}</h1>
             <div class="flex items-center space-x-4 space-x-reverse text-gray-600">
@@ -44,17 +44,17 @@
                 </span>
             </div>
         </div>
-        <a href="{{route('practice_list' , [$lesson->id]) }}" 
-                           class="mt-4 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-6 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center">
+        {{-- <a href="{{route('practice_list' , [$lesson->id]) }}" 
+                           class="bg-[#023e83] hover:bg-[#022e6b] text-white px-6 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center">
                             مشاهده تمرینات
-                        </a>
-        {{-- <div class="flex items-center space-x-3 space-x-reverse mt-4 md:mt-0 gap-4">
+                        </a> --}}
+        <div class="flex items-center space-x-3 space-x-reverse mt-4 md:mt-0 gap-2">
             <a href="{{route('practice_list' , [$lesson->id]) }}" 
                class="border border-gray-300 hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg transition duration-200 flex items-center">
                 <i class="fas fa-arrow-right ml-2"></i>
                 مشاهده تمرینات
             </a>
-        </div> --}}
+        </div>
     </div>
 
     <!-- کارت اصلی اطلاعات درس -->
