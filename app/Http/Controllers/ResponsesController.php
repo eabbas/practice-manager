@@ -15,7 +15,17 @@ class ResponsesController extends Controller
     public function store(Request $request){
 
         //dd(['practice_id'=>$request->practice_id ,'user_id'=> $request->user_id , 'text'=>$request->text , 'seen'=>0]);
-        responses::create(['practice_id'=>$request->practice_id ,'user_id'=> $request->user_id , 'text'=>$request->text , 'seen'=>0]);
+         $data = ['practice_id'=>$request->practice_id ,
+                'user_id'=> $request->user_id , 
+                'text'=>$request->text , 
+                'seen'=>0
+                ];
+        if(isset($request->student_id )){
+                $data['student_id'] = $request->student_id ;
+            }
+
+        // dd($data);
+        responses::create($data);
         //dd($x);
         return redirect()->back();
     }
@@ -43,17 +53,27 @@ class ResponsesController extends Controller
 
 
 
-    public function student_responses(User $user , practice $practice ,User $master){
+    public function student_responses(User $student , practice $practice ,User $master){
 
-        $responses = responses::where('practice_id',$practice->id)->whereIn('user_id' , [$user -> id , $master->id])->get();
+        $currentUser = Auth::user();
+
+        if($currentUser->roles[0] == 'استاد'){
+            $responses = responses::where('practice_id',$practice->id)->whereIn('user_id' , [$student -> id , $master->id])->where('student_id' , $student->id)->get();
+        }else{
+            $responses = responses::where('practice_id',$practice->id)->whereIn('user_id' , [$student -> id])->orWhere(function($query) use($master ,$student){
+                $query->where('user_id' ,  $master->id)->where('student_id' , $student->id);
+            })->get();
+        }
+
+
         $responses->load('users');
-
-        // dd($responses);
+        //$x = $responses->load('master');
+         //dd($x);
  
         // $user->load(['responses' => function($query) use($practice){
         //     $query->where('practice_id' , $practice->id);
         // }]);
 
-        return view('responses.student_responses' , ['student'=>$user ,'responses'=>$responses , "practice" => $practice ,"master"=>$master]);
+        return view('responses.student_responses' , ['student'=>$student ,'responses'=>$responses , "practice" => $practice ,"master"=>$master]);
     }
 }

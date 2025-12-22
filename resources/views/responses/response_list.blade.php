@@ -54,12 +54,13 @@
       <div class="max-w-5xl mx-auto bg-white rounded-xl shadow p-6">
   
           <h1 class="text-xl font-bold text-slate-800 mb-4">
+        <i class="fas fa-list ml-2 text-[#023e83]"></i>
               لیست پاسخ های دانشجویان
           </h1>
   
           <!-- جستجو -->
-          <div class="flex items-center justify-end mb-4">
-              {{-- <span class="text-slate-600 text-sm">تعداد درخواست‌های تایید نشده: 2</span> --}}
+          <div class="flex items-center justify-between mb-4">
+              <span class="text-slate-600 text-sm">تعداد پاسخ های دانشجویان : {{count($practiceResponses)}}</span>
   
               <div class="flex gap-2">
                   <input type="text"
@@ -85,11 +86,13 @@
                   </thead>
   
                   <tbody class="text-sm">
+                      {{-- @if($practiceResponses == NULL) --}}
                         @foreach($practiceResponses as $response)
-                             
+                           <?php //dd($response->users->name); ?>
+                       {{-- <p class="text-center text-slate-500 mt-6">پاسخی برای این تمرین وجود ندارد.</p>    --}}
                       <!-- ردیف ۱ -->
                       <tr class="hover:bg-slate-50">
-                           <td class="py-3 px-4">{{$response->users->name}} {{$response->users->family}}</td> 
+                          <td class="py-3 px-4">{{$response->users->name}} {{$response->users->family}}</td> 
                           <td class="py-3 px-4">{{$response->users->code}}</td>
                           <td class="flex items-center mr-10 py-3 px-4" style="position: relative;">
                             <span style="position: absolute;width:20px;height:20px;border-radius:20px;color:white;background-color:rgb(50, 125, 222);text-align:center;top:10px;font-weight:bold;">
@@ -110,16 +113,35 @@
                                 </a>
                           </td>
                       </tr>
-                        @endforeach
+                      @endforeach
+                      {{-- @endif --}}
                   </tbody>
               </table>
           </div>
   
           <!-- وقتی لیست خالی باشد -->
-          <!-- <p class="text-center text-slate-500 mt-6">درخواستی وجود ندارد.</p> -->
-  
+           {{-- @if ($practiceResponses == NULL) 
+             <p class="text-center text-slate-500">  تمرینی برای این درس وجود ندارد.</p>
+             @endif --}}
       </div>
   
   </body>
   </html>
+  <script>
+        // جستجو در جدول
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const rows = document.querySelectorAll('tbody tr');
+            
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+        </script>
 @endsection

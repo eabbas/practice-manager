@@ -97,17 +97,6 @@
                 </div>
             </div>
             
-            <!-- <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-purple-500">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-gray-500 text-sm">اساتید</p>
-                        <p class="text-2xl font-bold text-gray-800 mt-1">۸</p>
-                    </div>
-                    <div class="bg-purple-50 p-3 rounded-xl">
-                        <i class="fas fa-user-tie text-purple-500 text-xl"></i>
-                    </div>
-                </div>
-            </div> -->
         </div>
 
         <!-- جدول دروس -->
@@ -120,19 +109,12 @@
                         تمام دروس
                     </h2>
                     
-                    <div class="flex items-center space-x-4 space-x-reverse mt-3 md:mt-0">
+                    <div class="flex items-center space-x-4 space-x-reverse mt-3 md:mt-0 ml-10">
                         <div class="relative">
                             <input type="text" placeholder="جستجو در دروس..." 
                                    class="px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#023e83] focus:border-[#023e83] transition duration-200">
-                            <i class="fas fa-search absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            <i class="fas fa-search absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 mt-2"></i>
                         </div>
-                        
-                        <select class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#023e83] focus:border-[#023e83] transition duration-200">
-                            <option>همه گروه‌ها</option>
-                            <option>ریاضی</option>
-                            <option>علوم</option>
-                            <option>ادبیات</option>
-                        </select>
                     </div>
                 </div>
             </div>
@@ -148,13 +130,14 @@
                              <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">عملیات</th>
                             {{-- @endif --}}
                             {{-- @if(Auth::user()->roles[0]->title=="دانشجو") --}}
-                             <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">مشاهده تمرینات</th>
+                             {{-- <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">مشاهده تمرینات</th> --}}
                             {{-- @endif --}}
         </div>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
                          @foreach($lessons as $lesson)
+                         <?php //dd($lessons); ?>
                         <tr class="table-row">
                             <td class="px-6 py-4">
                                 <div class="flex items-center">
@@ -207,12 +190,12 @@
                                             </a>
                                         </div>
                                         <!-- دکمه ارسال تمرین همراه با آیکون -->
-                                        <div class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5" title="ارسال درس" onclick="copyText()">
+                                        <div class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5 pointer:coarse" title="ارسال درس" onclick="copyText({{$lesson->id}})">
                                                 <i class="fas fa-paper-plane ml-2"></i> ارسال 
                                         </div>
 
                                         <div>
-                                            <a href="{{url('/request/list/'.$lesson->id)}}" class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5" title="تمرینات">
+                                            <a href="{{url('/request/list/'.$lesson->id)}}" class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] mr-5" title="مشاهده درخواست ها">
                                                 درخواست ها
                                             </a>
                                         </div>
@@ -246,16 +229,17 @@
         </div>
     </div>
 
+  
     @isset($lesson)
     <script>
-        function copyText(){
-            let url = "{{url('/send/lesson/'.$lesson->id)}}"
+        function copyText(lessonId){
+            let url = "{{url('/send/lesson/')}}" + "{{'/'}}" + lessonId
              navigator.clipboard.writeText(url)
         alert("لینک درس کپی شد")
         }
     </script>
+    <?php //dd($lesson) ?>
     @endisset
-    
     <script>
         // جستجو در جدول
         const searchInput = document.querySelector('input[type="text"]');

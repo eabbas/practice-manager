@@ -14,15 +14,20 @@ class UserLessonController extends Controller
 
      public function lesson_address(lesson $lesson){
         //$sendLesson = $lesson->practices;
-        $master=user::find($lesson->master_id);
+      $master=user::find($lesson->master_id);
+      //dd($lesson);
       return view("userLesson.lesson_address", ['lesson'=>$lesson ,'master'=>$master]);
     }
 
 
 
     public function store(Request $request){
-      //userLesson::create(["lesson_id"=>$request->lesson_id , "user_id"=>Auth::id(),"status"=>0]);
-      userLesson::create($request->all());
+      //dd($request->all());
+      $userRequest = userLesson::where("lesson_id" , $request->lesson_id )->where("user_id" , Auth::id())->first();
+
+      if(!$userRequest){
+        userLesson::create(["lesson_id"=>$request->lesson_id , "user_id"=>Auth::id(),"status"=>0]);
+      }
       return to_route('my_requests');
     }
  
@@ -35,8 +40,11 @@ class UserLessonController extends Controller
       foreach($userLessons as $userLesson){
         $master=user::find($userLesson->master_id);
       }
-
+      if(isset($userLesson)){
       return view('userLesson.my_requests' , ['userLesson'=>$userLesson,'master'=> $master, 'user'=>$user]);
+      }else{
+        return view('userLesson.without_request');
+      }
     }
 
 
@@ -44,7 +52,9 @@ class UserLessonController extends Controller
 
       $lesson =lesson::find($id);
       //dd($lesson);
-      $lesson->load("users");
+       $lesson->load("users");
+      
+
 
       return view("userLesson.requests",['lessonUsers'=>$lesson]);
     }
@@ -58,20 +68,39 @@ class UserLessonController extends Controller
       return redirect()->back();
     }
     
-    public function student_class(){
 
+
+    public function student_class(){
       $user = Auth::user();
-      $userLessons = $user->lessons;
-      //dd($userLessons);
-      
-      foreach($userLessons as $userLesson){
-      $master=user::find($userLesson->master_id);
-      }
+      $user->load(['lessons' => function($query){
+          $query->where('status' , 1);
+        }] );
+      $user->lessons->load('master');
+
+      // dd($user);
+      //   foreach($userLessons as $userLesson){
+      //   $x = userLesson::where('user_id' , $user->id)->where('status', $userLesson->pivot->status=='1')->get();
+        
+      //   $master=user::find($userLesson->master_id);
+      // }
+
+      // $user->load('lessons');
+        // $user->lessons->load('master');
+        // $user->lessons->load('status');
+         
+       
       // practices of the lesson
       // $lesson->load('practices');
       // $lesson->load('master');
+      //dd($userLesson);
 
-      return view("userLesson.student_class",['userLesson'=>$userLesson,'master'=> $master, 'user'=>$user]);
+      return view("userLesson.student_class",['user'=> $user]);
+
+      }
+
+      public function delete_request($lessonId ,$id){
+            userLesson::where('user_id' , $id)->where('lesson_id' , $lessonId)->delete();
+            return redirect()->back();
+      }
 
     }
-}

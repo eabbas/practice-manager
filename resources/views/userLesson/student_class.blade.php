@@ -48,19 +48,18 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>لیست درخواست‌ها</title>
 </head>
-{{-- <form action="{{route('list_requests')}}" method="POST"> --}}
 
   <body class="bg-slate-100 p-6">
   
       <div class="max-w-5xl mx-auto bg-white rounded-xl shadow p-6">
   
           <h1 class="text-xl font-bold text-slate-800 mb-4">
+            <i class="fas fa-list ml-2 text-[#023e83]"></i>
               لیست درس های من
           </h1>
-  
           <!-- جستجو -->
-          {{-- <div class="flex items-center justify-between mb-4">
-              <span class="text-slate-600 text-sm">تعداد درخواست‌های تایید نشده: 2</span>
+          <div class="flex items-center justify-between mb-4">
+              <span class="text-slate-600 text-sm">تعداد درس های من : {{count($user->lessons)}}</span>
   
               <div class="flex gap-2">
                   <input type="text"
@@ -71,8 +70,8 @@
                       پاک‌سازی
                   </button>
               </div>
-          </div> --}}
-  
+          </div>
+
           <!-- جدول -->
           <div class="overflow-x-auto border border-slate-200 rounded-lg">
               <table class="w-full text-right">
@@ -86,35 +85,57 @@
                   </thead>
   
                   <tbody class="text-sm">
-                        <?php //dd($userLesson->pivot); ?>
+                        @foreach($user->lessons as $lesson)
+                        <?php //dd($lessons->lesson->title) ?>
                       <tr class="hover:bg-slate-50">
-                          <td class="py-3 px-4">{{$userLesson->title}}</td>
-                          <td class="py-3 px-4">{{$master->name}} {{$master->family}}</td>
+                          <td class="py-3 px-4">{{$lesson->title}}</td> 
+                      <td class="py-3 px-4">{{$lesson->master->name}} {{$lesson->master->family}}</td>
                           <td class="py-3 px-4 text-center">
-                          <a href="{{route('lesson_show' , [$userLesson->id])}}" class="px-3 py-1.5 rounded-md border border-blue-600 text-blue-600 hover:bg-blue-50">
+                          <a href="{{route('lesson_show' , [$lesson->id])}}" class="px-3 py-1.5 rounded-md border border-blue-600 text-blue-600 hover:bg-blue-50">
                                      جزئیات درس
                                 </a>
                             </td>
                             <td class="py-3 px-4 text-center">
-                            <a href="{{route('practice_list' , [$userLesson->id])}}" class="px-3 py-1.5 rounded-md border border-blue-600 text-blue-600 hover:bg-blue-50">
+                            <a href="{{route('practice_list' , [$lesson->id])}}" class="px-3 py-1.5 rounded-md border border-blue-600 text-blue-600 hover:bg-blue-50">
                                  مشاهده تمرینات
                             </a>
                           </td>
                       </tr>
                         {{-- @endif --}}
-                        {{-- @endforeach --}}
-                  </tbody>
-              </table>
-          </div>
+                        @endforeach 
+                        {{-- @if( ({{$lessonUsers}}==0)) --}}
+                                 {{-- <p class="text-center text-slate-500 mt-6">درخواستی وجود ندارد.</p> 
+                                 @endif --}}
+                    </tbody>
+                </table>
+            </div>
   
           <!-- وقتی لیست خالی باشد -->
-          <!-- <p class="text-center text-slate-500 mt-6">درخواستی وجود ندارد.</p> -->
-  
+          @if (count($user->lessons ) == "0")
+          <p class="text-center text-slate-500 mt-6">درسی برای شما وجود ندارد.</p>
+          @endif
+
       </div>
   
   </body>
   </html>
-
+  <script>
+        // جستجو در جدول
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const rows = document.querySelectorAll('tbody tr');
+            
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+        </script>
 @endsection
 
 

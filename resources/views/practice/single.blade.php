@@ -119,7 +119,7 @@
             </div>
 
             <!-- پاسخ ها    --> 
-            @foreach ($responses as $response)
+            {{-- @foreach ($responses as $response)
 
             <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm mb-3">
                         @if($response->users->roles[0]->title == 'استاد')
@@ -131,9 +131,9 @@
 
                 {{$response->text}}
             </div>
-            @endforeach
+            @endforeach --}}
  <!-- پاسخ ها    -->
-            <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+            {{-- <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
                 <h3 class="text-xl font-semibold text-[#023e83] mb-4 flex items-center">
                     <i class="fas fa-upload ml-2"></i>
                     ارسال پاسخ
@@ -143,8 +143,8 @@
                     <div class="mb-4">
                         {{-- <label class="block text-gray-700 font-medium mb-2">فایل تمرین</label>
                         <input type="file" name="file" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-primary"> --}}
-                        <input type="hidden" name="practice_id" value="{{$practice->id}}">
-                        <input type="hidden" name="user_id" value="{{Auth::id()}}">
+                        {{-- <input type="hidden" name="practice_id" value="{{$practice->id}}"> --}}
+                        {{-- <input type="hidden" name="user_id" value="{{Auth::id()}}">
                         <textarea name="text" id="response" cols="0" rows="1" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-primary mt-4"></textarea>
                     </div>
                     <button type="submit" 
@@ -152,7 +152,7 @@
                         ارسال
                     </button>
                 </form>
-            </div>
+            </div>  --}}
         </div>
     </div>
 </div>

@@ -84,7 +84,7 @@
                   </thead>
   
                   <tbody class="text-sm">
-                        @foreach($$practiceResponse->users as $user)
+                        @foreach($practiceResponse->users as $user)
                         <?php //dd($lessonUsers); ?>
                       <!-- ردیف ۱ -->
                       <tr class="hover:bg-slate-50">

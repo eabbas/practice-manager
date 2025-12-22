@@ -92,6 +92,8 @@ Route::get('/lesson/request/approve/{userId}/{lessonId}', [UserLessonController:
 
 Route::get('/student/class', [UserLessonController::class,'student_class'])->name('student_class');
 
+Route::get('/delete/request/{lesson}/{id}' , [UserLessonController::class, 'delete_request'])->name('delete_request');
+
 
 //responses 
 
@@ -101,5 +103,5 @@ Route::post('/response/store',[ResponsesController::class , 'store'])->name('res
 
 Route::get('response/list/{practice}' , [ResponsesController::class , 'response_list'])->name('response_list');
 
-Route::get('/student/responses/{user}/{practice}/{master}' , [ResponsesController::class , 'student_responses'])->name('student_responses');
+Route::get('/student/responses/{student}/{practice}/{master}' , [ResponsesController::class , 'student_responses'])->name('student_responses');
 

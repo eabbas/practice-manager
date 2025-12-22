@@ -43,10 +43,11 @@
 
 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <!-- هدر صفحه -->
+    
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
         <div>
             <h1 class="text-3xl font-bold text-[#023e83] mb-2">
-                درس : 
+                  عنوان درس : 
                 {{ $practice->lesson->title}}</h1>
             <div class="flex items-center space-x-4 space-x-reverse text-gray-600">
                 <span class="flex items-center">
@@ -68,7 +69,7 @@
                     </div>
                     <div>
                         <h2 class="text-xl font-semibold">
-                            پاسخ تمرین: 
+                               عنوان تمرین : 
                             {{ $practice->title }}</h2>
                     </div>
                 </div>
@@ -111,14 +112,12 @@
 
                     </div>
                 @endforeach
-            <!-- پاسخ ها    -->
-        </div>
-
+            </div>
 
             <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
                 <h3 class="text-xl font-semibold text-[#023e83] mb-4 flex items-center">
                     <i class="fas fa-upload ml-2"></i>
-                    ارسال پاسخ استاد
+                    ارسال پاسخ 
                 </h3>
                 <form action="{{route('response_store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -127,6 +126,7 @@
                         <input type="file" name="file" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-primary"> --}}
                         <input type="hidden" name="practice_id" value="{{$practice->id}}">
                         <input type="hidden" name="user_id" value="{{Auth::id()}}">
+                        <input type="hidden" name="student_id" value="{{$student->id}}">
                         <textarea name="text" id="response" cols="0" rows="1" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-primary mt-4"></textarea>
                     </div>
                     <button type="submit" 

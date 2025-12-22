@@ -53,12 +53,11 @@
     }
   </script>
   <style>
-    /* جهت زیبایی بیشتر در حالت چاپ یا مرورگرهای قدیمی */
     body { -webkit-font-smoothing:antialiased; }
   </style>
 </head>
 <body class="min-h-screen bg-gray-50 flex items-center justify-center p-6">
-  <main class="w-full max-w-lg bg-white shadow-md rounded-2xl p-6 mr-150">
+  <main class="w-full max-w-lg bg-white shadow-md rounded-2xl p-6 mr-150 mt-15">
     <header class="mb-4">
       <h1 class="text-xl font-semibold">درخواست شرکت در درس</h1>
       
