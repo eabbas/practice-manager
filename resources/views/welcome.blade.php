@@ -49,7 +49,7 @@
 <div class="min-h-screen flex items-center justify-center px-3">
 
 
-  <div class="glass w-full max-w-sm md:max-w-md rounded-3xl p-6 md:p-10 shadow-2xl mb-9">
+  <div class="glass w-full max-w-sm md:max-w-md rounded-3xl p-6 md:p-10 shadow-2xl mb-[20px]">
 
     <!-- هدر -->
     <div class="text-center md:text-right">
