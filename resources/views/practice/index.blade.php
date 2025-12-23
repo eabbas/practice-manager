@@ -52,7 +52,7 @@
         </div>
 
         <!-- آمار و اطلاعات -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div class="grid grid-cols-1  md:grid-cols-4 gap-4 mb-8 ms:py-2 gap-3">
             <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-[#023e83]">
                 <div class="flex items-center justify-between">
                     <div>
@@ -77,18 +77,6 @@
                 </div>
             </div>
             </div>
-            
-            <!-- <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-purple-500">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-gray-500 text-sm">اساتید</p>
-                        <p class="text-2xl font-bold text-gray-800 mt-1">۸</p>
-                    </div>
-                    <div class="bg-purple-50 p-3 rounded-xl">
-                        <i class="fas fa-user-tie text-purple-500 text-xl"></i>
-                    </div>
-                </div>
-            </div> -->
         </div>
 
         <!-- جدول دروس -->
@@ -133,14 +121,14 @@
                                         <i class="fas fa-calculator text-[#023e83]"></i>
                                     </div>
                                     <div>
-                                        <p class="text-sm text-gray-500 mt-1">{{ $practice->title }}</p>
-                                        <p class="text-sm text-gray-500 mt-1">{{$practice->description }}</p>
+                                        <p class="text-sm text-gray-500 text-nowrap mt-1">{{ $practice->title }}</p>
+                                        <p class="text-sm text-gray-500 text-nowrap mt-1">{{$practice->description }}</p>
                                     </div>
                                 </div>
                             </td>
                             <td class="px-6 py-4">
                                 <div class="flex items-center">
-                                    <div class="w-4 h-4 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-medium ml-2">
+                                    <div class="w-4 h-4 bg-purple-500 rounded-full flex items-center justify-center text-white text-nowrap text-sm font-medium ml-2">
                                     </div>
                                     <div>
                                          <p class="text-sm text-gray-500 mt-1">{{ $practice->lesson->title }}</p>
@@ -148,7 +136,7 @@
                                 </div>
                             <td class="px-6 py-4">
                                 <div class="flex items-center">
-                                    <div class="w-4 h-4 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-medium ml-2">
+                                    <div class="w-4 h-4 bg-purple-500 rounded-full flex items-center justify-center text-white text-nowrap text-sm font-medium ml-2">
     
                                     </div>
                                     <span class="text-gray-700">{{ Auth::user()->name }} {{Auth::user()->family}}</span>
@@ -157,14 +145,14 @@
                             <td class="px-6 py-4">
                                 <div class="flex items-center">
                                     <div>
-                                         <a href="{{route('response_list' ,[$practice->id])}}" class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] ml-2">
+                                         <a href="{{route('response_list' ,[$practice->id])}}" class="mt-2 md:mt-0 bg-[#023e83] hover:bg-[#022e6b] text-white text-nowrap px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center mb-[15px] ml-2">
                                                  پاسخ ها 
                                             </a>
                                         </div>
                                 </div>
                             </td>
                            
-                            <td class="px-6 py-4 flex flex-row items-center ml-4 mt-3">
+                            <td class="px-6 py-4 flex flex-row items-center ml-4 mt-5">
                                 <div class="flex items-center space-x-3 space-x-reverse">
                                     <a href="{{ route('practice_edit', [$practice]) }}" class="text-blue-600 hover:text-blue-800 transition duration-200" title="ویرایش">
                                         <i class="fas fa-edit"></i>

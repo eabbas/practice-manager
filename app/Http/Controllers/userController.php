@@ -17,18 +17,22 @@ class userController extends Controller
     $roles = role::all();
     return view("users.signup", ["roles" => $roles]);
   }
+
   public function store(Request $request)
   {
     $password = Hash::make($request->code);
     $userId = User::insertGetId(["approved" => 0, "name" => $request->name, "family" => $request->family, "password" => $password, "phone" => $request->phone, "code" => $request->code]);
     user_role::create(["user_id" => $userId, "role_id" => $request->userRoles]);
-    return to_route("home");
+    return to_route('login');
   }
+
+  
   public function login()
   {
     return view("users.login");
   }
   
+
   public function check(Request $request)
   {
     if (Auth::check()) {
@@ -36,7 +40,7 @@ class userController extends Controller
     }
     $user = User::where("phone", $request->phone)->first();
     if (!$user) {
-      return "not user";
+      return view('users.not_user');
     }
     $checkHash = Hash::check($request->password, $user->password);
     if ($checkHash) {

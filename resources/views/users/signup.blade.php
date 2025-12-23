@@ -127,7 +127,7 @@
               class="w-full py-3 sm:py-4 rounded-xl
                      bg-gradient-to-r from-cyan-900 to-blue-950
                      hover:from-cyan-800 hover:to-blue-800
-                     text-white font-bold text-sm sm:text-lg
+                     text-white font-bold text-sm sm:text-lg mt-3
                      transition transform hover:scale-105">
         ایجاد حساب
       </button>

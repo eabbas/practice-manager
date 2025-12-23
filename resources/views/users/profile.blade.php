@@ -30,13 +30,13 @@
         }
         
         .checkbox-custom:checked {
-            background-color: #023e83;
-            border-color: #023e83;
+            background-color: #04264e;
+            border-color: #04264e;
         }
     </style>
     <body class="min-h-screen bg-white flex items-center justify-center p-4 sm:p-6">
 
-    <div class="max-w-3xl w-full bg-blue-900 backdrop-blur-4xl shadow-2xl mx-auto rounded-3xl p-5 sm:p-8 border border-white/20">
+    <div class="max-w-3xl w-full bg-blue-900 backdrop-blur-4xl shadow-2xl mx-auto rounded-3xl p-5 sm:p-8 border border-white/20 ">
 
         <!-- Header -->
         <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 border-b border-white/20 pb-6">

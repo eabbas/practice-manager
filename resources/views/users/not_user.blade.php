@@ -51,7 +51,7 @@
 
   <div class="bg-[#0b2b4a] text-white text-center px-6 py-4 rounded-xl shadow-md">
     <h1 class="text-xl font-bold mb-2">خطا</h1>
-    <p class="text-sm">رمز وارد شده اشتباه است</p>
+    <p class="text-sm">اطلاعات وارد شده صحیح نیست</p>
   </div>
 
 </body>
