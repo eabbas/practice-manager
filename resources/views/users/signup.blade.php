@@ -101,7 +101,7 @@
         </div>
 
         <div>
-          <label class="block text-white text-sm mb-2">کد دانشجویی</label>
+          <label class="block text-white text-sm mb-2">کد دانشجویی/ پرسنلی (رمز عبور)</label>
           <input type="number" name="code" required
                  class="w-full px-4 py-2 sm:py-3 rounded-xl input-glass text-white
                         placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none">

@@ -47,74 +47,89 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>لیست درخواست‌ها</title>
 </head>
-{{-- <form action="{{route('list_requests')}}" method="POST"> --}}
 
-  <body class="bg-slate-100 p-6">
-  
-      <div class="max-w-5xl mx-auto bg-white rounded-xl shadow p-6">
-  
-          <h1 class="text-xl font-bold text-slate-800 mb-4">
-              لیست درخواست‌های دانشجویی
-          </h1>
-  
-          <!-- جستجو -->
-          <div class="flex items-center justify-between mb-4">
-              <span class="text-slate-600 text-sm">تعداد درخواست‌های تایید نشده: 2</span>
-  
-              <div class="flex gap-2">
-                  <input type="text"
-                         placeholder="جستجو..."
-                         class="px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none">
-  
-                  <button class="px-4 py-2 bg-slate-200 rounded-lg text-slate-700">
-                      پاک‌سازی
-                  </button>
-              </div>
-          </div>
-  
-          <!-- جدول -->
-          <div class="overflow-x-auto border border-slate-200 rounded-lg">
-              <table class="w-full text-right">
-                  <thead class="bg-slate-50 text-slate-600 text-sm">
-                      <tr>
-                          <th class="py-3 px-4">نام دانشجو</th>
-                          <th class="py-3 px-4">شماره دانشجویی</th>
-                          <th class="py-3 px-4 text-center">عملیات</th>
-                      </tr>
-                  </thead>
-  
-                  <tbody class="text-sm">
-                        @foreach($practiceResponse->users as $user)
-                        <?php //dd($lessonUsers); ?>
-                      <!-- ردیف ۱ -->
-                      <tr class="hover:bg-slate-50">
-                           <td class="py-3 px-4">{{$user->name}} {{$user->family}}</td> 
-                          <td class="py-3 px-4">{{$user->code}}</td>
-                          <td class="py-3 px-4 text-center">
-                           @if($user->pivot->status == '0')
-                                <a href="{{route('request_approve' , [$user->id , $lessonUsers->id])}}" class="px-3 py-1.5 rounded-md border border-blue-600 text-blue-600 hover:bg-blue-50">
+<body class="bg-slate-100 p-4 sm:p-6">
+
+<div class="max-w-5xl mx-auto bg-white rounded-xl shadow p-4 sm:p-6">
+
+    <h1 class="text-lg sm:text-xl font-bold text-slate-800 mb-4">
+        لیست درخواست‌های دانشجویی
+    </h1>
+
+    <!-- جستجو -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+        <span class="text-slate-600 text-sm">
+            تعداد درخواست‌های تایید نشده: 2
+        </span>
+
+        <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+            <input type="text"
+                   placeholder="جستجو..."
+                   class="w-full sm:w-48 px-3 py-2 border border-slate-300 rounded-lg
+                          focus:ring-2 focus:ring-blue-400 outline-none">
+
+            <button class="px-4 py-2 bg-slate-200 rounded-lg text-slate-700">
+                پاک‌سازی
+            </button>
+        </div>
+    </div>
+
+    <!-- جدول -->
+    <div class="overflow-x-auto border border-slate-200 rounded-lg">
+        <table class="min-w-[600px] w-full text-right">
+            <thead class="bg-slate-50 text-slate-600 text-sm">
+                <tr>
+                    <th class="py-3 px-4">نام دانشجو</th>
+                    <th class="py-3 px-4">شماره دانشجویی</th>
+                    <th class="py-3 px-4 text-center">عملیات</th>
+                </tr>
+            </thead>
+
+            <tbody class="text-sm">
+                @foreach($practiceResponse->users as $user)
+                <tr class="hover:bg-slate-50">
+                    <td class="py-3 px-4">
+                        {{$user->name}} {{$user->family}}
+                    </td>
+
+                    <td class="py-3 px-4">
+                        {{$user->code}}
+                    </td>
+
+                    <td class="py-3 px-4 text-center">
+                        <div class="flex justify-center gap-2">
+                            @if($user->pivot->status == '0')
+                                <a href="{{route('request_approve' , [$user->id , $lessonUsers->id])}}"
+                                   class="px-3 py-1.5 rounded-md border border-blue-600 text-blue-600 hover:bg-blue-50">
                                     تایید
                                 </a>
                             @endif
 
                             @if($user->pivot->status == '1')
-                              <button class="px-3 py-1.5 rounded-md border border-green-600 text-green-600 hover:bg-blue-50">
-                                   تایید شده
-                              </button>
-                          </td>
-                      </tr>
-                        @endif
-                        @endforeach
-                  </tbody>
-              </table>
-          </div>
-  
-          <!-- وقتی لیست خالی باشد -->
-          <!-- <p class="text-center text-slate-500 mt-6">درخواستی وجود ندارد.</p> -->
-  
-      </div>
-  
-  </body>
-  </html>
+                                <button
+                                    class="px-3 py-1.5 rounded-md border border-green-600 text-green-600 hover:bg-blue-50">
+                                    تایید شده
+                                </button>
+                            @endif
+                        </div>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+    <!-- وقتی لیست خالی باشد -->
+    @if (count($practiceResponse->users)== 0)
+        <p class="text-center text-slate-500 mt-6">
+            درخواستی وجود ندارد.
+        </p>
+    @endif
+
+</div>
+
+</body>
+</html>
+
 {{-- </form> --}}
 @endsection

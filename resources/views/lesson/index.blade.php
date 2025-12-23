@@ -42,8 +42,8 @@
         }
     </style>
 </head>
-<body class="min-h-screen py-8 px-4 font-vazir">
-    <div class="max-w-7xl mx-auto">
+<body class="min-h-screen py-8 px-2 font-vazir">
+    <div class="max-w-7xl mx-auto ml-30">
         <!-- هدر -->
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
             <div>
@@ -60,7 +60,7 @@
         </div>
 
         <!-- آمار و اطلاعات -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div class="grid grid-cols-1 grid-row-4  md:grid-cols-4  gap-6 mb-8">
             <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-[#023e83]">
                 <div class="flex items-center justify-between">
                     <div>
@@ -146,7 +146,7 @@
                                     </div>
                                     <div>
                                         <p class="font-medium text-gray-900">{{ $lesson->title }}</p>
-                                        <p class="text-sm text-gray-500 mt-1">{{ $lesson->description }}</p>
+                                        <p class="text-sm text-gray-500 text-nowrap mt-1">{{ $lesson->description }}</p>
                                     </div>
                                 </div>
                             </td>
@@ -155,7 +155,7 @@
                                     <div class="w-5 h-5 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-medium ml-2">
                                      
                                     </div>
-                                    <span class="text-gray-700">{{ Auth::user()->name }} {{Auth::user()->family}}</span>
+                                    <span class="text-gray-700 text-nowrap">{{ Auth::user()->name }} {{Auth::user()->family}}</span>
                                 </div>
                             </td>
                            
@@ -179,22 +179,22 @@
                                     <div class="flex flex-row mr-10 gap-4 mb-[15px]">
                                         <div>
                                             {{-- @if(Auth::user()->roles[0]->title=="استاد") --}}
-                                            <a href="{{ route('practice_create', [$lesson->id]) }}" class="bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center" title="ایجاد تمرین">
+                                            <a href="{{ route('practice_create', [$lesson->id]) }}" class="bg-[#023e83] hover:bg-[#022e6b] text-white text-nowrap px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center" title="ایجاد تمرین">
                                                 ایجاد تمرین
                                             </a>
                                             {{-- @endif --}}
                                         </div>
                                         <div>
-                                            <a href="{{ route('practice_list', [$lesson->id]) }}" class="bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center" title="تمرینات">
+                                            <a href="{{ route('practice_list', [$lesson->id]) }}" class="bg-[#023e83] hover:bg-[#022e6b] text-white text-nowrap px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center" title="تمرینات">
                                                 تمرینات
                                             </a>
                                         </div>
                                         <!-- دکمه ارسال تمرین همراه با آیکون -->
-                                        <div class="bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center  pointer:coarse" title="ارسال درس" onclick="copyText({{$lesson->id}})">
+                                        <div class="bg-[#023e83] hover:bg-[#022e6b] text-white text-nowrap px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center  pointer:coarse" title="ارسال درس" onclick="copyText({{$lesson->id}})">
                                                 <i class="fas fa-paper-plane ml-2"></i> ارسال 
                                         </div>
                                         <div>
-                                            <a href="{{url('/request/list/'.$lesson->id)}}" class="bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center" title="مشاهده درخواست ها">
+                                            <a href="{{url('/request/list/'.$lesson->id)}}" class="bg-[#023e83] hover:bg-[#022e6b] text-white text-nowrap px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center" title="مشاهده درخواست ها">
                                                 درخواست ها
                                             </a>
                                         </div>
