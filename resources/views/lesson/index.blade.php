@@ -45,9 +45,9 @@
 <body class="min-h-screen py-8 px-2 font-vazir">
     <div class="max-w-7xl mx-auto ml-30">
         <!-- هدر -->
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-5">
             <div>
-                <h1 class="text-3xl font-bold text-[#023e83] mb-2">لیست دروس</h1>
+                <h1 class="text-3xl font-bold text-[#023e83] mb-3">لیست دروس</h1>
                 <p class="text-gray-600">مدیریت و مشاهده تمام دروس سیستم</p>
             </div>
                         {{-- @if(Auth::user()->roles[0]->title=="استاد") --}}
@@ -60,7 +60,7 @@
         </div>
 
         <!-- آمار و اطلاعات -->
-        <div class="grid grid-cols-1 grid-row-4  md:grid-cols-4  gap-6 mb-8">
+        <div class="grid grid-cols-1 grid-row-4  md:grid-cols-4 gap-3 mb-8">
             <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-[#023e83]">
                 <div class="flex items-center justify-between">
                     <div>

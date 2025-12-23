@@ -36,7 +36,7 @@
         <hr class="text-[darkslategray] mt-2.5">
 
         <div class="py-5 h-[80%] overflow-y-auto" style="scrollbar-width:none;">
-            <ul class="flex flex-col gap-4 mt-2.5 mb-2.5 pr-3 text-white">
+            <ul class="flex flex-col gap-6 mt-2.5 mb-2.5 pr-3 text-white">
                 <li class="flex items-center gap-2.5 mr-5"><span class="size-1 bg-white"></span>
                     <a href="{{ route('user.complete_profile') }}">تکمیل اطلاعات کاربری</a></li>
 
@@ -103,7 +103,7 @@
             </span>
 
             <!-- آواتار (سمت راست) -->
-          <svg   class="w-12 h-12 rounded-full border-2 border-primary hidden lg:block" fill="oklch(37.9% 0.146 265.522)" alt="avatar" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"  alt="profile-image">
+          <svg   class="w-12 h-12 rounded-full " fill="oklch(37.9% 0.146 265.522) " alt="avatar" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"  alt="profile-image">
                 <path fill-rule="evenodd" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 1c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z" clip-rule="evenodd"></path>
                 <path d="M6 17.815c0-.516.386-.953.9-1.01 3.857-.427 6.36-.389 10.209.01a.995.995 0 0 1 .554 1.736c-4.542 3.959-7.139 3.904-11.343.003a1.01 1.01 0 0 1-.32-.739Z"></path>
                 <path fill-rule="evenodd" d="M17.058 17.312c-3.819-.395-6.286-.433-10.103-.01a.514.514 0 0 0-.295.886c2.084 1.933 3.663 2.806 5.207 2.812 1.548.006 3.213-.86 5.468-2.826a.495.495 0 0 0-.277-.862ZM6.845 16.308c3.898-.431 6.436-.392 10.315.009a1.495 1.495 0 0 1 .832 2.61c-2.288 1.994-4.193 3.08-6.129 3.073-1.941-.007-3.762-1.112-5.883-3.08a1.514 1.514 0 0 1 .865-2.613Z" clip-rule="evenodd"></path>
