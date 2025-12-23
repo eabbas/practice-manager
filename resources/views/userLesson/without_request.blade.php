@@ -69,7 +69,7 @@
             </div>
   
           <!-- وقتی لیست خالی باشد -->
-          <p class="text-center text-slate-500 mt-6"> درخواستی برای شما ثبت نشده است.</p> 
+          <p class="text-center text-slate-500 mt-6">شما درخواستی را ثبت نکرده اید.</p> 
   
       </div>
   
