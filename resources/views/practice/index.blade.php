@@ -108,7 +108,7 @@
                             <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">عنوان تمرین</th>
                             <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">عنوان درس</th>
                             <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">استاد</th>
-                            <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">مشاهده پاسخ ها</th>
+                            <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700 text-nowrap">مشاهده پاسخ ها</th>
                             <th class="px-4 py-4 text-right text-sm font-semibold text-gray-700 ">عملیات</th>
                         </tr>
                     </thead>
@@ -139,7 +139,7 @@
                                     <div class="w-4 h-4 bg-purple-500 rounded-full flex items-center justify-center text-white text-nowrap text-sm font-medium ml-2">
     
                                     </div>
-                                    <span class="text-gray-700">{{ Auth::user()->name }} {{Auth::user()->family}}</span>
+                                    <span class="text-gray-700 text-nowrap">{{ Auth::user()->name }} {{Auth::user()->family}}</span>
                                 </div>
                             </td>
                             <td class="px-6 py-4">

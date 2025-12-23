@@ -44,80 +44,106 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>لیست درخواست‌ها</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>لیست درخواست‌ها</title>
 </head>
 
-  <body class="bg-slate-100 p-6">
-  
-      <div class="max-w-5xl mx-auto bg-white rounded-xl shadow p-6">
-  
-          <h1 class="text-xl font-bold text-slate-800 mb-4">
-             <i class="fas fa-list ml-2 text-[#023e83]"></i>
-              لیست درخواست‌های من
-          </h1>
-  
-          <!-- جستجو -->
-          <div class="flex items-center justify-between mb-4">
-              <span class="text-slate-600 text-sm">تعداد درخواست‌ها: {{count([$userLesson->pivot->status == '0'])}}</span>
-  
-              <div class="flex gap-2">
-                  <input type="text"
-                         placeholder="جستجو..."
-                         class="px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none">
-  
-                  <button class="px-4 py-2 bg-slate-200 rounded-lg text-slate-700">
-                      پاک‌سازی
-                  </button>
-              </div>
-          </div>
-  
-          <!-- جدول -->
-          <div class="overflow-x-auto border border-slate-200 rounded-lg">
-              <table class="w-full text-right">
-                  <thead class="bg-slate-50 text-slate-600 text-sm">
-                      <tr>
-                          <th class="py-3 px-4">نام دانشجو</th>
-                          <th class="py-3 px-4">شماره دانشجویی</th>
-                          <th class="py-3 px-4"> نام درس</th>
-                          <th class="py-3 px-4">نام استاد</th>
-                          <th class="py-3 px-4 text-center">عملیات</th>
-                      </tr>
-                  </thead>
-  
-                  <tbody class="text-sm">
-                        <?php //dd($userLesson->pivot); ?>
-                      <tr class="hover:bg-slate-50">
-                           <td class="py-3 px-4">{{Auth::user()->name}} {{Auth::user()->family}}</td> 
-                          <td class="py-3 px-4">{{Auth::user()->code}}</td>
-                          <td class="py-3 px-4">{{$userLesson->title}}</td>
-                          <td class="py-3 px-4">{{$master->name}} {{$master->family}}</td>
-                          <td class="py-3 px-4 text-center">
-                           
-                             @if($userLesson->pivot->status == '0')
-                              <span class="px-3 py-1.5 rounded-md border border-blue-600 text-blue-600">
-                                در انتظار تایید 
-                              </span>
-                              @elseif($userLesson->pivot->status == '1')
-                            <a href="{{route('lesson_show' , [$userLesson->id])}}" class="px-3 py-1.5 rounded-md border border-blue-600 text-blue-600 hover:bg-blue-50">
-                                 مشاهده درس
-                            </a>
-                          </td>
-                      </tr>
-                        @endif
-                        {{-- @endforeach --}}
-                  </tbody>
-              </table>
-          </div>
-  
-          <!-- وقتی لیست خالی باشد -->
-          <!-- <p class="text-center text-slate-500 mt-6">درخواستی وجود ندارد.</p> -->
-  
+<body class="bg-slate-100 p-3 sm:p-6">
+
+<div class="max-w-5xl mx-auto bg-white rounded-xl shadow p-4 sm:p-6">
+
+  <h1 class="text-lg sm:text-xl font-bold text-slate-800 mb-4">
+    لیست درخواست‌های من
+  </h1>
+
+  <!-- هدر بالا -->
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+    <span class="text-slate-600 text-sm">
+      تعداد درخواست‌ها: {{ count([$userLesson->pivot->status == '0']) }}
+    </span>
+
+    <div class="flex gap-2 w-full sm:w-auto">
+      <input
+        type="text"
+        placeholder="جستجو..."
+        class="w-full sm:w-56 px-3 py-2 border rounded-lg text-sm"
+      >
+      <button class="px-4 py-2 bg-slate-200 rounded-lg text-sm">
+        پاک‌سازی
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= DESKTOP TABLE ================= -->
+  <div class="hidden md:block overflow-x-auto border rounded-lg">
+    <table class="w-full text-right text-sm">
+      <thead class="bg-slate-50 text-slate-600">
+        <tr>
+          <th class="py-3 px-4">نام دانشجو</th>
+          <th class="py-3 px-4">شماره دانشجویی</th>
+          <th class="py-3 px-4">نام درس</th>
+          <th class="py-3 px-4">نام استاد</th>
+          <th class="py-3 px-4 text-center">عملیات</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr class="border-t hover:bg-slate-50">
+          <td class="py-3 px-4">{{Auth::user()->name}} {{Auth::user()->family}}</td>
+          <td class="py-3 px-4">{{Auth::user()->code}}</td>
+          <td class="py-3 px-4">{{$userLesson->title}}</td>
+          <td class="py-3 px-4">{{$master->name}} {{$master->family}}</td>
+          <td class="py-3 px-4 text-center">
+
+            @if($userLesson->pivot->status == '0')
+              <span class="px-3 py-1 rounded-md border border-blue-600 text-blue-600">
+                در انتظار تایید
+              </span>
+            @else
+              <a href="{{ route('lesson_show', [$userLesson->id]) }}"
+                 class="px-3 py-1 rounded-md border border-blue-600 text-blue-600 hover:bg-blue-50">
+                مشاهده درس
+              </a>
+            @endif
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ================= MOBILE CARD ================= -->
+  <div class="md:hidden space-y-3">
+
+    <div class="border rounded-xl p-4 text-sm space-y-2">
+      <div><span class="text-slate-500">نام دانشجو:</span> {{Auth::user()->name}} {{Auth::user()->family}}</div>
+      <div><span class="text-slate-500">شماره دانشجویی:</span> {{Auth::user()->code}}</div>
+      <div><span class="text-slate-500">نام درس:</span> {{$userLesson->title}}</div>
+      <div><span class="text-slate-500">نام استاد:</span> {{$master->name}} {{$master->family}}</div>
+
+      <div class="pt-2">
+        @if($userLesson->pivot->status == '0')
+          <span class="inline-block px-3 py-1 rounded-md border border-blue-600 text-blue-600">
+            در انتظار تایید
+          </span>
+        @else
+          <a href="{{ route('lesson_show', [$userLesson->id]) }}"
+             class="inline-block px-3 py-1 rounded-md border border-blue-600 text-blue-600">
+            مشاهده درس
+          </a>
+        @endif
       </div>
-  
-  </body>
-  </html>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
+
   <script>
         // جستجو در جدول
         const searchInput = document.querySelector('input[type="text"]');
