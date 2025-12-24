@@ -80,7 +80,7 @@
                     {{$practice->title}}: {{$practice->description}}
                 </h3>
                 <p class="text-gray-600 text-sm">
-                    مهلت تحویل: ۱۴۰۴/۱۰/۲۰
+                    مهلت تحویل: {{$practice->deadLine}}
                 </p>
             </div>
 

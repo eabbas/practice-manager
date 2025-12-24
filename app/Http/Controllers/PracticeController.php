@@ -19,8 +19,9 @@ class PracticeController extends Controller
     }
 
      public function store(Request $request){
-        // dd($request->all());
-        practice::create($request->all());
+        //dd($request->all());
+        practice::insertGetId(["lesson_id"=>$request->lesson_id , "title"=>$request->title , "deadLine"=>$request->deadLine , "description"=>$request->description]);
+        // practice::create($request->all());
         // $type = request()->practiceMedia->getClientOriginalExtentsion();
         // $name = request()->practiceMedia->getClientOriginalName();
         // $fullName = Str::uuid()."_".$name;

@@ -94,6 +94,19 @@
                         </div>
                     @endif
                 </div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center border-b pb-2 mt-1">
+                    <i class="fas fa-align-left ml-2 text-[#023e83]"></i>
+                     مهلت ارسال تمرین
+                </h3>
+                <div class="w-full h-[80px] bg-gray-50 rounded-xl p-6 border border-gray-200 mt-2">
+                        <div class="prose max-w-none text-gray-700 leading-7">
+                            {{$practice->deadLine}}
+                        </div>
+                        <div class="text-center py-8 text-gray-500">
+                            {{-- <i class="fas fa-file-alt text-4xl mb-3 opacity-50"></i> --}}
+                            {{-- <p>توضیحاتی برای این تمرین ثبت نشده است</p> --}}
+                        </div>
+                </div>
             </div>
 
             <!-- اطلاعات تکمیلی -->
