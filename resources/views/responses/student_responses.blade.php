@@ -114,7 +114,7 @@
                 @endforeach
             </div>
 
-            <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+            <div class="w-[800px] bg-white rounded-2xl p-6 border border-gray-200 shadow-sm mr-3 mb-4">
                 <h3 class="text-xl font-semibold text-[#023e83] mb-4 flex items-center">
                     <i class="fas fa-upload ml-2"></i>
                     ارسال پاسخ 

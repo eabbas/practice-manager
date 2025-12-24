@@ -69,7 +69,7 @@
                                 <input type="text" id="title" name="title" required 
                                        class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50"
                                        placeholder="عنوان درس را وارد کنید">
-                                <i class="fas fa-pen absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                <i class="fas fa-pen absolute right-4 mt-8 transform -translate-y-1/2 text-gray-400"></i>
                             </div>
                         </div>
                         <div>
@@ -82,7 +82,7 @@
                                 <input type="text" id="lesson_group" name="lesson_group" required 
                                        class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50"
                                        placeholder="گروه درس را وارد کنید">
-                                <i class="fas fa-pen absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                <i class="fas fa-pen absolute right-4 mt-8 transform -translate-y-1/2 text-gray-400"></i>
                             </div>
                         </div>
                     </div>
