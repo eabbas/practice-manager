@@ -45,6 +45,8 @@ Route::group([
 
 //lessons
 
+
+
 Route::get('/lesson/create', [LessonController::class , 'create'])->name("lesson_create");
 
 Route::post('/lesson/store', [LessonController::class , 'store']);
@@ -60,6 +62,8 @@ Route::post('/lesson/update' , [LessonController::class, 'update'])->name('lesso
 Route::get('/lesson/practice/{lesson}' ,[LessonController::class , 'practice_list'])->name('practice_list');
 
 Route::get('/lesson/delete/{id}' , [LessonController::class , 'delete'])->name('lesson_delete');
+
+
 
 // practices
 

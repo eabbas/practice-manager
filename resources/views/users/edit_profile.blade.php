@@ -48,7 +48,7 @@
         <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
             <form action="{{ route('user.update') }}" method="POST" class="p-8">
                 @csrf
-                <input type="hidden" name="master_id" value="{{Auth::user()->id}}">
+                <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                 <!-- اطلاعات اصلی درس -->
                 <div class="mb-8">
                     <h2 class="text-xl font-semibold text-gray-800 mb-6 flex items-center border-b pb-3">
