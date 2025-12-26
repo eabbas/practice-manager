@@ -60,44 +60,54 @@
         </div>
 
         <!-- آمار و اطلاعات -->
-        <div class="grid grid-cols-1 grid-row-4  md:grid-cols-4 gap-3 mb-8">
-            <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-[#023e83]">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-gray-500 text-sm">کل دروس</p>
-                        <p class="text-2xl font-bold text-gray-800 mt-1">{{ count($lessons) }}</p>
-                    </div>
-                    <div class="bg-blue-50 p-3 rounded-xl">
-                        <i class="fas fa-book text-[#023e83] text-xl"></i>
-                    </div>
-                </div>
+       <div class="grid grid-cols-1 md:grid-cols-4 gap-3 mb-5">
+
+    <!-- کارت 1 -->
+    <div class="bg-white rounded-2xl p-4 md:p-6 shadow-lg border-l-4 border-[#023e83]">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-gray-500 text-xs md:text-sm">کل دروس</p>
+                <p class="text-lg md:text-2xl font-bold text-gray-800 mt-1">
+                    {{ count($lessons) }}
+                </p>
             </div>
-            
-            <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-green-500">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-gray-500 text-sm">دروس فعال</p>
-                        <p class="text-2xl font-bold text-gray-800 mt-1">0</p>
-                    </div>
-                    <div class="bg-green-50 p-3 rounded-xl">
-                        <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                    </div>
-                </div>
+
+            <div class="bg-blue-50 p-2 md:p-3 rounded-xl">
+                <i class="fas fa-book text-[#023e83] text-lg md:text-xl"></i>
             </div>
-            
-            <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-orange-500">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-gray-500 text-sm">گروه‌های درسی</p>
-                        <p class="text-2xl font-bold text-gray-800 mt-1">1</p>
-                    </div>
-                    <div class="bg-orange-50 p-3 rounded-xl">
-                        <i class="fas fa-layer-group text-orange-500 text-xl"></i>
-                    </div>
-                </div>
-            </div>
-            
         </div>
+    </div>
+
+    <!-- کارت 2 -->
+    <div class="bg-white rounded-2xl p-4 md:p-6 shadow-lg border-l-4 border-green-500">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-gray-500 text-xs md:text-sm">دروس فعال</p>
+                <p class="text-lg md:text-2xl font-bold text-gray-800 mt-1">0</p>
+            </div>
+
+            <div class="bg-green-50 p-2 md:p-3 rounded-xl">
+                <i class="fas fa-check-circle text-green-500 text-lg md:text-xl"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- کارت 3 -->
+    <div class="bg-white rounded-2xl p-4 md:p-6 shadow-lg border-l-4 border-orange-500">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-gray-500 text-xs md:text-sm">گروه‌های درسی</p>
+                <p class="text-lg md:text-2xl font-bold text-gray-800 mt-1">1</p>
+            </div>
+
+            <div class="bg-orange-50 p-2 md:p-3 rounded-xl">
+                <i class="fas fa-layer-group text-orange-500 text-lg md:text-xl"></i>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 
         <!-- جدول دروس -->
         <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
@@ -121,90 +131,175 @@
 
             <!-- بدنه جدول -->
             <div class="overflow-x-auto">
-                <table class="w-full">
-                    <thead>
-                        <tr class="bg-gray-100 border-b border-gray-200">
-                            <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">عنوان درس</th>
-                            <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">استاد</th>
-                             {{-- @if(Auth::user()->roles[0]->title=="استاد") --}}
-                             <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">عملیات</th>
-                            {{-- @endif --}}
-                            {{-- @if(Auth::user()->roles[0]->title=="دانشجو") --}}
-                             {{-- <th class="px-6 py-4 text-right text-sm font-semibold text-gray-700">مشاهده تمرینات</th> --}}
-                            {{-- @endif --}}
-        </div>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-200">
-                         @foreach($lessons as $lesson)
-                         <?php //dd($lessons); ?>
-                        <tr class="table-row">
-                            <td class="px-6 py-4">
-                                <div class="flex items-center">
-                                    <div class="bg-blue-50 p-2 rounded-lg ml-3">
-                                        <i class="fas fa-calculator text-[#023e83]"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-medium text-gray-900">{{ $lesson->title }}</p>
-                                        <p class="text-sm text-gray-500 text-nowrap mt-1">{{ $lesson->description }}</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4">
-                                <div class="flex items-center">
-                                    <div class="w-5 h-5 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-medium ml-2">
-                                     
-                                    </div>
-                                    <span class="text-gray-700 text-nowrap">{{ Auth::user()->name }} {{Auth::user()->family}}</span>
-                                </div>
-                            </td>
-                           
-                            <td class="px-6 py-4 flex flex-row items-center gap-5 mt-3">
-    <div class="flex items-center space-x-3 space-x-reverse">
-        <!-- ویرایش -->
-        <a href="{{ route('lesson_edit', [$lesson]) }}" class="text-blue-600 hover:text-blue-800 transition duration-200" title="ویرایش">
-            <i class="fas fa-edit"></i>
-        </a>
-        <!-- مشاهده -->
-        <a href="{{ route('lesson_show', [$lesson]) }}" class="text-green-600 hover:text-green-800 transition duration-200" title="مشاهده">
-            <i class="fas fa-eye"></i>
-        </a>
-        <!-- حذف -->
-        <a href="{{ route('lesson_delete', [$lesson]) }}" class="text-red-600 hover:text-red-800 transition duration-200" title="حذف">
-            <i class="fas fa-trash"></i>
-        </a>
+
+    <table class="w-full">
+        <thead>
+        <tr class="bg-gray-100 border-b border-gray-200">
+
+            <!-- عنوان درس -->
+            <th class="px-2 py-2 sm:px-6 sm:py-4 text-right text-sm font-semibold text-gray-700">
+                عنوان درس
+            </th>
+
+            <!-- استاد — در موبایل مخفی -->
+            <th class="hidden sm:table-cell px-2 py-2 sm:px-6 sm:py-4 text-right text-sm font-semibold text-gray-700">
+                استاد
+            </th>
+
+             <th class="hidden md:table-cell px-4 py-4 text-right text-sm font-semibold text-gray-700">
+                    عملیات
+                </th>
+                
+            <th class="md:hidden px-5 py-3 text-right pr-1 text-sm font-semibold text-gray-700 ">
+                    بیشتر
+                </th>
+        </tr>
+        </thead>
+
+        <tbody class="divide-y divide-gray-200">
+
+        @foreach($lessons as $lesson)
+        <tr>
+
+            <!-- عنوان درس -->
+            <td class="px-2 py-2 sm:px-3 sm:py-4">
+                <div class="flex items-center">
+                    <div class="bg-blue-50 p-2 rounded-lg ml-3">
+                        <i class="fas fa-calculator text-[#023e83]"></i>
+                    </div>
+
+                    <div class="min-w-0">
+                        <p class="font-medium text-gray-900 truncate">
+                            {{ $lesson->title }}
+                        </p>
+
+                        <p class="text-xs sm:text-sm text-gray-500 mt-1 truncate">
+                            {{ $lesson->description }}
+                        </p>
+                    </div>
+                </div>
+            </td>
+
+            <!-- استاد — فقط دسکتاپ -->
+            <td class="hidden sm:table-cell px-2 py-2 sm:px-6 sm:py-2">
+                <span class="text-gray-700 text-nowrap">
+                    {{ Auth::user()->name }} {{ Auth::user()->family }}
+                </span>
+            </td>
+
+            <!-- عملیات -->
+            <td class="px-2 py-2 sm:px-6 sm:py-4">
+
+                <!-- دسکتاپ -->
+                <div class="hidden md:flex items-center gap-4">
+
+                    <a href="{{ route('lesson_edit', [$lesson]) }}" class="text-blue-600 hover:text-blue-800">
+                        <i class="fas fa-edit"></i>
+                    </a>
+
+                    <a href="{{ route('lesson_show', [$lesson]) }}" class="text-green-600 hover:text-green-800">
+                        <i class="fas fa-eye"></i>
+                    </a>
+
+                    <a href="{{ route('lesson_delete', [$lesson]) }}" class="text-red-600 hover:text-red-800">
+                        <i class="fas fa-trash"></i>
+                    </a>
+
+                    <a href="{{ route('practice_create', [$lesson->id]) }}"
+                       class="bg-[#023e83] hover:bg-[#022e6b] text-white text-nowrap px-4 py-2 rounded-xl shadow mr-10">
+                        ایجاد تمرین
+                    </a>
+
+                    <a href="{{ route('practice_list', [$lesson->id]) }}"
+                       class="bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-2 rounded-xl shadow">
+                        تمرینات
+                    </a>
+
+                    <button onclick="copyText({{ $lesson->id }})"
+                            class="bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-2 rounded-xl shadow flex items-center gap-2">
+                        <i class="fas fa-paper-plane"></i>
+                        ارسال
+                    </button>
+
+                    <a href="{{ url('/request/list/'.$lesson->id) }}"
+                       class="bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-2 rounded-xl shadow">
+                        درخواست‌ها
+                    </a>
+
+                </div>
+
+                <!-- موبایل — دکمه بیشتر -->
+                <div class="md:hidden relative inline-block">
+                    <button
+                        onclick="toggleMoreMenu({{ $lesson->id }})">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </button>
+
+                    <!-- منوی موبایل -->
+                    <div id="moreMenu-{{ $lesson->id }}"
+                            class="absolute left-0 top-10 w-44 bg-white border border-gray-200 rounded-2xl shadow-xl p-2 hidden z-50">
+
+                            <!-- عملیات (ویرایش / مشاهده / حذف) -->
+                            <div class="flex items-center justify-between px-2 py-2 mb-2 border-b">
+                                <a href="{{ route('lesson_edit', [$lesson]) }}" class="text-blue-600" title="ویرایش">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+
+                                <a href="{{ route('lesson_show', [$lesson]) }}" class="text-green-600" title="مشاهده">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+
+                                <a href="{{ route('lesson_delete', [$lesson]) }}" class="text-red-600" title="حذف">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+
+                            <a href="{{ route('practice_create', [$lesson->id]) }}"
+                            class="block px-3 py-2 rounded-lg hover:bg-slate-100">
+                                ایجاد تمرین
+                            </a>
+
+                            <a href="{{ route('practice_list', [$lesson->id]) }}"
+                            class="block px-3 py-2 rounded-lg hover:bg-slate-100">
+                                تمرینات
+                            </a>
+
+                            <button
+                                onclick="copyText({{ $lesson->id }})"
+                                class="w-full text-right px-3 py-2 rounded-lg hover:bg-slate-100 flex items-center gap-2">
+                                <i class="fas fa-paper-plane text-slate-600"></i>
+                                ارسال
+                            </button>
+
+                            <a href="{{ url('/request/list/'.$lesson->id) }}"
+                            class="block px-3 py-2 rounded-lg hover:bg-slate-100">
+                                درخواست‌ها
+                            </a>
+
+                        </div>
+
+                </div>
+            </td>
+        </tr>
+         @endforeach
+
+            </tbody>
+        </table>
     </div>
 
-                <!-- اضافه کردن دکمه ارسال تمرین همراه با آیکون -->
-                                    <div class="flex flex-row mr-10 gap-4 mb-[15px]">
-                                        <div>
-                                            {{-- @if(Auth::user()->roles[0]->title=="استاد") --}}
-                                            <a href="{{ route('practice_create', [$lesson->id]) }}" class="bg-[#023e83] hover:bg-[#022e6b] text-white text-nowrap px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center" title="ایجاد تمرین">
-                                                ایجاد تمرین
-                                            </a>
-                                            {{-- @endif --}}
-                                        </div>
-                                        <div>
-                                            <a href="{{ route('practice_list', [$lesson->id]) }}" class="bg-[#023e83] hover:bg-[#022e6b] text-white text-nowrap px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center" title="تمرینات">
-                                                تمرینات
-                                            </a>
-                                        </div>
-                                        <!-- دکمه ارسال تمرین همراه با آیکون -->
-                                        <div class="bg-[#023e83] hover:bg-[#022e6b] text-white text-nowrap px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center  pointer:coarse" title="ارسال درس" onclick="copyText({{$lesson->id}})">
-                                                <i class="fas fa-paper-plane ml-2"></i> ارسال 
-                                        </div>
-                                        <div>
-                                            <a href="{{url('/request/list/'.$lesson->id)}}" class="bg-[#023e83] hover:bg-[#022e6b] text-white text-nowrap px-4 py-3 rounded-xl transition duration-200 shadow-md font-medium flex items-center" title="مشاهده درخواست ها">
-                                                درخواست ها
-                                            </a>
-                                        </div>
-                                    </div>
-                                </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+            <script>
+            function toggleMoreMenu(id) {
+                document.querySelectorAll('[id^="moreMenu-"]').forEach(m => m.classList.add('hidden'));
+                document.getElementById('moreMenu-' + id).classList.toggle('hidden');
+            }
+
+            document.addEventListener("click", (e) => {
+                if (!e.target.closest('[id^="moreMenu-"]') && !e.target.closest("button")) {
+                    document.querySelectorAll('[id^="moreMenu-"]').forEach(m => m.classList.add('hidden'));
+                }
+            });
+            </script>
+
 
             <!-- فوتر جدول -->
             <div class="px-6 py-4 border-t border-gray-200 bg-gray-50">
