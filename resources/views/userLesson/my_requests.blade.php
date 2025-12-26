@@ -70,13 +70,13 @@
         placeholder="جستجو..."
         class="w-full sm:w-56 px-3 py-2 border rounded-lg text-sm"
       >
-      <button class="px-4 py-2 bg-slate-200 rounded-lg text-sm">
+      {{-- <button type="reset" class="px-4 py-2 bg-slate-200 rounded-lg text-sm">
         پاک‌سازی
-      </button>
+      </button> --}}
     </div>
   </div>
 
-  <!-- ================= DESKTOP TABLE ================= -->
+  <!--دسکتاپ-->
   <div class="hidden md:block overflow-x-auto border rounded-lg">
     <table class="w-full text-right text-sm">
       <thead class="bg-slate-50 text-slate-600">
@@ -114,7 +114,7 @@
     </table>
   </div>
 
-  <!-- ================= MOBILE CARD ================= -->
+  <!--موبایل -->
   <div class="md:hidden space-y-3">
 
     <div class="border rounded-xl p-4 text-sm space-y-2">

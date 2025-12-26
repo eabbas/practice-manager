@@ -73,7 +73,7 @@
         p-4
         sm:p-6
         mx-auto
-        mt-40
+        mt-30
       "
     >
 

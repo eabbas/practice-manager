@@ -9,6 +9,7 @@ use App\Models\user_role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Morilog\Jalali\Jalalian;
 
 class userController extends Controller
 {
