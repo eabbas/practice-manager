@@ -60,44 +60,54 @@
         </div>
 
         <!-- آمار و اطلاعات -->
-        <div class="grid grid-cols-1 grid-row-4  md:grid-cols-4 gap-3 mb-8">
-            <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-[#023e83]">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-gray-500 text-sm">کل دروس</p>
-                        <p class="text-2xl font-bold text-gray-800 mt-1">{{ count($lessons) }}</p>
-                    </div>
-                    <div class="bg-blue-50 p-3 rounded-xl">
-                        <i class="fas fa-book text-[#023e83] text-xl"></i>
-                    </div>
-                </div>
+       <div class="grid grid-cols-1 md:grid-cols-4 gap-3 mb-5">
+
+    <!-- کارت 1 -->
+    <div class="bg-white rounded-2xl p-4 md:p-6 shadow-lg border-l-4 border-[#023e83]">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-gray-500 text-xs md:text-sm">کل دروس</p>
+                <p class="text-lg md:text-2xl font-bold text-gray-800 mt-1">
+                    {{ count($lessons) }}
+                </p>
             </div>
-            
-            <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-green-500">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-gray-500 text-sm">دروس فعال</p>
-                        <p class="text-2xl font-bold text-gray-800 mt-1">0</p>
-                    </div>
-                    <div class="bg-green-50 p-3 rounded-xl">
-                        <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                    </div>
-                </div>
+
+            <div class="bg-blue-50 p-2 md:p-3 rounded-xl">
+                <i class="fas fa-book text-[#023e83] text-lg md:text-xl"></i>
             </div>
-            
-            <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-orange-500">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-gray-500 text-sm">گروه‌های درسی</p>
-                        <p class="text-2xl font-bold text-gray-800 mt-1">1</p>
-                    </div>
-                    <div class="bg-orange-50 p-3 rounded-xl">
-                        <i class="fas fa-layer-group text-orange-500 text-xl"></i>
-                    </div>
-                </div>
-            </div>
-            
         </div>
+    </div>
+
+    <!-- کارت 2 -->
+    <div class="bg-white rounded-2xl p-4 md:p-6 shadow-lg border-l-4 border-green-500">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-gray-500 text-xs md:text-sm">دروس فعال</p>
+                <p class="text-lg md:text-2xl font-bold text-gray-800 mt-1">0</p>
+            </div>
+
+            <div class="bg-green-50 p-2 md:p-3 rounded-xl">
+                <i class="fas fa-check-circle text-green-500 text-lg md:text-xl"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- کارت 3 -->
+    <div class="bg-white rounded-2xl p-4 md:p-6 shadow-lg border-l-4 border-orange-500">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-gray-500 text-xs md:text-sm">گروه‌های درسی</p>
+                <p class="text-lg md:text-2xl font-bold text-gray-800 mt-1">1</p>
+            </div>
+
+            <div class="bg-orange-50 p-2 md:p-3 rounded-xl">
+                <i class="fas fa-layer-group text-orange-500 text-lg md:text-xl"></i>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 
         <!-- جدول دروس -->
         <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
@@ -136,9 +146,13 @@
                 استاد
             </th>
 
-            <th class="px-2 py-2 sm:px-6 sm:py-4 text-right text-sm font-semibold text-gray-700">
-                عملیات
-            </th>
+             <th class="hidden md:table-cell px-4 py-4 text-right text-sm font-semibold text-gray-700">
+                    عملیات
+                </th>
+                
+            <th class="md:hidden px-5 py-3 text-right pr-1 text-sm font-semibold text-gray-700 ">
+                    بیشتر
+                </th>
         </tr>
         </thead>
 
@@ -217,10 +231,8 @@
                 <!-- موبایل — دکمه بیشتر -->
                 <div class="md:hidden relative inline-block">
                     <button
-                        onclick="toggleMoreMenu({{ $lesson->id }})"
-                        class="bg-[#023e83] hover:bg-[#022e6b] text-white px-3 py-2 rounded-xl flex items-center gap-2">
+                        onclick="toggleMoreMenu({{ $lesson->id }})">
                         <i class="fas fa-ellipsis-h"></i>
-                        بیشتر
                     </button>
 
                     <!-- منوی موبایل -->
@@ -271,7 +283,7 @@
         </tr>
          @endforeach
 
-         </tbody>
+            </tbody>
         </table>
     </div>
 

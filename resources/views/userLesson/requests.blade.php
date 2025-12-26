@@ -51,49 +51,69 @@
 
 <body class="bg-slate-100 p-4 sm:p-6">
 
-<div class="max-w-5xl mx-auto bg-white rounded-xl shadow p-4 sm:p-6">
 
+<form action="{{route('user_select')}} "method="post" class="max-w-5xl mx-auto bg-white rounded-xl shadow p-4 sm:p-6">
     <!-- عنوان -->
-    <h1 class="text-lg sm:text-xl font-bold text-slate-800 mb-4 flex flex-wrap gap-2">
-        <i class="fas fa-list text-[#023e83]"></i>
-        <span>
+    @csrf
+    
+    <h1 class="text-lg sm:text-xl font-bold text-slate-800 mb-4 flex flex-wrap justify-between gap-2">   
+        <span> 
             لیست درخواست‌های دانشجویی درس
-            <span class="text-black-600">{{$lessonUsers->title}}</span>
+        <span class="text-black-600">{{$lessonUsers->title}}</span>
         </span>
+        <div class="flex flex-row justify-end">
+            <span class="text-slate-600 text-sm">
+                تعداد درخواست‌ها : {{count($lessonUsers->users)}}
+            </span>
+        </div>
     </h1>
 
     <!-- جستجو -->
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
-        <span class="text-slate-600 text-sm">
-            تعداد درخواست‌ها : {{count($lessonUsers->users)}}
-        </span>
-
+        <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+            <select name="select" class="px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none">
+                    <option value="accept">تایید درخواست </option>
+                    <option value="remove">حذف درخواست </option>
+            </select>
+            <button type="submit" class="px-4 py-2 bg-slate-200 rounded-lg text-slate-700">
+                اجرا
+            </button>
+        </div>
         <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
             <input type="text"
                    placeholder="جستجو..."
                    class="w-full sm:w-auto px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none">
 
-            <button class="px-4 py-2 bg-slate-200 rounded-lg text-slate-700">
+            <button type="reset" class="px-4 py-2 bg-slate-200 rounded-lg text-slate-700">
                 پاک‌سازی
             </button>
         </div>
     </div>
-
+        <span class="flex flex-row-1 gap-2 mb-2">
+            <input type="checkbox" id="checkAll" onchange="selectAll(this)"><label for="check">انتخاب همه</label>
+        </span>
     <!-- جدول -->
     <div class="overflow-x-auto border border-slate-200 rounded-lg">
         <table class="w-full min-w-[640px] text-right">
             <thead class="bg-slate-50 text-slate-600 text-sm">
                 <tr>
+                    <th></th>
                     <th class="py-3 px-4">نام دانشجو</th>
                     <th class="py-3 px-4">شماره دانشجویی</th>
                     <th class="py-3 px-4 text-center">تایید درخواست</th>
                     <th class="py-3 px-4 text-center">حذف درخواست</th>
                 </tr>
             </thead>
-
             <tbody class="text-sm">
                 @foreach($lessonUsers->users as $user)
                 <tr class="hover:bg-slate-50 transition">
+                    <td>
+                        <div class="py-1 px-2 whitespace-nowrap flex items-center justify-center h-full">
+                            <input type="checkbox" class="user" name="users[]" value="{{$user->id}}">
+                            <input type="hidden"   name="lesson_id" value="{{$lessonUsers->id}}">
+
+                        </div>
+                    </td>
                     <td class="py-3 px-4 whitespace-nowrap">
                         {{$user->name}} {{$user->family}}
                     </td>
@@ -137,7 +157,7 @@
         </p>
     @endif
 
-</div>
+</form>
 
 </body>
 </html>
@@ -159,4 +179,5 @@
             });
         });
         </script>
+        <script src="{{asset('assets/js/checkAll.js')}}"></script>
 @endsection
