@@ -80,7 +80,7 @@
                     {{$practice->title}}: {{$practice->description}}
                 </h3>
                 <p class="text-gray-600 text-sm">
-                    مهلت تحویل: {{$practice->deadLine}}
+                    مهلت تحویل: {{jdate($practice->deadLine)->format("Y/m/d")}}
                 </p>
             </div>
 
