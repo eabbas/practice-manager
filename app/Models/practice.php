@@ -17,8 +17,8 @@ class practice extends Model
         return  $this->belongsTo(lesson::class , "lesson_id");
     }
     
-    public function medias(){
-        return $this->hasMany(media::class)->chaperone();
+    public function practiceMedia(){
+        return $this->hasMany(practiceMedia::class);
     }
 
     public function responses(){

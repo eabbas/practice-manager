@@ -27,11 +27,6 @@
         transform translate-x-full lg:translate-x-0
         transition-transform duration-500">
         
-            {{-- <div class="lg:hidden flex items-center gap-2">
-                    <img src="{{ asset('assets/img/profile2.png') }}" alt="profile_logo" class="w-10 h-10 mt-2 mr-1">
-                    <span class="font-semibold text-white
-                           text-sm sm:text-base lg:text-lg mt-2">سامانه تمرین و ارزیابی آنلاین</span>
-                </div> --}}
         @if(Auth::user()->roles[0]->title=="استاد")
             <h3 class="text-xl font-bold text-white text-center py-3 mt-5">داشبورد استاد</h3>
         @elseif(Auth::user()->roles[0]->title=="دانشجو")
@@ -41,24 +36,53 @@
         <hr class="text-[darkslategray] mt-2.5">
 
         <div class="py-5 h-[80%] overflow-y-auto" style="scrollbar-width:none;">
-            <ul class="flex flex-col gap-6 mt-2.5 mb-2.5 pr-3 text-white">
-                <li class="flex items-center gap-2.5 mr-5"><span class="size-1 bg-white"></span>
-                    <a href="{{ route('lesson_create') }}">تعریف درس جدید</a></li>
 
-                <li class="flex items-center gap-2.5 mr-5"><span class="size-1 bg-white"></span>
-                    <a href="{{ route('lesson_list') }}">دروس ارائه شده</a></li>
+    <!-- عنوان: استاد -->
+    <button
+        class="w-full text-right pr-3 text-sm text-slate-300 mb-2 flex items-center justify-between"
+        onclick="toggleMenu('teacherMenu')">
+        بخش استاد
+        <span>▼</span>
+    </button>
 
-                <li class="flex items-center gap-2.5 mr-5"><span class="size-1 bg-white"></span>
-                    <a href="{{ route('student_class') }}">دروس اخذ شده</a></li>
+    <ul id="teacherMenu" class="hidden flex flex-col gap-6 mb-6 pr-3 text-white">
+        <li class="flex items-center gap-2.5 mr-5">
+            <span class="size-1 bg-white"></span>
+            <a href="{{ route('lesson_create') }}">ارائه درس جدید</a>
+        </li>
 
-                <li class="flex items-center gap-2.5 mr-5"><span class="size-1 bg-white"></span>
-                    <a href="{{ route('practices_list') }}">دسترسی به تمرینات</a></li>
+        <li class="flex items-center gap-2.5 mr-5">
+            <span class="size-1 bg-white"></span>
+            <a href="{{ route('lesson_list') }}">دروس ارائه شده</a>
+        </li>
 
-                <li class="flex items-center gap-2.5 mr-5"><span class="size-1 bg-white"></span>
-                    <a href="{{ route('my_requests') }}">درخواست‌های ثبت شده</a></li>
-            </ul>
-        </div>
+        <li class="flex items-center gap-2.5 mr-5">
+            <span class="size-1 bg-white"></span>
+            <a href="{{ route('practices_list') }}">دسترسی به تمرینات</a>
+        </li>
+    </ul>
 
+    <!-- عنوان: دانشجو -->
+    <button
+        class="w-full text-right pr-3 text-sm text-slate-300 mb-2 flex items-center justify-between"
+        onclick="toggleMenu('studentMenu')">
+        بخش دانشجو
+        <span>▼</span>
+    </button>
+
+    <ul id="studentMenu" class="hidden flex flex-col gap-6 pr-3 text-white">
+        <li class="flex items-center gap-2.5 mr-5">
+            <span class="size-1 bg-white"></span>
+            <a href="{{ route('student_class') }}">دروس اخذ شده</a>
+        </li>
+
+        <li class="flex items-center gap-2.5 mr-5">
+            <span class="size-1 bg-white"></span>
+            <a href="{{ route('my_requests') }}">درخواست‌های ثبت شده</a>
+        </li>
+    </ul>
+
+</div>
         <div class="sm:hidden absolute bottom-4 right-0 w-full px-5">
             <a href="{{ route('user.logout') }}"
                class="flex items-center justify-center gap-2
@@ -235,6 +259,11 @@
         document.getElementById('overlay').classList.toggle('hidden');
     }
 </script>
-
+<script>
+    function toggleMenu(id) {
+        const menu = document.getElementById(id);
+        menu.classList.toggle('hidden');
+    }
+</script>
 </body>
 </html>
