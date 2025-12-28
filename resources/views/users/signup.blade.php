@@ -48,7 +48,6 @@
 <!-- پس‌زمینه -->
 <div class="fixed inset-0 -z-10">
   <img src="{{ asset('assets/img/bg1.jpg') }}"
-       alt="دانشگاه بناب"
        class="w-full h-full object-cover brightness-75">
 </div>
 
@@ -63,9 +62,9 @@
 
     <!-- هدر -->
     <div class="text-center mb-5 sm:mb-8">
-      <img src="https://www.ubonab.ac.ir/theme/1/responsive/images/logo-head+final3.png"
+      {{-- <img src="https://www.ubonab.ac.ir/theme/1/responsive/images/logo-head+final3.png"
            alt="لوگو"
-           class="w-24 mx-auto mb-4">
+           class="w-24 mx-auto mb-4"> --}}
       <h2 class="text-2xl md:text-3xl font-bold text-white">ثبت نام</h2>
       <p class="text-white/70 text-sm mt-2">لطفاً اطلاعات خود را وارد کنید</p>
     </div>
@@ -145,13 +144,13 @@
 </div>
 
 <!-- فوتر -->
-<div class="
+{{-- <div class="
   hidden md:block fixed bottom-5 left-1/2 -translate-x-1/2
   text-white/60 text-xs md:text-sm
   whitespace-nowrap
   pointer-events-none">
   © ۱۴۰۴ دانشگاه بناب - تمامی حقوق محفوظ است
-</div>
+</div> --}}
 
 
 </body>
