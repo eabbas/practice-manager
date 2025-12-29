@@ -56,8 +56,6 @@ class UserLessonController extends Controller
     //dd($lesson);
     $lesson->load("users");
 
-
-
     return view("userLesson.requests", ['lessonUsers' => $lesson]);
   }
 

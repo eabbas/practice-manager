@@ -22,7 +22,7 @@ class PracticeController extends Controller
     }
 
      public function store(Request $request){
-        $practiceId = practice::insertGetId(["lesson_id"=>$request->lesson_id , "title"=>$request->title , "deadLine"=>$request->deadLine , "description"=>$request->description]);
+        $practiceId = practice::insertGetId(["lesson_id"=>$request->lesson_id , "title"=>$request->title , "deadLine"=>$request->deadLine , "description"=>$request->description , "active"=>0]);
         if($request->file('file')){
             $files = $request->file('file');
             foreach($files as $file){
