@@ -66,7 +66,7 @@
     <div class="bg-white rounded-2xl p-4 md:p-6 shadow-lg border-l-4 border-[#023e83]">
         <div class="flex items-center justify-between">
             <div>
-                <p class="text-gray-500 text-xs md:text-sm">کل دروس</p>
+                <p class="text-gray-500 text-xs md:text-sm">کل تمارین</p>
                 <p class="text-lg md:text-2xl font-bold text-gray-800 mt-1">
                     {{ count($lessons) }}
                 </p>
@@ -82,7 +82,7 @@
     <div class="bg-white rounded-2xl p-4 md:p-6 shadow-lg border-l-4 border-green-500">
         <div class="flex items-center justify-between">
             <div>
-                <p class="text-gray-500 text-xs md:text-sm">دروس فعال</p>
+                <p class="text-gray-500 text-xs md:text-sm">تمارین فعال</p>
                 <p class="text-lg md:text-2xl font-bold text-gray-800 mt-1">0</p>
             </div>
 
@@ -156,7 +156,8 @@
         </tr>
         </thead>
 
-        <tbody class="divide-y divide-gray-200">
+        <tbody id="practiceTable" class="divide-y divide-gray-200">
+
 
         @foreach($lessons as $lesson)
         <tr>
@@ -220,6 +221,7 @@
                         <i class="fas fa-paper-plane"></i>
                         ارسال
                     </button>
+                    
 
                     <a href="{{ url('/request/list/'.$lesson->id) }}"
                        class="bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-2 rounded-xl shadow">
@@ -308,15 +310,25 @@
                         نمایش ۱ تا ۴ از ۲۴ مورد
                     </div>
                     <div class="flex items-center space-x-2 space-x-reverse">
-                        <button class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100 transition duration-200">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                        <button class="px-3 py-1 bg-[#023e83] text-white rounded-lg">1</button>
-                        <button class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100 transition duration-200">2</button>
-                        <button class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100 transition duration-200">3</button>
-                        <button class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100 transition duration-200">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
+                     <button data-page="prev"
+        class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100">
+    <i class="fas fa-chevron-right"></i>
+</button>
+
+<button data-page="1"
+        class="px-3 py-1 bg-[#023e83] text-white rounded-lg">1</button>
+
+<button data-page="2"
+        class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100">2</button>
+
+<button data-page="3"
+        class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100">3</button>
+
+<button data-page="next"
+        class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100">
+    <i class="fas fa-chevron-left"></i>
+</button>
+
                     </div>
                 </div>
             </div>
@@ -336,20 +348,82 @@
     @endisset
     <script>
         // جستجو در جدول
-        const searchInput = document.querySelector('input[type="text"]');
-        searchInput.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
-            const rows = document.querySelectorAll('tbody tr');
-            
-            rows.forEach(row => {
-                const text = row.textContent.toLowerCase();
-                if (text.includes(searchTerm)) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
+        
+document.addEventListener("DOMContentLoaded", function () {
+
+    const rowsPerPage = 5; // 👈 هر صفحه ۵ درس
+    const tbody = document.getElementById("practiceTable");
+    const allRows = Array.from(tbody.querySelectorAll("tr"));
+
+    const pageInfo = document.querySelector(".text-sm.text-gray-600");
+    const buttons = document.querySelectorAll("[data-page]");
+    const searchInput = document.querySelector('input[type="text"]');
+
+    let filteredRows = [...allRows];
+    let currentPage = 1;
+
+    function renderPage(page) {
+        currentPage = page;
+
+        // همه ردیف‌ها مخفی
+        allRows.forEach(row => row.style.display = "none");
+
+        const start = (currentPage - 1) * rowsPerPage;
+        const end = start + rowsPerPage;
+
+        // فقط ردیف‌های این صفحه
+        filteredRows.slice(start, end).forEach(row => {
+            row.style.display = "";
         });
+
+        const from = filteredRows.length ? start + 1 : 0;
+        const to = Math.min(end, filteredRows.length);
+
+        pageInfo.innerText =
+            `نمایش ${from} تا ${to} از ${filteredRows.length} مورد`;
+
+        // فعال‌سازی دکمه صفحه
+        buttons.forEach(btn => {
+            if (btn.dataset.page == currentPage) {
+                btn.classList.add("bg-[#023e83]", "text-white");
+                btn.classList.remove("border");
+            } else if (!isNaN(btn.dataset.page)) {
+                btn.classList.remove("bg-[#023e83]", "text-white");
+                btn.classList.add("border");
+            }
+        });
+    }
+
+    // کلیک روی دکمه‌ها
+    buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            if (btn.dataset.page === "prev") {
+                renderPage(Math.max(1, currentPage - 1));
+            } else if (btn.dataset.page === "next") {
+                renderPage(currentPage + 1); // حتی اگر خالی باشد
+            } else {
+                renderPage(parseInt(btn.dataset.page));
+            }
+        });
+    });
+
+    // جستجو
+    searchInput.addEventListener("input", function () {
+        const value = this.value.toLowerCase();
+
+        filteredRows = allRows.filter(row =>
+            row.innerText.toLowerCase().includes(value)
+        );
+
+        currentPage = 1;
+        renderPage(currentPage);
+    });
+
+    // شروع
+    renderPage(1);
+});
+
+
 
         // فیلتر بر اساس گروه درسی
         const groupFilter = document.querySelector('select');
