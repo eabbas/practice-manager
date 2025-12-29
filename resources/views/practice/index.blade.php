@@ -124,7 +124,7 @@
                     مشاهده پاسخ ها
                 </th>
 
-                <th class="hidden md:table-cell px-4 py-4 text-right text-sm font-semibold text-gray-700">
+                <th class="hidden md:table-cell px-10 py-4 text-right text-sm font-semibold text-gray-700">
                     عملیات
                 </th>
 
@@ -181,15 +181,15 @@
 
                     <td class="hidden md:table-cell px-6 py-4">
                         <div class="flex items-center space-x-3 space-x-reverse">
-                            <a href="{{ route('practice_edit', [$practice]) }}" class="text-blue-600">
+                            <a href="{{ route('practice_edit', [$practice]) }}" class="text-blue-600" title="ویرایش تمرین">
                                 <i class="fas fa-edit"></i>
                             </a>
 
-                            <a href="{{ route('practice_show', [$practice]) }}" class="text-green-600">
+                            <a href="{{ route('practice_show', [$practice]) }}" class="text-green-600" title="نمایش تمرین">
                                 <i class="fas fa-eye"></i>
                             </a>
 
-                            <a href="{{ route('practice_delete', [$practice]) }}" class="text-red-600">
+                            <a href="{{ route('practice_delete', [$practice]) }}" class="text-red-600" title="حذف تمرین">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </div>

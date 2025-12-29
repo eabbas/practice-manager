@@ -133,7 +133,7 @@
             <div class="overflow-x-auto">
 
     <table class="w-full">
-        <thead>
+        <thead >
         <tr class="bg-gray-100 border-b border-gray-200">
 
             <!-- عنوان درس -->
@@ -145,8 +145,10 @@
             <th class="hidden sm:table-cell px-2 py-2 sm:px-6 sm:py-4 text-right text-sm font-semibold text-gray-700">
                 استاد
             </th>
-
-             <th class="hidden md:table-cell px-4 py-4 text-right text-sm font-semibold text-gray-700">
+             <th class="hidden md:table-cell px-8 py-4 text-right text-sm font-semibold text-gray-700">
+                  دانشجویان
+             </th>
+             <th class="hidden md:table-cell px-12 py-4 text-right text-sm font-semibold text-gray-700">
                     عملیات
                 </th>
                 
@@ -187,25 +189,32 @@
                     {{ Auth::user()->name }} {{ Auth::user()->family }}
                 </span>
             </td>
-
+             <td class="hidden sm:table-cell px-2 py-2 sm:px-6 sm:py-2">تعداد دانشجویان</td>
             <!-- عملیات -->
-            <td class="px-2 py-2 sm:px-6 sm:py-4">
+            <td class="px-2 py-2 sm:px-6 sm:py-4" >
 
                 <!-- دسکتاپ -->
                 <div class="hidden md:flex items-center gap-4">
 
-                    <a href="{{ route('lesson_edit', [$lesson]) }}" class="text-blue-600 hover:text-blue-800">
+                    <a href="{{ route('lesson_edit', [$lesson]) }}" class="text-blue-600 hover:text-blue-800" title="ویرایش درس">
                         <i class="fas fa-edit"></i>
                     </a>
 
-                    <a href="{{ route('lesson_show', [$lesson]) }}" class="text-green-600 hover:text-green-800">
+                    <a href="{{ route('lesson_show', [$lesson]) }}" class="text-green-600 hover:text-green-800" title="نمایش درس">
                         <i class="fas fa-eye"></i>
                     </a>
 
-                    <a href="{{ route('lesson_delete', [$lesson]) }}" class="text-red-600 hover:text-red-800">
+                    <a href="{{ route('lesson_delete', [$lesson]) }}" class="text-red-600 hover:text-red-800" title="حذف درس">
                         <i class="fas fa-trash"></i>
                     </a>
-
+                    
+                         <div onclick="copyText({{ $lesson->id }})" title="لینک درس"  >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="w-[22px] text-blue-800 ml-1 cursor-pointer" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+                        </svg>
+                     </div>
+                    
+                    
                     <a href="{{ route('practice_create', [$lesson->id]) }}"
                        class="bg-[#023e83] hover:bg-[#022e6b] text-white text-nowrap px-4 py-2 rounded-xl shadow mr-10">
                         ایجاد تمرین
@@ -216,11 +225,6 @@
                         تمرینات
                     </a>
 
-                    <button onclick="copyText({{ $lesson->id }})"
-                            class="bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-2 rounded-xl shadow flex items-center gap-2">
-                        <i class="fas fa-paper-plane"></i>
-                        ارسال
-                    </button>
                     
 
                     <a href="{{ url('/request/list/'.$lesson->id) }}"
@@ -229,7 +233,7 @@
                     </a>
 
                 </div>
-
+                  
                 <!-- موبایل — دکمه بیشتر -->
                 <div class="md:hidden relative inline-block">
                     <button
@@ -337,14 +341,14 @@
 
   
     @isset($lesson)
-    <script>
+    <script >
         function copyText(lessonId){
             let url = "{{url('/send/lesson/')}}" + "{{'/'}}" + lessonId
              navigator.clipboard.writeText(url)
         alert("لینک درس کپی شد")
         }
     </script>
-    <?php //dd($lesson) ?>
+    
     @endisset
     <script>
         // جستجو در جدول
