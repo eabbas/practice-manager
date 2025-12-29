@@ -32,7 +32,17 @@
                 <textarea name="description" rows="4" 
                           class="w-full p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#023e83] focus:border-[#023e83] transition duration-200">{{ $practice->description }}</textarea>
             </div>
-
+             <div class="flex flex-row gap-3">
+                <label class="block text-gray-700 font-semibold">وضعیت تمرین:</label>
+                <div class="flex flex-row gap-1">
+                    <input type="radio" value={{ 0 }} @if($practice->active==0)checked @endif name="active">
+                    <span>فعال</span>
+                </div>
+                <div class="flex flex-row gap-1">
+                    <input type="radio" value={{ 1 }} @if($practice->active==1)checked @endif name="active">
+                    <span>غیر فعال</span>
+                </div>
+            </div>
             <!-- دکمه‌ها -->
             <div class="flex justify-center mt-6">
                 <button type="submit" 

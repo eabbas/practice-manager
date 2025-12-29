@@ -75,7 +75,7 @@
         <div class="flex items-center justify-between">
             <div>
                 <p class="text-gray-500 text-xs md:text-sm">تمارین فعال</p>
-                <p class="font-bold text-lg md:text-2xl text-gray-800 mt-1">0</p>
+                <p class="font-bold text-lg md:text-2xl text-gray-800 mt-1">{{$count}}</p>
             </div>
 
             <div class="bg-green-50 p-2 md:p-3 rounded-xl">
@@ -93,11 +93,19 @@
     <!-- هدر -->
     <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
-            <h2 class="text-lg font-semibold text-gray-800 flex items-center">
-                <i class="fas fa-list ml-2 text-[#023e83]"></i>
-                تمام تمارین
-            </h2>
-
+            <div class="flex flex-col gap-3"> 
+                <h2 class="text-lg font-semibold text-gray-800 flex items-center">
+                    <i class="fas fa-list ml-2 text-[#023e83]"></i>
+                    تمام تمارین
+                </h2>
+                <form action="{{route('delete_all')}}" method="POST">
+                    @csrf
+                    <span class="flex flex-row-1 gap-2">
+                    <input type="checkbox" id="checkAll" onchange="selectAll(this)"><label class="mt-1" for="check">انتخاب همه</label>
+                    <button type="submit" class="px-2 py-1 bg-slate-200 rounded-lg text-slate-700">
+                    حذف
+                    </button>
+            </div>
             <div class="flex items-center space-x-4 space-x-reverse mt-3 md:mt-0 ml-10">
                 <div class="relative">
                     <input type="text" placeholder="جستجو در تمارین..."
@@ -115,7 +123,11 @@
         <table class="w-full">
             <thead>
             <tr class="bg-gray-100 border-b border-gray-200">
+                <th></th>
                 <th class="px-4 md:px-6 py-3 text-right text-sm font-semibold text-gray-700">عنوان تمرین</th>
+                 <th class="px-2 py-2 sm:px-6 sm:py-4 text-right text-sm font-semibold text-gray-700">
+                 وضعیت تمرین 
+                 </th>
                 <th class="px-4 md:px-6 py-3 text-right text-sm font-semibold text-gray-700 text-nowrap">عنوان درس</th>
 
                 <th class="hidden md:table-cell px-6 py-4 text-right text-sm font-semibold text-gray-700">استاد</th>
@@ -140,7 +152,11 @@
             @foreach($practiceWithLessons as $practice)
 
                 <tr>
-
+                    <td>
+                        <div class="py-1 px-2 whitespace-nowrap flex items-center justify-center h-full">
+                            <input type="checkbox" class="user" name="practices[]" value="{{$practice->id}}">
+                        </div>
+                    </td>
                     <td class="px-4 md:px-6 py-3">
                         <div class="flex items-center">
                             <div class="bg-blue-50 p-2 rounded-lg ml-3">
@@ -158,7 +174,22 @@
                             </div>
                         </div>
                     </td>
-
+                    <td class="px-4 md:px-6 py-3">
+                    <div class="flex items-center">
+                     @if ($practice->active == 0)
+                     <div class="w-3 h-3 bg-green-500 rounded-full ml-2"></div>
+                        <p class="text-sm text-gray-500 mt-1">
+                          فعال
+                        </p>
+                    </div>     
+                    @elseif($practice->active == 1)
+                    <div class="w-3 h-3 bg-red-500 rounded-full ml-2"></div>
+                        <p class="text-sm text-gray-500 mt-1">
+                          غیر فعال
+                        </p>
+                    </div> 
+                    @endif   
+                   </td>
                     <td class="px-4 md:px-6 py-3">
                         <div class="flex items-center">
                             <div class="w-4 h-4 bg-purple-500 rounded-full ml-2"></div>
@@ -167,7 +198,6 @@
                             </p>
                         </div>
                     </td>
-
                     <td class="hidden md:table-cell px-6 py-4">
                         {{ Auth::user()->name }} {{Auth::user()->family}}
                     </td>
@@ -234,6 +264,7 @@
                 </tr>
 
             @endforeach
+            </form>
             </tbody>
         </table>
     </div>
@@ -394,4 +425,5 @@
             });
         });
     </script>
+    <script src="{{asset('assets/js/checkAll.js')}}"></script>
 @endsection
