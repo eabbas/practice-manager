@@ -125,8 +125,7 @@
             <div class="p-4 rounded-xl border border-white/10 bg-white/10 text-white">
                 <p class="text-sm text-gray-300">تاریخ عضویت</p>
                 <p class="text-base sm:text-lg font-semibold mt-1">
-
-                    {{jdate($user->created_at)->format('Y/m/d')}}
+                    {{jdate($user->created_at)->format("Y/m/d")}}
                 </p>
             </div>
 

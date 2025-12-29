@@ -49,7 +49,6 @@
         <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
             <form action="{{ url('practice/store') }}" method="POST" enctype="multipart/form-data" class="p-8">
                 @csrf
-                <input type="hidden" name="master_id" value="{{ Auth::id() }}">
                 <input type="hidden" name="lesson_id" value="{{$lesson->id}}">
                 <!-- اطلاعات اصلی تمرین -->
                 <div class="mb-8">

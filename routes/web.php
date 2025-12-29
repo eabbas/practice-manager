@@ -46,6 +46,8 @@ Route::group([
 
 //lessons
 
+
+
 Route::get('/lesson/create', [LessonController::class , 'create'])->name("lesson_create");
 
 Route::post('/lesson/store', [LessonController::class , 'store']);
