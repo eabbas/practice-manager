@@ -79,8 +79,8 @@
 
       @if(Auth::user()->id == $master->id)
         <p class="text-center text-gray-500">
-          امکان ثبت درخواست برای شما وجود ندارد.
-        </p>
+         ،ثبت درخواست برای شما امکان پذیر نیست شما ایجاد کننده این درس هستید
+                </p>
       @else
 
       <h1 class="text-center text-lg sm:text-xl font-semibold mb-6">
