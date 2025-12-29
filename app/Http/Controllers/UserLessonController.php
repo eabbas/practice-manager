@@ -38,8 +38,6 @@ class UserLessonController extends Controller
   {
     $user = Auth::user();
     $userLessons = $user->lessons;
-    //dd($userLessons);
-
     foreach ($userLessons as $userLesson) {
       $master = user::find($userLesson->master_id);
     }
@@ -121,6 +119,7 @@ class UserLessonController extends Controller
         $userLesson->save();
       }
     }
+    
     if ($request->select == "remove") {
       foreach ($request->users as $user_id) {
         userLesson::where('user_id', $user_id)->where('lesson_id', $request->lesson_id)->delete();
