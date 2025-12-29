@@ -7,9 +7,12 @@ use App\Models\lesson;
 use App\Models\practice;
 use App\Models\responses;
 use App\Models\User;
+use App\Models\practiceMedia;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
+
 
 class PracticeController extends Controller
 {
@@ -20,27 +23,35 @@ class PracticeController extends Controller
 
      public function store(Request $request){
         //dd($request->all());
-        practice::insertGetId(["lesson_id"=>$request->lesson_id , "title"=>$request->title , "deadLine"=>$request->deadLine , "description"=>$request->description]);
-        // practice::create($request->all());
-        // $type = request()->practiceMedia->getClientOriginalExtentsion();
-        // $name = request()->practiceMedia->getClientOriginalName();
-        // $fullName = Str::uuid()."_".$name;
+        $practiceId = practice::insertGetId(["lesson_id"=>$request->lesson_id , "title"=>$request->title , "deadLine"=>$request->deadLine , "description"=>$request->description]);
+        //dd($practiceId);
+         $files = $request->file('file');
+        foreach($files as $file){
+            $name = $file->getClientOriginalName();
+            $path = $file->storeAs('files', $name ,'public');
+        }
+        //dd($path);
+        // $path = "<img src='".asset("storage/images/$fileName") . ".>";
+       $practiceMedia = practiceMedia::create(["practice_id"=>$practiceId , "media_path"=>$path]);
+      
         return to_route('practices_list');
 
     }
+    
+    public function file_download(practiceMedia $media){
+        return Storage::disk('public')->download($media->media_path);
+    }
+
 
     public function index(){
-        // $practiceWithLessons = practice::with("lesson")->get();
         $practices = Auth::user()->practices;
-        // dd($practices);
-        //dd($practiceWithLessons);
         return view('practice.index' , ["practiceWithLessons"=>$practices]);
     }
 
     public function show(practice $practice){
        
        $practice->load('master');
-
+       $practice->load('practiceMedia');
        $responses = responses::where('practice_id',$practice->id)->whereIn('user_id' , [ Auth::id(), $practice->master->id])->get();
        $responses->load('users');
 
@@ -50,8 +61,6 @@ class PracticeController extends Controller
 
     public function edit($id){
        $practice = practice::find($id);
-      
-    //    dd($practiceWithLessons->lessons);
        return view('practice.edit' , ["practice"=>$practice]);
     }
     

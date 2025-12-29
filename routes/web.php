@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\PracticeController;
+use App\Http\Controllers\PracticeMediaController;
 use App\Http\Controllers\ResponsesController;
 use App\Http\Controllers\StudentRequestController;
 use App\Http\Controllers\UserLessonController;
@@ -103,7 +104,6 @@ Route::get('/delete/request/{lesson}/{id}' , [UserLessonController::class, 'dele
 
 Route::post('/response/store',[ResponsesController::class , 'store'])->name('response_store');
 
-
 Route::get('response/list/{practice}' , [ResponsesController::class , 'response_list'])->name('response_list');
 
 Route::get('/student/responses/{student}/{practice}/{master}' , [ResponsesController::class , 'student_responses'])->name('student_responses');
@@ -113,3 +113,9 @@ Route::get('/student/responses/{student}/{practice}/{master}' , [ResponsesContro
 
 Route::get("/downlod/file/{media}",[ResponsesController::class,'downloadFile'])->name("download");
 
+
+//practice media
+
+Route::post('/file/store' , [PracticeMediaController::class , 'file_store'])->name('file_store');
+
+Route::get('/file/download/{media}' , [PracticeController::class , 'file_download'])->name('file_download');

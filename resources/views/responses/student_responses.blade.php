@@ -156,6 +156,7 @@
                         <input type="file" name="file[]"  multiple>
 
                         <textarea name="text" id="response" cols="0" rows="1" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-primary mt-4"></textarea>
+                        <input type="file" class="border border-gray-300 rounded-lg px-3 py-2 w-70 focus:outline-none focus:ring-2 focus:ring-primary mt-4" name="file">
                     </div>
                     <button type="submit" 
                             class="bg-[#023e83] hover:bg-[#012b5a] text-white px-6 py-2 rounded-lg transition duration-200">
