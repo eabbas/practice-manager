@@ -55,6 +55,7 @@ class UserLessonController extends Controller
     $lesson = lesson::find($id);
     //dd($lesson);
     $lesson->load("users");
+
     return view("userLesson.requests", ['lessonUsers' => $lesson]);
   }
   
