@@ -53,12 +53,11 @@
 
     <!-- هدر -->
     <div class="text-center md:text-right">
-      <img src="https://www.ubonab.ac.ir/theme/1/responsive/images/logo-head+final3.png"
-           class="w-24 mx-auto md:mx-0 md:mr-auto mb-6">
+      {{-- <img src="https://www.ubonab.ac.ir/theme/1/responsive/images/logo-head+final3.png"
+           class="w-24 mx-auto md:mx-0 md:mr-auto mb-6"> --}}
       <h2 class="text-2xl md:text-3xl font-bold text-white">خوش آمدید</h2>
       <p class="text-white/70 text-sm mt-4 leading-6">
-        سامانه جامع دانشگاه برای دسترسی سریع‌تر به خدمات آموزشی
-      </p>
+سامانه بارگذاری وارزیابی تمارین</p>
     </div>
 
     <!-- فرم -->
@@ -103,9 +102,9 @@
 
 <!-- فوتر -->
 
-  <div class="fixed bottom-5 left-1/2 -translate-x-1/2 text-white/60 text-sm whitespace-nowrap">
+  {{-- <div class="fixed bottom-5 left-1/2 -translate-x-1/2 text-white/60 text-sm whitespace-nowrap">
     © ۱۴۰۴ دانشگاه بناب - تمامی حقوق محفوظ است
-  </div>
+  </div> --}}
 
 
 </body>

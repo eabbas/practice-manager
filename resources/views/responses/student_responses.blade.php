@@ -96,23 +96,49 @@
             <!-- توضیحات درس -->
 
             <!-- پاسخ ها    --> 
-                @foreach ($responses as $response)
-                    <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm mb-3">
-                        @if($response->users->roles[0]->title == 'استاد')
-                         استاد 
-                      {{$master->name}} {{$master->family}} :
-                        @else
-                         
-                     {{$student->name}} {{ $student->family }} :
-                        @endif
-                    </br>
-                        
+            @foreach ($responses as $response)
+            
+            <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm mb-3">
+                
+                @if($response->users->roles[0]->title == 'استاد')
+                استاد 
+                
+                {{$master->name}} {{$master->family}} :
+                @else
+                
+                {{$student->name}} {{ $student->family }} :
+                @endif
+                <div>
+                    <span>
                         {{$response->text}}
+    
+                    </span>
+                </div>
+            </br>
+            @if(isset($response->responseMedia))
+            <div class="flex flex-row gap-1.5">
+                <h3 class="mt-1">دانلود فایل :</h3>
+                
+                @foreach($response->responseMedia as $media)
+                    @if($media)
+                    <!-- <img src=" //asset("storage/".$media->media_path)" class="w-[80px] h-[40px]"> -->
+                     
+                    <a href="{{route('download',[$media->id])}}" title="دانلود فایل">
+                        <svg class=" w-[30px] h-[30px] " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6" >
+                            <path fill-rule="evenodd" d="M19.5 21a3 3 0 0 0 3-3V9a3 3 0 0 0-3-3h-5.379a.75.75 0 0 1-.53-.22L11.47 3.66A2.25 2.25 0 0 0 9.879 3H4.5a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h15Zm-6.75-10.5a.75.75 0 0 0-1.5 0v4.19l-1.72-1.72a.75.75 0 0 0-1.06 1.06l3 3a.75.75 0 0 0 1.06 0l3-3a.75.75 0 1 0-1.06-1.06l-1.72 1.72V10.5Z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                    
+                    @endif
+                    @endforeach
+                    @endif
+             </div>
+           
 
+        </div>
+        @endforeach
 
-                    </div>
-                @endforeach
-            </div>
+     </div>
 
             <div class="w-[800px] bg-white rounded-2xl p-6 border border-gray-200 shadow-sm mr-3 mb-4">
                 <h3 class="text-xl font-semibold text-[#023e83] mb-4 flex items-center">
@@ -127,7 +153,10 @@
                         <input type="hidden" name="practice_id" value="{{$practice->id}}">
                         <input type="hidden" name="user_id" value="{{Auth::id()}}">
                         <input type="hidden" name="student_id" value="{{$student->id}}">
+                        <input type="file" name="file[]"  multiple>
+
                         <textarea name="text" id="response" cols="0" rows="1" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-primary mt-4"></textarea>
+                        <input type="file" class="border border-gray-300 rounded-lg px-3 py-2 w-70 focus:outline-none focus:ring-2 focus:ring-primary mt-4" name="file">
                     </div>
                     <button type="submit" 
                             class="bg-[#023e83] hover:bg-[#012b5a] text-white px-6 py-2 rounded-lg transition duration-200">

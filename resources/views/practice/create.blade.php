@@ -47,7 +47,7 @@
 
         <!-- فرم اصلی -->
         <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-            <form action="{{ url('practice/store') }}" method="POST" class="p-8">
+            <form action="{{ url('practice/store') }}" method="POST" enctype="multipart/form-data" class="p-8">
                 @csrf
                 <input type="hidden" name="lesson_id" value="{{$lesson->id}}">
                 <!-- اطلاعات اصلی تمرین -->
@@ -105,6 +105,13 @@
                                    class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50"
                                    placeholder="توضیحات کامل درباره تمرین، اهداف آموزشی، پیش‌نیازها و ..."></textarea>
                             <i class="fas fa-edit absolute right-4 top-4 text-gray-400"></i>
+                            <div class="flex flex-row sm:flex-row gap-4 justify-start pt-6 border-t border-gray-200">
+                                <span  
+                                class="px-3 h-10 bg-[#023e83] text-white rounded-xl transition duration-200 shadow-md font-medium flex items-center justify-center order-1 sm:order-2 mt-4">
+                                انتخاب فایل     
+                                </span>
+                            <input type="file" class="border border-gray-300 rounded-lg px-3 py-2 w-55 focus:outline-none focus:ring-2 focus:ring-primary mt-4" name="file[]" multiple>
+                            </div>
                         </div>
                     </div>
                 </div>

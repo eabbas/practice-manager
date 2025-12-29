@@ -75,7 +75,7 @@
         <div class="flex items-center justify-between">
             <div>
                 <p class="text-gray-500 text-xs md:text-sm">تمارین فعال</p>
-                <p class="font-bold text-lg md:text-2xl text-gray-800 mt-1">0</p>
+                <p class="font-bold text-lg md:text-2xl text-gray-800 mt-1">{{$count}}</p>
             </div>
 
             <div class="bg-green-50 p-2 md:p-3 rounded-xl">
@@ -93,11 +93,19 @@
     <!-- هدر -->
     <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
-            <h2 class="text-lg font-semibold text-gray-800 flex items-center">
-                <i class="fas fa-list ml-2 text-[#023e83]"></i>
-                تمام تمارین
-            </h2>
-
+            <div class="flex flex-col gap-3"> 
+                <h2 class="text-lg font-semibold text-gray-800 flex items-center">
+                    <i class="fas fa-list ml-2 text-[#023e83]"></i>
+                    تمام تمارین
+                </h2>
+                <form action="{{route('delete_all')}}" method="POST">
+                    @csrf
+                    <span class="flex flex-row-1 gap-2">
+                    <input type="checkbox" id="checkAll" onchange="selectAll(this)"><label class="mt-1" for="check">انتخاب همه</label>
+                    <button type="submit" class="px-2 py-1 bg-slate-200 rounded-lg text-slate-700">
+                    حذف
+                    </button>
+            </div>
             <div class="flex items-center space-x-4 space-x-reverse mt-3 md:mt-0 ml-10">
                 <div class="relative">
                     <input type="text" placeholder="جستجو در تمارین..."
@@ -115,7 +123,11 @@
         <table class="w-full">
             <thead>
             <tr class="bg-gray-100 border-b border-gray-200">
+                <th></th>
                 <th class="px-4 md:px-6 py-3 text-right text-sm font-semibold text-gray-700">عنوان تمرین</th>
+                 <th class="px-2 py-2 sm:px-6 sm:py-4 text-right text-sm font-semibold text-gray-700">
+                 وضعیت تمرین 
+                 </th>
                 <th class="px-4 md:px-6 py-3 text-right text-sm font-semibold text-gray-700 text-nowrap">عنوان درس</th>
 
                 <th class="hidden md:table-cell px-6 py-4 text-right text-sm font-semibold text-gray-700">استاد</th>
@@ -134,11 +146,17 @@
             </tr>
             </thead>
 
-            <tbody class="divide-y divide-gray-200">
+            <tbody id="practiceTable" class="divide-y divide-gray-200">
+
+
             @foreach($practiceWithLessons as $practice)
 
                 <tr>
-
+                    <td>
+                        <div class="py-1 px-2 whitespace-nowrap flex items-center justify-center h-full">
+                            <input type="checkbox" class="user" name="practices[]" value="{{$practice->id}}">
+                        </div>
+                    </td>
                     <td class="px-4 md:px-6 py-3">
                         <div class="flex items-center">
                             <div class="bg-blue-50 p-2 rounded-lg ml-3">
@@ -156,7 +174,22 @@
                             </div>
                         </div>
                     </td>
-
+                    <td class="px-4 md:px-6 py-3">
+                    <div class="flex items-center">
+                     @if ($practice->active == 0)
+                     <div class="w-3 h-3 bg-green-500 rounded-full ml-2"></div>
+                        <p class="text-sm text-gray-500 mt-1">
+                          فعال
+                        </p>
+                    </div>     
+                    @elseif($practice->active == 1)
+                    <div class="w-3 h-3 bg-red-500 rounded-full ml-2"></div>
+                        <p class="text-sm text-gray-500 mt-1">
+                          غیر فعال
+                        </p>
+                    </div> 
+                    @endif   
+                   </td>
                     <td class="px-4 md:px-6 py-3">
                         <div class="flex items-center">
                             <div class="w-4 h-4 bg-purple-500 rounded-full ml-2"></div>
@@ -165,7 +198,6 @@
                             </p>
                         </div>
                     </td>
-
                     <td class="hidden md:table-cell px-6 py-4">
                         {{ Auth::user()->name }} {{Auth::user()->family}}
                     </td>
@@ -232,6 +264,7 @@
                 </tr>
 
             @endforeach
+            </form>
             </tbody>
         </table>
     </div>
@@ -261,15 +294,25 @@
                         نمایش ۱ تا ۴ از ۲۴ مورد
                     </div>
                     <div class="flex items-center space-x-2 space-x-reverse">
-                        <button class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100 transition duration-200">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                        <button class="px-3 py-1 bg-[#023e83] text-white rounded-lg">1</button>
-                        <button class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100 transition duration-200">2</button>
-                        <button class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100 transition duration-200">3</button>
-                        <button class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100 transition duration-200">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
+                       <button data-page="prev"
+        class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100">
+    <i class="fas fa-chevron-right"></i>
+</button>
+
+<button data-page="1"
+        class="px-3 py-1 bg-[#023e83] text-white rounded-lg">1</button>
+
+<button data-page="2"
+        class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100">2</button>
+
+<button data-page="3"
+        class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100">3</button>
+
+<button data-page="next"
+        class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100">
+    <i class="fas fa-chevron-left"></i>
+</button>
+
                     </div>
                 </div>
             </div>
@@ -278,20 +321,82 @@
 
     <script>
         // جستجو در جدول
-        const searchInput = document.querySelector('input[type="text"]');
-        searchInput.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
-            const rows = document.querySelectorAll('tbody tr');
-            
-            rows.forEach(row => {
-                const text = row.textContent.toLowerCase();
-                if (text.includes(searchTerm)) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
+
+     document.addEventListener("DOMContentLoaded", function () {
+
+    const rowsPerPage = 5; // 👈 هر صفحه ۵ درس
+    const tbody = document.getElementById("practiceTable");
+    const allRows = Array.from(tbody.querySelectorAll("tr"));
+
+    const pageInfo = document.querySelector(".text-sm.text-gray-600");
+    const buttons = document.querySelectorAll("[data-page]");
+    const searchInput = document.querySelector('input[type="text"]');
+
+    let filteredRows = [...allRows];
+    let currentPage = 1;
+
+    function renderPage(page) {
+        currentPage = page;
+
+        // همه ردیف‌ها مخفی
+        allRows.forEach(row => row.style.display = "none");
+
+        const start = (currentPage - 1) * rowsPerPage;
+        const end = start + rowsPerPage;
+
+        // فقط ردیف‌های این صفحه
+        filteredRows.slice(start, end).forEach(row => {
+            row.style.display = "";
         });
+
+        const from = filteredRows.length ? start + 1 : 0;
+        const to = Math.min(end, filteredRows.length);
+
+        pageInfo.innerText =
+            `نمایش ${from} تا ${to} از ${filteredRows.length} مورد`;
+
+        // فعال‌سازی دکمه صفحه
+        buttons.forEach(btn => {
+            if (btn.dataset.page == currentPage) {
+                btn.classList.add("bg-[#023e83]", "text-white");
+                btn.classList.remove("border");
+            } else if (!isNaN(btn.dataset.page)) {
+                btn.classList.remove("bg-[#023e83]", "text-white");
+                btn.classList.add("border");
+            }
+        });
+    }
+
+    // کلیک روی دکمه‌ها
+    buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            if (btn.dataset.page === "prev") {
+                renderPage(Math.max(1, currentPage - 1));
+            } else if (btn.dataset.page === "next") {
+                renderPage(currentPage + 1); // حتی اگر خالی باشد
+            } else {
+                renderPage(parseInt(btn.dataset.page));
+            }
+        });
+    });
+
+    // جستجو
+    searchInput.addEventListener("input", function () {
+        const value = this.value.toLowerCase();
+
+        filteredRows = allRows.filter(row =>
+            row.innerText.toLowerCase().includes(value)
+        );
+
+        currentPage = 1;
+        renderPage(currentPage);
+    });
+
+    // شروع
+    renderPage(1);
+});
+
+
 
         // فیلتر بر اساس گروه درسی
         const groupFilter = document.querySelector('select');
@@ -320,4 +425,5 @@
             });
         });
     </script>
+    <script src="{{asset('assets/js/checkAll.js')}}"></script>
 @endsection

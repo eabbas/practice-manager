@@ -102,7 +102,7 @@
                         </td>
                         <td class="py-2 sm:py-3 px-2 sm:px-4 text-center">
                             <a href="{{route('student_responses' , [$response->users->id ,$practice->id ,$practice->master->id ])}}" 
-                               class="px-3 py-1.5 rounded-md border border-blue-600 text-blue-600 hover:bg-blue-50 inline-block">
+                               class="px-3 py-1.5 rounded-md border border-blue-600 text-blue-600 hover:bg-blue-50 inline-block" >
                                 مشاهده پاسخ ها
                             </a>
                         </td>

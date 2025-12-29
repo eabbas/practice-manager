@@ -70,7 +70,7 @@
                 </div>
             </div>
         </div>
-        <div class="p-6">
+        <div class="p-6" style="overflow-y:scroll">
             <!-- توضیحات درس -->
             <div class="mb-6">
                 <div class="bg-gray-50 rounded-xl p-6 border border-gray-200 mb-2">
@@ -100,13 +100,31 @@
                 </h3>
                 <div class="w-full h-[80px] bg-gray-50 rounded-xl p-6 border border-gray-200 mt-2">
                         <div class="prose max-w-none text-gray-700 leading-7">
-                            {{$practice->deadLine}}
+                            {{jdate($practice->deadLine)->format('Y/m/y')}}
                         </div>
                         <div class="text-center py-8 text-gray-500">
                             {{-- <i class="fas fa-file-alt text-4xl mb-3 opacity-50"></i> --}}
                             {{-- <p>توضیحاتی برای این تمرین ثبت نشده است</p> --}}
                         </div>
                 </div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center border-b pb-2 mt-1">
+                    <i class="fas fa-align-left ml-2 text-[#023e83]"></i>
+                    دانلود فایل تمرین
+                </h3>
+                <div class="w-full h-[80px] bg-gray-50 rounded-xl p-6 border border-gray-200 mt-2">
+                    {{-- @dd($practice->practiceMedia->media_path); --}}
+                    @foreach ($practice->practiceMedia as $media)
+                    @if(isset($media->media_path))
+                    <a href="{{route('file_download' ,[$media->id])}}" title="دانلود فایل">
+                        <svg  width="30" height="30" viewBox="0 0 24 24" fill="bg-blue-900" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M22 10V17C22 19.2091 20.2091 21 18 21H6C3.79086 21 2 19.2091 2 17V7C2 4.79086 3.79086 3 6 3H8.66667C9.53215 3 10.3743 3.28071 11.0667 3.8L12.9333 5.2C13.6257 5.71929 14.4679 6 15.3333 6H18C20.2091 6 22 7.79086 22 10ZM11.1161 14.0555C11.1586 14.098 11.2033 14.1368 11.25 14.1718V10.0001C11.25 9.58584 11.5858 9.25006 12 9.25006C12.4142 9.25006 12.75 9.58584 12.75 10.0001V14.1718C12.7967 14.1368 12.8414 14.098 12.8839 14.0555L14.4697 12.4697C14.7626 12.1768 15.2374 12.1768 15.5303 12.4697C15.8232 12.7626 15.8232 13.2375 15.5303 13.5304L13.9445 15.1162C12.8706 16.1901 11.1294 16.1901 10.0555 15.1162L8.46967 13.5304C8.17678 13.2375 8.17678 12.7626 8.46967 12.4697C8.76256 12.1768 9.23744 12.1768 9.53033 12.4697L11.1161 14.0555Z" fill="#28303F"/>
+                        </svg>
+                    </a>
+                        {{-- <img src="<?//=asset('storage/' . $media->media_path)?>"> --}}
+                    @endif
+                    @endforeach
+                </div>
+                
             </div>
 
             <!-- اطلاعات تکمیلی -->
@@ -130,7 +148,6 @@
                     <p class="text-gray-700 text-lg">{{ $practice->master->name; }} {{ $practice->master->family }}</p>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

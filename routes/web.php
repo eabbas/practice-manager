@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\PracticeController;
+use App\Http\Controllers\PracticeMediaController;
 use App\Http\Controllers\ResponsesController;
 use App\Http\Controllers\StudentRequestController;
 use App\Http\Controllers\UserLessonController;
@@ -63,6 +64,7 @@ Route::get('/lesson/practice/{lesson}' ,[LessonController::class , 'practice_lis
 
 Route::get('/lesson/delete/{id}' , [LessonController::class , 'delete'])->name('lesson_delete');
 
+Route::post('/delete/lessons' , [LessonController::class , 'deleteAll'])->name('delete_all');
 
 
 // practices
@@ -81,6 +83,8 @@ Route::post('/practice/update' , [PracticeController::class , 'update'])->name('
 
 Route::get('/practice/delete/{id}' , [PracticeController::class , 'delete'])->name('practice_delete');
 
+Route::post('/delete/practices' , [PracticeController::class , 'deleteAll'])->name('delete_all');
+
 
 //userLesson
 
@@ -94,11 +98,12 @@ Route::get('/request/list/{lesson?}' ,[UserLessonController::class , 'request_li
 
 Route::get('/lesson/request/approve/{userId}/{lessonId}', [UserLessonController::class,'approveRequest'])->name('request_approve');
 
+Route::post('/user/select' , [UserLessonController::class , "user_select"])->name('user_select');
+
 Route::get('/student/class', [UserLessonController::class,'student_class'])->name('student_class');
 
 Route::get('/delete/request/{lesson}/{id}' , [UserLessonController::class, 'delete_request'])->name('delete_request');
 
-Route::post('/user/select' , [UserLessonController::class , "user_select"])->name('user_select');
 
 
 //responses 
@@ -106,8 +111,18 @@ Route::post('/user/select' , [UserLessonController::class , "user_select"])->nam
 
 Route::post('/response/store',[ResponsesController::class , 'store'])->name('response_store');
 
-
 Route::get('response/list/{practice}' , [ResponsesController::class , 'response_list'])->name('response_list');
 
 Route::get('/student/responses/{student}/{practice}/{master}' , [ResponsesController::class , 'student_responses'])->name('student_responses');
 
+
+// download
+
+Route::get("/downlod/file/{media}",[ResponsesController::class,'downloadFile'])->name("download");
+
+
+//practice media
+
+Route::post('/file/store' , [PracticeMediaController::class , 'file_store'])->name('file_store');
+
+Route::get('/file/download/{media}' , [PracticeController::class , 'file_download'])->name('file_download');
