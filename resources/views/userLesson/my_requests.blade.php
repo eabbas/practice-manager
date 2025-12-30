@@ -98,7 +98,7 @@
           <td class="py-3 px-4 text-center">
 
             @if($userLesson->pivot->status == '0')
-              <span class="px-3 py-1 rounded-md border border-blue-600 text-blue-600">
+              <span class="px-3 py-1 rounded-md text-blue-600">
                 در انتظار تایید
               </span>
             @else

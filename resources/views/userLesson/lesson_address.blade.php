@@ -94,29 +94,29 @@
 
         <div>
           <label class="block text-sm mb-1">نام دانشجو</label>
-          <input type="text"
-            class="w-full border rounded-xl p-3"
+          <input type="text" readonly
+            class="w-full border rounded-xl p-3 outline-none focus:outline-none focus:ring-0 " 
             value="{{ Auth::user()->name }} {{ Auth::user()->family }}">
         </div>
 
         <div>
           <label class="block text-sm mb-1">شماره دانشجویی</label>
-          <input type="text"
-            class="w-full border rounded-xl p-3"
+          <input type="text" readonly
+            class="w-full border rounded-xl p-3 outline-none focus:outline-none focus:ring-0 "
             value="{{ Auth::user()->code }}">
         </div>
 
         <div>
           <label class="block text-sm mb-1">نام درس</label>
-          <input type="text"
-            class="w-full border rounded-xl p-3"
+          <input type="text" readonly
+            class="w-full border rounded-xl p-3 outline-none focus:outline-none focus:ring-0 "
             value="{{ $lesson->title }}">
         </div>
 
         <div>
           <label class="block text-sm mb-1">نام استاد</label>
-          <input type="text"
-            class="w-full border rounded-xl p-3"
+          <input type="text" readonly
+            class="w-full border rounded-xl p-3 outline-none focus:outline-none focus:ring-0 "
             value="{{ $master->name }} {{ $master->family }}">
         </div>
 
