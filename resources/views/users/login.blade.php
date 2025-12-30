@@ -66,15 +66,15 @@
       @csrf
 
       <div>
-        <label class="block text-white text-sm mb-2">شماره تلفن</label>
-        <input type="number" name="phone"
+        <label class="block text-white text-sm mb-2">شماره تماس</label>
+        <input type="number" name="phone" placeholder="شماره تماس"
                class="w-full px-4 py-3 rounded-xl input-glass text-white
                       placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none">
       </div>
 
       <div>
         <label class="block text-white text-sm mb-2">رمز عبور</label>
-        <input type="password" name="password"
+        <input type="password" name="password" placeholder="رمز عبور"
                class="w-full px-4 py-3 rounded-xl input-glass text-white
                       placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none">
       </div>

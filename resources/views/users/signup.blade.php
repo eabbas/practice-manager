@@ -77,14 +77,14 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <div>
           <label class="block text-white text-sm mb-2">نام</label>
-          <input type="text" name="name" required
+          <input type="text" name="name" placeholder="نام" required
                  class="w-full px-4 py-2 sm:py-3 rounded-xl input-glass text-white
                         placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none">
         </div>
 
         <div>
           <label class="block text-white text-sm mb-2">نام خانوادگی</label>
-          <input type="text" name="family" required
+          <input type="text" name="family" placeholder="نام خانوادگی" required
                  class="w-full px-4 py-2 sm:py-3 rounded-xl input-glass text-white
                         placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none">
         </div>
@@ -94,14 +94,14 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <div>
           <label class="block text-white text-sm mb-2">شماره تماس</label>
-          <input type="tel" name="phone" required
+          <input type="tel" name="phone" placeholder="شماره تماس" required
                  class="w-full px-4 py-2 sm:py-3 rounded-xl input-glass text-white
                         placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none">
         </div>
 
         <div>
           <label class="block text-white text-sm mb-2">کد دانشجویی/ پرسنلی (رمز عبور)</label>
-          <input type="number" name="code" required
+          <input type="number" name="code" placeholder="کد دانشجویی/پرسنلی(رمز عبور)" required
                  class="w-full px-4 py-2 sm:py-3 rounded-xl input-glass text-white
                         placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none">
         </div>
