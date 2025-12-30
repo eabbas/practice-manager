@@ -36,13 +36,15 @@
     <!-- هدر صفحه -->
     <div class="flex flex-col sm:flex-row space-x-4 md:flex-row space-x-130 items-start md:items-center mb-6">
         
-        <div class="flex flex-row space-x-4">
+        <div class="flex flex-row space-x-1">
             <i class="fas fa-layer-group text-[#023e83] mt-3"></i>
-            <h1 class="text-3xl font-bold text-[#023e83] mr-2">{{ $lesson->title }}</h1>
-            <div class="flex items-center space-x-4 space-x-reverse text-gray-600">
-                <span class="flex items-center ">
-                    {{ $lesson->lesson_group }}
-                </span>
+            <div class="flex flex-col gap-3">
+                <h1 class="text-3xl text-nowrap font-bold text-[#023e83] mr-2">{{ $lesson->title }}</h1>
+                <div class="flex items-center space-x-4 space-x-reverse text-gray-600">
+                    <span class="flex items-center ">
+                        {{ $lesson->lesson_group }}
+                    </span>
+                </div>
             </div>
         </div>
         
@@ -79,7 +81,7 @@
             <!-- توضیحات درس -->
             <div class="mb-6">
                 <div class="bg-gray-50 rounded-xl p-6 border border-gray-200 mb-2">
-                    <h2 class="text-center font-bold text-3xl">
+                    <h2 class="w-full text-center font-bold text-3xl">
                         {{ $lesson->title }}
                     </h2>
                 </div>
@@ -89,7 +91,7 @@
                 </h3>
                 <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
                     @if($lesson->description)
-                        <div class="prose max-w-none text-gray-700 leading-7">
+                        <div class="w-full prose max-w-none text-gray-700 leading-7">
                             {{$lesson->description}}
                         </div>
                     @else

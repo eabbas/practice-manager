@@ -79,7 +79,6 @@
                                 <span class="text-red-500 mr-1">*</span>
                             </label>
                             <div class="relative">
-                                {{-- <?php //dd($lesson->practices); ?> --}}
                                 <input type="date" id="deadLine" name="deadLine" required  value="{{$lesson->practices}}"
                                        class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50">
                                 <i class="fas fa-pen absolute right-4 mt-8 transform -translate-y-1/2 text-gray-400"></i>
@@ -105,12 +104,9 @@
                                    class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50"
                                    placeholder="توضیحات کامل درباره تمرین، اهداف آموزشی، پیش‌نیازها و ..."></textarea>
                             <i class="fas fa-edit absolute right-4 top-4 text-gray-400"></i>
-                            <div class="flex flex-row sm:flex-row gap-4 justify-start pt-6 border-t border-gray-200">
-                                <span  
-                                class="px-3 h-10 bg-[#023e83] text-white rounded-xl transition duration-200 shadow-md font-medium flex items-center justify-center order-1 sm:order-2 mt-4">
-                                انتخاب فایل     
-                                </span>
-                            <input type="file" class="border border-gray-300 rounded-lg px-3 py-2 w-55 focus:outline-none focus:ring-2 focus:ring-primary mt-4" name="file[]" multiple>
+                            <div class="flex flex-row sm:flex-row gap-4 justify-start pt-6 border-t border-gray-200"> 
+                                <label class="block text-gray-700 font-semibold mt-5"> انتخاب فایل:</label>    
+                                <input type="file" class="border border-gray-300 rounded-lg px-3 py-2 w-55 focus:outline-none focus:ring-2 focus:ring-primary mt-3 bg-gray-50 cursor-pointer" value="" name="file[]" multiple>
                             </div>
                         </div>
                     </div>

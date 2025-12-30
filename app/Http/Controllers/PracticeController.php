@@ -67,6 +67,7 @@ class PracticeController extends Controller
         $practice->description = $request->description;
         $practice->lesson_id = $request->lesson_id;
         $practice->active = $request->active;
+        $practice->deadLine = $request->deadLine;
         $practice->save();
         return to_route('practices_list');
     

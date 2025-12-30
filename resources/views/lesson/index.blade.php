@@ -153,7 +153,7 @@
                 عنوان درس
             </th>
 
-            <th class="px-2 py-2 sm:px-6 sm:py-4 text-right text-sm font-semibold text-gray-700">
+            <th class="px-2 py-2 sm:px-6 sm:py-4 text-right text-sm font-semibold text-gray-700 text-nowrap">
                  وضعیت درس 
             </th>
 
@@ -161,6 +161,10 @@
             <th class="hidden sm:table-cell px-2 py-2 sm:px-6 sm:py-4 text-right text-sm font-semibold text-gray-700">
                 استاد
             </th>
+
+            {{-- <th class="px-2 py-2 sm:px-6 sm:py-4 text-right text-sm font-semibold text-gray-700 text-nowrap">
+                  تعداد دانشجویان 
+            </th> --}}
 
              <th class="hidden md:table-cell px-4 py-4 text-right text-sm font-semibold text-gray-700">
                     عملیات
@@ -223,7 +227,17 @@
                     {{ Auth::user()->name }} {{ Auth::user()->family }}
                 </span>
             </td>
-
+            {{-- <td class="m:table-cell px-2 py-2 sm:px-6 sm:py-2"> --}}
+                {{-- <span class="text-gray-700 text-nowrap"> --}}
+                {{-- @foreach ($users as $user) --}}
+                {{-- @foreach ($user->users as $u) --}}
+                    {{-- @dd($user->users->pivot->status == 1) --}}
+                    {{-- @endforeach --}}
+                    {{-- @endforeach --}}
+                    {{-- {{count($u->pivot->status == 1)}} --}}
+                   
+                {{-- </span> --}}
+            {{-- </td> --}}
             <!-- عملیات -->
             <td class="px-2 py-2 sm:px-6 sm:py-4">
 
@@ -488,6 +502,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 this.classList.remove('shadow-md');
             });
         });
-    </script>
-    <script src="{{asset('assets/js/checkAll.js')}}"></script>
+        </script>
+        <script src="{{asset('assets/js/checkAll.js')}}"></script>
 @endsection

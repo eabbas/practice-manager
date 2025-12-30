@@ -130,10 +130,10 @@
                  </th>
                 <th class="px-4 md:px-6 py-3 text-right text-sm font-semibold text-gray-700 text-nowrap">عنوان درس</th>
 
-                <th class="hidden md:table-cell px-6 py-4 text-right text-sm font-semibold text-gray-700">استاد</th>
+                <th class="hidden md:table-cell px-4 py-2 text-right text-sm font-semibold text-gray-700">استاد</th>
 
                 <th class="hidden md:table-cell px-6 py-4 text-right text-sm font-semibold text-gray-700">
-                    مشاهده پاسخ ها
+                     پاسخ ها
                 </th>
 
                 <th class="hidden md:table-cell px-4 py-4 text-right text-sm font-semibold text-gray-700">
@@ -198,14 +198,14 @@
                             </p>
                         </div>
                     </td>
-                    <td class="hidden md:table-cell px-6 py-4">
+                    <td class="hidden md:table-cell px-4 py-2">
                         {{ Auth::user()->name }} {{Auth::user()->family}}
                     </td>
 
                     <td class="hidden md:table-cell px-6 py-4">
                         <a href="{{route('response_list' ,[$practice->id])}}"
-                           class="bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-3 rounded-xl shadow">
-                            پاسخ ها
+                           class="bg-[#023e83] hover:bg-[#022e6b] text-white text-nowrap px-2 py-1 rounded-xl shadow">
+                           مشاهده پاسخ ها
                         </a>
                     </td>
 
