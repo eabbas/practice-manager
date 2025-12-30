@@ -25,14 +25,17 @@ class PracticeController extends Controller
         //dd($request->all());
         $practiceId = practice::insertGetId(["lesson_id"=>$request->lesson_id , "title"=>$request->title , "deadLine"=>$request->deadLine , "description"=>$request->description]);
         //dd($practiceId);
-         $files = $request->file('file');
-        foreach($files as $file){
-            $name = $file->getClientOriginalName();
-            $path = $file->storeAs('files', $name ,'public');
+        if($request->file('file')){
+            $files = $request->file('file');
+           foreach($files as $file){
+               $name = $file->getClientOriginalName();
+               $path = $file->storeAs('files', $name ,'public');
+               $practiceMedia = practiceMedia::create(["practice_id"=>$practiceId , "media_path"=>$path]);
+           }
+
         }
         //dd($path);
         // $path = "<img src='".asset("storage/images/$fileName") . ".>";
-       $practiceMedia = practiceMedia::create(["practice_id"=>$practiceId , "media_path"=>$path]);
       
         return to_route('practices_list');
 

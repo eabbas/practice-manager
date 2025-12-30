@@ -38,12 +38,16 @@
         <div class="py-5 h-[80%] overflow-y-auto" style="scrollbar-width:none;">
 
     <!-- عنوان: استاد -->
-    <button
-        class="w-full text-right pr-3 text-sm text-slate-300 mb-2 flex items-center justify-between"
-        onclick="toggleMenu('teacherMenu')">
-        بخش استاد
-        <span>▼</span>
-    </button>
+    <!-- عنوان: استاد -->
+<button
+    class="w-full text-right pr-3 text-sm text-slate-300 mb-2 flex items-center justify-between"
+    onclick="toggleSection('teacherMenu', this)">
+    بخش استاد
+    <span class="triangle">▼</span>
+</button>
+
+
+
 
     <ul id="teacherMenu" class="hidden flex flex-col gap-6 mb-6 pr-3 text-white">
         <li class="flex items-center gap-2.5 mr-5">
@@ -61,14 +65,13 @@
             <a href="{{ route('practices_list') }}">دسترسی به تمرینات</a>
         </li>
     </ul>
-
-    <!-- عنوان: دانشجو -->
-    <button
-        class="w-full text-right pr-3 text-sm text-slate-300 mb-2 flex items-center justify-between"
-        onclick="toggleMenu('studentMenu')">
-        بخش دانشجو
-        <span>▼</span>
-    </button>
+<!-- عنوان: دانشجو -->
+<button
+    class="w-full text-right pr-3 text-sm text-slate-300 mb-2 flex items-center justify-between"
+    onclick="toggleSection('studentMenu', this)">
+    بخش دانشجو
+    <span class="triangle">▼</span>
+</button>
 
     <ul id="studentMenu" class="hidden flex flex-col gap-6 pr-3 text-white">
         <li class="flex items-center gap-2.5 mr-5">
@@ -264,6 +267,25 @@
         const menu = document.getElementById(id);
         menu.classList.toggle('hidden');
     }
+
+
+    
+function toggleSection(id, btn) {
+    const menu = document.getElementById(id);
+    const triangle = btn.querySelector('.triangle');
+
+    // باز/بسته کردن منو
+    menu.classList.toggle('hidden');
+
+    // تغییر حالت مثلث
+    if (menu.classList.contains('hidden')) {
+        triangle.textContent = '▼'; // منو بسته است
+    } else {
+        triangle.textContent = '▲'; // منو باز است
+    }
+}
+
+
 </script>
 </body>
 </html>

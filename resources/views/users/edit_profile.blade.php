@@ -121,7 +121,7 @@
                             </label>
                             <div class="relative">
                                <input
-                                    type="text"
+                                    type="number"
                                     name="code"
                                     id="code"
                                     value="{{ Auth::user()->code }}"
@@ -148,7 +148,7 @@
                             </label>
                             <div class="relative">
                                <input
-                                type="text"
+                                type="number"
                                 name="phone"
                                 id="phone"
                                 value="{{ Auth::user()->phone }}"
@@ -174,7 +174,7 @@
                                 <span class="text-red-500 mr-1">*</span>
                             </label>
                             <div class="relative">
-                                <input type="text" id="email" name="email" value="{{Auth::user()->email}}" required 
+                                <input type="email" id="email" name="email" value="{{Auth::user()->email}}" required 
                                        class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50"
                                        placeholder="ایمیل خود را وارد کنید">
                                 <i class="fas fa-pen absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>

@@ -86,6 +86,7 @@
           <th class="py-3 px-4">نام درس</th>
           <th class="py-3 px-4">نام استاد</th>
           <th class="py-3 px-4 text-center">عملیات</th>
+          <th>حذف درخواست</th>
         </tr>
       </thead>
 
@@ -109,6 +110,12 @@
             @endif
 
           </td>
+          <td class="py-3 px-4 text-center">
+        <a class="flex items-center gap-2 text-red-600 hover:text-red-800" href="{{route('delete_myRequest',[$userLesson->id])}}"> 
+          <i class="fa-solid fa-trash" title="حذف درخواست"></i>
+           
+        </a>
+        </td>
         </tr>
       </tbody>
     </table>
@@ -135,8 +142,19 @@
           </a>
         @endif
       </div>
-    </div>
+      <div class="pt-2">
+  
+        <a  class="flex items-center gap-2 text-red-600 hover:text-red-800" href="{{route('delete_myRequest',[$userLesson->id])}}"> 
 
+          <i class="fa-solid fa-trash" title="حذف درخواست"></i>
+          حذف درخواست
+        </a>
+      
+    
+</div>
+
+    </div>
+     
   </div>
 
 </div>

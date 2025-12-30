@@ -67,7 +67,7 @@
         @foreach ($lesson->practices as $practice)
         <div class="fade-in p-5 bg-white shadow-lg rounded-xl border border-blue-100
                     flex flex-col sm:flex-row sm:items-center gap-4
-                    transition-all hover:scale-[1.01]">
+                    transition-all hover:scale-[1.003]">
 
             <!-- آیکون -->
             <div class="p-3 bg-blue-900 text-white rounded-lg text-2xl self-start sm:self-auto">
