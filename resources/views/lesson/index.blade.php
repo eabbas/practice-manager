@@ -98,6 +98,7 @@
             <div>
                 <p class="text-gray-500 text-xs md:text-sm">گروه‌های درسی</p>
                 <p class="text-lg md:text-2xl font-bold text-gray-800 mt-1">1</p>
+                
             </div>
 
             <div class="bg-orange-50 p-2 md:p-3 rounded-xl">
@@ -205,6 +206,18 @@
                     <a href="{{ route('lesson_delete', [$lesson]) }}" class="text-red-600 hover:text-red-800">
                         <i class="fas fa-trash"></i>
                     </a>
+                    <div onclick="copyText({{ $lesson->id }})" title="لینک درس">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="cursor-pointer size-5 text-blue-600">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+                        </svg>
+                    </div>
+
 
                     <a href="{{ route('practice_create', [$lesson->id]) }}"
                        class="bg-[#023e83] hover:bg-[#022e6b] text-white text-nowrap px-4 py-2 rounded-xl shadow mr-10">
@@ -215,12 +228,12 @@
                        class="bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-2 rounded-xl shadow">
                         تمرینات
                     </a>
-
+<!-- 
                     <button onclick="copyText({{ $lesson->id }})"
                             class="bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-2 rounded-xl shadow flex items-center gap-2">
                         <i class="fas fa-paper-plane"></i>
                         ارسال
-                    </button>
+                    </button> -->
                     
 
                     <a href="{{ url('/request/list/'.$lesson->id) }}"
@@ -254,6 +267,11 @@
                                 <a href="{{ route('lesson_delete', [$lesson]) }}" class="text-red-600" title="حذف">
                                     <i class="fas fa-trash"></i>
                                 </a>
+                                <div onclick="copyText({{ $lesson->id }})" >
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+                                    </svg>
+                                </div>
                             </div>
 
                             <a href="{{ route('practice_create', [$lesson->id]) }}"
@@ -269,8 +287,7 @@
                             <button
                                 onclick="copyText({{ $lesson->id }})"
                                 class="w-full text-right px-3 py-2 rounded-lg hover:bg-slate-100 flex items-center gap-2">
-                                <i class="fas fa-paper-plane text-slate-600"></i>
-                                ارسال
+                            
                             </button>
 
                             <a href="{{ url('/request/list/'.$lesson->id) }}"
