@@ -17,28 +17,21 @@ use Illuminate\View\View;
 class PracticeController extends Controller
 {
      public function create(lesson $lesson){
-        // dd($lesson);
+
         return view("practice.create" , ["lesson"=>$lesson]);
     }
 
      public function store(Request $request){
-        //dd($request->all());
-        $practiceId = practice::insertGetId(["lesson_id"=>$request->lesson_id , "title"=>$request->title , "deadLine"=>$request->deadLine , "description"=>$request->description]);
-        //dd($practiceId);
+        $practiceId = practice::insertGetId(["lesson_id"=>$request->lesson_id , "title"=>$request->title , "deadLine"=>$request->deadLine , "description"=>$request->description , "active"=>0]);
         if($request->file('file')){
             $files = $request->file('file');
-           foreach($files as $file){
-               $name = $file->getClientOriginalName();
-               $path = $file->storeAs('files', $name ,'public');
-               $practiceMedia = practiceMedia::create(["practice_id"=>$practiceId , "media_path"=>$path]);
-           }
-
+            foreach($files as $file){
+                $name = $file->getClientOriginalName();
+                $path = $file->storeAs('files', $name ,'public');
+            }
+          practiceMedia::create(["practice_id"=>$practiceId , "media_path"=>$path]);
         }
-        //dd($path);
-        // $path = "<img src='".asset("storage/images/$fileName") . ".>";
-      
         return to_route('practices_list');
-
     }
     
     public function file_download(practiceMedia $media){
@@ -53,7 +46,6 @@ class PracticeController extends Controller
     }
 
     public function show(practice $practice){
-       
        $practice->load('master');
        $practice->load('practiceMedia');
        $responses = responses::where('practice_id',$practice->id)->whereIn('user_id' , [ Auth::id(), $practice->master->id])->get();
@@ -74,6 +66,8 @@ class PracticeController extends Controller
         $practice->title = $request->title;
         $practice->description = $request->description;
         $practice->lesson_id = $request->lesson_id;
+        $practice->active = $request->active;
+        $practice->deadLine = $request->deadLine;
         $practice->save();
         return to_route('practices_list');
     
@@ -84,5 +78,12 @@ class PracticeController extends Controller
         $practice->delete();
         return to_route('practices_list');
     }
+    
 
+     public function deleteAll(Request $request){
+        foreach($request->lessons as $lesson){
+            lesson::find($lesson)->delete();
+        }
+        return redirect()->back();
+    }
 }

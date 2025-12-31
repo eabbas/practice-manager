@@ -94,13 +94,13 @@
                 @elseif(Auth::user()->roles[0]->title=="دانشجو")
                     <a href="{{route('student_responses' , [Auth::user()->id ,$practice->id ,$practice->master->id ])}}"
                        class="px-3 py-2 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition text-center">
-                        پاسخ ها
+                        ارسال پاسخ  
                     </a>
                 @endif
 
                 <a href="{{route('practice_show',[$practice->id])}}"
                    class="px-3 py-2 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition text-center">
-                    مشاهده
+                    مشاهده تمرین
                 </a>
             </div>
         </div>

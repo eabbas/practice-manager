@@ -46,6 +46,8 @@ Route::group([
 
 //lessons
 
+
+
 Route::get('/lesson/create', [LessonController::class , 'create'])->name("lesson_create");
 
 Route::post('/lesson/store', [LessonController::class , 'store']);
@@ -62,6 +64,9 @@ Route::get('/lesson/practice/{lesson}' ,[LessonController::class , 'practice_lis
 
 Route::get('/lesson/delete/{id}' , [LessonController::class , 'delete'])->name('lesson_delete');
 
+Route::post('/delete/lessons' , [LessonController::class , 'deleteAll'])->name('delete_all');
+
+
 // practices
 
 Route::get('/practice/create/{lesson}' , [PracticeController::class , 'create'])->name('practice_create');
@@ -77,6 +82,8 @@ Route::get('/practice/edit/{id}' , [PracticeController::class , 'edit'])->name('
 Route::post('/practice/update' , [PracticeController::class , 'update'])->name('practice_update');
 
 Route::get('/practice/delete/{id}' , [PracticeController::class , 'delete'])->name('practice_delete');
+
+Route::post('/delete/practices' , [PracticeController::class , 'deleteAll'])->name('delete_all');
 
 
 //userLesson

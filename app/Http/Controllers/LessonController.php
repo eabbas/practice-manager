@@ -50,11 +50,13 @@ class LessonController extends Controller
     }
     
     public function update(Request $request){
+        //dd($request->all());
         $lesson = lesson::find($request->id);
         $lesson->title = $request->title;
         $lesson->description = $request->description;
         $lesson->lesson_group = $request->lesson_group;
         $lesson->master_id = $request->master_id;
+        $lesson->active = $request->active;
         $lesson->save();
         return to_route('lesson_list');
     }
@@ -63,6 +65,13 @@ class LessonController extends Controller
         $lesson = lesson::find($id);
         $lesson->delete();
          return to_route('lesson_list');
+    }
+
+    public function deleteAll(Request $request){
+        foreach($request->practices as $practice){
+            practice::find($practice)->delete();
+        }
+        return redirect()->back();
     }
 
 }

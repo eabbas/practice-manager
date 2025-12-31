@@ -41,11 +41,23 @@
                        class="w-full p-4 border border-gray-300 rounded-xl bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#023e83] focus:border-[#023e83] transition duration-200">
             </div>
 
+            <div class="flex flex-row gap-3">
+                <label class="block text-gray-700 font-semibold">وضعیت درس:</label>
+                <div class="flex flex-row gap-1">
+                    <input type="radio" class="cursor-pointer" value={{ 0 }} @if($lesson->active==0)checked @endif name="active">
+                    <span>فعال</span>
+                </div>
+                <div class="flex flex-row gap-1">
+                    <input type="radio" class="cursor-pointer" value={{ 1 }} @if($lesson->active==1)checked @endif name="active">
+                    <span>غیر فعال</span>
+                </div>
+            </div>
+
             <!-- دکمه ارسال -->
-            <div class="flex justify-center mt-6">
+            <div class="flex justify-center mt-6 gap-3">
                 <button type="submit" 
-                        class="bg-[#023e83] hover:bg-[#012b5a] text-white px-8 py-3 rounded-xl text-lg font-medium transition duration-200">
-                    ویرایش درس
+                        class="bg-[#023e83] hover:bg-[#012b5a] text-white px-8 py-3 rounded-xl text-lg font-medium transition duration-200 cursor-pointer">
+                     ثبت
                 </button>
             </div>
         </form>

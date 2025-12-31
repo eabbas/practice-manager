@@ -36,18 +36,15 @@
     <!-- هدر صفحه -->
     <div class="flex flex-col sm:flex-row space-x-4 md:flex-row space-x-130 items-start md:items-center mb-6">
         
-        <div class="flex flex-col space-x-4 w-full mr-2">
-            <div class="flex flex-col">
-            <div class="flex flex-row">
+        <div class="flex flex-row space-x-1">
             <i class="fas fa-layer-group text-[#023e83] mt-3"></i>
-            <h1 class=" text-nowrap text-3xl font-bold text-[#023e83] mr-2">{{ $lesson->title }}</h1>
-            </div>
-            </div>
-      
-            <div class="flex items-center space-x-4 space-x-reverse text-gray-600 mt-2">
-                <span class="flex items-center ">
-                    {{ $lesson->lesson_group }}
-                </span>
+            <div class="flex flex-col gap-3">
+                <h1 class="text-3xl text-nowrap font-bold text-[#023e83] mr-2">{{ $lesson->title }}</h1>
+                <div class="flex items-center space-x-4 space-x-reverse text-gray-600">
+                    <span class="flex items-center ">
+                        {{ $lesson->lesson_group }}
+                    </span>
+                </div>
             </div>
         </div>
         
