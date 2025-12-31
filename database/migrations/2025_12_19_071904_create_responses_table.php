@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('practice_id');
             $table->integer('user_id');
-            $table->string('text');
+            $table->string('text')->nullable();
             $table->timestamps();
         });
     }
