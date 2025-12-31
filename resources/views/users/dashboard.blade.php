@@ -73,7 +73,7 @@
     <ul id="studentMenu" class="hidden flex flex-col gap-6 pr-3 text-white">
         <li class="flex items-center gap-2.5 mr-5">
             <span class="size-1 bg-white"></span>
-            <a href="{{ route('student_class') }}">دروس اخذ شده</a>
+            <a href="{{ route('student_class') }}">درس های من</a>
         </li>
 
         <li class="flex items-center gap-2.5 mr-5">

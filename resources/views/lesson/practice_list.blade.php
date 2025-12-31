@@ -89,7 +89,7 @@
                 @if(Auth::user()->roles[0]->title=="استاد")
                     <a href="{{route('response_list' ,[$practice->id])}}"
                        class="px-3 py-2 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition text-center">
-                        پاسخ ها
+                          مشاهده پاسخ ها
                     </a>
                 @elseif(Auth::user()->roles[0]->title=="دانشجو")
                     <a href="{{route('student_responses' , [Auth::user()->id ,$practice->id ,$practice->master->id ])}}"
