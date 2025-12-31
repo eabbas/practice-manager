@@ -94,17 +94,37 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <div>
           <label class="block text-white text-sm mb-2">شماره تماس</label>
-          <input type="tel" name="phone" placeholder="شماره تماس" required
-                 class="w-full px-4 py-2 sm:py-3 rounded-xl input-glass text-white
+          <input type="tel" name="phone"  required placeholder="شماره تماس"
+                 class="w-full px-4 py-2 sm:py-3 rounded-xl input-glass text-white text-right
                         placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none">
         </div>
+<div>
+  <label class="block text-white text-sm mb-2">رمز عبور</label>
 
-        <div>
-          <label class="block text-white text-sm mb-2">کد دانشجویی/ پرسنلی (رمز عبور)</label>
-          <input type="number" name="code" placeholder="کد دانشجویی/پرسنلی(رمز عبور)" required
-                 class="w-full px-4 py-2 sm:py-3 rounded-xl input-glass text-white
-                        placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none">
-        </div>
+  <div class="relative">
+    <input
+      type="password"
+      name="password"
+      id="password"
+      placeholder="رمز عبور"
+      maxlength="11"
+      pattern="[0-9]{1,11}"
+      inputmode="numeric"
+      required
+      class="w-full px-4 py-3 rounded-xl input-glass text-white
+             placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none"
+    >
+
+    <!-- آیکن چشم -->
+    <span
+      onclick="togglePassword()"
+      class="absolute left-4 top-1/2 -translate-y-1/2 cursor-pointer text-white/70 hover:text-white"
+    >
+      <i id="eyeIcon" class="fa-solid fa-eye"></i>
+    </span>
+  </div>
+</div>
+
       </div>
 
       <!-- نقش کاربر -->
@@ -155,3 +175,21 @@
 
 </body>
 </html>
+
+
+<script>
+  function togglePassword() {
+    const password = document.getElementById("password");
+    const eyeIcon = document.getElementById("eyeIcon");
+
+    if (password.type === "password") {
+      password.type = "text";
+      eyeIcon.classList.remove("fa-eye");
+      eyeIcon.classList.add("fa-eye-slash");
+    } else {
+      password.type = "password";
+      eyeIcon.classList.remove("fa-eye-slash");
+      eyeIcon.classList.add("fa-eye");
+    }
+  }
+</script>
