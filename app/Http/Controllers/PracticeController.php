@@ -40,9 +40,9 @@ class PracticeController extends Controller
 
 
     public function index(){
-         $practices = Auth::user()->practices;
-         $practicesCount = $practices->where('active' , 0)->count();
-        return view('practice.index' , ["practiceWithLessons"=>$practices ,"count"=>$practicesCount]);
+        $practices = Auth::user()->practices;
+        $pageNet=Auth::user()->paginate(5);
+        return view('practice.index' , ["practiceWithLessons"=>$practices,"pageNet"=>$pageNet]);
     }
 
     public function show(practice $practice){

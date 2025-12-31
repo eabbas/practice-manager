@@ -104,6 +104,7 @@ Route::get('/student/class', [UserLessonController::class,'student_class'])->nam
 
 Route::get('/delete/request/{lesson}/{id}' , [UserLessonController::class, 'delete_request'])->name('delete_request');
 
+Route::get('/delete_myRequest/{id}', [UserLessonController::class, 'delete']) ->name('delete_myRequest');
 
 
 //responses 

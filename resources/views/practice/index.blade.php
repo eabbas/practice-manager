@@ -108,7 +108,7 @@
             </div>
             <div class="flex items-center space-x-4 space-x-reverse mt-3 md:mt-0 ml-10">
                 <div class="relative">
-                    <input type="text" placeholder="جستجو در تمارین..."
+                    <input type="text" placeholder="  جستجوی تمرین..."
                            class="px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#023e83] focus:border-[#023e83] transition duration-200">
                     <i class="fas fa-search absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 mt-2"></i>
                 </div>
@@ -160,7 +160,11 @@
                     <td class="px-4 md:px-6 py-3">
                         <div class="flex items-center">
                             <div class="bg-blue-50 p-2 rounded-lg ml-3">
-                                <i class="fas fa-calculator text-[#023e83]"></i>
+                                <div class="bg-blue-50 p-1rounded-lg ml-3 text-blue-900">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="mr-3 size-6">
+                            <path d="M11.25 4.533A9.707 9.707 0 0 0 6 3a9.735 9.735 0 0 0-3.25.555.75.75 0 0 0-.5.707v14.25a.75.75 0 0 0 1 .707A8.237 8.237 0 0 1 6 18.75c1.995 0 3.823.707 5.25 1.886V4.533ZM12.75 20.636A8.214 8.214 0 0 1 18 18.75c.966 0 1.89.166 2.75.47a.75.75 0 0 0 1-.708V4.262a.75.75 0 0 0-.5-.707A9.735 9.735 0 0 0 18 3a9.707 9.707 0 0 0-5.25 1.533v16.103Z" />
+                        </svg>
+                </div>
                             </div>
 
                             <div>
@@ -231,7 +235,7 @@
                         <button
                             onclick="toggleMoreMenu('menu-{{ $practice->id }}')">
                             <i class="fas fa-ellipsis-h"></i>
-                            
+
                         </button>
 
                         <div id="menu-{{ $practice->id }}"
@@ -267,9 +271,12 @@
             </form>
             </tbody>
         </table>
+        <div class="mt-6 mb-3 ml-2 flex justify-end ">
+         {{$pageNet->links()}}
+        </div>
     </div>
-</div>
 
+</div>
 <script>
     function toggleMoreMenu(id) {
         document.querySelectorAll('[id^="menu-"]').forEach(m => {
@@ -287,114 +294,9 @@
 </script>
 
 
-            <!-- فوتر جدول -->
-            <div class="px-6 py-4 border-t border-gray-200 bg-gray-50">
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <div class="text-sm text-gray-600 mb-3 md:mb-0">
-                        نمایش ۱ تا ۴ از ۲۴ مورد
-                    </div>
-                    <div class="flex items-center space-x-2 space-x-reverse">
-                       <button data-page="prev"
-        class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100">
-    <i class="fas fa-chevron-right"></i>
-</button>
-
-<button data-page="1"
-        class="px-3 py-1 bg-[#023e83] text-white rounded-lg">1</button>
-
-<button data-page="2"
-        class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100">2</button>
-
-<button data-page="3"
-        class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100">3</button>
-
-<button data-page="next"
-        class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100">
-    <i class="fas fa-chevron-left"></i>
-</button>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+          
 
     <script>
-        // جستجو در جدول
-
-     document.addEventListener("DOMContentLoaded", function () {
-
-    const rowsPerPage = 5; // 👈 هر صفحه ۵ درس
-    const tbody = document.getElementById("practiceTable");
-    const allRows = Array.from(tbody.querySelectorAll("tr"));
-
-    const pageInfo = document.querySelector(".text-sm.text-gray-600");
-    const buttons = document.querySelectorAll("[data-page]");
-    const searchInput = document.querySelector('input[type="text"]');
-
-    let filteredRows = [...allRows];
-    let currentPage = 1;
-
-    function renderPage(page) {
-        currentPage = page;
-
-        // همه ردیف‌ها مخفی
-        allRows.forEach(row => row.style.display = "none");
-
-        const start = (currentPage - 1) * rowsPerPage;
-        const end = start + rowsPerPage;
-
-        // فقط ردیف‌های این صفحه
-        filteredRows.slice(start, end).forEach(row => {
-            row.style.display = "";
-        });
-
-        const from = filteredRows.length ? start + 1 : 0;
-        const to = Math.min(end, filteredRows.length);
-
-        pageInfo.innerText =
-            `نمایش ${from} تا ${to} از ${filteredRows.length} مورد`;
-
-        // فعال‌سازی دکمه صفحه
-        buttons.forEach(btn => {
-            if (btn.dataset.page == currentPage) {
-                btn.classList.add("bg-[#023e83]", "text-white");
-                btn.classList.remove("border");
-            } else if (!isNaN(btn.dataset.page)) {
-                btn.classList.remove("bg-[#023e83]", "text-white");
-                btn.classList.add("border");
-            }
-        });
-    }
-
-    // کلیک روی دکمه‌ها
-    buttons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            if (btn.dataset.page === "prev") {
-                renderPage(Math.max(1, currentPage - 1));
-            } else if (btn.dataset.page === "next") {
-                renderPage(currentPage + 1); // حتی اگر خالی باشد
-            } else {
-                renderPage(parseInt(btn.dataset.page));
-            }
-        });
-    });
-
-    // جستجو
-    searchInput.addEventListener("input", function () {
-        const value = this.value.toLowerCase();
-
-        filteredRows = allRows.filter(row =>
-            row.innerText.toLowerCase().includes(value)
-        );
-
-        currentPage = 1;
-        renderPage(currentPage);
-    });
-
-    // شروع
-    renderPage(1);
-});
 
 
 

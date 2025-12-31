@@ -101,7 +101,7 @@
                             توضیحات کامل
                         </label>
                         <div class="relative">
-                            <textarea id="description" name="description" rows="5" required
+                            <textarea id="description" name="description" rows="5" 
                                    class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50"
                                    placeholder="توضیحات کامل درباره درس، اهداف آموزشی، پیش‌نیازها و ..."></textarea>
                             <i class="fas fa-edit absolute right-4 top-4 text-gray-400"></i>

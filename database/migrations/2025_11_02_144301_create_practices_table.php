@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('practices', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->string('link')->nullable();
             $table->integer('lesson_id');
             $table->timestamps();

@@ -57,7 +57,7 @@
            class="w-24 mx-auto md:mx-0 md:mr-auto mb-6"> --}}
       <h2 class="text-2xl md:text-3xl font-bold text-white">خوش آمدید</h2>
       <p class="text-white/70 text-sm mt-4 leading-6">
-سامانه بارگذاری وارزیابی تمارین</p>
+سامانه بارگذاری و ارزیابی تمارین</p>
     </div>
 
     <!-- فرم -->
@@ -65,18 +65,38 @@
       @csrf
 
       <div>
-        <label class="block text-white text-sm mb-2">شماره تلفن</label>
-        <input type="number" name="phone"
+        <label class="block text-white text-sm mb-2">شماره تماس</label>
+        <input type="number" name="phone" placeholder="شماره تماس"
                class="w-full px-4 py-3 rounded-xl input-glass text-white
                       placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none">
       </div>
+<div>
+  <label class="block text-white text-sm mb-2">رمز عبور</label>
 
-      <div>
-        <label class="block text-white text-sm mb-2">رمز عبور</label>
-        <input type="password" name="password"
-               class="w-full px-4 py-3 rounded-xl input-glass text-white
-                      placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none">
-      </div>
+  <div class="relative">
+    <input
+      type="password"
+      name="password"
+      id="password"
+      placeholder="رمز عبور"
+      maxlength="11"
+      pattern="[0-9]{1,11}"
+      inputmode="numeric"
+      required
+      class="w-full px-4 py-3 rounded-xl input-glass text-white
+             placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none"
+    >
+
+    <!-- آیکن چشم -->
+    <span
+      onclick="togglePassword()"
+      class="absolute left-4 top-1/2 -translate-y-1/2 cursor-pointer text-white/70 hover:text-white"
+    >
+      <i id="eyeIcon" class="fa-solid fa-eye"></i>
+    </span>
+  </div>
+</div>
+
 
       <button
         class="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-900 to-blue-950
@@ -109,3 +129,19 @@
 
 </body>
 </html>
+ <script>
+  function togglePassword() {
+    const password = document.getElementById("password");
+    const eyeIcon = document.getElementById("eyeIcon");
+
+    if (password.type === "password") {
+      password.type = "text";
+      eyeIcon.classList.remove("fa-eye");
+      eyeIcon.classList.add("fa-eye-slash");
+    } else {
+      password.type = "password";
+      eyeIcon.classList.remove("fa-eye-slash");
+      eyeIcon.classList.add("fa-eye");
+    }
+  }
+</script>

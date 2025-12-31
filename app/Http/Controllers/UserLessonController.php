@@ -48,7 +48,7 @@ class UserLessonController extends Controller
     }
   }
 
-
+  
   public function request_list($id)
   {
 
@@ -74,7 +74,15 @@ class UserLessonController extends Controller
     userLesson::where('user_id', $id)->where('lesson_id', $lessonId)->delete();
     return redirect()->back();
   }
+  
+  public function delete($lessonId){
+    $userLesson=userLesson::where('lesson_id',$lessonId)->where('user_id',Auth::id())->first();
+    $userLesson->delete();
+    return redirect()->back();
 
+  
+    
+  }
 
   public function student_class()
   {

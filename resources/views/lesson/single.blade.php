@@ -48,13 +48,6 @@
             </div>
         </div>
         
-        <div class="flex items-center space-x-3 space-x-reverse mt-4 md:mt-0 gap-2">
-            <a href="{{route('practice_list' , [$lesson->id]) }}" 
-               class="border border-gray-300 hover:bg-gray-50 text-gray-700 text-nowrap px-4 py-2 rounded-lg transition duration-200 flex items-center">
-                <i class="fas fa-arrow-right ml-2"></i>
-                مشاهده تمرینات
-            </a>
-        </div>
     </div>
 
     <!-- کارت اصلی اطلاعات درس -->
@@ -78,30 +71,44 @@
 
         <!-- بدنه کارت -->
         <div class="p-6">
-            <!-- توضیحات درس -->
-            <div class="mb-6">
-                <div class="bg-gray-50 rounded-xl p-6 border border-gray-200 mb-2">
-                    <h2 class="w-full text-center font-bold text-3xl">
-                        {{ $lesson->title }}
-                    </h2>
+            <!-- کارت درس -->
+     <div class="bg-gray-50 rounded-xl p-6 border border-gray-200 mb-4">
+    <div class="flex flex-col md:flex-row md:space-x-6 space-y-4 md:space-y-0">
+        
+        <!-- div توضیحات درس -->
+        <div class="flex-1 bg-gray-50 p-4 border border-gray-200 rounded-xl">
+            <h2 class="text-center font-bold text-3xl mb-4">
+                {{ $lesson->title }}
+            </h2>
+
+            <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center border-b pb-2">
+                <i class="fas fa-align-left ml-2 text-[#023e83]"></i>
+                توضیحات درس
+            </h3>
+
+            @if($lesson->description)
+                <div class="prose max-w-none text-gray-700 leading-7">
+                    {{$lesson->description}}
                 </div>
-                <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center border-b pb-2">
-                    <i class="fas fa-align-left ml-2 text-[#023e83]"></i>
-                    توضیحات درس
-                </h3>
-                <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
-                    @if($lesson->description)
-                        <div class="w-full prose max-w-none text-gray-700 leading-7">
-                            {{$lesson->description}}
-                        </div>
-                    @else
-                        <div class="text-center py-8 text-gray-500">
-                            <i class="fas fa-file-alt text-4xl mb-3 opacity-50"></i>
-                            <p>توضیحاتی برای این درس ثبت نشده است</p>
-                        </div>
-                    @endif
+            @else
+                <div class="text-center py-8 text-gray-500">
+                    <i class="fas fa-file-alt text-4xl mb-3 opacity-50"></i>
+                    <p>توضیحاتی برای این درس ثبت نشده است</p>
                 </div>
-            </div>
+            @endif
+        </div>
+
+        <!-- div دکمه مشاهده تمرینات (کمی کوچکتر) -->
+        <div class="w-45 p-4  rounded-xl flex items-center justify-center">
+            <a href="{{route('practice_list', [$lesson->id])}}" 
+               class=" border border-lime-600 text-lime-700 hover:bg-lime-50 text-nowrap px-6 py-4 rounded-lg transition duration-200 flex items-center justify-center w-full text-center">
+                مشاهده تمرینات
+            </a>
+        </div>
+
+    </div>
+</div>
+
 
             <!-- اطلاعات تکمیلی -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

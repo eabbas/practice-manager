@@ -66,7 +66,7 @@
     <div class="bg-white rounded-2xl p-4 md:p-6 shadow-lg border-l-4 border-[#023e83]">
         <div class="flex items-center justify-between">
             <div>
-                <p class="text-gray-500 text-xs md:text-sm">کل تمارین</p>
+                <p class="text-gray-500 text-xs md:text-sm">کل دروس</p>
                 <p class="text-lg md:text-2xl font-bold text-gray-800 mt-1">
                     {{ count($lessons) }}
                 </p>
@@ -94,19 +94,7 @@
         </div>
     </div>
 
-    <!-- کارت 3 -->
-    <div class="bg-white rounded-2xl p-4 md:p-6 shadow-lg border-l-4 border-orange-500">
-        <div class="flex items-center justify-between">
-            <div>
-                <p class="text-gray-500 text-xs md:text-sm">گروه‌های درسی</p>
-                <p class="text-lg md:text-2xl font-bold text-gray-800 mt-1">1</p>
-            </div>
-
-            <div class="bg-orange-50 p-2 md:p-3 rounded-xl">
-                <i class="fas fa-layer-group text-orange-500 text-lg md:text-xl"></i>
-            </div>
-        </div>
-    </div>
+    
 
 </div>
 
@@ -133,8 +121,12 @@
                     </div>
                     <div class="flex items-center space-x-4 space-x-reverse mt-3 md:mt-0 ml-10">
                         <div class="relative">
-                            <input type="text" placeholder="جستجو در دروس..." 
-                                   class="px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#023e83] focus:border-[#023e83] transition duration-200">
+                           <input
+    id="lessonSearch"
+    type="text"
+    placeholder="  جستجوی درس..."
+    class="px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#023e83] focus:border-[#023e83] transition duration-200">
+
                             <i class="fas fa-search absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 mt-2"></i>
                         </div>
                     </div>
@@ -190,9 +182,12 @@
             </td>
             <td class="px-2 py-2 sm:px-3 sm:py-4">
                 <div class="flex items-center">
-                    <div class="bg-blue-50 p-2 rounded-lg ml-3">
-                        <i class="fas fa-calculator text-[#023e83]"></i>
-                    </div>
+                   <div class="bg-blue-50 p-2 rounded-lg ml-3 text-blue-900">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                            <path d="M11.25 4.533A9.707 9.707 0 0 0 6 3a9.735 9.735 0 0 0-3.25.555.75.75 0 0 0-.5.707v14.25a.75.75 0 0 0 1 .707A8.237 8.237 0 0 1 6 18.75c1.995 0 3.823.707 5.25 1.886V4.533ZM12.75 20.636A8.214 8.214 0 0 1 18 18.75c.966 0 1.89.166 2.75.47a.75.75 0 0 0 1-.708V4.262a.75.75 0 0 0-.5-.707A9.735 9.735 0 0 0 18 3a9.707 9.707 0 0 0-5.25 1.533v16.103Z" />
+                        </svg>
+                </div>
+
 
                     <div class="min-w-0">
                         <p class="font-medium text-gray-900 truncate">
@@ -255,6 +250,18 @@
                     <a href="{{ route('lesson_delete', [$lesson]) }}" class="text-red-600 hover:text-red-800">
                         <i class="fas fa-trash"></i>
                     </a>
+                    <div onclick="copyText({{ $lesson->id }})" title="لینک درس">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="2.5"
+                            stroke="currentColor"
+                            class="cursor-pointer size-5 text-[#0D47A1]">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+                        </svg>
+                    </div>
+
 
                     <a href="{{ route('practice_create', [$lesson->id]) }}"
                        class="bg-[#023e83] hover:bg-[#022e6b] text-white text-nowrap px-4 py-2 rounded-xl shadow mr-10">
@@ -265,12 +272,12 @@
                        class="bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-2 rounded-xl shadow">
                         تمرینات
                     </a>
-
+<!-- 
                     <button onclick="copyText({{ $lesson->id }})"
                             class="bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-2 rounded-xl shadow flex items-center gap-2">
                         <i class="fas fa-paper-plane"></i>
                         ارسال
-                    </button>
+                    </button> -->
                     
 
                     <a href="{{ url('/request/list/'.$lesson->id) }}"
@@ -304,6 +311,11 @@
                                 <a href="{{ route('lesson_delete', [$lesson]) }}" class="text-red-600" title="حذف">
                                     <i class="fas fa-trash"></i>
                                 </a>
+                                <div onclick="copyText({{ $lesson->id }})" >
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+                                    </svg>
+                                </div>
                             </div>
 
                             <a href="{{ route('practice_create', [$lesson->id]) }}"
@@ -319,8 +331,7 @@
                             <button
                                 onclick="copyText({{ $lesson->id }})"
                                 class="w-full text-right px-3 py-2 rounded-lg hover:bg-slate-100 flex items-center gap-2">
-                                <i class="fas fa-paper-plane text-slate-600"></i>
-                                ارسال
+                            
                             </button>
 
                             <a href="{{ url('/request/list/'.$lesson->id) }}"
@@ -333,149 +344,54 @@
                 </div>
             </td>
         </tr>
-        {{-- @endif --}}
-        @endforeach
-        </form>
+         @endforeach
         </tbody>
-        </table>
-    </div>
+    </table>
+</div>
+<div class="mt-6 mb-3 ml-2 flex justify-end ">
+ {{$lessons->links()}}
+</div>
 
-            <script>
-            function toggleMoreMenu(id) {
-                document.querySelectorAll('[id^="moreMenu-"]').forEach(m => m.classList.add('hidden'));
-                document.getElementById('moreMenu-' + id).classList.toggle('hidden');
-            }
+<script>
+    function toggleMoreMenu(id) {
+        document.querySelectorAll('[id^="moreMenu-"]').forEach(m => m.classList.add('hidden'));
+        document.getElementById('moreMenu-' + id).classList.toggle('hidden');
+    }
+    
+    document.addEventListener("click", (e) => {
+        if (!e.target.closest('[id^="moreMenu-"]') && !e.target.closest("button")) {
+            document.querySelectorAll('[id^="moreMenu-"]').forEach(m => m.classList.add('hidden'));
+        }
+    });
+    </script>
 
-            document.addEventListener("click", (e) => {
-                if (!e.target.closest('[id^="moreMenu-"]') && !e.target.closest("button")) {
-                    document.querySelectorAll('[id^="moreMenu-"]').forEach(m => m.classList.add('hidden'));
-                }
-            });
-            </script>
 
-
-            <!-- فوتر جدول -->
-            <div class="px-6 py-4 border-t border-gray-200 bg-gray-50">
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <div class="text-sm text-gray-600 mb-3 md:mb-0">
-                        نمایش ۱ تا ۴ از ۲۴ مورد
-                    </div>
-                    <div class="flex items-center space-x-2 space-x-reverse">
-                     <button data-page="prev"
-        class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100">
-    <i class="fas fa-chevron-right"></i>
-</button>
-
-<button data-page="1"
-        class="px-3 py-1 bg-[#023e83] text-white rounded-lg">1</button>
-
-<button data-page="2"
-        class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100">2</button>
-
-<button data-page="3"
-        class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100">3</button>
-
-<button data-page="next"
-        class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-100">
-    <i class="fas fa-chevron-left"></i>
-</button>
-
-                    </div>
+<!-- فوتر جدول -->
+<div class="px-6 py-4 border-t border-gray-200 bg-gray-50">
+    <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="text-sm text-gray-600 mb-3 md:mb-0">
+            
+            </div>
+            <div class="flex items-center space-x-2 space-x-reverse">
+                
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-  
-    @isset($lesson)
-    <script>
-        function copyText(lessonId){
-            let url = "{{url('/send/lesson/')}}" + "{{'/'}}" + lessonId
-             navigator.clipboard.writeText(url)
+
+@isset($lesson)
+<script>
+    function copyText(lessonId){
+        let url = "{{url('/send/lesson/')}}" + "{{'/'}}" + lessonId
+        navigator.clipboard.writeText(url)
         alert("لینک درس کپی شد")
-        }
+    }
     </script>
     <?php //dd($lesson) ?>
     @endisset
     <script>
-        // جستجو در جدول
-        
-document.addEventListener("DOMContentLoaded", function () {
-
-    const rowsPerPage = 5; // 👈 هر صفحه ۵ درس
-    const tbody = document.getElementById("practiceTable");
-    const allRows = Array.from(tbody.querySelectorAll("tr"));
-
-    const pageInfo = document.querySelector(".text-sm.text-gray-600");
-    const buttons = document.querySelectorAll("[data-page]");
-    const searchInput = document.querySelector('input[type="text"]');
-
-    let filteredRows = [...allRows];
-    let currentPage = 1;
-
-    function renderPage(page) {
-        currentPage = page;
-
-        // همه ردیف‌ها مخفی
-        allRows.forEach(row => row.style.display = "none");
-
-        const start = (currentPage - 1) * rowsPerPage;
-        const end = start + rowsPerPage;
-
-        // فقط ردیف‌های این صفحه
-        filteredRows.slice(start, end).forEach(row => {
-            row.style.display = "";
-        });
-
-        const from = filteredRows.length ? start + 1 : 0;
-        const to = Math.min(end, filteredRows.length);
-
-        pageInfo.innerText =
-            `نمایش ${from} تا ${to} از ${filteredRows.length} مورد`;
-
-        // فعال‌سازی دکمه صفحه
-        buttons.forEach(btn => {
-            if (btn.dataset.page == currentPage) {
-                btn.classList.add("bg-[#023e83]", "text-white");
-                btn.classList.remove("border");
-            } else if (!isNaN(btn.dataset.page)) {
-                btn.classList.remove("bg-[#023e83]", "text-white");
-                btn.classList.add("border");
-            }
-        });
-    }
-
-    // کلیک روی دکمه‌ها
-    buttons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            if (btn.dataset.page === "prev") {
-                renderPage(Math.max(1, currentPage - 1));
-            } else if (btn.dataset.page === "next") {
-                renderPage(currentPage + 1); // حتی اگر خالی باشد
-            } else {
-                renderPage(parseInt(btn.dataset.page));
-            }
-        });
-    });
-
-    // جستجو
-    searchInput.addEventListener("input", function () {
-        const value = this.value.toLowerCase();
-
-        filteredRows = allRows.filter(row =>
-            row.innerText.toLowerCase().includes(value)
-        );
-
-        currentPage = 1;
-        renderPage(currentPage);
-    });
-
-    // شروع
-    renderPage(1);
-});
-
-
-
         // فیلتر بر اساس گروه درسی
         const groupFilter = document.querySelector('select');
         groupFilter.addEventListener('change', function() {
@@ -491,7 +407,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
         });
-
+        
         // مدیریت hover روی ردیف‌ها
         document.querySelectorAll('tbody tr').forEach(row => {
             row.addEventListener('mouseenter', function() {
@@ -503,5 +419,28 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
         </script>
-        <script src="{{asset('assets/js/checkAll.js')}}"></script>
+
+        <script>
+    const searchInput = document.getElementById('lessonSearch');
+    const tableRows = document.querySelectorAll('#practiceTable tr');
+
+    searchInput.addEventListener('keyup', function () {
+        const searchValue = this.value.toLowerCase().trim();
+
+        tableRows.forEach(row => {
+            // عنوان درس
+            const title = row.querySelector('td:nth-child(1) p.font-medium')?.innerText.toLowerCase() || '';
+            // توضیح درس
+            const description = row.querySelector('td:nth-child(1) p.text-gray-500')?.innerText.toLowerCase() || '';
+
+            if (title.includes(searchValue) || description.includes(searchValue)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+        
 @endsection
