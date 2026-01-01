@@ -25,7 +25,10 @@ class LessonController extends Controller
 
     public function index(){
        $lessons  = lesson::where('master_id', Auth::id())->paginate(5);
-       return view('lesson.index' , ["lessons"=>$lessons]);
+       $users = $lessons->load('users');
+       $activ = lesson::where('master_id', Auth::id())->where('active' , 0)->get();
+       $count = count($activ);
+       return view('lesson.index' , ["lessons"=>$lessons,"count"=>$count , 'users'=>$users]);
     }
 
 
