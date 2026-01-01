@@ -271,9 +271,6 @@
             </form>
             </tbody>
         </table>
-        <div class="mt-6 mb-3 ml-2 flex justify-end ">
-         {{$pageNet->links()}}
-        </div>
     </div>
 
 </div>
