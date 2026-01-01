@@ -21,6 +21,7 @@ class userController extends Controller
 
   public function store(Request $request)
   {
+    // dd($request->all());
     $password = Hash::make($request->code);
     $userId = User::insertGetId(["approved" => 0, "name" => $request->name, "family" => $request->family, "password" => $password, "phone" => $request->phone, "code" => $request->code]);
     user_role::create(["user_id" => $userId, "role_id" => $request->userRoles]);
@@ -36,6 +37,7 @@ class userController extends Controller
 
   public function check(Request $request)
   {
+    // dd($request->all());
     if (Auth::check()) {
       return to_route("user.profile", [Auth::user()]);
     }
@@ -45,6 +47,7 @@ class userController extends Controller
     }
     $checkHash = Hash::check($request->password, $user->password);
     if ($checkHash) {
+      
       Auth::login($user);
       return redirect()->intended(route('user.profile',[Auth::user()]));
       // return to_route("user.profile", [Auth::user()]);
