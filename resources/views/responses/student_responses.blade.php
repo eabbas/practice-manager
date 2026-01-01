@@ -98,40 +98,35 @@
             <!-- پاسخ ها    --> 
             @foreach ($responses as $response)
             
-            <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm mb-3">
-                
-                @if($response->users->roles[0]->title == 'استاد')
+            @if($response->users->roles[0]->title == 'استاد')
+            <div class="h-auto bg-blue-100 rounded-2xl p-6 border border-gray-200 shadow-sm mb-3">
                 استاد 
-                
                 {{$master->name}} {{$master->family}} :
-                @else
-                
+                <span>
+                   {{$response->text}}
+                </span>
+                @elseif($response->users->roles[0]->title == 'دانشجو')
+                <div class="h-auto bg-violet-100 rounded-2xl p-6 border border-gray-200 shadow-sm mb-3">
                 {{$student->name}} {{ $student->family }} :
+                <span>
+                    {{$response->text}}
+                </span>
                 @endif
-                <div>
-                    <span>
-                        {{$response->text}}
-    
-                    </span>
-                </div>
             </br>
-            @if(isset($response->responseMedia))
+
+
             <div class="flex flex-row gap-1.5">
-                <h3 class="mt-1">دانلود فایل :</h3>
-                
                 @foreach($response->responseMedia as $media)
-                    @if($media)
-                    <!-- <img src=" //asset("storage/".$media->media_path)" class="w-[80px] h-[40px]"> -->
-                     
+                @if(isset($media))
+                    <h3 class="mt-2"> فایل :</h3>
                     <a href="{{route('download',[$media->id])}}" title="دانلود فایل">
-                        <svg class=" w-[30px] h-[30px] " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6" >
+                        <svg class=" w-[28px] h-[28px] mt-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6" >
                             <path fill-rule="evenodd" d="M19.5 21a3 3 0 0 0 3-3V9a3 3 0 0 0-3-3h-5.379a.75.75 0 0 1-.53-.22L11.47 3.66A2.25 2.25 0 0 0 9.879 3H4.5a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h15Zm-6.75-10.5a.75.75 0 0 0-1.5 0v4.19l-1.72-1.72a.75.75 0 0 0-1.06 1.06l3 3a.75.75 0 0 0 1.06 0l3-3a.75.75 0 1 0-1.06-1.06l-1.72 1.72V10.5Z" clip-rule="evenodd" />
                         </svg>
                     </a>
                     
                     @endif
                     @endforeach
-                    @endif
              </div>
            
 
@@ -153,15 +148,27 @@
                         <input type="hidden" name="practice_id" value="{{$practice->id}}">
                         <input type="hidden" name="user_id" value="{{Auth::id()}}">
                         <input type="hidden" name="student_id" value="{{$student->id}}">
-                        <input type="file" name="file[]"  multiple>
-
-                        <textarea name="text" id="response" cols="0" rows="1" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-primary mt-4"></textarea>
-                        <input type="file" class="border border-gray-300 rounded-lg px-3 py-2 w-70 focus:outline-none focus:ring-2 focus:ring-primary mt-4" name="file">
-                    </div>
-                    <button type="submit" 
-                            class="bg-[#023e83] hover:bg-[#012b5a] text-white px-6 py-2 rounded-lg transition duration-200">
-                        ارسال
-                    </button>
+                        <div class="flex flex-row gap-2">
+                            <label class="block text-gray-700 font-semibold mt-6"> انتخاب فایل:</label>  
+                            <input type="file" class="border border-gray-300 rounded-lg px-3 py-2 w-55 focus:outline-none focus:ring-2 focus:ring-primary mt-4 cursor-pointer" title="انتخاب فایل" name="file[]"  multiple>
+                              <button type="reset" class="px-2 h-10 bg-slate-200 rounded-lg text-slate-700 mt-4">
+                              پاک کردن فایل
+                             </button>
+                        </div>
+                        <textarea name="text" id="response" cols="0" rows="1" class="w-100 border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-primary mt-4" placeholder="ارسال پیام..."></textarea>
+                        <div class="flex flex-row justify-between mt-3">
+                            <button type="submit" 
+                                    class="bg-[#023e83] hover:bg-[#012b5a] text-white px-6 py-2 rounded-lg transition duration-200 mt-3">
+                                ارسال
+                            </button>
+                            {{-- <div class="flex items-center space-x-3 space-x-reverse mt-4 md:mt-0">
+                            <a href="{{route('practice_list')}}" 
+                            class="border border-gray-300 hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg transition duration-200 flex items-center mt-3">
+                           <i class="fas fa-arrow-right ml-2"></i>
+                           بازگشت
+                           </a>
+                           </div> --}}
+                        </div>
                 </form>
             </div>
         </div>

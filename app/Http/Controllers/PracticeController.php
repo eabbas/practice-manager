@@ -41,8 +41,8 @@ class PracticeController extends Controller
 
     public function index(){
         $practices = Auth::user()->practices;
-        $practicesCount = $practices->where('active' , 0)->count();
-        return view('practice.index' , ["practiceWithLessons"=>$practices , "count"=>$practicesCount]);
+         $practicesCount = $practices->where('active' , 0)->count();
+        return view('practice.index' , ["practiceWithLessons"=>$practices,"count"=>$practicesCount]);
     }
 
     public function show(practice $practice){
