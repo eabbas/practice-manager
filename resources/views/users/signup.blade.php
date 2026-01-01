@@ -104,7 +104,7 @@
   <div class="relative">
     <input
       type="password"
-      name="password"
+      name="code"
       id="password"
       placeholder="رمز عبور"
       maxlength="11"

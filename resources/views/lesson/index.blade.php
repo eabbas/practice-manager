@@ -83,9 +83,7 @@
         <div class="flex items-center justify-between">
             <div>
                 <p class="text-gray-500 text-xs md:text-sm">دروس فعال</p>
-                <p class="text-lg md:text-2xl font-bold text-gray-800 mt-1"> 
-                {{$count}}
-                </p>
+                <p class="text-lg md:text-2xl font-bold text-gray-800 mt-1">0</p>
             </div>
 
             <div class="bg-green-50 p-2 md:p-3 rounded-xl">
@@ -104,21 +102,11 @@
             <!-- هدر جدول -->
             <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
-                    <div class="flex flex-col gap-3">
-                        <h2 class="text-lg font-semibold text-gray-800 flex items-center">
-                            <i class="fas fa-list ml-2 text-[#023e83]"></i>
-                            تمام دروس
-                        </h2>
-                        {{-- @if (count($lessons)) --}}
-                        <form action="{{route('delete_all')}}" method="POST">
-                            @csrf
-                            <span class="flex flex-row-1 gap-2">
-                            <input type="checkbox" id="checkAll" onchange="selectAll(this)"><label class="mt-1" for="check">انتخاب همه</label>
-                            <button type="submit" class="px-2 py-1 bg-slate-200 rounded-lg text-slate-700">
-                            حذف
-                           </button>
-                    </span>
-                    </div>
+                    <h2 class="text-lg font-semibold text-gray-800 flex items-center">
+                        <i class="fas fa-list ml-2 text-[#023e83]"></i>
+                        تمام دروس
+                    </h2>
+                    
                     <div class="flex items-center space-x-4 space-x-reverse mt-3 md:mt-0 ml-10">
                         <div class="relative">
                            <input
@@ -139,24 +127,16 @@
     <table class="w-full">
         <thead>
         <tr class="bg-gray-100 border-b border-gray-200">
-            <th></th>
+
             <!-- عنوان درس -->
             <th class="px-2 py-2 sm:px-6 sm:py-4 text-right text-sm font-semibold text-gray-700">
                 عنوان درس
-            </th>
-
-            <th class="px-2 py-2 sm:px-6 sm:py-4 text-right text-sm font-semibold text-gray-700 text-nowrap">
-                 وضعیت درس 
             </th>
 
             <!-- استاد — در موبایل مخفی -->
             <th class="hidden sm:table-cell px-2 py-2 sm:px-6 sm:py-4 text-right text-sm font-semibold text-gray-700">
                 استاد
             </th>
-
-            {{-- <th class="px-2 py-2 sm:px-6 sm:py-4 text-right text-sm font-semibold text-gray-700 text-nowrap">
-                  تعداد دانشجویان 
-            </th> --}}
 
              <th class="hidden md:table-cell px-4 py-4 text-right text-sm font-semibold text-gray-700">
                     عملیات
@@ -173,13 +153,8 @@
 
         @foreach($lessons as $lesson)
         <tr>
-        {{-- {{count($lesson->active) == 0}} --}}
+
             <!-- عنوان درس -->
-            <td>
-              <div class="py-1 px-2 whitespace-nowrap flex items-center justify-center h-full">
-                 <input type="checkbox" class="user" name="lessons[]" value="{{$lesson->id}}">
-                 </div>
-            </td>
             <td class="px-2 py-2 sm:px-3 sm:py-4">
                 <div class="flex items-center">
                    <div class="bg-blue-50 p-2 rounded-lg ml-3 text-blue-900">
@@ -200,39 +175,14 @@
                     </div>
                 </div>
             </td>
-            <td class="px-4 md:px-6 py-3">
-                <div class="flex items-center">
-                     @if ($lesson->active == 0)
-                     <div class="w-3 h-3 bg-green-500 rounded-full ml-2"></div>
-                        <p class="text-sm text-gray-500 mt-1">
-                          فعال
-                        </p>
-                    </div>     
-                    @elseif($lesson->active == 1)
-                    <div class="w-3 h-3 bg-red-500 rounded-full ml-2"></div>
-                        <p class="text-sm text-gray-500 mt-1 text-nowrap">
-                          غیر فعال
-                        </p>
-                    </div> 
-                    @endif   
-            </td>
+
             <!-- استاد — فقط دسکتاپ -->
             <td class="hidden sm:table-cell px-2 py-2 sm:px-6 sm:py-2">
                 <span class="text-gray-700 text-nowrap">
                     {{ Auth::user()->name }} {{ Auth::user()->family }}
                 </span>
             </td>
-            {{-- <td class="m:table-cell px-2 py-2 sm:px-6 sm:py-2"> --}}
-                {{-- <span class="text-gray-700 text-nowrap"> --}}
-                {{-- @foreach ($users as $user) --}}
-                {{-- @foreach ($user->users as $u) --}}
-                    {{-- @dd($user->users->pivot->status == 1) --}}
-                    {{-- @endforeach --}}
-                    {{-- @endforeach --}}
-                    {{-- {{count($u->pivot->status == 1)}} --}}
-                   
-                {{-- </span> --}}
-            {{-- </td> --}}
+
             <!-- عملیات -->
             <td class="px-2 py-2 sm:px-6 sm:py-4">
 

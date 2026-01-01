@@ -76,8 +76,8 @@
   <div class="relative">
     <input
       type="password"
-      name="password"
-      id="password"
+      name="code"
+      id="code"
       placeholder="رمز عبور"
       maxlength="11"
       pattern="[0-9]{1,11}"
@@ -129,9 +129,9 @@
 
 </body>
 </html>
- <script>
+<script>
   function togglePassword() {
-    const password = document.getElementById("password");
+    const password = document.getElementById("code");
     const eyeIcon = document.getElementById("eyeIcon");
 
     if (password.type === "password") {
@@ -145,3 +145,4 @@
     }
   }
 </script>
+
