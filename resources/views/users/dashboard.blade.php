@@ -261,31 +261,25 @@
         document.getElementById('sidebar').classList.toggle('translate-x-full');
         document.getElementById('overlay').classList.toggle('hidden');
     }
-</script>
-<script>
-    function toggleMenu(id) {
+    
+    function toggleSubMenu(id) {
         const menu = document.getElementById(id);
         menu.classList.toggle('hidden');
     }
 
+    function toggleSection(id, btn) {
+        const menu = document.getElementById(id);
+        const triangle = btn.querySelector('.triangle');
 
-    
-function toggleSection(id, btn) {
-    const menu = document.getElementById(id);
-    const triangle = btn.querySelector('.triangle');
+        menu.classList.toggle('hidden');
 
-    // باز/بسته کردن منو
-    menu.classList.toggle('hidden');
-
-    // تغییر حالت مثلث
-    if (menu.classList.contains('hidden')) {
-        triangle.textContent = '▼'; // منو بسته است
-    } else {
-        triangle.textContent = '▲'; // منو باز است
+        if (menu.classList.contains('hidden')) {
+            triangle.textContent = '▼';
+        } else {
+            triangle.textContent = '▲';
+        }
     }
-}
-
-
 </script>
+
 </body>
 </html>

@@ -161,13 +161,24 @@
                                     class="bg-[#023e83] hover:bg-[#012b5a] text-white px-6 py-2 rounded-lg transition duration-200 mt-3">
                                 ارسال
                             </button>
-                            {{-- <div class="flex items-center space-x-3 space-x-reverse mt-4 md:mt-0">
-                            <a href="{{route('practice_list')}}" 
-                            class="border border-gray-300 hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg transition duration-200 flex items-center mt-3">
-                           <i class="fas fa-arrow-right ml-2"></i>
-                           بازگشت
-                           </a>
-                           </div> --}}
+                            
+                            @if(Auth::user()->roles[0]->title == 'استاد')
+                            <div class="flex items-center space-x-3 space-x-reverse mt-4 md:mt-0">
+                                <a href="{{route('response_list' , [$practice])}}" 
+                                class="border border-gray-300 hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg transition duration-200 flex items-center mt-3">
+                                <i class="fas fa-arrow-right ml-2"></i>
+                                بازگشت
+                                </a>
+                           </div>
+                            @elseif(Auth::user()->roles[0]->title == 'دانشجو')
+                           <div class="flex items-center space-x-3 space-x-reverse mt-4 md:mt-0">
+                                <a href="{{route('practice_list',[$practice->lesson->id])}}" 
+                                class="border border-gray-300 hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg transition duration-200 flex items-center mt-3">
+                                <i class="fas fa-arrow-right ml-2"></i>
+                                بازگشت
+                                </a>
+                           </div>
+                           @endif
                         </div>
                 </form>
             </div>

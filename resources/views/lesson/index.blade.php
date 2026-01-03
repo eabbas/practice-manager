@@ -173,7 +173,6 @@
 
         @foreach($lessons as $lesson)
         <tr>
-        {{-- {{count($lesson->active) == 0}} --}}
             <!-- عنوان درس -->
             <td>
               <div class="py-1 px-2 whitespace-nowrap flex items-center justify-center h-full">
@@ -222,17 +221,7 @@
                     {{ Auth::user()->name }} {{ Auth::user()->family }}
                 </span>
             </td>
-            {{-- <td class="m:table-cell px-2 py-2 sm:px-6 sm:py-2"> --}}
-                {{-- <span class="text-gray-700 text-nowrap"> --}}
-                {{-- @foreach ($users as $user) --}}
-                {{-- @foreach ($user->users as $u) --}}
-                    {{-- @dd($user->users->pivot->status == 1) --}}
-                    {{-- @endforeach --}}
-                    {{-- @endforeach --}}
-                    {{-- {{count($u->pivot->status == 1)}} --}}
-                   
-                {{-- </span> --}}
-            {{-- </td> --}}
+            
             <!-- عملیات -->
             <td class="px-2 py-2 sm:px-6 sm:py-4">
 
@@ -272,13 +261,6 @@
                        class="bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-2 rounded-xl shadow">
                         تمرینات
                     </a>
-<!-- 
-                    <button onclick="copyText({{ $lesson->id }})"
-                            class="bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-2 rounded-xl shadow flex items-center gap-2">
-                        <i class="fas fa-paper-plane"></i>
-                        ارسال
-                    </button> -->
-                    
 
                     <a href="{{ url('/request/list/'.$lesson->id) }}"
                        class="bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-2 rounded-xl shadow">
@@ -441,6 +423,5 @@
         });
     });
 </script>
-
-        
-@endsection
+<script src="{{asset('assets/js/checkAll.js')}}"></script>
+@endsection 
