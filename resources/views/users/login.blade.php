@@ -66,18 +66,17 @@
       @csrf
 <div>
   <label class="block text-white text-sm mb-2">شماره تماس</label>
-<input
-  type="text"
-  name="phone"
-  placeholder="شماره تماس"
-  maxlength="11"
-  inputmode="numeric"
-  required
-  class="w-full px-4 py-3 rounded-xl input-glass text-white text-right
-         placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none"
->
-
-
+  <input
+    type="number"
+    name="phone"
+    placeholder="شماره تماس"
+    maxlength="11"
+    pattern="[0-9]{11}"
+    {{-- inputmode="numeric" --}}
+    required
+    class="w-full px-4 py-3 rounded-xl input-glass text-white
+           placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none"
+  >
 </div>
 
 <div>

@@ -182,6 +182,7 @@
                     {{ Auth::user()->name }} {{ Auth::user()->family }}
                 </span>
             </td>
+            
 
             <!-- عملیات -->
             <td class="px-2 py-2 sm:px-6 sm:py-4">
@@ -222,13 +223,6 @@
                        class="bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-2 rounded-xl shadow">
                         تمرینات
                     </a>
-<!-- 
-                    <button onclick="copyText({{ $lesson->id }})"
-                            class="bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-2 rounded-xl shadow flex items-center gap-2">
-                        <i class="fas fa-paper-plane"></i>
-                        ارسال
-                    </button> -->
-                    
 
                     <a href="{{ url('/request/list/'.$lesson->id) }}"
                        class="bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-2 rounded-xl shadow">
@@ -391,6 +385,5 @@
         });
     });
 </script>
-
-        
-@endsection
+<script src="{{asset('assets/js/checkAll.js')}}"></script>
+@endsection 
