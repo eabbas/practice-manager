@@ -89,7 +89,6 @@
       id="password"
       placeholder="رمز عبور"
       maxlength="11"
-      pattern="[0-9]{1,11}"
       inputmode="numeric"
       required
       class="w-full px-4 py-3 rounded-xl input-glass text-white
@@ -139,7 +138,6 @@
 </body>
 </html>
 
-
 <script>
   function togglePassword() {
     const password = document.getElementById("password");
@@ -156,4 +154,5 @@
     }
   }
 </script>
+
 
