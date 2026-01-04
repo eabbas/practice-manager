@@ -47,8 +47,8 @@ class userController extends Controller
     }
     $checkHash = Hash::check($request->password, $user->password);
     if ($checkHash) {
-      
       Auth::login($user);
+      // dd($user);
       return redirect()->intended(route('user.profile',[Auth::user()]));
       // return to_route("user.profile", [Auth::user()]);
     } else {
@@ -89,7 +89,7 @@ class userController extends Controller
   }
 
   public function save(Request $request){
-  $user = User::find($request->master_id);
+  $user=Auth::user();
   $user->collage = $request->collage;
   $user->email = $request->email;
   $user->save();
@@ -99,8 +99,8 @@ class userController extends Controller
   
   public function update(Request $request)
   {
-   // dd($request->master_id);
-    $user = User::find($request->master_id);
+    $user = Auth::user();
+    // dd($user);
     $user->name = $request->name;
     $user->family = $request->family;
     $user->phone = $request->phone;
@@ -112,11 +112,15 @@ class userController extends Controller
     $user->save();
     return to_route("user.profile",[Auth::user()]);
   }
+
+
   public function show($id)
   {
     $user = User::find($id);
     return view("users.single", ["user" => $user]);
   }
+
+
   public function delete($id)
   {
     $user = User::find($id);
