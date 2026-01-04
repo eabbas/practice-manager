@@ -57,20 +57,19 @@
     <!-- عنوان -->
     <h1 class="text-lg sm:text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
         <i class="fas fa-list text-[#023e83]"></i>
-        لیست درس‌های من
+        لیست تمرین های من
     </h1>
 
     <!-- جستجو -->
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
         <span class="text-slate-600 text-sm">
-            تعداد درس‌های من : {{count($user->lessons)}}
+            {{-- تعداد درس‌های من : {{count($lesson->practices)}} --}}
         </span>
-
         <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
             <input type="text"
-                   placeholder="جستجوی درس..."
-                   class="w-full sm:w-auto px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none">
-
+            placeholder="جستجوی درس..."
+            class="w-full sm:w-auto px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none">
+            
         </div>
     </div>
 
@@ -79,45 +78,59 @@
         <table class="w-full min-w-[700px] text-right">
             <thead class="bg-slate-50 text-slate-600 text-sm">
                 <tr>
-                    <th class="py-3 px-4">نام درس</th>
-                    <th class="py-3 px-4">نام استاد</th>
-                    <th class="py-3 px-4 text-center">مشاهده درس</th>
-                    <th class="py-3 px-4 text-center">تمرینات</th>
+                    <th class="py-3 px-4 text-center">نام درس</th>
+                    <th class="py-3 px-4 text-center">نام تمرین</th>
+                    <th class="py-3 px-4 text-center">نام استاد</th>
+                    <th class="py-3 px-4 text-center">مشاهده تمرین</th>
+                    <th class="py-3 px-4 text-center">پاسخ</th>
+                    <th class="py-3 px-4 text-center">وضعیت پاسخ</th>
                 </tr>
             </thead>
 
             <tbody class="text-sm">
                 @foreach($user->lessons as $lesson)
+                @foreach($lesson->practices as $practice)
+                {{-- @dd($practice); --}}
                 <tr class="hover:bg-slate-50 border-b transition">
-                    <td class="py-3 px-4 whitespace-nowrap">
+                    <td class="py-3 px-4 whitespace-nowrap text-center">
                         {{$lesson->title}}
                     </td>
 
-                    <td class="py-3 px-4 whitespace-nowrap">
+                    <td class="py-3 px-4 whitespace-nowrap text-center">
+                        {{$practice->title}}
+                    </td>
+
+                    <td class="py-3 px-4 whitespace-nowrap text-center">
                         {{$lesson->master->name}} {{$lesson->master->family}}
                     </td>
-
-                    <td class="py-3 px-4 text-center">
-                        <a href="{{route('lesson_show' , [$lesson->id])}}"
-                           class="inline-block px-3 py-1.5 rounded-md border border-blue-600 text-blue-600 hover:bg-blue-50">
-                            جزئیات درس
-                        </a>
+                    <td class="text-center">
+                      <a href="{{ route('practice_show', [$practice]) }}"
+                         class="flex items-center justify-center">
+                         <i class="fas fa-eye text-green-600"></i>
+                      </a>
+                    </td>
+                    <td class="text-center">
+                        <a href="{{route('student_responses' , [Auth::user()->id ,$practice->id ,$lesson->master->id ])}}"
+                       class="px-2 py-1 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition text-center">
+                        ارسال پاسخ  
+                    </a>
                     </td>
 
-                    <td class="py-3 px-4 text-center">
+                    {{-- <td class="py-3 px-4 text-center">
                         <a href="{{route('practice_list' , [$lesson->id])}}"
                            class="inline-block px-3 py-1.5 rounded-md border border-blue-600 text-blue-600 hover:bg-blue-50">
                             مشاهده تمرینات
                         </a>
-                    </td>
+                    </td> --}}
                 </tr>
+                @endforeach
                 @endforeach
             </tbody>
         </table>
     </div>
 
     <!-- لیست خالی -->
-    @if (count($user->lessons) == 0)
+    @if (count($lesson->practices) == 0)
         <p class="text-center text-slate-500 mt-6">
             درسی برای شما وجود ندارد.
         </p>

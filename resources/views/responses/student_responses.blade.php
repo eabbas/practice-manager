@@ -107,7 +107,17 @@
                 </span>
                 @elseif($response->users->roles[0]->title == 'دانشجو')
                 <div class="h-auto bg-violet-100 rounded-2xl p-6 border border-gray-200 shadow-sm mb-3">
-                {{$student->name}} {{ $student->family }} :
+                    <div class="w-full h-15 border-2 border-violet-200 rounded-xl">
+                        <div class="flex flex-col">
+                            <span class="text-base text-violet-300 mr-3 mt-1">
+                                {{$student->name}} {{ $student->family }}
+                            </span>
+                            <span class="text-xs text-violet-300 mr-3 mt-1">
+                                نقش :
+                            {{$response->users->roles[0]->title}}
+                            </span>
+                        </div>
+                    </div>
                 <span>
                     {{$response->text}}
                 </span>
