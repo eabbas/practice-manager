@@ -48,7 +48,7 @@
         <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
             <form action="{{ route('user.update') }}" method="POST" class="p-8">
                 @csrf
-                <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                <input type="hidden" name="master_id" value="{{Auth::user()->id}}">
                 <!-- اطلاعات اصلی درس -->
                 <div class="mb-8">
                     <h2 class="text-xl font-semibold text-gray-800 mb-6 flex items-center border-b pb-3">
@@ -59,10 +59,8 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- عنوان کاربر -->
                         <div>
-                            <label for="name" class="block text-gray-700 font-medium mb-3 flex items-center gap-2" >
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 ">
-                                    <path d="M10 3.75a2 2 0 1 0-4 0 2 2 0 0 0 4 0ZM17.25 4.5a.75.75 0 0 0 0-1.5h-5.5a.75.75 0 0 0 0 1.5h5.5ZM5 3.75a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5a.75.75 0 0 1 .75.75ZM4.25 17a.75.75 0 0 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5h1.5ZM17.25 17a.75.75 0 0 0 0-1.5h-5.5a.75.75 0 0 0 0 1.5h5.5ZM9 10a.75.75 0 0 1-.75.75h-5.5a.75.75 0 0 1 0-1.5h5.5A.75.75 0 0 1 9 10ZM17.25 10.75a.75.75 0 0 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5h1.5ZM14 10a2 2 0 1 0-4 0 2 2 0 0 0 4 0ZM10 16.25a2 2 0 1 0-4 0 2 2 0 0 0 4 0Z" />
-                                </svg>
+                            <label for="name" class="block text-gray-700 font-medium mb-3 flex items-center">
+                                <i class="fas fa-heading ml-2 text-[#023e83] text-sm"></i>
                                  نام   
                                 <span class="text-red-500 mr-1">*</span>
                             </label>
@@ -74,10 +72,8 @@
                             </div>
                         </div>
                         <div>
-                            <label for="family" class="block text-gray-700 font-medium mb-3 flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 ">
-                                    <path d="M10 3.75a2 2 0 1 0-4 0 2 2 0 0 0 4 0ZM17.25 4.5a.75.75 0 0 0 0-1.5h-5.5a.75.75 0 0 0 0 1.5h5.5ZM5 3.75a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5a.75.75 0 0 1 .75.75ZM4.25 17a.75.75 0 0 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5h1.5ZM17.25 17a.75.75 0 0 0 0-1.5h-5.5a.75.75 0 0 0 0 1.5h5.5ZM9 10a.75.75 0 0 1-.75.75h-5.5a.75.75 0 0 1 0-1.5h5.5A.75.75 0 0 1 9 10ZM17.25 10.75a.75.75 0 0 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5h1.5ZM14 10a2 2 0 1 0-4 0 2 2 0 0 0 4 0ZM10 16.25a2 2 0 1 0-4 0 2 2 0 0 0 4 0Z" />
-                                </svg>
+                            <label for="family" class="block text-gray-700 font-medium mb-3 flex items-center">
+                                <i class="fas fa-heading ml-2 text-[#023e83] text-sm"></i>
                                    نام خانوادگی
                                 <span class="text-red-500 mr-1">*</span>
                             </label>
@@ -89,10 +85,8 @@
                             </div>
                         </div>
                         <div>
-                            <label for="collage" class="block text-gray-700 font-medium mb-3 flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 ">
-                                    <path d="M10 3.75a2 2 0 1 0-4 0 2 2 0 0 0 4 0ZM17.25 4.5a.75.75 0 0 0 0-1.5h-5.5a.75.75 0 0 0 0 1.5h5.5ZM5 3.75a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5a.75.75 0 0 1 .75.75ZM4.25 17a.75.75 0 0 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5h1.5ZM17.25 17a.75.75 0 0 0 0-1.5h-5.5a.75.75 0 0 0 0 1.5h5.5ZM9 10a.75.75 0 0 1-.75.75h-5.5a.75.75 0 0 1 0-1.5h5.5A.75.75 0 0 1 9 10ZM17.25 10.75a.75.75 0 0 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5h1.5ZM14 10a2 2 0 1 0-4 0 2 2 0 0 0 4 0ZM10 16.25a2 2 0 1 0-4 0 2 2 0 0 0 4 0Z" />
-                                </svg>
+                            <label for="collage" class="block text-gray-700 font-medium mb-3 flex items-center">
+                                <i class="fas fa-heading ml-2 text-[#023e83] text-sm"></i>
                                    @if(Auth::user()->roles[0]->title=="استاد")
                                     گروه درسی
                                     @elseif(Auth::user()->roles[0]->title=="دانشجو")
@@ -101,17 +95,15 @@
                                 <span class="text-red-500 mr-1">*</span>
                             </label>
                             <div class="relative">
-                                <input type="text" id="collage" name="collage" value="{{Auth::user()->collage}}" 
+                                <input type="text" id="collage" name="collage" value="{{Auth::user()->collage}}" required 
                                        class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50"
                                        placeholder="گروه درسی خود را وارد کنید">
                                 <i class="fas fa-pen absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                             </div>
                         </div>
                         <div>
-                            <label for="code" class="block text-gray-700 font-medium mb-3 flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 ">
-                                    <path d="M10 3.75a2 2 0 1 0-4 0 2 2 0 0 0 4 0ZM17.25 4.5a.75.75 0 0 0 0-1.5h-5.5a.75.75 0 0 0 0 1.5h5.5ZM5 3.75a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5a.75.75 0 0 1 .75.75ZM4.25 17a.75.75 0 0 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5h1.5ZM17.25 17a.75.75 0 0 0 0-1.5h-5.5a.75.75 0 0 0 0 1.5h5.5ZM9 10a.75.75 0 0 1-.75.75h-5.5a.75.75 0 0 1 0-1.5h5.5A.75.75 0 0 1 9 10ZM17.25 10.75a.75.75 0 0 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5h1.5ZM14 10a2 2 0 1 0-4 0 2 2 0 0 0 4 0ZM10 16.25a2 2 0 1 0-4 0 2 2 0 0 0 4 0Z" />
-                                </svg>
+                            <label for="code" class="block text-gray-700 font-medium mb-3 flex items-center">
+                                <i class="fas fa-heading ml-2 text-[#023e83] text-sm"></i>
                                    @if(Auth::user()->roles[0]->title=="استاد")
                                     شماره پرسنلی
                                     @elseif(Auth::user()->roles[0]->title=="دانشجو")
@@ -120,61 +112,33 @@
                                 <span class="text-red-500 mr-1">*</span>
                             </label>
                             <div class="relative">
-                               <input
-                                    type="number"
-                                    name="code"
-                                    id="code"
-                                    value="{{ Auth::user()->code }}"
-                                    required
-                                    inputmode="numeric"
-                                    pattern="[0-9]{11}"
-                                    minlength="11"
-                                    maxlength="11"
-                                    class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50
-                                        focus:ring-2 focus:ring-[#023e83]/30 focus:border-[#023e83]"
-                                    placeholder="شماره  پرسنلی خود را وارد کنید">
-
-
+                                <input type="text" id="code" name="code" value="{{Auth::user()->code}}" required 
+                                       class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50"
+                                       placeholder="شماره پرسنلی خود را وارد کنید">
                                 <i class="fas fa-pen absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                             </div>
                         </div>
                         <div>
-                            <label for="phone" class="block text-gray-700 font-medium mb-3 flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 ">
-                                    <path d="M10 3.75a2 2 0 1 0-4 0 2 2 0 0 0 4 0ZM17.25 4.5a.75.75 0 0 0 0-1.5h-5.5a.75.75 0 0 0 0 1.5h5.5ZM5 3.75a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5a.75.75 0 0 1 .75.75ZM4.25 17a.75.75 0 0 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5h1.5ZM17.25 17a.75.75 0 0 0 0-1.5h-5.5a.75.75 0 0 0 0 1.5h5.5ZM9 10a.75.75 0 0 1-.75.75h-5.5a.75.75 0 0 1 0-1.5h5.5A.75.75 0 0 1 9 10ZM17.25 10.75a.75.75 0 0 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5h1.5ZM14 10a2 2 0 1 0-4 0 2 2 0 0 0 4 0ZM10 16.25a2 2 0 1 0-4 0 2 2 0 0 0 4 0Z" />
-                                </svg>
+                            <label for="phone" class="block text-gray-700 font-medium mb-3 flex items-center">
+                                <i class="fas fa-heading ml-2 text-[#023e83] text-sm"></i>
                                     شماره تلفن
                                 <span class="text-red-500 mr-1">*</span>
                             </label>
                             <div class="relative">
-                               <input
-                                type="number"
-                                name="phone"
-                                id="phone"
-                                value="{{ Auth::user()->phone }}"
-                                required
-                                inputmode="numeric"
-                                pattern="[0-9]{11}"
-                                minlength="11"
-                                maxlength="11"
-                                class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50
-                                    focus:ring-2 focus:ring-[#023e83]/30 focus:border-[#023e83]"
-                                placeholder="شماره تلفن خود را وارد کنید">
-
-
+                                <input type="text" id="phone" name="phone" value="{{Auth::user()->phone}}" required 
+                                       class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50"
+                                       placeholder="شماره تلفن خود را وارد کنید">
                                 <i class="fas fa-pen absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                             </div>
                         </div>
                         <div>
-                            <label for="email" class="block text-gray-700 font-medium mb-3 flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 ">
-                                    <path d="M10 3.75a2 2 0 1 0-4 0 2 2 0 0 0 4 0ZM17.25 4.5a.75.75 0 0 0 0-1.5h-5.5a.75.75 0 0 0 0 1.5h5.5ZM5 3.75a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5a.75.75 0 0 1 .75.75ZM4.25 17a.75.75 0 0 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5h1.5ZM17.25 17a.75.75 0 0 0 0-1.5h-5.5a.75.75 0 0 0 0 1.5h5.5ZM9 10a.75.75 0 0 1-.75.75h-5.5a.75.75 0 0 1 0-1.5h5.5A.75.75 0 0 1 9 10ZM17.25 10.75a.75.75 0 0 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5h1.5ZM14 10a2 2 0 1 0-4 0 2 2 0 0 0 4 0ZM10 16.25a2 2 0 1 0-4 0 2 2 0 0 0 4 0Z" />
-                                </svg>
+                            <label for="email" class="block text-gray-700 font-medium mb-3 flex items-center">
+                                <i class="fas fa-heading ml-2 text-[#023e83] text-sm"></i>
                                     ایمیل 
                                 <span class="text-red-500 mr-1">*</span>
                             </label>
                             <div class="relative">
-                                <input type="email" id="email" name="email" value="{{Auth::user()->email}}"  
+                                <input type="text" id="email" name="email" value="{{Auth::user()->email}}" required 
                                        class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50"
                                        placeholder="ایمیل خود را وارد کنید">
                                 <i class="fas fa-pen absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
@@ -202,11 +166,11 @@
         // مدیریت رویدادهای فیلدها
         document.querySelectorAll('input, select, textarea').forEach(element => {
             element.addEventListener('focus', function() {
-                this.parentElement.classList.add('ring-0', 'ring-blue-100', 'border-xl-[#023e83]');
+                this.parentElement.classList.add('ring-2', 'ring-blue-100', 'border-[#023e83]');
             });
             
             element.addEventListener('blur', function() {
-                this.parentElement.classList.remove('ring-0', 'ring-blue-100', 'border-xl-[#023e83]');
+                this.parentElement.classList.remove('ring-2', 'ring-blue-100', 'border-[#023e83]');
             });
         });
 

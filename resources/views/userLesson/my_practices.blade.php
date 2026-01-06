@@ -130,9 +130,9 @@
     </div>
 
     <!-- لیست خالی -->
-    @if (count($lesson->practices) == 0)
+    @if (count($user->lessons) == 0)
         <p class="text-center text-slate-500 mt-6">
-            درسی برای شما وجود ندارد.
+            تمرینی برای شما وجود ندارد.
         </p>
     @endif
 

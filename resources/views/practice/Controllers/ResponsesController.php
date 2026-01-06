@@ -53,7 +53,7 @@ class ResponsesController extends Controller
         // responses::where('user_id' , "!=" , $practice->master->id )->where('practice_id',$practice->id)->where('seen' , 0)->count()])
 
     public function response_list(practice $practice){
-        $practice->load('master'); 
+        $practice->load('master');
         // $practiceMasterId = ;
           
         

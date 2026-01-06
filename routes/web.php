@@ -34,6 +34,7 @@ Route::group([
     Route::post("/update","update")->name("update");
     Route::get("/show/{user}","show")->name('single');
     Route::get('/profile/{user}', 'profile')->name('profile');
+    Route::get('/dashboardMain}','dashboardMain')->name('dashboard');
     Route::get('/setting' , "setting")->name('setting');
     Route::get('/complete' , "complete_profile")->name("complete_profile");
     Route::post('/save' , "save")->name("save");
