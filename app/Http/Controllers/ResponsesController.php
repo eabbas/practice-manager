@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\practice;
 use App\Models\responses;
 use App\Models\User;
+use App\Models\lesson;
+
 use App\Models\responseMedia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -54,13 +56,9 @@ class ResponsesController extends Controller
 
     public function response_list(practice $practice){
         $practice->load('master');
-        // $practiceMasterId = ;
-          
-        
         $response = responses::select('user_id' , DB::raw('sum(if(seen = 0, 1,  0)) as userResponseCount') )
         ->where('user_id' , "!=" , $practice->master->id )->where('practice_id',$practice->id)->groupBy('user_id')->get();
         $response->load("users");  
-        //   dd($response);
            $seens=responses::where("seen",0)->get();
            foreach($seens as $seen){
             
@@ -103,4 +101,5 @@ class ResponsesController extends Controller
     return Storage::disk("public")->download($media->media_path);
       
     }
+
 }

@@ -117,6 +117,7 @@ Route::get('response/list/{practice}' , [ResponsesController::class , 'response_
 Route::get('/student/responses/{student}/{practice}/{master}' , [ResponsesController::class , 'student_responses'])->name('student_responses');
 
 
+
 // download
 
 Route::get("/downlod/file/{media}",[ResponsesController::class,'downloadFile'])->name("download");

@@ -46,9 +46,6 @@
     <span class="triangle">▼</span>
 </button>
 
-
-
-
     <ul id="teacherMenu" class="hidden flex flex-col gap-6 mb-6 pr-3 text-white">
         <li class="flex items-center gap-2.5 mr-5">
             <span class="size-1 bg-white"></span>
@@ -64,6 +61,7 @@
             <span class="size-1 bg-white"></span>
             <a href="{{ route('practices_list') }}">دسترسی به تمرینات</a>
         </li>
+        
     </ul>
 <!-- عنوان: دانشجو -->
 <button
@@ -77,6 +75,11 @@
         <li class="flex items-center gap-2.5 mr-5">
             <span class="size-1 bg-white"></span>
             <a href="{{ route('student_class') }}">درس های من</a>
+        </li>
+
+        <li class="flex items-center gap-2.5 mr-5">
+            <span class="size-1 bg-white"></span>
+            <a href="{{ route('my_requests') }}">درخواست‌های ثبت شده</a>
         </li>
 
         <li class="flex items-center gap-2.5 mr-5">
