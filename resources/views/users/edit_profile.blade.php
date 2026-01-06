@@ -120,19 +120,21 @@
                                 <span class="text-red-500 mr-1">*</span>
                             </label>
                             <div class="relative">
-                               <input
-                                    type="number"
-                                    name="code"
-                                    id="code"
-                                    value="{{ Auth::user()->code }}"
-                                    required
-                                    inputmode="numeric"
-                                    pattern="[0-9]{11}"
-                                    minlength="11"
-                                    maxlength="11"
-                                    class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50
-                                        focus:ring-2 focus:ring-[#023e83]/30 focus:border-[#023e83]"
-                                    placeholder="شماره  پرسنلی خود را وارد کنید">
+<input
+    type="text"
+    name="code"
+    id="code"
+    value="{{ Auth::user()->code }}"
+    required
+    inputmode="numeric"
+    pattern="[0-9]{1,11}"
+    maxlength="11"
+    oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,11)"
+    class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50
+        focus:ring-2 focus:ring-[#023e83]/30 focus:border-[#023e83]"
+    placeholder="شماره پرسنلی / دانشجویی را وارد کنید">
+
+
 
 
                                 <i class="fas fa-pen absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
@@ -147,19 +149,21 @@
                                 <span class="text-red-500 mr-1">*</span>
                             </label>
                             <div class="relative">
-                               <input
-                                type="number"
-                                name="phone"
-                                id="phone"
-                                value="{{ Auth::user()->phone }}"
-                                required
-                                inputmode="numeric"
-                                pattern="[0-9]{11}"
-                                minlength="11"
-                                maxlength="11"
-                                class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50
-                                    focus:ring-2 focus:ring-[#023e83]/30 focus:border-[#023e83]"
-                                placeholder="شماره تلفن خود را وارد کنید">
+                              <input
+                                    type="text"
+                                    name="phone"
+                                    id="phone"
+                                    value="{{ Auth::user()->phone }}"
+                                    required
+                                    inputmode="numeric"
+                                    pattern="09[0-9]{9}"
+                                    maxlength="11"
+                                    minlength="11"
+                                    oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,11)"
+                                    class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl input-focus transition duration-200 bg-gray-50
+                                        focus:ring-2 focus:ring-[#023e83]/30 focus:border-[#023e83]"
+                                    placeholder="شماره تلفن خود را وارد کنید">
+
 
 
                                 <i class="fas fa-pen absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
