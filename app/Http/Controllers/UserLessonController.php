@@ -142,4 +142,6 @@ class UserLessonController extends Controller
     }
     return redirect()->back();
   }
+
+
 }

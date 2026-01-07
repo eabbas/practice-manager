@@ -59,12 +59,7 @@ class ResponsesController extends Controller
         $response = responses::select('user_id' , DB::raw('sum(if(seen = 0, 1,  0)) as userResponseCount') )
         ->where('user_id' , "!=" , $practice->master->id )->where('practice_id',$practice->id)->groupBy('user_id')->get();
         $response->load("users");  
-           $seens=responses::where("seen",0)->get();
-           foreach($seens as $seen){
-            
-                $seen->seen=1;
-                $seen->save();
-           }
+        
        return view('responses.response_list' , ['practiceResponses'=>$response , 'practice'=>$practice]);
     }
 
@@ -82,9 +77,16 @@ class ResponsesController extends Controller
                 $query->where('user_id' ,  $master->id)->where('student_id' , $student->id);
             })->get();
         }
-
+          
         $responses->load('users');
         $responses->load('responseMedia');
+
+          $seens=responses::where("seen",0)->get();
+           foreach($seens as $seen){
+            
+                $seen->seen=1;
+                $seen->save();
+           } 
         //$x = $responses->load('master');
          //dd($x);
  
