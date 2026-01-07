@@ -82,7 +82,7 @@
                     </div>
                     
                 <div class=" w-[300px] ml-4 bg-gray-50 rounded-xl p-6 border border-gray-200 mb-3 text-center font-bold hover:bg-blue-200">
-                    <a href="{{route('student_responses' , [$responses[0]->users->id ,$practice->id ,$practice->master->id ])}}" title="مشاهده پاسخ ها">مشاهده پاسخ ها</a>
+                    <a href="{{route('student_responses' , [$responses[0]->users->id ,$practice->id ,$practice->master->id ])}}" title="مشاهده پاسخ ها">ارسال پاسخ</a>
                 </div>
                 
             </div>
@@ -109,7 +109,7 @@
                             <div>
                                 <h3 class="text-lg font-semibold text-gray-800 text-nowrap">
                                     <i class="fas fa-align-left ml-2 text-[#023e83]"></i>
-                                     مهلت ارسال 
+                                     مهلت ارسال :
                                 </h3>
                             </div>
                             <div>
@@ -121,7 +121,7 @@
                         <div class="flex flex-row gap-3">
                             <h3 class="text-lg font-semibold text-gray-800 text-nowrap mb-4 flex items-center pb-2 mt-1">
                                 <i class="fas fa-align-left ml-2 text-[#023e83]"></i>
-                                دانلود فایل 
+                                دانلود فایل :
                             </h3>
                             @foreach ($practice->practiceMedia as $media)
                             @if(isset($media->media_path))

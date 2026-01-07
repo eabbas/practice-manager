@@ -126,7 +126,7 @@
                         </span>
                     </div>
                 @elseif($response->users->roles[0]->title == 'دانشجو')
-                <div class="h-auto rounded-sm p-2 shadow-sm mb-3 border border-gray-300 border-r-4 border-r-violet-400">
+                <div class="h-auto rounded-sm p-2 shadow-sm mb-3 border border-gray-300 border-r-4 border-r-amber-300">
                     <div class="flex flex-row border-b justify-between items-center">
                         <div class="flex flex-col mr-3">
                             <span class="flex flex-row gap-1 text-base mt-2">
