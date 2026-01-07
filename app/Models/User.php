@@ -75,6 +75,7 @@ class User extends Authenticatable
 
     }
 
+
     public function responses(){
         return $this->hasMany(responses::class ,'user_id');
     }

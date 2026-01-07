@@ -106,26 +106,35 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <div>
           <label class="block text-white text-sm mb-2">شماره تماس</label>
-          <input type="tel" name="phone"  required placeholder="شماره تماس"
-                 class="w-full px-4 py-2 sm:py-3 rounded-xl input-glass text-white text-right
-                        placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none">
+        <input
+  type="tel"
+  name="phone"
+  placeholder="شماره تماس "
+  required
+  maxlength="11"
+  minlength="11"
+  pattern="09[0-9]{9}"
+  inputmode="numeric"
+  class="w-full px-4 py-2 sm:py-3 rounded-xl input-glass text-white text-right
+         placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none">
+
         </div>
 <div>
   <label class="block text-white text-sm mb-2">رمز عبور</label>
 
   <div class="relative">
     <input
-      type="password"
-      name="code"
-      id="password"
-      placeholder="رمز عبور"
-      maxlength="11"
-      pattern="[0-9]{1,11}"
-      inputmode="numeric"
-      required
-      class="w-full px-4 py-3 rounded-xl input-glass text-white
-             placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none"
-    >
+  type="password"
+  name="code"
+  id="password"
+  placeholder="رمز عبور "
+  maxlength="11"
+  pattern="[0-9]{1,11}"
+  inputmode="numeric"
+  required
+  class="w-full px-4 py-3 rounded-xl input-glass text-white
+         placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none">
+
 
     <!-- آیکن چشم -->
     <span

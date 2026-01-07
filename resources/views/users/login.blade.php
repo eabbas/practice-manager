@@ -78,34 +78,39 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
       @csrf
 <div>
   <label class="block text-white text-sm mb-2">شماره تماس</label>
-  <input
-    type="number"
-    name="phone"
-    placeholder="شماره تماس"
-    maxlength="11"
-    pattern="[0-9]{11}"
-    {{-- inputmode="numeric" --}}
-    required
-    class="w-full px-4 py-3 rounded-xl input-glass text-white
-           placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none"
-  >
+ <input
+  type="text"
+  name="phone"
+  placeholder="شماره تماس"
+  maxlength="11"
+  inputmode="numeric"
+  pattern="^09\d{9}$"
+  required
+  oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+  class="w-full px-4 py-3 rounded-xl input-glass text-white text-right
+         placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none"
+/>
+
 </div>
 
 <div>
   <label class="block text-white text-sm mb-2">رمز عبور</label>
 
   <div class="relative">
-    <input
-      type="password"
-      name="password"
-      id="password"
-      placeholder="رمز عبور"
-      maxlength="11"
-      inputmode="numeric"
-      required
-      class="w-full px-4 py-3 rounded-xl input-glass text-white
-             placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none"
-    >
+<input
+  type="password"
+  name="password"
+  id="password"
+  placeholder="رمز عبور"
+  maxlength="11"
+  inputmode="numeric"
+  pattern="\d{1,11}"
+  required
+  oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+  class="w-full px-4 py-3 rounded-xl input-glass text-white
+         placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none"
+/>
+
 
     <!-- آیکن چشم -->
     <span

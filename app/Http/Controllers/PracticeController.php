@@ -22,6 +22,7 @@ class PracticeController extends Controller
     }
 
      public function store(Request $request){
+        
         $practiceId = practice::insertGetId(["lesson_id"=>$request->lesson_id , "title"=>$request->title , "deadLine"=>$request->deadLine , "description"=>$request->description , "active"=>0]);
         if($request->file('file')){
             $files = $request->file('file');
@@ -31,7 +32,7 @@ class PracticeController extends Controller
             }
           practiceMedia::create(["practice_id"=>$practiceId , "media_path"=>$path]);
         }
-        return to_route('practices_list');
+        return to_route('practice_list',[$request->lesson_id]);
     }
     
     public function file_download(practiceMedia $media){

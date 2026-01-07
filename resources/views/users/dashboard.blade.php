@@ -40,13 +40,30 @@
     <!-- عنوان: استاد -->
     <!-- عنوان: استاد -->
 <button
-    class="w-full text-right pr-3 text-sm text-slate-300 mb-2 flex items-center justify-between"
-    onclick="toggleSection('teacherMenu', this)">
-    بخش استاد
-    <span class="triangle">▼</span>
+    class="w-full pr-3 text-[16px] text-white mb-2
+           flex items-center justify-between"
+    onclick="toggleSection('studentMenu', this)">
+
+    <!-- سمت راست: آیکن + متن -->
+    <div class="flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg"
+             fill="none" viewBox="0 0 24 24"
+             stroke-width="1.5" stroke="currentColor"
+             class="size-4">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M15.75 6a3.75 3.75 0 1 1-7.5 0
+                     3.75 3.75 0 0 1 7.5 0ZM4.501 20.118
+                     a7.5 7.5 0 0 1 14.998 0"/>
+        </svg>
+
+        <span>بخش استاد</span>
+    </div>
+
+    <!-- مثلث -->
+    <span class="triangle text-[10px] transition-transform duration-300">
+        ▼
+    </span>
 </button>
-
-
 
 
     <ul id="teacherMenu" class="hidden flex flex-col gap-6 mb-6 pr-3 text-white">
@@ -64,14 +81,35 @@
             <span class="size-1 bg-white"></span>
             <a href="{{ route('practices_list') }}">دسترسی به تمرینات</a>
         </li>
+        
     </ul>
 <!-- عنوان: دانشجو -->
 <button
-    class="w-full text-right pr-3 text-sm text-slate-300 mb-2 flex items-center justify-between"
+    class="w-full pr-3 text-[16px] text-white mb-2
+           flex items-center justify-between"
     onclick="toggleSection('studentMenu', this)">
-    بخش دانشجو
-    <span class="triangle">▼</span>
+
+    <!-- سمت راست: آیکن + متن -->
+    <div class="flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg"
+             fill="none" viewBox="0 0 24 24"
+             stroke-width="1.5" stroke="currentColor"
+             class="size-4">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M15.75 6a3.75 3.75 0 1 1-7.5 0
+                     3.75 3.75 0 0 1 7.5 0ZM4.501 20.118
+                     a7.5 7.5 0 0 1 14.998 0"/>
+        </svg>
+
+        <span>بخش دانشجو</span>
+    </div>
+
+    <!-- مثلث -->
+    <span class="triangle text-[10px] transition-transform duration-300">
+        ▼
+    </span>
 </button>
+
 
     <ul id="studentMenu" class="hidden flex flex-col gap-6 pr-3 text-white">
         <li class="flex items-center gap-2.5 mr-5">
@@ -82,6 +120,11 @@
             <span class="size-1 bg-white"></span>
             <a href="{{ route('my_practices') }}">تمرین های من</a>
         </li>
+        <li class="flex items-center gap-2.5 mr-5">
+            <span class="size-1 bg-white"></span>
+            <a href="{{ route('my_requests') }}">درخواست‌های ثبت شده</a>
+        </li>
+
         <li class="flex items-center gap-2.5 mr-5">
             <span class="size-1 bg-white"></span>
             <a href="{{ route('my_requests') }}">درخواست‌های ثبت شده</a>

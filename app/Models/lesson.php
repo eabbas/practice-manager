@@ -25,4 +25,20 @@ class lesson extends Model
    public function master(){
         return $this->hasOne(User::class, 'id', 'master_id' );
    }
+
+    // public function responses(){
+    //     return $this->hasManyThrough(responses::class,practice::class);
+    // }
+
+    public function responses()
+    {
+        return $this->hasManyThrough(
+            responses::class,
+            practice::class,
+            'lesson_id', // Foreign key on the environments table...
+            'practice_id', // Foreign key on the deployments table...
+            'id', // Local key on the applications table...
+            'id' // Local key on the environments table...
+        );
+    }
 }

@@ -20,6 +20,7 @@ class responses extends Model
     public function users(){
         return $this->belongsTo(user::class , 'user_id');
     }
+
     public function responseMedia(){
         return $this->hasMany(responseMedia::class, 'response_id');
         
