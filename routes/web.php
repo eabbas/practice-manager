@@ -102,6 +102,8 @@ Route::post('/user/select' , [UserLessonController::class , "user_select"])->nam
 
 Route::get('/student/class', [UserLessonController::class,'student_class'])->name('student_class');
 
+Route::get('my/practices' , [UserLessonController::class , 'my_practices'])->name('my_practices');
+
 Route::get('/delete/request/{lesson}/{id}' , [UserLessonController::class, 'delete_request'])->name('delete_request');
 
 Route::get('/delete_myRequest/{id}', [UserLessonController::class, 'delete']) ->name('delete_myRequest');
