@@ -135,13 +135,4 @@ class UserLessonController extends Controller
   }
 
 
-   public function my_practices(){
-    $user = Auth::user();
-    $user->load(['lessons' => function ($query) {
-      $query->where('status', 1);
-    }]);
-    $user->lessons->load('master');
-    $user->lessons->load('practices');
-    return view("userLesson.my_practices", ['user' => $user]);
-  }
 }
