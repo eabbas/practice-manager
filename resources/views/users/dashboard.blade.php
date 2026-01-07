@@ -40,9 +40,9 @@
     <!-- عنوان: استاد -->
     <!-- عنوان: استاد -->
 <button
-    class="w-full pr-3 text-[16px] text-white mb-2
+     class="w-full pr-3 text-[16px] text-white mb-2
            flex items-center justify-between"
-    onclick="toggleSection('studentMenu', this)">
+    onclick="toggleSection('teacherMenu', this)">
 
     <!-- سمت راست: آیکن + متن -->
     <div class="flex items-center gap-2">
@@ -85,7 +85,7 @@
     </ul>
 <!-- عنوان: دانشجو -->
 <button
-    class="w-full pr-3 text-[16px] text-white mb-2
+      class="w-full pr-3 text-[16px] text-white mb-2
            flex items-center justify-between"
     onclick="toggleSection('studentMenu', this)">
 
@@ -119,7 +119,7 @@
 
         <li class="flex items-center gap-2.5 mr-5">
             <span class="size-1 bg-white"></span>
-            <a href="{{ route('my_requests') }}">درخواست‌های ثبت شده</a>
+          <a href="{{ route('my_practices') }}">تمرین های من</a>
         </li>
 
         <li class="flex items-center gap-2.5 mr-5">
@@ -323,6 +323,10 @@
         }
     }
 </script>
+
+
+
+
 
 </body>
 </html>
