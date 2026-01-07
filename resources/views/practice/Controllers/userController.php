@@ -21,7 +21,6 @@ class userController extends Controller
 
   public function store(Request $request)
   {
-    // dd($request->all());
     $password = Hash::make($request->code);
     $userId = User::insertGetId(["approved" => 0, "name" => $request->name, "family" => $request->family, "password" => $password, "phone" => $request->phone, "code" => $request->code]);
     user_role::create(["user_id" => $userId, "role_id" => $request->userRoles]);
@@ -37,9 +36,8 @@ class userController extends Controller
 
   public function check(Request $request)
   {
-    // dd($request->all());
     if (Auth::check()) {
-      return to_route("user.dashboard", [Auth::user()]);
+      return to_route("user.profile", [Auth::user()]);
     }
     $user = User::where("phone", $request->phone)->first();
     if (!$user) {
@@ -48,39 +46,28 @@ class userController extends Controller
     $checkHash = Hash::check($request->password, $user->password);
     if ($checkHash) {
       Auth::login($user);
-      // dd($user);
-      return redirect()->intended(route('user.dashboard',[Auth::user()]));
-      // return to_route("user.dashboardMain", [Auth::user()]);
+      return redirect()->intended(route('user.profile',[Auth::user()]));
+      // return to_route("user.profile", [Auth::user()]);
     } else {
       return view('users.incorrect_password');
     }
 
   }
-
   public function profile(user $user)
   {
     $user->role;
     return view('users.profile', ['user' => $user ]);
   }
-  
-  public function dashboardMain(){
-    return view('users.dashboardMain');
-  }
-
   public function logout()
   {
     Auth::logout();
     return to_route("home");
   }
-
-
   public function index()
   {
     $users = User::all();
     return view("users.index", ["users" => $users]);
   }
-
-
   public function edit($id)
   {
     $user = User::find($id);
@@ -99,7 +86,7 @@ class userController extends Controller
   }
 
   public function save(Request $request){
-  $user=Auth::user();
+  $user = User::find($request->master_id);
   $user->collage = $request->collage;
   $user->email = $request->email;
   $user->save();
@@ -109,8 +96,8 @@ class userController extends Controller
   
   public function update(Request $request)
   {
-    $user = Auth::user();
-    // dd($user);
+   // dd($request->master_id);
+    $user = User::find($request->master_id);
     $user->name = $request->name;
     $user->family = $request->family;
     $user->phone = $request->phone;
@@ -122,15 +109,11 @@ class userController extends Controller
     $user->save();
     return to_route("user.profile",[Auth::user()]);
   }
-
-
   public function show($id)
   {
     $user = User::find($id);
     return view("users.single", ["user" => $user]);
   }
-
-
   public function delete($id)
   {
     $user = User::find($id);

@@ -26,46 +26,24 @@
         px-5 text-sm
         transform translate-x-full lg:translate-x-0
         transition-transform duration-500">
-        <div class="flex items-center justify-center">
-          @if(Auth::user()->roles[0]->title=="استاد")
-              <a href="{{route('user.dashboard')}}" class="text-xl font-bold text-white text-center py-3 mt-3">داشبورد استاد</a>
-          @elseif(Auth::user()->roles[0]->title=="دانشجو")
-              <a href="{{route('user.dashboard')}}" class="text-xl font-bold text-white text-center py-3 mt-3 ">داشبورد دانشجو</a>
-          @endif
-        </div>
+        
+        @if(Auth::user()->roles[0]->title=="استاد")
+            <h3 class="text-xl font-bold text-white text-center py-3 mt-5">داشبورد استاد</h3>
+        @elseif(Auth::user()->roles[0]->title=="دانشجو")
+            <h3 class="text-xl font-bold text-white text-center py-3 mt-5 ">داشبورد دانشجو</h3>
+        @endif
 
         <hr class="text-[darkslategray] mt-2.5">
 
         <div class="py-5 h-[80%] overflow-y-auto" style="scrollbar-width:none;">
 
     <!-- عنوان: استاد -->
-    <!-- عنوان: استاد -->
-<button
-     class="w-full pr-3 text-[16px] text-white mb-2
-           flex items-center justify-between"
-    onclick="toggleSection('teacherMenu', this)">
-
-    <!-- سمت راست: آیکن + متن -->
-    <div class="flex items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg"
-             fill="none" viewBox="0 0 24 24"
-             stroke-width="1.5" stroke="currentColor"
-             class="size-4">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M15.75 6a3.75 3.75 0 1 1-7.5 0
-                     3.75 3.75 0 0 1 7.5 0ZM4.501 20.118
-                     a7.5 7.5 0 0 1 14.998 0"/>
-        </svg>
-
-        <span>بخش استاد</span>
-    </div>
-
-    <!-- مثلث -->
-    <span class="triangle text-[10px] transition-transform duration-300">
-        ▼
-    </span>
-</button>
-
+    <button
+        class="w-full text-right pr-3 text-sm text-slate-300 mb-2 flex items-center justify-between"
+        onclick="toggleMenu('teacherMenu')">
+        بخش استاد
+        <span>▼</span>
+    </button>
 
     <ul id="teacherMenu" class="hidden flex flex-col gap-6 mb-6 pr-3 text-white">
         <li class="flex items-center gap-2.5 mr-5">
@@ -82,48 +60,20 @@
             <span class="size-1 bg-white"></span>
             <a href="{{ route('practices_list') }}">دسترسی به تمرینات</a>
         </li>
-        
     </ul>
-<!-- عنوان: دانشجو -->
-<button
-      class="w-full pr-3 text-[16px] text-white mb-2
-           flex items-center justify-between"
-    onclick="toggleSection('studentMenu', this)">
 
-    <!-- سمت راست: آیکن + متن -->
-    <div class="flex items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg"
-             fill="none" viewBox="0 0 24 24"
-             stroke-width="1.5" stroke="currentColor"
-             class="size-4">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M15.75 6a3.75 3.75 0 1 1-7.5 0
-                     3.75 3.75 0 0 1 7.5 0ZM4.501 20.118
-                     a7.5 7.5 0 0 1 14.998 0"/>
-        </svg>
-
-        <span>بخش دانشجو</span>
-    </div>
-
-    <!-- مثلث -->
-    <span class="triangle text-[10px] transition-transform duration-300">
-        ▼
-    </span>
-</button>
-
+    <!-- عنوان: دانشجو -->
+    <button
+        class="w-full text-right pr-3 text-sm text-slate-300 mb-2 flex items-center justify-between"
+        onclick="toggleMenu('studentMenu')">
+        بخش دانشجو
+        <span>▼</span>
+    </button>
 
     <ul id="studentMenu" class="hidden flex flex-col gap-6 pr-3 text-white">
         <li class="flex items-center gap-2.5 mr-5">
             <span class="size-1 bg-white"></span>
             <a href="{{ route('student_class') }}">درس های من</a>
-        </li>
-        <li class="flex items-center gap-2.5 mr-5">
-            <span class="size-1 bg-white"></span>
-            <a href="{{ route('my_practices') }}">تمرین های من</a>
-        </li>
-        <li class="flex items-center gap-2.5 mr-5">
-            <span class="size-1 bg-white"></span>
-            <a href="{{ route('my_requests') }}">درخواست‌های ثبت شده</a>
         </li>
 
         <li class="flex items-center gap-2.5 mr-5">
@@ -308,29 +258,12 @@
         document.getElementById('sidebar').classList.toggle('translate-x-full');
         document.getElementById('overlay').classList.toggle('hidden');
     }
-    
-    function toggleSubMenu(id) {
+</script>
+<script>
+    function toggleMenu(id) {
         const menu = document.getElementById(id);
         menu.classList.toggle('hidden');
-    }
-
-    function toggleSection(id, btn) {
-        const menu = document.getElementById(id);
-        const triangle = btn.querySelector('.triangle');
-
-        menu.classList.toggle('hidden');
-
-        if (menu.classList.contains('hidden')) {
-            triangle.textContent = '▼';
-        } else {
-            triangle.textContent = '▲';
-        }
     }
 </script>
-
-
-
-
-
 </body>
 </html>

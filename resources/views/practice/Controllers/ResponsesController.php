@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 use App\Models\practice;
 use App\Models\responses;
 use App\Models\User;
-use App\Models\lesson;
-
 use App\Models\responseMedia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -55,15 +53,20 @@ class ResponsesController extends Controller
         // responses::where('user_id' , "!=" , $practice->master->id )->where('practice_id',$practice->id)->where('seen' , 0)->count()])
 
     public function response_list(practice $practice){
-        $practice->load('master'); 
+        $practice->load('master');
         // $practiceMasterId = ;
           
         
-        $practice->load('master');
         $response = responses::select('user_id' , DB::raw('sum(if(seen = 0, 1,  0)) as userResponseCount') )
         ->where('user_id' , "!=" , $practice->master->id )->where('practice_id',$practice->id)->groupBy('user_id')->get();
         $response->load("users");  
-        
+        //   dd($response);
+           $seens=responses::where("seen",0)->get();
+           foreach($seens as $seen){
+            
+                $seen->seen=1;
+                $seen->save();
+           }
        return view('responses.response_list' , ['practiceResponses'=>$response , 'practice'=>$practice]);
     }
 
@@ -81,16 +84,9 @@ class ResponsesController extends Controller
                 $query->where('user_id' ,  $master->id)->where('student_id' , $student->id);
             })->get();
         }
-          
+
         $responses->load('users');
         $responses->load('responseMedia');
-
-          $seens=responses::where("seen",0)->get();
-           foreach($seens as $seen){
-            
-                $seen->seen=1;
-                $seen->save();
-           } 
         //$x = $responses->load('master');
          //dd($x);
  
@@ -107,5 +103,4 @@ class ResponsesController extends Controller
     return Storage::disk("public")->download($media->media_path);
       
     }
-
 }
