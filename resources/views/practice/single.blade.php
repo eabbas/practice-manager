@@ -74,11 +74,19 @@
         <div class="p-6" style="overflow-y:scroll">
             <!-- توضیحات درس -->
             <div class="mb-6 ">
-                <div class=" w-[300px] mr-55 bg-gray-50 rounded-xl p-6 border border-gray-200 mb-2">
-                    <h3 class="text-center font-bold text-xl">
-                        {{ $practice->title }}
-                   </h3> 
+                <div class="flex flex-row justify-around">
+                    <div class=" w-[300px] ml-4 bg-gray-50 rounded-xl p-6 border border-gray-200 mb-3">
+                        <h3 class="text-center font-bold text-xl">
+                            {{ $practice->title }}
+                        </h3> 
+                    </div>
+                    
+                <div class=" w-[300px] ml-4 bg-gray-50 rounded-xl p-6 border border-gray-200 mb-3 text-center font-bold hover:bg-blue-200">
+                    <a href="{{route('student_responses' , [$responses[0]->users->id ,$practice->id ,$practice->master->id ])}}" title="مشاهده پاسخ ها">مشاهده پاسخ ها</a>
                 </div>
+                
+            </div>
+                
                 <h3 class="text-lg  font-semibold text-gray-800 mb-4 flex items-center border-b pb-2">
                     <i class="fas fa-align-left ml-2 text-[#023e83]"></i>
                     توضیحات تمرین
@@ -133,7 +141,7 @@
 
             <!-- اطلاعات تکمیلی -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div class="bg-blue-50 rounded-xl p-4 border border-blue-200">
+                <div class="bg-blue-100 rounded-xl p-4 border border-blue-200">
                     <div class="flex items-center mb-2">
                         <div class="bg-blue-100 p-2 rounded-lg ml-3">
                             <i class="fas fa-layer-group text-[#023e83]"></i>

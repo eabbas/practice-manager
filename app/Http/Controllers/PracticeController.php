@@ -17,7 +17,7 @@ use Illuminate\View\View;
 class PracticeController extends Controller
 {
      public function create(lesson $lesson){
-
+         
         return view("practice.create" , ["lesson"=>$lesson]);
     }
 
@@ -47,10 +47,11 @@ class PracticeController extends Controller
     }
 
     public function show(practice $practice){
-       $practice->load('master');
-       $practice->load('practiceMedia');
-       $responses = responses::where('practice_id',$practice->id)->whereIn('user_id' , [ Auth::id(), $practice->master->id])->get();
-       $responses->load('users');
+        $practice->load('master');
+        $practice->load('practiceMedia');
+        $responses = responses::where('practice_id',$practice->id)->whereIn('user_id' , [ Auth::id(), $practice->master->id])->get();
+        $responses->load('users');
+        // dd($responses);
 
        return view('practice.single' , ["practice"=>$practice , 'responses'=>$responses]);
     }
