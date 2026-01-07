@@ -110,6 +110,8 @@ Route::get('/delete/request/{lesson}/{id}' , [UserLessonController::class, 'dele
 Route::get('/delete_myRequest/{id}', [UserLessonController::class, 'delete']) ->name('delete_myRequest');
 
 
+
+
 //responses 
 
 
@@ -118,6 +120,7 @@ Route::post('/response/store',[ResponsesController::class , 'store'])->name('res
 Route::get('response/list/{practice}' , [ResponsesController::class , 'response_list'])->name('response_list');
 
 Route::get('/student/responses/{student}/{practice}/{master}' , [ResponsesController::class , 'student_responses'])->name('student_responses');
+
 
 
 // download

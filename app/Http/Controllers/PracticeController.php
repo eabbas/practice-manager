@@ -17,11 +17,12 @@ use Illuminate\View\View;
 class PracticeController extends Controller
 {
      public function create(lesson $lesson){
-
+         
         return view("practice.create" , ["lesson"=>$lesson]);
     }
 
      public function store(Request $request){
+        
         $practiceId = practice::insertGetId(["lesson_id"=>$request->lesson_id , "title"=>$request->title , "deadLine"=>$request->deadLine , "description"=>$request->description , "active"=>0]);
         if($request->file('file')){
             $files = $request->file('file');
@@ -31,7 +32,7 @@ class PracticeController extends Controller
             }
           practiceMedia::create(["practice_id"=>$practiceId , "media_path"=>$path]);
         }
-        return to_route('practices_list');
+        return to_route('practice_list',[$request->lesson_id]);
     }
     
     public function file_download(practiceMedia $media){
@@ -46,10 +47,11 @@ class PracticeController extends Controller
     }
 
     public function show(practice $practice){
-       $practice->load('master');
-       $practice->load('practiceMedia');
-       $responses = responses::where('practice_id',$practice->id)->whereIn('user_id' , [ Auth::id(), $practice->master->id])->get();
-       $responses->load('users');
+        $practice->load('master');
+        $practice->load('practiceMedia');
+        $responses = responses::where('practice_id',$practice->id)->whereIn('user_id' , [ Auth::id(), $practice->master->id])->get();
+        $responses->load('users');
+        // dd($responses);
 
        return view('practice.single' , ["practice"=>$practice , 'responses'=>$responses]);
     }
