@@ -67,7 +67,7 @@
 </button>
 
 
-    <ul id="teacherMenu" class="hidden flex flex-col gap-6 mb-6 pr-3 text-white">
+    <ul id="teacherMenu" class="hidden flex flex-col gap-6 mb-6 pr-3 text-slate-300 mt-3">
         <li class="flex items-center gap-2.5 mr-5">
             <span class="size-1 bg-white"></span>
             <a href="{{ route('lesson_create') }}">ارائه درس جدید</a>
@@ -112,8 +112,8 @@
 </button>
 
 
-    <ul id="studentMenu" class="hidden flex flex-col gap-6 pr-3 text-white">
-        <li class="flex items-center gap-2.5 mr-5">
+    <ul id="studentMenu" class="hidden flex flex-col gap-6 pr-3 text-slate-300 mt-3">
+        <li class="flex items-center gap-2 mr-5">
             <span class="size-1 bg-white"></span>
             <a href="{{ route('student_class') }}">درس های من</a>
         </li>
@@ -121,11 +121,6 @@
             <span class="size-1 bg-white"></span>
             <a href="{{ route('my_practices') }}">تمرین های من</a>
         </li>
-        <li class="flex items-center gap-2.5 mr-5">
-            <span class="size-1 bg-white"></span>
-            <a href="{{ route('my_requests') }}">درخواست‌های ثبت شده</a>
-        </li>
-
         <li class="flex items-center gap-2.5 mr-5">
             <span class="size-1 bg-white"></span>
             <a href="{{ route('my_requests') }}">درخواست‌های ثبت شده</a>
