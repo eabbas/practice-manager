@@ -70,9 +70,10 @@
                     transition-all hover:scale-[1.003]">
 
             <!-- آیکون -->
-            <div class="p-3 bg-blue-900 text-white rounded-lg text-2xl self-start sm:self-auto">
+           <div class="hidden sm:flex p-3 bg-blue-900 text-white rounded-lg text-2xl self-start sm:self-auto">
                 📖
             </div>
+
 
             <!-- محتوا -->
             <div class="flex-1 space-y-2">

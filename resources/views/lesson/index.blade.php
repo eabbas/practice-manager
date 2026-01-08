@@ -92,11 +92,8 @@
                 <i class="fas fa-check-circle text-green-500 text-lg md:text-xl"></i>
             </div>
         </div>
-    </div>
-
-    
-
-</div>
+      </div>
+   </div>
 
 
         <!-- جدول دروس -->
@@ -121,11 +118,11 @@
                     </div>
                     <div class="flex items-center space-x-4 space-x-reverse mt-3 md:mt-0 ml-10">
                         <div class="relative">
-                           <input
-    id="lessonSearch"
-    type="text"
-    placeholder="  جستجوی درس..."
-    class="px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#023e83] focus:border-[#023e83] transition duration-200">
+                                        <input
+                    id="lessonSearch"
+                    type="text"
+                    placeholder="  جستجوی درس..."
+                    class="px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#023e83] focus:border-[#023e83] transition duration-200">
 
                             <i class="fas fa-search absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 mt-2"></i>
                         </div>
@@ -192,13 +189,13 @@
                             {{ $lesson->title }}
                         </p>
 
-                        <p class="text-xs sm:text-sm text-gray-500 mt-1 truncate">
+                        <p class="text-xs sm:text-sm text-gray-500 mt-1 truncate text-wrap">
                             {{ $lesson->description }}
                         </p>
                     </div>
                 </div>
             </td>
-            <td class="px-4 md:px-6 py-3">
+            <td class="px-2 md:px-6 py-3">
                 <div class="flex items-center">
                      @if ($lesson->active == 0)
                      <div class="w-3 h-3 bg-green-500 rounded-full ml-2"></div>

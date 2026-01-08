@@ -117,7 +117,6 @@
     </div>
 
     <!-- جدول -->
-    <!-- 👇 تغییر مهم اینجاست -->
     <div class="overflow-x-auto relative overflow-visible">
 
         <table class="w-full">
@@ -228,44 +227,42 @@
                         </div>
                     </td>
 
-                    <!-- 👇 اینجا هم تغییر مهم -->
-                    <td class="md:hidden px-4 py-3 relative overflow-visible">
+                    <td class="md:hidden px-4 py-3 relative">
 
                         <button type="button"
+                            class="relative z-10"
                             onclick="toggleMoreMenu('menu-{{ $practice->id }}')">
-                            <i class="fas fa-ellipsis-h"></i>
-
+                            <i class="fas fa-ellipsis-h text-lg"></i>
                         </button>
 
                         <div id="menu-{{ $practice->id }}"
-                             class="hidden absolute right-0 top-10 w-44 bg-white border shadow-lg rounded-xl z-50">
+                            class="hidden absolute right-0 mt-2 w-40
+                                    bg-white border border-gray-200
+                                    shadow-xl rounded-xl z-30">
 
                             <a href="{{route('response_list' ,[$practice->id])}}"
-                               class="block px-3 py-2 hover:bg-slate-100">
-                                پاسخ ها
+                            class="block px-4 py-2 text-sm hover:bg-slate-100">
+                                پاسخ‌ها
                             </a>
 
                             <a href="{{ route('practice_edit', [$practice]) }}"
-                               class="block px-3 py-2 hover:bg-slate-100 flex items-center gap-2">
+                            class="block px-4 py-2 text-sm hover:bg-slate-100 flex items-center gap-2">
                                 <i class="fas fa-edit text-blue-600"></i> ویرایش
                             </a>
 
                             <a href="{{ route('practice_show', [$practice]) }}"
-                               class="block px-3 py-2 hover:bg-slate-100 flex items-center gap-2">
+                            class="block px-4 py-2 text-sm hover:bg-slate-100 flex items-center gap-2">
                                 <i class="fas fa-eye text-green-600"></i> مشاهده
                             </a>
 
                             <a href="{{ route('practice_delete', [$practice]) }}"
-                               class="block px-3 py-2 hover:bg-slate-100 flex items-center gap-2">
+                            class="block px-4 py-2 text-sm hover:bg-slate-100 flex items-center gap-2">
                                 <i class="fas fa-trash text-red-600"></i> حذف
                             </a>
-
                         </div>
 
                     </td>
-
                 </tr>
-
             @endforeach
             </form>
             </tbody>
