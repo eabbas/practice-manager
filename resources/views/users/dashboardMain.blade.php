@@ -50,16 +50,8 @@
 
 <body class="min-h-screen bg-slate-100">
 
-  <!-- Header -->
-  <!-- <header class="bg-slate-900 text-white py-5 shadow">
-    <div class="max-w-6xl mx-auto px-4 flex items-center justify-between">
-      <h1 class="text-xl font-bold">پنل مدیریت</h1>
-      <span class="text-sm opacity-80">داشبورد آموزشی</span>
-    </div>
-  </header> -->
-
   <!-- Dashboard -->
-  <main class="max-w-6xl mx-auto px-4 py-8">
+  <main class="max-w-6xl mx-auto px-4 py-6">
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 

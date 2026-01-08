@@ -139,7 +139,6 @@
                 <th class="hidden md:table-cell px-4 py-4 text-right text-sm font-semibold text-gray-700">
                     عملیات
                 </th>
-
                 <th class="md:hidden px-4 py-3 text-right text-sm font-semibold text-gray-700">
                     بیشتر
                 </th>
@@ -158,10 +157,10 @@
                         </div>
                     </td>
                     <td class="px-4 md:px-6 py-3">
-                        <div class="flex items-center">
-                            <div class="bg-blue-50 p-2 rounded-lg ml-3">
-                                <div class="bg-blue-50 p-1rounded-lg ml-3 text-blue-900">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="mr-3 size-6">
+                        <div class="flex items-center justify-center">
+                            <div class="w-[40px] bg-blue-50 p-2 rounded-lg ml-3">
+                                <div class=" bg-blue-50 p-1rounded-lg ml-3 text-blue-900">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class=" size-6">
                             <path d="M11.25 4.533A9.707 9.707 0 0 0 6 3a9.735 9.735 0 0 0-3.25.555.75.75 0 0 0-.5.707v14.25a.75.75 0 0 0 1 .707A8.237 8.237 0 0 1 6 18.75c1.995 0 3.823.707 5.25 1.886V4.533ZM12.75 20.636A8.214 8.214 0 0 1 18 18.75c.966 0 1.89.166 2.75.47a.75.75 0 0 0 1-.708V4.262a.75.75 0 0 0-.5-.707A9.735 9.735 0 0 0 18 3a9.707 9.707 0 0 0-5.25 1.533v16.103Z" />
                         </svg>
                 </div>
@@ -232,7 +231,7 @@
                     <!-- 👇 اینجا هم تغییر مهم -->
                     <td class="md:hidden px-4 py-3 relative overflow-visible">
 
-                        <button
+                        <button type="button"
                             onclick="toggleMoreMenu('menu-{{ $practice->id }}')">
                             <i class="fas fa-ellipsis-h"></i>
 

@@ -104,9 +104,9 @@
             
             @if($response->users->roles[0]->title == 'استاد')
             <div class="h-auto rounded-sm p-2 shadow-sm mb-3 border border-gray-300 border-r-4 border-r-indigo-400">
-                    <div class="flex flex-row border-b justify-between items-center">
+                    <div class="flex flex-row gap-10 border-b justify-between items-center">
                         <div class="flex flex-col mr-3">
-                            <span class="flex flex-row gap-1 text-base mt-2">
+                            <span class="flex flex-row gap-1 text-base mt-2 text-nowrap">
                                 <svg class="mt-1" width="13" height="13" fill="#9E9E9E" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                <path d="M12 12a5.25 5.25 0 1 0 0-10.499A5.25 5.25 0 0 0 12 12Zm0 1.5c-3.254 0-9.75 2.01-9.75 6v3h19.5v-3c0-3.99-6.496-6-9.75-6Z"></path>
                                </svg>
@@ -167,56 +167,73 @@
              </div>
            
 
-        </div>
-        @endforeach
+            </div>
+             @endforeach
 
-     </div>
-            <div class="flex items-center justify-center">
-                <div class="w-[760px] bg-white rounded-sm p-6 border border-gray-200 shadow-sm mr-3 mb-4">
-                    <h3 class="text-xl font-semibold text-[#023e83] mb-4 flex items-center">
-                        <i class="fas fa-upload ml-2"></i>
-                        ارسال پاسخ 
-                    </h3>
-                    <form action="{{route('response_store')}}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="mb-4">
-                            {{-- <label class="block text-gray-700 font-medium mb-2">فایل تمرین</label>
-                            <input type="file" name="file" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-primary"> --}}
-                            <input type="hidden" name="practice_id" value="{{$practice->id}}">
-                            <input type="hidden" name="user_id" value="{{Auth::id()}}">
-                            <input type="hidden" name="student_id" value="{{$student->id}}">
-                            <div class="flex flex-row gap-2">
-                                <label class="block text-gray-700 font-semibold mt-6"> انتخاب فایل:</label>  
-                                <input type="file" class="border border-gray-300 rounded-lg px-3 py-2 w-55 focus:outline-none focus:ring-2 focus:ring-primary mt-4 cursor-pointer" title="انتخاب فایل" name="file[]"  multiple>
-                                  <button type="reset" class="px-2 h-10 bg-slate-200 rounded-lg text-slate-700 mt-4">
-                                  پاک کردن فایل
-                                 </button>
-                            </div>
-                            <textarea name="text" id="response" cols="0" rows="1" class="w-100 border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-primary mt-4" placeholder="ارسال پیام..."></textarea>
-                            <div class="flex flex-row justify-between mt-3">
-                                <button type="submit" 
-                                        class="bg-[#023e83] hover:bg-[#012b5a] text-white px-6 py-2 rounded-lg transition duration-200 mt-3">
-                                    ارسال
-                                </button>
-                                
-                                @if(Auth::user()->roles[0]->title == 'استاد')
-                                <div class="flex items-center space-x-3 space-x-reverse mt-4 md:mt-0">
-                                    <a href="{{route('response_list' , [$practice])}}" 
-                                    class="border border-gray-300 hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg transition duration-200 flex items-center mt-3">
-                                    <i class="fas fa-arrow-right ml-2"></i>
-                                    بازگشت
-                                    </a>
-                               </div>
-                                @elseif(Auth::user()->roles[0]->title == 'دانشجو')
-                               <div class="flex items-center space-x-3 space-x-reverse mt-4 md:mt-0">
-                                    <a href="{{route('practice_list',[$practice->lesson->id])}}" 
-                                    class="border border-gray-300 hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg transition duration-200 flex items-center mt-3">
-                                    <i class="fas fa-arrow-right ml-2"></i>
-                                    بازگشت
-                                    </a>
-                               </div>
-                               @endif
-                            </div>
+            </div>
+           <div class="flex items-center justify-center px-3">
+            <div class="w-full max-w-2xl lg:max-w-3xl bg-white rounded-xl p-4 md:p-6 border border-gray-200 shadow-sm mb-4">
+
+                <h3 class="text-lg md:text-xl font-semibold text-[#023e83] mb-4 flex items-center">
+                    <i class="fas fa-upload ml-2"></i>
+                    ارسال پاسخ
+                </h3>
+
+                <form action="{{route('response_store')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+
+                    <input type="hidden" name="practice_id" value="{{$practice->id}}">
+                    <input type="hidden" name="user_id" value="{{Auth::id()}}">
+                    <input type="hidden" name="student_id" value="{{$student->id}}">
+
+                    <!-- فایل -->
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-semibold mb-2">
+                            انتخاب فایل:
+                        </label>
+
+                        <div class="flex flex-col md:flex-row gap-3 md:items-center">
+                            <input type="file"
+                                name="file[]"
+                                multiple
+                                class="border border-gray-300 rounded-lg px-3 py-2 w-full md:w-auto focus:ring-2 focus:ring-primary cursor-pointer">
+
+                            <button type="reset"
+                                    class="px-3 py-2 bg-slate-200 rounded-lg text-slate-700">
+                                پاک کردن فایل
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- متن پاسخ -->
+                    <textarea name="text" id="response"
+                            rows="2"
+                            class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary"
+                            placeholder="ارسال پیام..."></textarea>
+
+                    <!-- دکمه‌ها -->
+                    <div class="flex flex-row md:flex-row justify-between items-start md:items-center mt-4 gap-3">
+
+                        <button type="submit"
+                                class="bg-[#023e83] hover:bg-[#012b5a] text-white px-6 py-2 rounded-lg transition">
+                            ارسال
+                        </button>
+
+                        @if(Auth::user()->roles[0]->title == 'استاد')
+                            <a href="{{route('response_list' , [$practice])}}"
+                            class="border border-gray-300 hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg flex items-center">
+                                <i class="fas fa-arrow-right ml-2"></i>
+                                بازگشت
+                            </a>
+
+                        @elseif(Auth::user()->roles[0]->title == 'دانشجو')
+                            <a href="{{route('practice_list',[$practice->lesson->id])}}"
+                            class="border border-gray-300 hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg flex items-center">
+                                <i class="fas fa-arrow-right ml-2"></i>
+                                بازگشت
+                            </a>
+                        @endif
+                        </div>
                     </form>
                 </div>
             </div>
@@ -226,7 +243,7 @@
 <!-- دکمه اسکرول به پایین -->
 <!-- 🔻 دکمه اسکرول به پایین (سمت راست) -->
 <button id="scrollToBottomBtn"
-        class="fixed bottom-10 left-20 w-12 h-12 rounded-full bg-[#023e83] text-white
+        class="fixed bottom-10 left-8 w-12 h-12 rounded-full bg-[#023e83] text-white
                shadow-lg flex items-center justify-center cursor-pointer
                hover:bg-[#012b5a] transition z-50">
     <i class="fas fa-arrow-down"></i>

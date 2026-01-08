@@ -180,7 +180,7 @@
                  <input type="checkbox" class="user" name="lessons[]" value="{{$lesson->id}}">
                  </div>
             </td>
-            <td class="px-2 py-2 sm:px-3 sm:py-4">
+            <td class="px-2 py-2 sm:px-2 sm:py-2">
                 <div class="flex items-center">
                    <div class="bg-blue-50 p-2 rounded-lg ml-3 text-blue-900">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
@@ -220,17 +220,6 @@
                     {{ Auth::user()->name }} {{ Auth::user()->family }}
                 </span>
             </td>
-            {{-- <td class="m:table-cell px-2 py-2 sm:px-6 sm:py-2"> --}}
-                {{-- <span class="text-gray-700 text-nowrap"> --}}
-                {{-- @foreach ($users as $user) --}}
-                {{-- @foreach ($user->users as $u) --}}
-                    {{-- @dd($user->users->pivot->status == 1) --}}
-                    {{-- @endforeach --}}
-                    {{-- @endforeach --}}
-                    {{-- {{count($u->pivot->status == 1)}} --}}
-                   
-                {{-- </span> --}}
-            {{-- </td> --}}
             <!-- عملیات -->
             <td class="px-2 py-2 sm:px-6 sm:py-4">
 
@@ -270,13 +259,6 @@
                        class="bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-2 rounded-xl shadow">
                         تمرینات
                     </a>
-<!-- 
-                    <button onclick="copyText({{ $lesson->id }})"
-                            class="bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-2 rounded-xl shadow flex items-center gap-2">
-                        <i class="fas fa-paper-plane"></i>
-                        ارسال
-                    </button> -->
-                    
 
                     <a href="{{ url('/request/list/'.$lesson->id) }}"
                        class="bg-[#023e83] hover:bg-[#022e6b] text-white px-4 py-2 rounded-xl shadow">
@@ -287,7 +269,7 @@
 
                 <!-- موبایل — دکمه بیشتر -->
                 <div class="md:hidden relative inline-block">
-                    <button
+                    <button type="button"
                         onclick="toggleMoreMenu({{ $lesson->id }})">
                         <i class="fas fa-ellipsis-h"></i>
                     </button>
@@ -320,17 +302,10 @@
                             class="block px-3 py-2 rounded-lg hover:bg-slate-100">
                                 ایجاد تمرین
                             </a>
-
                             <a href="{{ route('practice_list', [$lesson->id]) }}"
                             class="block px-3 py-2 rounded-lg hover:bg-slate-100">
                                 تمرینات
                             </a>
-
-                            <button
-                                onclick="copyText({{ $lesson->id }})"
-                                class="w-full text-right px-3 py-2 rounded-lg hover:bg-slate-100 flex items-center gap-2">
-                            
-                            </button>
 
                             <a href="{{ url('/request/list/'.$lesson->id) }}"
                             class="block px-3 py-2 rounded-lg hover:bg-slate-100">
@@ -439,6 +414,5 @@
         });
     });
 </script>
-
-        
+<script src="{{asset('assets/js/checkAll.js')}}"></script>
 @endsection
