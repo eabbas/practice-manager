@@ -4,7 +4,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+<script src="{{asset("assets/js/tailwind.js")}}"></script>
 <script>
     tailwind.config = {
         theme: {
@@ -45,16 +45,34 @@
     <!-- هدر صفحه -->
     
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
-        <div>
-            <h1 class="text-3xl font-bold text-[#023e83] mb-2">
-                  عنوان درس : 
-                {{ $practice->lesson->title}}</h1>
-            <div class="flex items-center space-x-4 space-x-reverse text-gray-600">
-                <span class="flex items-center">
-                    <i class="fas fa-layer-group ml-1 text-[#023e83]"></i>
-                    دانشجو : 
-                    {{$student->name}} {{ $student->family }}
-                </span>
+        <div class="w-full flex flex-row justify-between">
+            <div class="flex flex-col">
+                <h1 class="text-3xl font-bold text-[#023e83] mb-2">
+                      عنوان درس : 
+                    {{ $practice->lesson->title}}</h1>
+                <div class="flex items-center space-x-4 space-x-reverse text-gray-600">
+                    <span class="flex items-center">
+                        <i class="fas fa-layer-group ml-1 text-[#023e83]"></i>
+                        دانشجو : 
+                        {{$student->name}} {{ $student->family }}
+                    </span>
+                </div>
+            </div>
+            <div>
+                @if(Auth::user()->roles[0]->title == 'استاد')
+                 <a href="{{route('response_list' , [$practice])}}"
+                 class="border border-gray-300 hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg flex items-center">
+                 <i class="fas fa-arrow-right ml-2"></i>
+                     بازگشت
+                 </a>
+
+                @elseif(Auth::user()->roles[0]->title == 'دانشجو')
+                    <a href="{{route('practice_list',[$practice->lesson->id])}}"
+                    class="border border-gray-300 hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg flex items-center">
+                    <i class="fas fa-arrow-right ml-2"></i>
+                         بازگشت
+                    </a>
+             @endif
             </div>
         </div>
     </div>
@@ -185,7 +203,11 @@
                     <input type="hidden" name="practice_id" value="{{$practice->id}}">
                     <input type="hidden" name="user_id" value="{{Auth::id()}}">
                     <input type="hidden" name="student_id" value="{{$student->id}}">
-
+                    @if(Auth::user()->roles[0]->title == 'استاد')
+                    <input type="hidden" name="status" value="1"> 
+                    @elseif(Auth::user()->roles[0]->title == 'دانشجو')
+                    <input type="hidden" name="status" value="0"> 
+                    @endif
                     <!-- فایل -->
                     <div class="mb-4">
                         <label class="block text-gray-700 font-semibold mb-2">

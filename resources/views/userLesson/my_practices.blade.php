@@ -5,6 +5,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="{{asset("assets/js/tailwind.js")}}"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -89,6 +90,7 @@
 
             <tbody class="text-sm">
                 @foreach($user->lessons as $lesson)
+                {{-- @foreach($lesson->responses as $response) --}}
                 @foreach($lesson->practices as $practice)
                 {{-- @dd($practice); --}}
                 <tr class="hover:bg-slate-50 border-b transition">
@@ -115,16 +117,20 @@
                         ارسال پاسخ  
                     </a>
                     </td>
-
-                    {{-- <td class="py-3 px-4 text-center">
-                        <a href="{{route('practice_list' , [$lesson->id])}}"
-                           class="inline-block px-3 py-1.5 rounded-md border border-blue-600 text-blue-600 hover:bg-blue-50">
-                            مشاهده تمرینات
-                        </a>
-                    </td> --}}
-                </tr>
+                    <td>
+                        {{-- @dd($practice->response_status->status) --}}
+                        @if(isset($practice->response_status->status))
+                        @if($practice->response_status->status == 0)
+                        <p>دیده نشده</p>
+                        @elseif($practice->response_status->status == 1)
+                        <p>دیده شده</p>
+                        @endif
+                        @endif
+                    </td>
+                    </tr>
                 @endforeach
                 @endforeach
+                {{-- @endforeach --}}
             </tbody>
         </table>
     </div>

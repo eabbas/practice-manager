@@ -5,6 +5,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="{{asset("assets/js/tailwind.js")}}"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -43,7 +44,7 @@
     </style>
 </head>
 <body class="min-h-screen py-8 px-2 font-vazir">
-    <div class="max-w-7xl mx-auto ml-30">
+    <div class="max-w-7xl mx-auto">
         <!-- هدر -->
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-5">
             <div>

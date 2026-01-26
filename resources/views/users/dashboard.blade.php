@@ -9,7 +9,7 @@
     <title>@yield('title')</title>
 </head>
 
-<body class="bg-gray-100">
+<body class="bg-gray-100 relative">
 
 <!-- overlay موبایل -->
 <div id="overlay"
@@ -328,4 +328,9 @@
 
 
 </body>
+{{-- <footer>
+    <div class="w-full h-[60px] flex flex-row-reverse bg-white absolute bottom-0">
+            <p></p>
+     </div>
+        </footer> --}}
 </html>

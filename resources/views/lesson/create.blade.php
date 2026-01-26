@@ -5,7 +5,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+<script src="{{asset("assets/js/tailwind.js")}}"></script>
 <script>
     tailwind.config = {
         theme: {
@@ -47,7 +47,7 @@
     <div class="text-center mb-12">
         <h1 class="text-3xl font-bold text-[#023e83] mt-5">ایجاد درس جدید</h1>
         <p class="text-gray-600 text-lg">اطلاعات درس جدید را وارد کنید</p>
-    </div>
+     </div>
 
     <!-- فرم -->
     <div class="bg-white rounded-2xl shadow-lg overflow-hidden">

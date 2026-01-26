@@ -42,4 +42,8 @@ class practice extends Model
             'master_id' // Local key on the cars table...
         );
     }
+
+     public function response_status(){
+        return $this->hasOne(response_status::class );
+    }
 }
