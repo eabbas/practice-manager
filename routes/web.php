@@ -6,6 +6,7 @@ use App\Http\Controllers\LessonController;
 use App\Http\Controllers\PracticeController;
 use App\Http\Controllers\PracticeMediaController;
 use App\Http\Controllers\ResponsesController;
+use App\Http\Controllers\ResponseStatusController;
 use App\Http\Controllers\StudentRequestController;
 use App\Http\Controllers\UserLessonController;
 use App\Http\Middleware\sendMiddleware;
@@ -133,3 +134,6 @@ Route::get("/downlod/file/{media}",[ResponsesController::class,'downloadFile'])-
 Route::post('/file/store' , [PracticeMediaController::class , 'file_store'])->name('file_store');
 
 Route::get('/file/download/{media}' , [PracticeController::class , 'file_download'])->name('file_download');
+
+
+//response statuses 

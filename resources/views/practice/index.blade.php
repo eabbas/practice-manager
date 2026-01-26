@@ -4,6 +4,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="{{asset("assets/js/tailwind.js")}}"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -165,7 +166,7 @@
                 </div>
                             </div>
 
-                            <div>
+                            <div class='space-x-8'>
                                 <p class="text-sm text-gray-500 mt-1">
                                     {{ $practice->title }}
                                 </p>
@@ -268,7 +269,6 @@
             </tbody>
         </table>
     </div>
-
 </div>
 <script>
     function toggleMoreMenu(id) {

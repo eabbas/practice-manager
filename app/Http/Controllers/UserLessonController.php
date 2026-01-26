@@ -120,13 +120,14 @@ class UserLessonController extends Controller
     }]);
     $user->lessons->load('master');
     $user->lessons->load('practices');
+    $user->lessons->load('responses');
     return view("userLesson.my_practices", ['user' => $user]);
   }
 
   public function user_select(Request $request)
   {
     // dd($request->all());
-    if ($request->select == "accept") {
+    if ($request->select == "accept"){
       foreach ($request->users as $user_id) {
         $userLesson = userLesson::where('user_id', $user_id)->where('lesson_id', $request->lesson_id)->first();
         // dd($userLesson);
