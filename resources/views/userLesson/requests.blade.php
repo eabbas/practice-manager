@@ -1,8 +1,8 @@
 @extends('users.dashboard')
 @section('title', 'practice list')
 @section('content')
-<script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+{{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"> --}}
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="{{asset("assets/js/tailwind.js")}}"></script>
     <script>
@@ -46,7 +46,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
+    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
     <title>لیست درخواست‌ها</title>
 </head>
 
@@ -137,9 +137,12 @@
 
                     <td class="py-3 px-4 text-center">
                         <a href="{{route('delete_request', [$lessonUsers->id , $user->id])}}"
-                           class="text-red-600 hover:text-red-800 transition"
+                           class="flex items-center justify-center text-red-600 hover:text-red-800 transition"
                            title="حذف">
                             <i class="fas fa-trash text-lg"></i>
+                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6 7v13c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zm10-4h-4V2h-4v1H4v2h16V3h-4z"/>
+                        </svg>
                         </a>
                     </td>
                 </tr>

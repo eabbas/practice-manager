@@ -2,8 +2,8 @@
 @section('title', 'single lesson')
 @section('content')
 
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+{{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+{{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"> --}}
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="{{asset("assets/js/tailwind.js")}}"></script>
 <script>
@@ -69,7 +69,7 @@
             <div class="flex flex-row max-md:flex-col max-md:gap-3 justify-around">
 
                 <div class="w-[300px] max-md:w-full ml-4 max-md:ml-0
-                            bg-gray-50 rounded-xl p-6 border mb-3 text-center">
+                            bg-gray-50 rounded-xl p-6 border border-gray-200 mb-3 text-center">
                     <h3 class="font-bold text-xl">
                         {{ $practice->title }}
                     </h3>
@@ -78,7 +78,7 @@
                 @if(Auth::user()->roles[0]->title=="استاد")
                 <a href="{{ route('response_list', [$practice->id]) }}"
                    class="w-[300px] max-md:w-full ml-4 max-md:ml-0
-                          bg-gray-50 rounded-xl p-6 border mb-3 text-center font-bold
+                          bg-gray-50 rounded-xl p-6 borde mb-3 text-center font-bold
                           hover:bg-blue-200 transition">
                     مشاهده پاسخ ها
                 </a>
@@ -86,7 +86,7 @@
                 @elseif(Auth::user()->roles[0]->title=="دانشجو")
                 <a href="{{ route('student_responses', [Auth::user()->id ,$practice->id ,$practice->master->id]) }}"
                     class="w-[300px] max-md:w-full ml-4 max-md:ml-0
-                            bg-blue-600 text-white rounded-xl p-6 border mb-3 text-center font-bold
+                            bg-blue-600 text-white rounded-xl p-6 border border-gray-200 mb-3 text-center font-bold
                             hover:bg-blue-700 shadow-lg transition">
                         ارسال پاسخ
                     </a>
@@ -100,7 +100,7 @@
                 توضیحات تمرین
             </h3>
 
-            <div class="bg-gray-50 rounded-xl p-6 border
+            <div class="bg-gray-50 rounded-xl p-6 border border-gray-200
                         h-[100px] max-md:h-auto overflow-y-auto">
                 @if($practice->description)
                     <div class="prose text-gray-700">
@@ -117,13 +117,13 @@
             <div class="flex flex-row max-md:flex-col gap-3 mt-4">
 
                 <div class="w-full h-[80px] max-md:h-auto
-                            bg-gray-50 rounded-xl p-6 border flex items-center gap-3">
+                            bg-gray-50 rounded-xl p-6 border border-gray-200 flex items-center gap-3">
                     <span class="font-semibold">مهلت ارسال :</span>
                     {{ jdate($practice->deadLine)->format('Y/m/d') }}
                 </div>
 
                 <div class="w-full h-[80px] max-md:h-auto
-                            bg-gray-50 rounded-xl p-6 border">
+                            bg-gray-50 rounded-xl p-6 border border-gray-200">
                     <div class="flex items-center gap-4 flex-wrap">
                         <span class="font-semibold">دانلود فایل :</span>
 
@@ -147,7 +147,7 @@
             <!-- اطلاعات تکمیلی -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
 
-                <div class="bg-blue-100 rounded-xl p-4 border">
+                <div class="bg-blue-100 rounded-xl p-4 border border-gray-200">
                     <div class="flex items-center mb-2">
                         <i class="fas fa-layer-group ml-2 text-[#023e83]"></i>
                         <h4 class="font-semibold">درس</h4>
@@ -155,7 +155,7 @@
                     <p>{{ $practice->lesson->title }}</p>
                 </div>
 
-                <div class="bg-purple-50 rounded-xl p-4 border">
+                <div class="bg-purple-50 rounded-xl p-4 border border-gray-200">
                     <div class="flex items-center mb-2">
                         <i class="fas fa-user-tie ml-2 text-purple-600"></i>
                         <h4 class="font-semibold">استاد مربوطه</h4>

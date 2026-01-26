@@ -2,10 +2,10 @@
 @extends('users.dashboard')
 @section('title', 'practice list')
 @section('content')
-<script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+{{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"> --}}
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="{{asset("assets/js/tailwind.js")}}"></script>
+    {{-- <script src="{{asset("assets/js/tailwind.js")}}"></script> --}}
     <script>
         tailwind.config = {
             theme: {
@@ -47,7 +47,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://cdn.tailwindcss.com"></script>
+  {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
   <title>لیست درخواست‌ها</title>
 </head>
 
@@ -69,7 +69,7 @@
       <input
         type="text"
         placeholder="جستجو..."
-        class="w-full sm:w-56 px-3 py-2 border rounded-lg text-sm"
+        class="w-full sm:w-56 px-3 py-2 border border-gray-200 rounded-lg text-sm"
       >
       {{-- <button type="reset" class="px-4 py-2 bg-slate-200 rounded-lg text-sm">
         پاک‌سازی
@@ -78,7 +78,7 @@
   </div>
 
   <!--دسکتاپ-->
-  <div class="hidden md:block overflow-x-auto border rounded-lg">
+  <div class="hidden md:block overflow-x-auto border border-gray-200 rounded-lg">
     <table class="w-full text-right text-sm">
       <thead class="bg-slate-50 text-slate-600">
         <tr>
@@ -125,7 +125,7 @@
   <!--موبایل -->
   <div class="md:hidden space-y-3">
 
-    <div class="border rounded-xl p-4 text-sm space-y-2">
+    <div class="border border-gray-200 rounded-xl p-4 text-sm space-y-2">
       <div><span class="text-slate-500">نام دانشجو:</span> {{Auth::user()->name}} {{Auth::user()->family}}</div>
       <div><span class="text-slate-500">شماره دانشجویی:</span> {{Auth::user()->code}}</div>
       <div><span class="text-slate-500">نام درس:</span> {{$userLesson->title}}</div>
@@ -146,18 +146,15 @@
       <div class="pt-2">
   
         <a  class="flex items-center gap-2 text-red-600 hover:text-red-800" href="{{route('delete_myRequest',[$userLesson->id])}}"> 
-
           <i class="fa-solid fa-trash" title="حذف درخواست"></i>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6 7v13c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zm10-4h-4V2h-4v1H4v2h16V3h-4z"/>
+                    </svg>
           حذف درخواست
         </a>
-      
-    
-</div>
-
-    </div>
-     
-  </div>
-
+       </div>
+    </div>   
+   </div>
 </div>
 
 </body>

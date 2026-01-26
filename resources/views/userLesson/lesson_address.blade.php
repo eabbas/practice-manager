@@ -3,8 +3,8 @@
 @section('content')
 
 
-<script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+{{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"> --}}
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="{{asset("assets/js/tailwind.js")}}"></script>
     <script>
@@ -40,8 +40,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>درخواست شرکت در درس</title>
-
-  <script src="https://cdn.tailwindcss.com"></script>
 
   <script>
     tailwind.config = {
@@ -96,35 +94,35 @@
         <div>
           <label class="block text-sm mb-1">نام دانشجو</label>
           <input type="text" readonly
-            class="w-full border rounded-xl p-3 outline-none focus:outline-none focus:ring-0 " 
+            class="w-full border  border-gray-200 rounded-xl p-3 outline-none focus:outline-none focus:ring-0 " 
             value="{{ Auth::user()->name }} {{ Auth::user()->family }}">
         </div>
 
         <div>
           <label class="block text-sm mb-1">شماره دانشجویی</label>
           <input type="text" readonly
-            class="w-full border rounded-xl p-3 outline-none focus:outline-none focus:ring-0 "
+            class="w-full border border-gray-200 rounded-xl p-3 outline-none focus:outline-none focus:ring-0 "
             value="{{ Auth::user()->code }}">
         </div>
 
         <div>
           <label class="block text-sm mb-1">نام درس</label>
           <input type="text" readonly
-            class="w-full border rounded-xl p-3 outline-none focus:outline-none focus:ring-0 "
+            class="w-full border border-gray-200 rounded-xl p-3 outline-none focus:outline-none focus:ring-0 "
             value="{{ $lesson->title }}">
         </div>
 
         <div>
           <label class="block text-sm mb-1">نام استاد</label>
           <input type="text" readonly
-            class="w-full border rounded-xl p-3 outline-none focus:outline-none focus:ring-0 "
+            class="w-full border border-gray-200 rounded-xl p-3 outline-none focus:outline-none focus:ring-0 "
             value="{{ $master->name }} {{ $master->family }}">
         </div>
 
         <button
           class="
             w-full
-            bg-navy
+            bg-blue-900
             text-white
             rounded-xl
             py-3

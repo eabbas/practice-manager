@@ -2,8 +2,8 @@
 @section('title', 'create lesson')
 @section('content')
 
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+{{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+{{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"> --}}
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="{{asset("assets/js/tailwind.js")}}"></script>
 <script>
@@ -72,12 +72,16 @@
                         </label>
 
                         <div class="relative">
-                            <input type="text" name="title" required
-                                class="w-full px-4 py-3 pr-12 bg-gray-50 rounded-xl
-                                       border border-gray-300 transition
-                                       focus:border-[#023e83]"
-                                placeholder="عنوان درس را وارد کنید">
+                            <div>
+                                <input type="text" name="title" required
+                                    class="w-full px-4 py-3 pr-12 bg-gray-50 rounded-xl
+                                           border border-gray-300 transition
+                                           focus:border-[#023e83]"
+                                    placeholder="عنوان درس را وارد کنید">
+                            </div>
+                                
                             <i class="fas fa-pen absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 mt-1"></i>
+                            
                         </div>
                     </div>
 

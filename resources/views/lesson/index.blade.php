@@ -2,8 +2,8 @@
 @extends('users.dashboard')
 @section('title', 'lesson list')
 @section('content')
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"> --}}
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="{{asset("assets/js/tailwind.js")}}"></script>
     <script>
@@ -156,9 +156,9 @@
                   تعداد دانشجویان 
             </th> --}}
 
-             <th class="hidden md:table-cell px-4 py-4 text-right text-sm font-semibold text-gray-700">
-                    عملیات
-                </th>
+                <th class="hidden md:table-cell px-4 py-4 text-right text-sm font-semibold text-gray-700">
+                       عملیات
+                   </th>
                 
             <th class="md:hidden px-5 py-3 text-right pr-1 text-sm font-semibold text-gray-700 ">
                     بیشتر
@@ -226,14 +226,30 @@
 
                     <a href="{{ route('lesson_edit', [$lesson]) }}" class="text-blue-600 hover:text-blue-800">
                         <i class="fas fa-edit"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                        </svg>
                     </a>
 
                     <a href="{{ route('lesson_show', [$lesson]) }}" class="text-green-600 hover:text-green-800">
-                        <i class="fas fa-eye"></i>
+                        {{-- <i class="fas fa-eye"></i> --}}
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="24" height="24">
+                        <path d="M4 32C10 20 22 12 32 12s22 8 28 20c-6 12-18 20-28 20S10 44 4 32z"
+                                fill="#55de50"
+                                stroke-width="3"
+                                stroke-linejoin="round"/>
+                        <circle cx="32" cy="32" r="7"
+                                fill="none"
+                                stroke="white"
+                                stroke-width="3"/>
+                        </svg>
                     </a>
 
                     <a href="{{ route('lesson_delete', [$lesson]) }}" class="text-red-600 hover:text-red-800">
                         <i class="fas fa-trash"></i>
+                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6 7v13c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zm10-4h-4V2h-4v1H4v2h16V3h-4z"/>
+                        </svg>
                     </a>
                     <div onclick="copyText({{ $lesson->id }})" title="لینک درس">
                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -242,6 +258,7 @@
                             stroke-width="2.5"
                             stroke="currentColor"
                             class="cursor-pointer size-5 text-[#0D47A1]">
+                            {{-- class="cursor-pointer size-5 text-[#55de50]"> --}}
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
                         </svg>
