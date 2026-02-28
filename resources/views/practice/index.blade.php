@@ -1,8 +1,8 @@
 @extends('users.dashboard')
 @section('title', 'practice list')
 @section('content')
-{{-- <script src="https://cdn.tailwindcss.com"></script> --}}
-    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"> --}}
+<script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="{{asset("assets/js/tailwind.js")}}"></script>
     <script>
@@ -216,14 +216,14 @@
                         <div class="flex items-center space-x-3 space-x-reverse">
                             <a href="{{ route('practice_edit', [$practice]) }}" class="text-blue-600">
                                 <i class="fas fa-edit"></i>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                {{-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
-                        </svg>
+                        </svg> --}}
                             </a>
 
                             <a href="{{ route('practice_show', [$practice]) }}" class="text-green-600 ml-2">
                                 <i class="fas fa-eye"></i>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="28" height="28">
+                                {{-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="24" height="24">
                         <path d="M4 32C10 20 22 12 32 12s22 8 28 20c-6 12-18 20-28 20S10 44 4 32z"
                                 fill="#55de50"
                                 stroke-width="3"
@@ -232,14 +232,14 @@
                                 fill="none"
                                 stroke="white"
                                 stroke-width="3"/>
-                        </svg>
+                        </svg> --}}
                             </a>
 
                             <a href="{{ route('practice_delete', [$practice]) }}" class="text-red-600">
                                 <i class="fas fa-trash"></i>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                {{-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M6 7v13c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zm10-4h-4V2h-4v1H4v2h16V3h-4z"/>
-                        </svg>
+                        </svg> --}}
                             </a>
                         </div>
                     </td>

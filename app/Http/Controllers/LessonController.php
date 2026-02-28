@@ -18,6 +18,7 @@ class LessonController extends Controller
     }
 
     public function store(Request $request){
+        // dd($request->all());
         lesson::create($request->all());
         return redirect('lessons');
     }
@@ -26,8 +27,8 @@ class LessonController extends Controller
     public function index(){
        $lessons  = lesson::where('master_id', Auth::id())->paginate(5);
        $users = $lessons->load('users');
-       $activ = lesson::where('master_id', Auth::id())->where('active' , 0)->get();
-       $count = count($activ);
+       $active = lesson::where('master_id', Auth::id())->where('active' , 0)->get();
+       $count = count($active);
        return view('lesson.index' , ["lessons"=>$lessons,"count"=>$count , 'users'=>$users]);
     }
 

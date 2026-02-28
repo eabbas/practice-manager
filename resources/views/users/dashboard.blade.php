@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {{-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
      <script src="{{ asset('assets/js/tailwind.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css">
     <title>@yield('title')</title>
@@ -163,7 +163,8 @@
             <span
                 class="font-semibold text-gray-700
                        text-sm sm:text-base lg:text-lg">
-                خوش آمدید، {{Auth::user()->name}} {{Auth::user()->family}} 👋
+                {{Auth::user()->name}} {{Auth::user()->family}} 
+                عزیز، خوش آمدید👋
             </span>
 
             <!-- آواتار (سمت راست) -->
@@ -188,7 +189,7 @@
   <!-- منو -->
   <div
     id="profileMenu"
-    class="absolute top-17 right-0
+    class="absolute top-16 ml-20
            w-40 md:w-40   
            translate-x-[45px] md:translate-x-[50px]
            backdrop-blur-xl bg-white/100 border border-white/50 rounded-2xl shadow-xl p-2.5

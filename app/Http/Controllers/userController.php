@@ -91,11 +91,12 @@ class userController extends Controller
   
   public function edit_profile(){
     $roles = role::all();
-    return view("users.edit_profile" , ["user" => Auth::user()->role , "roles"=>$roles]);
+    // dd($roles);
+    return view("users.edit_profile" , ["roles"=>$roles]);
   }
   
   public function complete_profile(){
-  return view("users.complete_profile" , ["user"=>Auth::user()->role]);
+  return view("users.complete_profile");
   }
 
   public function save(Request $request){
@@ -120,7 +121,7 @@ class userController extends Controller
     $password = Hash::make($request->code);
     $user->approved = $request->approved;
     $user->save();
-    return to_route("user.profile",[Auth::user()]);
+    return to_route("user.profile",['user'=>$user]);
   }
 
 

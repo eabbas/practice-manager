@@ -31,19 +31,20 @@ class practice extends Model
         
     }
 
-     public function master()
+     
+    public function master()
     {
         return $this->hasOneThrough(
             User::class,
             lesson::class,
-            'id', // Foreign key on the cars table...
+            'id', // Foreign key on the master table...
             'id', // Foreign key on the owners table...
-            'lesson_id', // Local key on the mechanics table...
-            'master_id' // Local key on the cars table...
+            'lesson_id', // Local key on the lesson table...
+            'master_id' // Local key on the master table...
         );
     }
 
      public function response_status(){
-        return $this->hasOne(response_status::class );
+        return $this->hasOne(response_status::class);
     }
 }

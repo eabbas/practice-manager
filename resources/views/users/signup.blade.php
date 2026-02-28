@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>دانشگاه بناب - ثبت نام دانشجویان</title>
 
-  {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
-  {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"> --}}
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
    <script src="{{ asset('assets/js/tailwind.js') }}"></script>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script>
@@ -109,7 +109,7 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   maxlength="11"
   minlength="11"
   pattern="09[0-9]{9}"
-  inputmode="numeric"
+  
   class="w-full px-4 py-2 sm:py-3 rounded-xl input-glass text-white text-right
          placeholder-white/50 focus:ring-4 focus:ring-white/30 outline-none">
 

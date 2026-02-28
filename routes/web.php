@@ -115,7 +115,6 @@ Route::get('/delete_myRequest/{id}', [UserLessonController::class, 'delete']) ->
 
 //responses 
 
-
 Route::post('/response/store',[ResponsesController::class , 'store'])->name('response_store');
 
 Route::get('response/list/{practice}' , [ResponsesController::class , 'response_list'])->name('response_list');

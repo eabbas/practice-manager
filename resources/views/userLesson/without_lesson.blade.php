@@ -2,8 +2,8 @@
 @extends('users.dashboard')
 @section('title', 'practice list')
 @section('content')
-{{-- <script src="https://cdn.tailwindcss.com"></script> --}}
-    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"> --}}
+<script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
@@ -45,7 +45,7 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>لیست درس ها</title>
 </head>
 

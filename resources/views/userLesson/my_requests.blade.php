@@ -2,8 +2,8 @@
 @extends('users.dashboard')
 @section('title', 'practice list')
 @section('content')
-{{-- <script src="https://cdn.tailwindcss.com"></script> --}}
-    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"> --}}
+<script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     {{-- <script src="{{asset("assets/js/tailwind.js")}}"></script> --}}
     <script>
@@ -47,7 +47,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+  <script src="https://cdn.tailwindcss.com"></script>
   <title>لیست درخواست‌ها</title>
 </head>
 
@@ -147,9 +147,9 @@
   
         <a  class="flex items-center gap-2 text-red-600 hover:text-red-800" href="{{route('delete_myRequest',[$userLesson->id])}}"> 
           <i class="fa-solid fa-trash" title="حذف درخواست"></i>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          {{-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M6 7v13c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zm10-4h-4V2h-4v1H4v2h16V3h-4z"/>
-                    </svg>
+                    </svg> --}}
           حذف درخواست
         </a>
        </div>

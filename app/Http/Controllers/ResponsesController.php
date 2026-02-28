@@ -67,7 +67,7 @@ class ResponsesController extends Controller
 
 
     public function response_list(practice $practice){
-        $practice->load('master'); 
+        // $practice->load('master'); 
         // $practiceMasterId = ;
         
         $practice->load('master');
@@ -88,7 +88,6 @@ class ResponsesController extends Controller
             $responses = responses::where('practice_id',$practice->id)->whereIn('user_id' , [$student -> id , $master->id])->where('student_id' , $student->id)->get();
              $seens=responses::where('practice_id',$practice->id)->where("seen",0)->where('user_id', $student->id )->get();
              foreach($seens as $seen){
-            
                 $seen->seen=1;
                 $seen->save();
            } 
@@ -113,7 +112,7 @@ class ResponsesController extends Controller
     }
 
 
-    public function downloadFile( responseMedia $media){
+    public function downloadFile(responseMedia $media){
     //   dd($media);
     return Storage::disk("public")->download($media->media_path);
       

@@ -2,8 +2,8 @@
 @section('title', 'edit profile')
 @section('content')
 
-{{-- <script src="https://cdn.tailwindcss.com"></script> --}}
-{{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"> --}}
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script>
     tailwind.config = {
@@ -176,7 +176,7 @@
             </div>
 
             <!-- دکمه ذخیره -->
-            <div class="flex justify-end pt-6 border-t border-gray-200">
+            <div class="flex justify-end pt-6 boقخکثrder-t border-gray-200">
                 <button type="submit"
                         class="px-8 py-3 bg-[#023e83] hover:bg-[#022e6b] text-white
                                rounded-xl transition shadow-md font-medium flex items-center">
